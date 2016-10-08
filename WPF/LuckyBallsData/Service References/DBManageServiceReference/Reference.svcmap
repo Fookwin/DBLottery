@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2e3c3d57-a82e-48c2-b046-8a6fad735348" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://dbdataquery.cloudapp.net/DBManagement.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="DBManagement.disco" MetadataType="Disco" ID="d2192582-7712-498b-80f2-2a2527d2abd1" SourceId="1" SourceUrl="http://dbdataquery.cloudapp.net/DBManagement.svc?disco" />
+    <MetadataFile FileName="DBManagement.xsd" MetadataType="Schema" ID="b333194d-b63e-4361-9953-cb20f9f80271" SourceId="1" SourceUrl="http://dbdataquery.cloudapp.net/DBManagement.svc?xsd=xsd0" />
+    <MetadataFile FileName="DBManagement1.xsd" MetadataType="Schema" ID="6ca74e64-d2ab-4fd9-aa3e-cd290cc76915" SourceId="1" SourceUrl="http://dbdataquery.cloudapp.net/DBManagement.svc?xsd=xsd1" />
+    <MetadataFile FileName="DBManagement.wsdl" MetadataType="Wsdl" ID="e95b3e01-164e-43cf-84e7-46756329c733" SourceId="1" SourceUrl="http://dbdataquery.cloudapp.net/DBManagement.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

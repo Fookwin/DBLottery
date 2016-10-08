@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="834d3148-ea0d-4fa7-9509-3713876f12aa" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://dbdataquery.cloudapp.net/DBSqlService.svc/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service11.wsdl" MetadataType="Wsdl" ID="c2572700-dc17-4b26-9e2b-99c059423884" SourceId="1" SourceUrl="http://dbdataquery.cloudapp.net/DBSqlService.svc/mex" />
+    <MetadataFile FileName="service22.xsd" MetadataType="Schema" ID="19f15a24-bfb7-43b6-a7f1-4584d1695daa" SourceId="1" SourceUrl="http://dbdataquery.cloudapp.net/DBSqlService.svc/mex" />
+    <MetadataFile FileName="service23.xsd" MetadataType="Schema" ID="8cf9ed9f-3ecd-4702-b349-eb82c8ff0dcd" SourceId="1" SourceUrl="http://dbdataquery.cloudapp.net/DBSqlService.svc/mex" />
+    <MetadataFile FileName="Arrays11.xsd" MetadataType="Schema" ID="9fa358fe-d2a5-4d15-b278-4eab71525c70" SourceId="1" SourceUrl="http://dbdataquery.cloudapp.net/DBSqlService.svc/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

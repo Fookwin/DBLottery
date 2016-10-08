@@ -1,0 +1,6 @@
+﻿<NavigationWindow 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:LuckyBallsServer" x:Class="LuckyBallsServer.MainWindow"
+        Title="DB Management" Height="512" Icon="Resources/StoreLogo.png" Width="958" 
+        ShowsNavigationUI="true" Source="Pages/HomePage.xaml" Navigating="NavigationWindow_Navigating"/>

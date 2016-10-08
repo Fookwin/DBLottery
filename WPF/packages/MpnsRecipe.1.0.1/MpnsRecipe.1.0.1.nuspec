@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>MpnsRecipe</id>
+    <version>1.0.1</version>
+    <title>Microsoft Push Notification Service Recipe</title>
+    <authors>Microsoft DPE</authors>
+    <owners>Microsoft DPE</owners>
+    <licenseUrl>http://www.opensource.org/licenses/ms-pl</licenseUrl>
+    <projectUrl>http://watwp.codeplex.com/</projectUrl>
+    <iconUrl>http://wazmobiletoolkit.blob.core.windows.net/nuget/logos/WinAzure_rgb.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Class library to communicate with the Microsoft Push Notification Service (MPNS).</description>
+    <summary>Class library to communicate with the Microsoft Push Notification Service (MPNS).</summary>
+    <releaseNotes />
+    <copyright />
+    <language />
+    <tags>WindowsPhone PushNotifications DPE</tags>
+  </metadata>
+</package>
