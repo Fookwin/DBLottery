@@ -181,6 +181,9 @@
     <Compile Include="..\SharedModel\DBReleaseModel.cs">
       <Link>Data\Models\DBReleaseModel.cs</Link>
     </Compile>
+    <Compile Include="..\SharedModel\DBVersionModel.cs">
+      <Link>Data\Models\DBVersionModel.cs</Link>
+    </Compile>
     <Compile Include="..\SharedModel\JsonParser.cs">
       <Link>Common\Util\JsonParser.cs</Link>
     </Compile>
@@ -192,6 +195,7 @@
     </Compile>
     <Compile Include="Common\Util\XmlUtil.cs" />
     <Compile Include="Data\DBCloudStorageClient.cs" />
+    <Compile Include="Data\DBDataManager.cs" />
     <Compile Include="Data\DBDevice.cs" />
     <Compile Include="Data\DBNotification.cs" />
     <Compile Include="Data\DBSQLClient.cs" />

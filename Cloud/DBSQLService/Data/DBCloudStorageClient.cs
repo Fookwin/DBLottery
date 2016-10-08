@@ -7,7 +7,6 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Microsoft.WindowsAzure.Storage.Table;
 using Microsoft.WindowsAzure.Storage.Queue;
-using LuckyBallsData.Selection;
 
 namespace DBSQLService.Data
 {
@@ -133,13 +132,6 @@ namespace DBSQLService.Data
             {
                 return false;
             }
-        }
-
-        public SchemeAttributes ReadAttributes(int issue)
-        {
-            // get the attributes file for this issue.
-
-            return null;
         }
     }
 }

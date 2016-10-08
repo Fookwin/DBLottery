@@ -70,6 +70,8 @@ namespace DBSQLService
 
             // calculate the attributes set
             SchemeAttributes attirSet = CalculateAttributesForNewIssue(newStatus);
+            if (attirSet == null)
+                return false;
 
             // calculate the release information.
             int nextIssue = 0;
@@ -81,13 +83,27 @@ namespace DBSQLService
             // Get the detail
             Detail newDetail = ExtractDetail(data);
 
-            // save the data into files
-            //
-
             // generate the SQL command lines file
             string sql = GenerateSQLQueryForNewRelease(data.Issue, newScheme, newDetail, newStatus);
             if (string.IsNullOrEmpty(sql))
                 return false;
+
+            // save sql to file
+            DBCloudStorageClient.Instance().WriteTextAsBlob("data-release-pending", "SQL.sql", sql);
+
+            // save attributes
+            {
+                DBXmlDocument xml = new DBXmlDocument();
+                DBXmlNode root = xml.AddRoot("Attributes");
+
+                attirSet.SaveValueToXml(ref root);
+
+                DBCloudStorageClient.Instance().WriteTextAsBlob("data-release-pending", "Attributes.sql", xml.InnerXml());
+            }
+
+            // save release information
+
+
             
             // generate attribute set file
             return true;
@@ -345,15 +361,15 @@ namespace DBSQLService
                 Date = release.ReleaseAt, 
                 PoolAmount = release.Pool, 
                 BetAmount = release.Bet,
-                Prize1Bonus = release.Bonus[0],
-                Prize1Count = release.Bonus[1],
-                Prize2Bonus = release.Bonus[2],
-                Prize2Count = release.Bonus[3],
+                Prize1Count = release.Bonus[0],
+                Prize1Bonus = release.Bonus[1],
+                Prize2Count = release.Bonus[2],
+                Prize2Bonus = release.Bonus[3],
                 Prize3Count = release.Bonus[5],
                 Prize4Count = release.Bonus[7],
                 Prize5Count = release.Bonus[9],
                 Prize6Count = release.Bonus[11]
-            };
+            };       
         }
 
         private Status CalculateStatusForNewIssue(Scheme lotScheme)
@@ -477,7 +493,9 @@ namespace DBSQLService
             int currentCount = DBSQLClient.Instance().GetRecordCount();
 
             // Get the previous.
-            SchemeAttributes currentAttris = DBCloudStorageClient.Instance().ReadAttributes(currentIssue);
+            SchemeAttributes currentAttris = DBDataManager.Instance().ReadAttributes(currentIssue);
+            if (currentAttris == null)
+                return null;
 
             // Create the attributes.
             SchemeAttributes attributeSet = currentAttris.Clone();
