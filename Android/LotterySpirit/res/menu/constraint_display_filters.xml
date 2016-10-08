@@ -1,0 +1,31 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/assistants"
+        android:showAsAction="always|withText"
+        android:title="助手">
+        <menu>
+            <item
+                android:id="@+id/ref_history"
+                android:icon="@drawable/icon_lottery_history_white"
+                android:title="历史开奖">
+            </item>
+            <item
+                android:id="@+id/ref_chart"
+                android:icon="@drawable/icon_trend_chart_white"
+                android:title="号码走势">
+            </item>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/constraint_filter"
+        android:showAsAction="always|withText"
+        android:title="显示所有">
+    </item>
+    <item
+        android:id="@+id/edit_filter_option"
+        android:showAsAction="ifRoom"
+        android:title="设置">
+    </item>
+
+</menu>

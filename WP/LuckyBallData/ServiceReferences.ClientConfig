@@ -1,0 +1,28 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_ISqlService" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+                <binding name="BasicHttpBinding_IUseControlService" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+                <binding name="BasicHttpBinding_IUseControlService1" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://dbdataquery.cloudapp.net/DBSqlService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISqlService"
+                contract="LBCloudService.ISqlService" name="BasicHttpBinding_ISqlService" />
+            <endpoint address="http://dbdataquery.cloudapp.net/DBUseControlService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_IUseControlService"
+                contract="LBUseManageService.IUseControlService" name="BasicHttpBinding_IUseControlService" />
+        </client>
+    </system.serviceModel>
+</configuration>

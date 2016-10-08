@@ -1,0 +1,57 @@
+﻿<UserControl xmlns:Controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"  
+    x:Class="LuckyBallsSpirit.Controls.LotteryStatusPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:LuckyBallsSpirit.Controls"
+    xmlns:data="clr-namespace:LuckyBallsSpirit.DataModel"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}">
+
+    <Border Padding="10, 20" Background="White">
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="RedNumStatusGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="红球" FontSize="25" Foreground="DimGray" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                <controls:NumGroupPanel x:Name="RedHotNumPanel" Grid.Row="1"/>
+                <controls:NumGroupPanel x:Name="RedCoolNumPanel" Grid.Row="2"/>
+                <controls:NumGroupPanel x:Name="RedIncludeNumPanel" Grid.Row="3"/>
+                <controls:NumGroupPanel x:Name="RedExcludeNumPanel" Grid.Row="4"/>
+            </Grid>
+
+            <Grid x:Name="BlueNumStatusGrid" Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="蓝球" FontSize="25" Foreground="DimGray" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                <controls:NumGroupPanel x:Name="BlueHotNumPanel" Grid.Row="1"/>
+                <controls:NumGroupPanel x:Name="BlueCoolNumPanel" Grid.Row="2"/>
+                <controls:NumGroupPanel x:Name="BlueIncludeNumPanel" Grid.Row="3"/>
+                <controls:NumGroupPanel x:Name="BlueExcludeNumPanel" Grid.Row="4"/>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

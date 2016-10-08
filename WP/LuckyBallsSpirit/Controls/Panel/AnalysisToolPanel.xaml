@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="LuckyBallsSpirit.Controls.Panel.AnalysisToolPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}">
+
+    <StackPanel Margin="2" Orientation="Vertical">
+        <Border x:Name="GoToHistoryPage" Background="White" Height="80" Padding="5" BorderBrush="Gray" BorderThickness="0,0,0,1" MouseLeftButtonUp="GoToHistoryPage_MouseEnter">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Source="/Assets/icon_lottery_history.png" 
+                       Width="50" Height="50" Margin="10, 0"/>
+                
+                <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom" TextAlignment="Left" Text="历史开奖" FontSize="20" Foreground="DarkRed"/>
+                
+                <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" TextAlignment="Left" Text="往期开奖结果，可以查看每期的详细开奖信息..." FontSize="12" Foreground="LightGray"
+                           TextWrapping="Wrap"/>
+
+                <Image Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Source="/Assets/icon_goto.png" Height="30" Margin="10, 0"/>
+            </Grid>           
+        </Border>
+        <Border x:Name="GoToDiagramPage" Background="White" Height="80" Padding="5" BorderBrush="Gray" BorderThickness="0,0,0,1" MouseLeftButtonUp="GoToDiagramPage_MouseEnter">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Source="/Assets/icon_trend_chart.png" 
+                       Width="50" Height="50" Margin="10, 0"/>
+
+                <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom" TextAlignment="Left" Text="号码走势" FontSize="20" Foreground="DarkRed"/>
+
+                <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" TextAlignment="Left" Text="红球属性，红球分区，红球定位，篮球属性以及篮球振幅等走势图..." FontSize="12" Foreground="LightGray"
+                           TextWrapping="Wrap"/>
+
+                <Image Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Source="/Assets/icon_goto.png" Height="30" Margin="10, 0"/>
+            </Grid>
+        </Border>
+        <Border x:Name="GoToAttribtuePage" Background="White" Height="80" Padding="5" BorderBrush="Gray" BorderThickness="0,0,0,1" MouseLeftButtonUp="GoToAttribtuePage_MouseEnter">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Source="/Assets/icon_attribute_analysis.png" 
+                       Width="50" Height="50" Margin="10, 0"/>
+
+                <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom" TextAlignment="Left" Text="属性分析" FontSize="20" Foreground="DarkRed"/>
+
+                <TextBlock Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" TextAlignment="Left" Text="数十种属性趋势分析，捕获稍纵即逝的属性突变时机..." FontSize="12" Foreground="LightGray"
+                           TextWrapping="Wrap"/>
+
+                <Image Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Source="/Assets/icon_goto.png" Height="30" Margin="10, 0"/>
+            </Grid>
+        </Border>
+    </StackPanel>
+</UserControl>

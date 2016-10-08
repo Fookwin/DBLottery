@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6BEED827-4500-45FC-AC61-3E2194BFA2CD}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LuckyBallData</RootNamespace>
+    <AssemblyName>LuckyBallData</AssemblyName>
+    <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <SilverlightVersion>
+    </SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <TargetFrameworkProfile />
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\x86\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\x86\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|ARM' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\ARM\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|ARM' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\ARM\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget />
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Common\DataManageBase.cs">
+      <Link>DataManageBase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Filters\Matrix.cs">
+      <Link>Filters\Matrix.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Release.cs">
+      <Link>Release.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Selection\Attributes.cs">
+      <Link>Selection\Attributes.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Selection\Constraint.cs">
+      <Link>Selection\Constraint.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Selection\Purchase.cs">
+      <Link>Selection\Purchase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Selection\Selection.cs">
+      <Link>Selection\Selection.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Selection\Selector.cs">
+      <Link>Selection\Selector.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Statistics\AttributeState.cs">
+      <Link>Statistics\AttributeState.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Statistics\History.cs">
+      <Link>Statistics\History.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Statistics\Lottery.cs">
+      <Link>Statistics\Lottery.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Statistics\NumState.cs">
+      <Link>Statistics\NumState.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Statistics\Scheme.cs">
+      <Link>Statistics\Scheme.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Statistics\Status.cs">
+      <Link>Statistics\Status.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Util\AttributeUtil.cs">
+      <Link>Util\AttributeUtil.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Common\Util\SelectUtil.cs">
+      <Link>Util\SelectUtil.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\LBCloudService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\LBUseManageService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Util\DataUtil.cs" />
+    <Compile Include="Util\LBCloudServiceClient.cs" />
+    <Compile Include="Util\XmlUtil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LBCloudService\Arrays1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LBCloudService\service1.wsdl" />
+    <None Include="Service References\LBCloudService\service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LBCloudService\service21.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LBUseManageService\DBUseControlService.disco" />
+    <None Include="Service References\LBUseManageService\configuration91.svcinfo" />
+    <None Include="Service References\LBUseManageService\configuration.svcinfo" />
+    <None Include="Service References\LBUseManageService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="ServiceReferences.ClientConfig" />
+    <None Include="Service References\LBUseManageService\DBUseControlService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LBUseManageService\DBUseControlService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LBUseManageService\service1.wsdl" />
+    <None Include="Service References\LBUseManageService\service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LBUseManageService\service21.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\LBCloudService\" />
+    <WCFMetadataStorage Include="Service References\LBUseManageService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LBCloudService\configuration91.svcinfo" />
+    <None Include="Service References\LBUseManageService\DBUseControlService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LBCloudService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LBCloudService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
+  <ProjectExtensions />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/status_panel"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/background_panel_bottom"
+        android:padding="5dip" >
+
+        <TextView
+            android:id="@+id/status_text"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|center"
+            android:paddingLeft="5dip"
+            android:textColor="@color/white"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/confirm_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="5dip"
+            android:background="@drawable/background_button_light"
+            android:gravity="center"
+            android:text="@string/btn_confirm"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/darkgrey" />
+
+        <Button
+            android:id="@+id/cancel_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/background_button_light"
+            android:gravity="center"
+            android:text="@string/btn_cancel"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/darkgrey" />
+
+        <ImageView
+            android:id="@+id/helpIcon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:contentDescription="@string/help_icon_tooltip"
+            android:src="@drawable/icon_help" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/content_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/status_panel"
+        android:layout_alignParentTop="true"
+        android:background="@color/white" >
+    </FrameLayout>
+
+</RelativeLayout>

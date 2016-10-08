@@ -1,0 +1,48 @@
+﻿<UserControl
+    x:Class="LuckyBallsSpirit.Controls.LotterySelectionFloatPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:LuckyBallsSpirit.Controls"
+    mc:Ignorable="d">
+
+    <Border x:Name="DetailControlsPanel" Background="White" Height="60" BorderBrush="Gray" BorderThickness="0,1,0,0">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">           
+            <Button x:Name="BT_Save" Click="BT_Save_Click" Style="{StaticResource TextButtonStyle}" Margin="15,0" Visibility="Collapsed">
+                <Button.Content>
+                    <Grid>
+                        <Ellipse Stroke="DimGray" StrokeThickness="2" Height="45" Width="45"/>
+                        <TextBlock Text="保存" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </Button.Content>
+            </Button>
+            
+            <Button x:Name="BT_New" Click="BT_New_Click" Style="{StaticResource TextButtonStyle}" Margin="15,0" Visibility="Collapsed">
+                <Button.Content>
+                    <Grid>
+                        <Ellipse Stroke="DimGray" StrokeThickness="2" Height="45" Width="45"/>
+                        <TextBlock Text="新建" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </Button.Content>
+            </Button>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="15,0" HorizontalAlignment="Center">
+                <TextBlock Text="共" Foreground="DimGray" FontSize="20" VerticalAlignment="Center"/>
+                <TextBlock x:Name="SelectCount" Text="0" Foreground="Red" FontSize="30" Margin="5,0" VerticalAlignment="Center"/>
+                <TextBlock Text="注" Foreground="DimGray" FontSize="20" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <Button x:Name="BT_Buy" Click="BT_Buy_Click" Style="{StaticResource TextButtonStyle}" Margin="15,0"
+                    Foreground="DimGray" VerticalAlignment="Center">
+                <Button.Content>
+                    <Grid>
+                        <Ellipse Stroke="DimGray" StrokeThickness="2" Height="45" Width="45"/>
+                        <TextBlock Text="查看" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+    </Border>
+
+</UserControl>

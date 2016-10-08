@@ -1,0 +1,9 @@
+-------------------------------
+InMobi WP7 SDK Build v1.0.0 Beta
+Date: 18th-May-2012
+
+Description:
+This is the first release of InMobi WP7 AdSDK supporting text and banner Ads
+--------------------------------
+
+For detailed documentation, please visit http://developer.inmobi.com

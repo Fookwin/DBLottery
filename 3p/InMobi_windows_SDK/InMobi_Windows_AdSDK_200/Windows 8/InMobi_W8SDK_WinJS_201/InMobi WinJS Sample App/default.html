@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>InMobi: WinJS Sample App</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-light.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+    <link href="/css/default.css" rel="stylesheet" />
+    <script src="/js/default.js"></script>
+    <script src="/js/flip.js"></script>
+    <script src="/js/inmobi-winjs.2.0.1.js"></script>
+</head>
+<body>
+    <div style="text-align: center">
+    <div style="margin-top:20px; margin-left:200px; text-align:left">
+        <h1>Inmobi test app</h1>
+    </div>
+    <div style="margin-top: 50px;">
+        <div style="width: 500px; height: 100%; vertical-align: top; overflow-x: hidden; display: inline-block">
+            <div id="ItemTemplate" data-win-control="WinJS.Binding.Template">
+                <div class="overlaidItemTemplate">
+                    <img class="image" src="#" data-win-bind="src: picture; alt: title" />
+                    <div class="overlay">
+                        <h2 class="ItemTitle" data-win-bind="innerText: title"></h2>
+                    </div>
+                </div>
+            </div>
+
+            <div id="basicFlipView"
+                data-win-control="WinJS.UI.FlipView"
+                data-win-options="{ itemDataSource : DataExample.itemList.dataSource, itemTemplate : ItemTemplate }">
+            </div>
+            <div id="adContainer"
+                data-win-control="InMobi.IMAdView" data-win-options="{siteid:'YOUR-SITE-ID', adsize:15, autorefresh: 20, test:true}" ></div>
+
+        </div>
+        <div style="width: 600px; display: inline-block; text-align: justify">
+            At InMobi, we are leading the charge of architecting mobile-first customer engagement platforms that transform the economics of engaging a global consumer. We are innovating in ways that empower our customers to reach anyone in today’s connected world. We offer a suite of solutions built on superior architecture based on the core principles of simplicity and scale.
+            <br />
+            <br />
+            Today, the world’s largest brands, agencies, developers, and publishers are creating immediate business value by using our platforms to deliver highly compelling value propositions to the target consumer.
+            <br />
+            <br />
+            With 350+ data scientists, engineers and analysts spread across the globe, we continue to lead the industry in building architecturally superior mobile-first platforms. Our core ad network continuously analyses 100s of Terrabytes of data, and makes real time decisions to help our customers gain the most value from their investments. Our strategic acquisitions of Sprout – HTML 5 rich media authoring platform, AppGalleries and Metaflow that enable app discovery and distribution, plus a highly compelling roadmap of delivering end-to-end value continues to expand our leadership in the fastest growing market in the history of technology.
+            <br />
+            
+            <script>
+                interstitial = new InMobi.IMAdInterstitial({ siteid: "YOUR-SITE-ID", test: true, manual: true });
+                interstitial.addEventListener("stateChange", function (a, val) {
+                    if (val.state == "ready") {
+                        document.getElementById("intButton").value = "Show interstitial"
+                    }
+                    if (val.state == "init") {
+                        document.getElementById("intButton").value = "Get interstitial"
+                    }
+                })
+
+                function action() {
+                    if (interstitial.getState() == "init") {
+                        interstitial.getNewAd();
+                    }
+                    else if (interstitial.getState() == "ready") {
+                        interstitial.showAd();
+                    }
+                }
+            </script>
+            <input type="button" value="Get interstitial" onclick="action();" id="intButton" />
+        </div>
+    </div>
+        </div>
+</body>
+</html>

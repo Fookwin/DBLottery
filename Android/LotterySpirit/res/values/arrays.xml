@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <string-array name="diagram_categories">
+        <item>红球综合</item>
+        <item>红球分区</item>
+        <item>红球定位</item>
+        <item>篮球综合</item>
+        <item>篮球振幅</item>
+    </string-array>
+    
+    <string-array name="filter_tabs">
+        <item>异常属性</item>
+        <item>全部属性</item>
+    </string-array>
+    
+    <string-array name="select_modes">
+        <item>标准选号</item>
+        <item>胆拖选号</item>
+        <item>智能随机</item>
+    </string-array>
+    
+    <string-array name="filter_modes">
+        <item>属性过滤</item>
+        <item>号码组过滤</item>
+        <item>历史过滤</item>
+    </string-array>
+    
+    <string-array name="random_red_counts">
+        <item>6个</item>
+        <item>7个</item>
+        <item>8个</item>
+        <item>9个</item>
+        <item>10个</item>
+        <item>11个</item>
+        <item>12个</item>
+        <item>13个</item>
+        <item>14个</item>
+        <item>15个</item>
+        <item>16个</item>
+        <item>17个</item>
+        <item>18个</item>
+        <item>19个</item>
+        <item>20个</item>
+    </string-array>
+
+    <string-array name="random_blue_counts">
+        <item>1个</item>
+        <item>2个</item>
+        <item>3个</item>
+        <item>4个</item>
+        <item>5个</item>
+        <item>6个</item>
+        <item>7个</item>
+        <item>8个</item>
+        <item>9个</item>
+        <item>10个</item>
+    </string-array>
+   
+    <string-array name="blue_connection_types">
+        <item>篮球复式</item>
+        <item>按注顺序组合</item>
+        <item>按注随机组合</item>
+    </string-array>
+    
+    <string-array name="refernce_history_counts">
+        <item>所有开奖</item>
+        <item>最近10期</item>
+        <item>最近30期</item>
+        <item>最近50期</item>
+        <item>最近100期</item>
+        <item>最近200期</item>
+        <item>最近500期</item>
+        <item>最近1000期</item>
+    </string-array>
+    
+    <string-array name="history_filter_condition">
+        <item>六个红球相同</item>
+        <item>五个及以上红球相同</item>
+        <item>四个及以上红球相同</item>
+        <item>三个及以上红球相同</item>
+        <item>两个及以上红球相同</item>
+    </string-array>
+
+</resources>

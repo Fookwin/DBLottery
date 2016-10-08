@@ -1,0 +1,87 @@
+﻿<UserControl
+    x:Class="LuckyBallSpirit.Controls.RedNumSetFiltersPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LuckyBallSpirit.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:LuckyBallSpirit.Controls"
+    mc:Ignorable="d">
+    
+    <Grid Margin="0,10,0,0" Width="700">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <TextBlock x:Name="TB_Red" Text="号码" FontSize="40" TextWrapping="Wrap" Foreground="DarkRed" FontWeight="Bold"/>
+            <RadioButton x:Name="RB_RedState_YL" Content="遗漏" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" HorizontalAlignment="Left" Checked="RedDesc_Changed"/>
+            <RadioButton x:Name="RB_RedState_LR" Content="冷热" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" HorizontalAlignment="Left" Checked="RedDesc_Changed"/>
+            <RadioButton x:Name="RB_RedState_DS" Content="胆杀" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" HorizontalAlignment="Left" Checked="RedDesc_Changed"/>
+        </StackPanel>
+        
+        <controls:RedSelectionPanel x:Name="Panel_RedSelection" Grid.Row="0" Grid.Column="1"/>
+        
+        <StackPanel x:Name="SP_RedControls" Grid.Row="0" Grid.Column="2" Margin="20,0,0,0">
+            <Button x:Name="BT_SelectAllRed" FontSize="20" HorizontalAlignment="Stretch" Click="BT_SelectAllRed_Click" Style="{StaticResource TextButtonStyle}">
+                <Button.Content>
+                    <Grid>
+                        <Rectangle Stroke="DimGray" StrokeThickness="2" Height="30" Width="80" RadiusX="5" RadiusY="5"/>
+                        <TextBlock Text="全选" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="DimGray"/>
+                    </Grid>
+                </Button.Content>
+            </Button>
+            <Button x:Name="BT_ClearAllRed" FontSize="20" HorizontalAlignment="Stretch" Click="BT_ClearAllRed_Click" Style="{StaticResource TextButtonStyle}" Margin="0,5">
+                <Button.Content>
+                    <Grid>
+                        <Rectangle Stroke="DimGray" StrokeThickness="2" Height="30" Width="80" RadiusX="5" RadiusY="5"/>
+                        <TextBlock Text="清除" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="DimGray"/>
+                    </Grid>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+
+        <TextBlock Text="个数" FontSize="40" Grid.Row="2" Grid.Column="0" TextWrapping="Wrap" Foreground="DarkRed" FontWeight="Bold"/>
+        
+        <GridView x:Name="Ctrl_RangeSelection" Grid.Row="2" Grid.Column="1" SelectionMode="Multiple" Width="550"
+                  SelectionChanged="Ctrl_RangeSelection_SelectionChanged">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="DarkCyan" CornerRadius="5" Width="80" BorderThickness="1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#CCFFFFFF"/>
+                                <GradientStop Color="LightGray" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <TextBlock Text="{Binding}" FontSize="20" Foreground="DimGray" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapGrid Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+
+            <GridView.ItemContainerStyle>
+                <Style TargetType="GridViewItem">
+                    <Setter Property="Margin" Value="0" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                </Style>
+            </GridView.ItemContainerStyle>
+        </GridView>
+    </Grid>
+</UserControl>

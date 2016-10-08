@@ -1,0 +1,38 @@
+﻿<UserControl
+    x:Class="LuckyBallSpirit.Controls.BlueSelectionPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LuckyBallSpirit.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:LuckyBallSpirit.Controls" 
+    mc:Ignorable="d">
+    
+    <Grid>
+        <Border x:Name="SP_BlueSelection" Grid.Row="3" Grid.Column="1">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <controls:NumButton x:Name="Blue01" Num="01" ShowDescription="Visible" PrimaryColor="Blue" SecondaryColor="LightBlue" SelectStatus="NotSelected"/>
+                    <controls:NumButton x:Name="Blue02" Num="02" ShowDescription="Visible" PrimaryColor="Blue" SecondaryColor="LightBlue" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Blue03" Num="03" ShowDescription="Visible" PrimaryColor="Blue" SecondaryColor="LightBlue" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Blue04" Num="04" ShowDescription="Visible" PrimaryColor="Blue" SecondaryColor="LightBlue" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Blue05" Num="05" ShowDescription="Visible" PrimaryColor="Blue" SecondaryColor="LightBlue" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Blue06" Num="06" ShowDescription="Visible" PrimaryColor="Blue" SecondaryColor="LightBlue" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Blue07" Num="07" ShowDescription="Visible" PrimaryColor="Blue" SecondaryColor="LightBlue" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Blue08" Num="08" ShowDescription="Visible" PrimaryColor="Blue" SecondaryColor="LightBlue" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                    <controls:NumButton x:Name="Blue09" Num="09" ShowDescription="Visible" PrimaryColor="Blue" SecondaryColor="LightBlue" SelectStatus="NotSelected"/>
+                    <controls:NumButton x:Name="Blue10" Num="10" ShowDescription="Visible" PrimaryColor="Blue" SecondaryColor="LightBlue" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Blue11" Num="11" ShowDescription="Visible" PrimaryColor="Blue" SecondaryColor="LightBlue" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Blue12" Num="12" ShowDescription="Visible" PrimaryColor="Blue" SecondaryColor="LightBlue" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Blue13" Num="13" ShowDescription="Visible" PrimaryColor="Blue" SecondaryColor="LightBlue" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Blue14" Num="14" ShowDescription="Visible" PrimaryColor="Blue" SecondaryColor="LightBlue" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Blue15" Num="15" ShowDescription="Visible" PrimaryColor="Blue" SecondaryColor="LightBlue" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Blue16" Num="16" ShowDescription="Visible" PrimaryColor="Blue" SecondaryColor="LightBlue" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

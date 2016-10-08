@@ -1,0 +1,358 @@
+﻿<UserControl
+    x:Class="LuckyBallsSpirit.Controls.DGContentPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:LuckyBallsSpirit.Controls"
+    xmlns:viewModel="using:LuckyBallsSpirit.ViewModel"
+    mc:Ignorable="d">
+    
+    <UserControl.Resources>
+        <DataTemplate x:Key="RedGeneralTemplate">
+            <Grid Height="25">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <local:DGCell Grid.Column="0" CellContent="{Binding Sum.Text}" CircleVisibility="{Binding Sum.ShowAsBall}" CircleColor="{Binding Sum.BallColor}" TextColor="{Binding  Sum.ForeColor}" BackgroundColor="{Binding Sum.BackColor}" />
+                <local:DGCell Grid.Column="1" CellContent="{Binding Continuity.Text}" CircleVisibility="{Binding Continuity.ShowAsBall}" CircleColor="{Binding Continuity.BallColor}" TextColor="{Binding  Continuity.ForeColor}" BackgroundColor="{Binding Continuity.BackColor}" />
+                <local:DGCell Grid.Column="2" CellContent="{Binding Odd.Text}" CircleVisibility="{Binding Odd.ShowAsBall}" CircleColor="{Binding Odd.BallColor}" TextColor="{Binding  Odd.ForeColor}" BackgroundColor="{Binding Odd.BackColor}" />
+                <local:DGCell Grid.Column="3" CellContent="{Binding Even.Text}" CircleVisibility="{Binding Even.ShowAsBall}" CircleColor="{Binding Even.BallColor}" TextColor="{Binding  Even.ForeColor}" BackgroundColor="{Binding Even.BackColor}" />
+                <local:DGCell Grid.Column="4" CellContent="{Binding Big.Text}" CircleVisibility="{Binding Big.ShowAsBall}" CircleColor="{Binding Big.BallColor}" TextColor="{Binding  Big.ForeColor}" BackgroundColor="{Binding Big.BackColor}" />
+                <local:DGCell Grid.Column="5" CellContent="{Binding Small.Text}" CircleVisibility="{Binding Small.ShowAsBall}" CircleColor="{Binding Small.BallColor}" TextColor="{Binding  Small.ForeColor}" BackgroundColor="{Binding Small.BackColor}" />
+                <local:DGCell Grid.Column="6" CellContent="{Binding Primary.Text}" CircleVisibility="{Binding Primary.ShowAsBall}" CircleColor="{Binding Primary.BallColor}" TextColor="{Binding  Primary.ForeColor}" BackgroundColor="{Binding Primary.BackColor}" />
+                <local:DGCell Grid.Column="7" CellContent="{Binding Composite.Text}" CircleVisibility="{Binding Composite.ShowAsBall}" CircleColor="{Binding Composite.BallColor}" TextColor="{Binding  Composite.ForeColor}" BackgroundColor="{Binding Composite.BackColor}" />
+                <local:DGCell Grid.Column="8" CellContent="{Binding Remain0.Text}" CircleVisibility="{Binding Remain0.ShowAsBall}" CircleColor="{Binding Remain0.BallColor}" TextColor="{Binding  Remain0.ForeColor}" BackgroundColor="{Binding Remain0.BackColor}" />
+                <local:DGCell Grid.Column="9" CellContent="{Binding Remain1.Text}" CircleVisibility="{Binding Remain1.ShowAsBall}" CircleColor="{Binding Remain1.BallColor}" TextColor="{Binding  Remain1.ForeColor}" BackgroundColor="{Binding Remain1.BackColor}" />
+                <local:DGCell Grid.Column="10" CellContent="{Binding Remain2.Text}" CircleVisibility="{Binding Remain2.ShowAsBall}" CircleColor="{Binding Remain2.BallColor}" TextColor="{Binding  Remain2.ForeColor}" BackgroundColor="{Binding Remain2.BackColor}" />
+                <local:DGCell Grid.Column="11" CellContent="{Binding Div1.Text}" CircleVisibility="{Binding Div1.ShowAsBall}" CircleColor="{Binding Div1.BallColor}" TextColor="{Binding  Div1.ForeColor}" BackgroundColor="{Binding Div1.BackColor}" />
+                <local:DGCell Grid.Column="12" CellContent="{Binding Div2.Text}" CircleVisibility="{Binding Div2.ShowAsBall}" CircleColor="{Binding Div2.BallColor}" TextColor="{Binding  Div2.ForeColor}" BackgroundColor="{Binding Div2.BackColor}" />
+                <local:DGCell Grid.Column="13" CellContent="{Binding Div3.Text}" CircleVisibility="{Binding Div3.ShowAsBall}" CircleColor="{Binding Div3.BallColor}" TextColor="{Binding  Div3.ForeColor}" BackgroundColor="{Binding Div3.BackColor}" />
+                <local:DGCell Height="25" Width="50" Grid.Column="14" CellContent="{Binding Extend1.Text}" CircleVisibility="{Binding Extend1.ShowAsBall}" CircleColor="{Binding Extend1.BallColor}" TextColor="{Binding  Extend1.ForeColor}" BackgroundColor="{Binding Extend1.BackColor}" Visible="{Binding Extend1.IsVisible}" />
+                <local:DGCell Height="25" Width="50" Grid.Column="15" CellContent="{Binding Extend2.Text}" CircleVisibility="{Binding Extend2.ShowAsBall}" CircleColor="{Binding Extend2.BallColor}" TextColor="{Binding  Extend2.ForeColor}" BackgroundColor="{Binding Extend2.BackColor}" Visible="{Binding Extend2.IsVisible}" />
+                <local:DGCell Height="25" Width="50" Grid.Column="16" CellContent="{Binding Extend3.Text}" CircleVisibility="{Binding Extend3.ShowAsBall}" CircleColor="{Binding Extend3.BallColor}" TextColor="{Binding  Extend3.ForeColor}" BackgroundColor="{Binding Extend3.BackColor}" Visible="{Binding Extend3.IsVisible}" />
+                <local:DGCell Height="25" Width="50" Grid.Column="17" CellContent="{Binding Extend4.Text}" CircleVisibility="{Binding Extend4.ShowAsBall}" CircleColor="{Binding Extend4.BallColor}" TextColor="{Binding  Extend4.ForeColor}" BackgroundColor="{Binding Extend4.BackColor}" Visible="{Binding Extend4.IsVisible}" />
+                <local:DGCell Height="25" Width="50" Grid.Column="18" CellContent="{Binding Extend5.Text}" CircleVisibility="{Binding Extend5.ShowAsBall}" CircleColor="{Binding Extend5.BallColor}" TextColor="{Binding  Extend5.ForeColor}" BackgroundColor="{Binding Extend5.BackColor}" Visible="{Binding Extend5.IsVisible}" />
+                <local:DGCell Height="25" Width="50" Grid.Column="19" CellContent="{Binding Extend6.Text}" CircleVisibility="{Binding Extend6.ShowAsBall}" CircleColor="{Binding Extend6.BallColor}" TextColor="{Binding  Extend6.ForeColor}" BackgroundColor="{Binding Extend6.BackColor}" Visible="{Binding Extend6.IsVisible}" />
+                <local:DGCell Height="25" Width="50" Grid.Column="20" CellContent="{Binding Extend7.Text}" CircleVisibility="{Binding Extend7.ShowAsBall}" CircleColor="{Binding Extend7.BallColor}" TextColor="{Binding  Extend7.ForeColor}" BackgroundColor="{Binding Extend7.BackColor}" Visible="{Binding Extend7.IsVisible}" />
+                <local:DGCell Height="25" Width="50" Grid.Column="21" CellContent="{Binding Extend8.Text}" CircleVisibility="{Binding Extend8.ShowAsBall}" CircleColor="{Binding Extend8.BallColor}" TextColor="{Binding  Extend8.ForeColor}" BackgroundColor="{Binding Extend8.BackColor}" Visible="{Binding Extend8.IsVisible}" />
+                <local:DGCell Height="25" Width="50" Grid.Column="22" CellContent="{Binding Extend9.Text}" CircleVisibility="{Binding Extend9.ShowAsBall}" CircleColor="{Binding Extend9.BallColor}" TextColor="{Binding  Extend9.ForeColor}" BackgroundColor="{Binding Extend9.BackColor}" Visible="{Binding Extend9.IsVisible}" />
+                <Line Grid.Column="14" Grid.ColumnSpan="9" Visibility="{Binding HasLine1}" X1="{Binding Line1StartX}" Y1="{Binding Line1StartY}" X2="{Binding Line1EndX}" Y2="{Binding Line1EndY}" Stroke="Gray" StrokeThickness="2" />
+                <Line Grid.Column="14" Grid.ColumnSpan="9" Visibility="{Binding HasLine2}" X1="{Binding Line2StartX}" Y1="{Binding Line2StartY}" X2="{Binding Line2EndX}" Y2="{Binding Line2EndY}" Stroke="Gray" StrokeThickness="2" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="RedDivisionTemplate">
+            <Grid Height="25">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                </Grid.ColumnDefinitions>
+                <local:DGCell Grid.Column="0" CellContent="{Binding Cell_01.Text}" CircleVisibility="{Binding Cell_01.ShowAsBall}" CircleColor="{Binding Cell_01.BallColor}" TextColor="{Binding Cell_01.ForeColor}" BackgroundColor="{Binding Cell_01.BackColor}" />
+                <local:DGCell Grid.Column="1" CellContent="{Binding Cell_02.Text}" CircleVisibility="{Binding Cell_02.ShowAsBall}" CircleColor="{Binding Cell_02.BallColor}" TextColor="{Binding Cell_02.ForeColor}" BackgroundColor="{Binding Cell_02.BackColor}" />
+                <local:DGCell Grid.Column="2" CellContent="{Binding Cell_03.Text}" CircleVisibility="{Binding Cell_03.ShowAsBall}" CircleColor="{Binding Cell_03.BallColor}" TextColor="{Binding Cell_03.ForeColor}" BackgroundColor="{Binding Cell_03.BackColor}" />
+                <local:DGCell Grid.Column="3" CellContent="{Binding Cell_04.Text}" CircleVisibility="{Binding Cell_04.ShowAsBall}" CircleColor="{Binding Cell_04.BallColor}" TextColor="{Binding Cell_04.ForeColor}" BackgroundColor="{Binding Cell_04.BackColor}" />
+                <local:DGCell Grid.Column="4" CellContent="{Binding Cell_05.Text}" CircleVisibility="{Binding Cell_05.ShowAsBall}" CircleColor="{Binding Cell_05.BallColor}" TextColor="{Binding Cell_05.ForeColor}" BackgroundColor="{Binding Cell_05.BackColor}" />
+                <local:DGCell Grid.Column="5" CellContent="{Binding Cell_06.Text}" CircleVisibility="{Binding Cell_06.ShowAsBall}" CircleColor="{Binding Cell_06.BallColor}" TextColor="{Binding Cell_06.ForeColor}" BackgroundColor="{Binding Cell_06.BackColor}" />
+                <local:DGCell Grid.Column="6" CellContent="{Binding Cell_07.Text}" CircleVisibility="{Binding Cell_07.ShowAsBall}" CircleColor="{Binding Cell_07.BallColor}" TextColor="{Binding Cell_07.ForeColor}" BackgroundColor="{Binding Cell_07.BackColor}" />
+                <local:DGCell Grid.Column="7" CellContent="{Binding Cell_08.Text}" CircleVisibility="{Binding Cell_08.ShowAsBall}" CircleColor="{Binding Cell_08.BallColor}" TextColor="{Binding Cell_08.ForeColor}" BackgroundColor="{Binding Cell_08.BackColor}" />
+                <local:DGCell Grid.Column="8" CellContent="{Binding Cell_09.Text}" CircleVisibility="{Binding Cell_09.ShowAsBall}" CircleColor="{Binding Cell_09.BallColor}" TextColor="{Binding Cell_09.ForeColor}" BackgroundColor="{Binding Cell_09.BackColor}" />
+                <local:DGCell Grid.Column="9" CellContent="{Binding Cell_10.Text}" CircleVisibility="{Binding Cell_10.ShowAsBall}" CircleColor="{Binding Cell_10.BallColor}" TextColor="{Binding Cell_10.ForeColor}" BackgroundColor="{Binding Cell_10.BackColor}" />
+                <local:DGCell Grid.Column="10" CellContent="{Binding Cell_11.Text}" CircleVisibility="{Binding Cell_11.ShowAsBall}" CircleColor="{Binding Cell_11.BallColor}" TextColor="{Binding Cell_11.ForeColor}" BackgroundColor="{Binding Cell_11.BackColor}" />
+                <local:DGCell Grid.Column="11" CellContent="{Binding Cell_12.Text}" CircleVisibility="{Binding Cell_12.ShowAsBall}" CircleColor="{Binding Cell_12.BallColor}" TextColor="{Binding Cell_12.ForeColor}" BackgroundColor="{Binding Cell_12.BackColor}" />
+                <local:DGCell Grid.Column="12" CellContent="{Binding Cell_13.Text}" CircleVisibility="{Binding Cell_13.ShowAsBall}" CircleColor="{Binding Cell_13.BallColor}" TextColor="{Binding Cell_13.ForeColor}" BackgroundColor="{Binding Cell_13.BackColor}" />
+                <local:DGCell Grid.Column="13" CellContent="{Binding Cell_14.Text}" CircleVisibility="{Binding Cell_14.ShowAsBall}" CircleColor="{Binding Cell_14.BallColor}" TextColor="{Binding Cell_14.ForeColor}" BackgroundColor="{Binding Cell_14.BackColor}" />
+                <local:DGCell Grid.Column="14" CellContent="{Binding Cell_15.Text}" CircleVisibility="{Binding Cell_15.ShowAsBall}" CircleColor="{Binding Cell_15.BallColor}" TextColor="{Binding Cell_15.ForeColor}" BackgroundColor="{Binding Cell_15.BackColor}" />
+                <local:DGCell Grid.Column="15" CellContent="{Binding Cell_16.Text}" CircleVisibility="{Binding Cell_16.ShowAsBall}" CircleColor="{Binding Cell_16.BallColor}" TextColor="{Binding Cell_16.ForeColor}" BackgroundColor="{Binding Cell_16.BackColor}" />
+                <local:DGCell Grid.Column="16" CellContent="{Binding Cell_17.Text}" CircleVisibility="{Binding Cell_17.ShowAsBall}" CircleColor="{Binding Cell_17.BallColor}" TextColor="{Binding Cell_17.ForeColor}" BackgroundColor="{Binding Cell_17.BackColor}" />
+                <local:DGCell Grid.Column="17" CellContent="{Binding Cell_18.Text}" CircleVisibility="{Binding Cell_18.ShowAsBall}" CircleColor="{Binding Cell_18.BallColor}" TextColor="{Binding Cell_18.ForeColor}" BackgroundColor="{Binding Cell_18.BackColor}" />
+                <local:DGCell Grid.Column="18" CellContent="{Binding Cell_19.Text}" CircleVisibility="{Binding Cell_19.ShowAsBall}" CircleColor="{Binding Cell_19.BallColor}" TextColor="{Binding Cell_19.ForeColor}" BackgroundColor="{Binding Cell_19.BackColor}" />
+                <local:DGCell Grid.Column="19" CellContent="{Binding Cell_20.Text}" CircleVisibility="{Binding Cell_20.ShowAsBall}" CircleColor="{Binding Cell_20.BallColor}" TextColor="{Binding Cell_20.ForeColor}" BackgroundColor="{Binding Cell_20.BackColor}" />
+                <local:DGCell Grid.Column="20" CellContent="{Binding Cell_21.Text}" CircleVisibility="{Binding Cell_21.ShowAsBall}" CircleColor="{Binding Cell_21.BallColor}" TextColor="{Binding Cell_21.ForeColor}" BackgroundColor="{Binding Cell_21.BackColor}" />
+                <local:DGCell Grid.Column="21" CellContent="{Binding Cell_22.Text}" CircleVisibility="{Binding Cell_22.ShowAsBall}" CircleColor="{Binding Cell_22.BallColor}" TextColor="{Binding Cell_22.ForeColor}" BackgroundColor="{Binding Cell_22.BackColor}" />
+                <local:DGCell Grid.Column="22" CellContent="{Binding Cell_23.Text}" CircleVisibility="{Binding Cell_23.ShowAsBall}" CircleColor="{Binding Cell_23.BallColor}" TextColor="{Binding Cell_23.ForeColor}" BackgroundColor="{Binding Cell_23.BackColor}" />
+                <local:DGCell Grid.Column="23" CellContent="{Binding Cell_24.Text}" CircleVisibility="{Binding Cell_24.ShowAsBall}" CircleColor="{Binding Cell_24.BallColor}" TextColor="{Binding Cell_24.ForeColor}" BackgroundColor="{Binding Cell_24.BackColor}" />
+                <local:DGCell Grid.Column="24" CellContent="{Binding Cell_25.Text}" CircleVisibility="{Binding Cell_25.ShowAsBall}" CircleColor="{Binding Cell_25.BallColor}" TextColor="{Binding Cell_25.ForeColor}" BackgroundColor="{Binding Cell_25.BackColor}" />
+                <local:DGCell Grid.Column="25" CellContent="{Binding Cell_26.Text}" CircleVisibility="{Binding Cell_26.ShowAsBall}" CircleColor="{Binding Cell_26.BallColor}" TextColor="{Binding Cell_26.ForeColor}" BackgroundColor="{Binding Cell_26.BackColor}" />
+                <local:DGCell Grid.Column="26" CellContent="{Binding Cell_27.Text}" CircleVisibility="{Binding Cell_27.ShowAsBall}" CircleColor="{Binding Cell_27.BallColor}" TextColor="{Binding Cell_27.ForeColor}" BackgroundColor="{Binding Cell_27.BackColor}" />
+                <local:DGCell Grid.Column="27" CellContent="{Binding Cell_28.Text}" CircleVisibility="{Binding Cell_28.ShowAsBall}" CircleColor="{Binding Cell_28.BallColor}" TextColor="{Binding Cell_28.ForeColor}" BackgroundColor="{Binding Cell_28.BackColor}" />
+                <local:DGCell Grid.Column="28" CellContent="{Binding Cell_29.Text}" CircleVisibility="{Binding Cell_29.ShowAsBall}" CircleColor="{Binding Cell_29.BallColor}" TextColor="{Binding Cell_29.ForeColor}" BackgroundColor="{Binding Cell_29.BackColor}" />
+                <local:DGCell Grid.Column="29" CellContent="{Binding Cell_30.Text}" CircleVisibility="{Binding Cell_30.ShowAsBall}" CircleColor="{Binding Cell_30.BallColor}" TextColor="{Binding Cell_30.ForeColor}" BackgroundColor="{Binding Cell_30.BackColor}" />
+                <local:DGCell Grid.Column="30" CellContent="{Binding Cell_31.Text}" CircleVisibility="{Binding Cell_31.ShowAsBall}" CircleColor="{Binding Cell_31.BallColor}" TextColor="{Binding Cell_31.ForeColor}" BackgroundColor="{Binding Cell_31.BackColor}" />
+                <local:DGCell Grid.Column="31" CellContent="{Binding Cell_32.Text}" CircleVisibility="{Binding Cell_32.ShowAsBall}" CircleColor="{Binding Cell_32.BallColor}" TextColor="{Binding Cell_32.ForeColor}" BackgroundColor="{Binding Cell_32.BackColor}" />
+                <local:DGCell Grid.Column="32" CellContent="{Binding Cell_33.Text}" CircleVisibility="{Binding Cell_33.ShowAsBall}" CircleColor="{Binding Cell_33.BallColor}" TextColor="{Binding Cell_33.ForeColor}" BackgroundColor="{Binding Cell_33.BackColor}" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="RedPositionTemplate">
+            <Grid Height="25">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                </Grid.ColumnDefinitions>
+                <local:DGCell Grid.Column="0" CellContent="{Binding Cell_01.Text}" CircleVisibility="{Binding Cell_01.ShowAsBall}" CircleColor="{Binding Cell_01.BallColor}" TextColor="{Binding Cell_01.ForeColor}" BackgroundColor="{Binding Cell_01.BackColor}" />
+                <local:DGCell Grid.Column="1" CellContent="{Binding Cell_02.Text}" CircleVisibility="{Binding Cell_02.ShowAsBall}" CircleColor="{Binding Cell_02.BallColor}" TextColor="{Binding Cell_02.ForeColor}" BackgroundColor="{Binding Cell_02.BackColor}" />
+                <local:DGCell Grid.Column="2" CellContent="{Binding Cell_03.Text}" CircleVisibility="{Binding Cell_03.ShowAsBall}" CircleColor="{Binding Cell_03.BallColor}" TextColor="{Binding Cell_03.ForeColor}" BackgroundColor="{Binding Cell_03.BackColor}" />
+                <local:DGCell Grid.Column="3" CellContent="{Binding Cell_04.Text}" CircleVisibility="{Binding Cell_04.ShowAsBall}" CircleColor="{Binding Cell_04.BallColor}" TextColor="{Binding Cell_04.ForeColor}" BackgroundColor="{Binding Cell_04.BackColor}" />
+                <local:DGCell Grid.Column="4" CellContent="{Binding Cell_05.Text}" CircleVisibility="{Binding Cell_05.ShowAsBall}" CircleColor="{Binding Cell_05.BallColor}" TextColor="{Binding Cell_05.ForeColor}" BackgroundColor="{Binding Cell_05.BackColor}" />
+                <local:DGCell Grid.Column="5" CellContent="{Binding Cell_06.Text}" CircleVisibility="{Binding Cell_06.ShowAsBall}" CircleColor="{Binding Cell_06.BallColor}" TextColor="{Binding Cell_06.ForeColor}" BackgroundColor="{Binding Cell_06.BackColor}" />
+                <local:DGCell Grid.Column="6" CellContent="{Binding Cell_07.Text}" CircleVisibility="{Binding Cell_07.ShowAsBall}" CircleColor="{Binding Cell_07.BallColor}" TextColor="{Binding Cell_07.ForeColor}" BackgroundColor="{Binding Cell_07.BackColor}" />
+                <local:DGCell Grid.Column="7" CellContent="{Binding Cell_08.Text}" CircleVisibility="{Binding Cell_08.ShowAsBall}" CircleColor="{Binding Cell_08.BallColor}" TextColor="{Binding Cell_08.ForeColor}" BackgroundColor="{Binding Cell_08.BackColor}" />
+                <local:DGCell Grid.Column="8" CellContent="{Binding Cell_09.Text}" CircleVisibility="{Binding Cell_09.ShowAsBall}" CircleColor="{Binding Cell_09.BallColor}" TextColor="{Binding Cell_09.ForeColor}" BackgroundColor="{Binding Cell_09.BackColor}" />
+                <local:DGCell Grid.Column="9" CellContent="{Binding Cell_10.Text}" CircleVisibility="{Binding Cell_10.ShowAsBall}" CircleColor="{Binding Cell_10.BallColor}" TextColor="{Binding Cell_10.ForeColor}" BackgroundColor="{Binding Cell_10.BackColor}" />
+                <local:DGCell Grid.Column="10" CellContent="{Binding Cell_11.Text}" CircleVisibility="{Binding Cell_11.ShowAsBall}" CircleColor="{Binding Cell_11.BallColor}" TextColor="{Binding Cell_11.ForeColor}" BackgroundColor="{Binding Cell_11.BackColor}" />
+                <local:DGCell Grid.Column="11" CellContent="{Binding Cell_12.Text}" CircleVisibility="{Binding Cell_12.ShowAsBall}" CircleColor="{Binding Cell_12.BallColor}" TextColor="{Binding Cell_12.ForeColor}" BackgroundColor="{Binding Cell_12.BackColor}" />
+                <local:DGCell Grid.Column="12" CellContent="{Binding Cell_13.Text}" CircleVisibility="{Binding Cell_13.ShowAsBall}" CircleColor="{Binding Cell_13.BallColor}" TextColor="{Binding Cell_13.ForeColor}" BackgroundColor="{Binding Cell_13.BackColor}" />
+                <local:DGCell Grid.Column="13" CellContent="{Binding Cell_14.Text}" CircleVisibility="{Binding Cell_14.ShowAsBall}" CircleColor="{Binding Cell_14.BallColor}" TextColor="{Binding Cell_14.ForeColor}" BackgroundColor="{Binding Cell_14.BackColor}" />
+                <local:DGCell Grid.Column="14" CellContent="{Binding Cell_15.Text}" CircleVisibility="{Binding Cell_15.ShowAsBall}" CircleColor="{Binding Cell_15.BallColor}" TextColor="{Binding Cell_15.ForeColor}" BackgroundColor="{Binding Cell_15.BackColor}" />
+                <local:DGCell Grid.Column="15" CellContent="{Binding Cell_16.Text}" CircleVisibility="{Binding Cell_16.ShowAsBall}" CircleColor="{Binding Cell_16.BallColor}" TextColor="{Binding Cell_16.ForeColor}" BackgroundColor="{Binding Cell_16.BackColor}" />
+                <local:DGCell Grid.Column="16" CellContent="{Binding Cell_17.Text}" CircleVisibility="{Binding Cell_17.ShowAsBall}" CircleColor="{Binding Cell_17.BallColor}" TextColor="{Binding Cell_17.ForeColor}" BackgroundColor="{Binding Cell_17.BackColor}" />
+                <local:DGCell Grid.Column="17" CellContent="{Binding Cell_18.Text}" CircleVisibility="{Binding Cell_18.ShowAsBall}" CircleColor="{Binding Cell_18.BallColor}" TextColor="{Binding Cell_18.ForeColor}" BackgroundColor="{Binding Cell_18.BackColor}" />
+                <local:DGCell Grid.Column="18" CellContent="{Binding Odd.Text}" CircleVisibility="{Binding Odd.ShowAsBall}" CircleColor="{Binding Odd.BallColor}" TextColor="{Binding  Odd.ForeColor}" BackgroundColor="{Binding Odd.BackColor}" />
+                <local:DGCell Grid.Column="19" CellContent="{Binding Even.Text}" CircleVisibility="{Binding Even.ShowAsBall}" CircleColor="{Binding Even.BallColor}" TextColor="{Binding  Even.ForeColor}" BackgroundColor="{Binding Even.BackColor}" />
+                <local:DGCell Grid.Column="20" CellContent="{Binding Primary.Text}" CircleVisibility="{Binding Primary.ShowAsBall}" CircleColor="{Binding Primary.BallColor}" TextColor="{Binding  Primary.ForeColor}" BackgroundColor="{Binding Primary.BackColor}" />
+                <local:DGCell Grid.Column="21" CellContent="{Binding Composite.Text}" CircleVisibility="{Binding Composite.ShowAsBall}" CircleColor="{Binding Composite.BallColor}" TextColor="{Binding  Composite.ForeColor}" BackgroundColor="{Binding Composite.BackColor}" />
+                <local:DGCell Grid.Column="22" CellContent="{Binding Remain0.Text}" CircleVisibility="{Binding Remain0.ShowAsBall}" CircleColor="{Binding Remain0.BallColor}" TextColor="{Binding  Remain0.ForeColor}" BackgroundColor="{Binding Remain0.BackColor}" />
+                <local:DGCell Grid.Column="23" CellContent="{Binding Remain1.Text}" CircleVisibility="{Binding Remain1.ShowAsBall}" CircleColor="{Binding Remain1.BallColor}" TextColor="{Binding  Remain1.ForeColor}" BackgroundColor="{Binding Remain1.BackColor}" />
+                <local:DGCell Grid.Column="24" CellContent="{Binding Remain2.Text}" CircleVisibility="{Binding Remain2.ShowAsBall}" CircleColor="{Binding Remain2.BallColor}" TextColor="{Binding  Remain2.ForeColor}" BackgroundColor="{Binding Remain2.BackColor}" />
+                <local:DGCell Grid.Column="25" CellContent="{Binding WXJin.Text}" CircleVisibility="{Binding WXJin.ShowAsBall}" CircleColor="{Binding WXJin.BallColor}" TextColor="{Binding  WXJin.ForeColor}" BackgroundColor="{Binding WXJin.BackColor}" />
+                <local:DGCell Grid.Column="26" CellContent="{Binding WXMu.Text}" CircleVisibility="{Binding WXMu.ShowAsBall}" CircleColor="{Binding WXMu.BallColor}" TextColor="{Binding  WXMu.ForeColor}" BackgroundColor="{Binding WXMu.BackColor}" />
+                <local:DGCell Grid.Column="27" CellContent="{Binding WXShui.Text}" CircleVisibility="{Binding WXShui.ShowAsBall}" CircleColor="{Binding WXShui.BallColor}" TextColor="{Binding  WXShui.ForeColor}" BackgroundColor="{Binding WXShui.BackColor}" />
+                <local:DGCell Grid.Column="28" CellContent="{Binding WXHuo.Text}" CircleVisibility="{Binding WXHuo.ShowAsBall}" CircleColor="{Binding WXHuo.BallColor}" TextColor="{Binding  WXHuo.ForeColor}" BackgroundColor="{Binding WXHuo.BackColor}" />
+                <local:DGCell Grid.Column="29" CellContent="{Binding WXTu.Text}" CircleVisibility="{Binding WXTu.ShowAsBall}" CircleColor="{Binding WXTu.BallColor}" TextColor="{Binding  WXTu.ForeColor}" BackgroundColor="{Binding WXTu.BackColor}" />
+                <Line Grid.Column="0" Grid.ColumnSpan="18" Visibility="{Binding HasLine1}" X1="{Binding Line1StartX}" Y1="{Binding Line1StartY}" X2="{Binding Line1EndX}" Y2="{Binding Line1EndY}" Stroke="Gray" StrokeThickness="2" />
+                <Line Grid.Column="0" Grid.ColumnSpan="18" Visibility="{Binding HasLine2}" X1="{Binding Line2StartX}" Y1="{Binding Line2StartY}" X2="{Binding Line2EndX}" Y2="{Binding Line2EndY}" Stroke="Gray" StrokeThickness="2" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="BlueGeneralTemplate">
+            <Grid Height="25">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                </Grid.ColumnDefinitions>
+                <local:DGCell Grid.Column="0" CellContent="{Binding Cell_01.Text}" CircleVisibility="{Binding Cell_01.ShowAsBall}" CircleColor="{Binding Cell_01.BallColor}" TextColor="{Binding Cell_01.ForeColor}" BackgroundColor="{Binding Cell_01.BackColor}" />
+                <local:DGCell Grid.Column="1" CellContent="{Binding Cell_02.Text}" CircleVisibility="{Binding Cell_02.ShowAsBall}" CircleColor="{Binding Cell_02.BallColor}" TextColor="{Binding Cell_02.ForeColor}" BackgroundColor="{Binding Cell_02.BackColor}" />
+                <local:DGCell Grid.Column="2" CellContent="{Binding Cell_03.Text}" CircleVisibility="{Binding Cell_03.ShowAsBall}" CircleColor="{Binding Cell_03.BallColor}" TextColor="{Binding Cell_03.ForeColor}" BackgroundColor="{Binding Cell_03.BackColor}" />
+                <local:DGCell Grid.Column="3" CellContent="{Binding Cell_04.Text}" CircleVisibility="{Binding Cell_04.ShowAsBall}" CircleColor="{Binding Cell_04.BallColor}" TextColor="{Binding Cell_04.ForeColor}" BackgroundColor="{Binding Cell_04.BackColor}" />
+                <local:DGCell Grid.Column="4" CellContent="{Binding Cell_05.Text}" CircleVisibility="{Binding Cell_05.ShowAsBall}" CircleColor="{Binding Cell_05.BallColor}" TextColor="{Binding Cell_05.ForeColor}" BackgroundColor="{Binding Cell_05.BackColor}" />
+                <local:DGCell Grid.Column="5" CellContent="{Binding Cell_06.Text}" CircleVisibility="{Binding Cell_06.ShowAsBall}" CircleColor="{Binding Cell_06.BallColor}" TextColor="{Binding Cell_06.ForeColor}" BackgroundColor="{Binding Cell_06.BackColor}" />
+                <local:DGCell Grid.Column="6" CellContent="{Binding Cell_07.Text}" CircleVisibility="{Binding Cell_07.ShowAsBall}" CircleColor="{Binding Cell_07.BallColor}" TextColor="{Binding Cell_07.ForeColor}" BackgroundColor="{Binding Cell_07.BackColor}" />
+                <local:DGCell Grid.Column="7" CellContent="{Binding Cell_08.Text}" CircleVisibility="{Binding Cell_08.ShowAsBall}" CircleColor="{Binding Cell_08.BallColor}" TextColor="{Binding Cell_08.ForeColor}" BackgroundColor="{Binding Cell_08.BackColor}" />
+                <local:DGCell Grid.Column="8" CellContent="{Binding Cell_09.Text}" CircleVisibility="{Binding Cell_09.ShowAsBall}" CircleColor="{Binding Cell_09.BallColor}" TextColor="{Binding Cell_09.ForeColor}" BackgroundColor="{Binding Cell_09.BackColor}" />
+                <local:DGCell Grid.Column="9" CellContent="{Binding Cell_10.Text}" CircleVisibility="{Binding Cell_10.ShowAsBall}" CircleColor="{Binding Cell_10.BallColor}" TextColor="{Binding Cell_10.ForeColor}" BackgroundColor="{Binding Cell_10.BackColor}" />
+                <local:DGCell Grid.Column="10" CellContent="{Binding Cell_11.Text}" CircleVisibility="{Binding Cell_11.ShowAsBall}" CircleColor="{Binding Cell_11.BallColor}" TextColor="{Binding Cell_11.ForeColor}" BackgroundColor="{Binding Cell_11.BackColor}" />
+                <local:DGCell Grid.Column="11" CellContent="{Binding Cell_12.Text}" CircleVisibility="{Binding Cell_12.ShowAsBall}" CircleColor="{Binding Cell_12.BallColor}" TextColor="{Binding Cell_12.ForeColor}" BackgroundColor="{Binding Cell_12.BackColor}" />
+                <local:DGCell Grid.Column="12" CellContent="{Binding Cell_13.Text}" CircleVisibility="{Binding Cell_13.ShowAsBall}" CircleColor="{Binding Cell_13.BallColor}" TextColor="{Binding Cell_13.ForeColor}" BackgroundColor="{Binding Cell_13.BackColor}" />
+                <local:DGCell Grid.Column="13" CellContent="{Binding Cell_14.Text}" CircleVisibility="{Binding Cell_14.ShowAsBall}" CircleColor="{Binding Cell_14.BallColor}" TextColor="{Binding Cell_14.ForeColor}" BackgroundColor="{Binding Cell_14.BackColor}" />
+                <local:DGCell Grid.Column="14" CellContent="{Binding Cell_15.Text}" CircleVisibility="{Binding Cell_15.ShowAsBall}" CircleColor="{Binding Cell_15.BallColor}" TextColor="{Binding Cell_15.ForeColor}" BackgroundColor="{Binding Cell_15.BackColor}" />
+                <local:DGCell Grid.Column="15" CellContent="{Binding Cell_16.Text}" CircleVisibility="{Binding Cell_16.ShowAsBall}" CircleColor="{Binding Cell_16.BallColor}" TextColor="{Binding Cell_16.ForeColor}" BackgroundColor="{Binding Cell_16.BackColor}" />
+                <local:DGCell Grid.Column="16" CellContent="{Binding Odd.Text}" CircleVisibility="{Binding Odd.ShowAsBall}" CircleColor="{Binding Odd.BallColor}" TextColor="{Binding  Odd.ForeColor}" BackgroundColor="{Binding Odd.BackColor}" />
+                <local:DGCell Grid.Column="17" CellContent="{Binding Even.Text}" CircleVisibility="{Binding Even.ShowAsBall}" CircleColor="{Binding Even.BallColor}" TextColor="{Binding  Even.ForeColor}" BackgroundColor="{Binding Even.BackColor}" />
+                <local:DGCell Grid.Column="18" CellContent="{Binding Big.Text}" CircleVisibility="{Binding Big.ShowAsBall}" CircleColor="{Binding Big.BallColor}" TextColor="{Binding  Big.ForeColor}" BackgroundColor="{Binding Big.BackColor}" />
+                <local:DGCell Grid.Column="19" CellContent="{Binding Small.Text}" CircleVisibility="{Binding Small.ShowAsBall}" CircleColor="{Binding Small.BallColor}" TextColor="{Binding  Small.ForeColor}" BackgroundColor="{Binding Small.BackColor}" />
+                <local:DGCell Grid.Column="20" CellContent="{Binding Primary.Text}" CircleVisibility="{Binding Primary.ShowAsBall}" CircleColor="{Binding Primary.BallColor}" TextColor="{Binding  Primary.ForeColor}" BackgroundColor="{Binding Primary.BackColor}" />
+                <local:DGCell Grid.Column="21" CellContent="{Binding Composite.Text}" CircleVisibility="{Binding Composite.ShowAsBall}" CircleColor="{Binding Composite.BallColor}" TextColor="{Binding  Composite.ForeColor}" BackgroundColor="{Binding Composite.BackColor}" />
+                <local:DGCell Grid.Column="22" CellContent="{Binding Remain0.Text}" CircleVisibility="{Binding Remain0.ShowAsBall}" CircleColor="{Binding Remain0.BallColor}" TextColor="{Binding  Remain0.ForeColor}" BackgroundColor="{Binding Remain0.BackColor}" />
+                <local:DGCell Grid.Column="23" CellContent="{Binding Remain1.Text}" CircleVisibility="{Binding Remain1.ShowAsBall}" CircleColor="{Binding Remain1.BallColor}" TextColor="{Binding  Remain1.ForeColor}" BackgroundColor="{Binding Remain1.BackColor}" />
+                <local:DGCell Grid.Column="24" CellContent="{Binding Remain2.Text}" CircleVisibility="{Binding Remain2.ShowAsBall}" CircleColor="{Binding Remain2.BallColor}" TextColor="{Binding  Remain2.ForeColor}" BackgroundColor="{Binding Remain2.BackColor}" />
+                <local:DGCell Grid.Column="25" CellContent="{Binding WXJin.Text}" CircleVisibility="{Binding WXJin.ShowAsBall}" CircleColor="{Binding WXJin.BallColor}" TextColor="{Binding  WXJin.ForeColor}" BackgroundColor="{Binding WXJin.BackColor}" />
+                <local:DGCell Grid.Column="26" CellContent="{Binding WXMu.Text}" CircleVisibility="{Binding WXMu.ShowAsBall}" CircleColor="{Binding WXMu.BallColor}" TextColor="{Binding  WXMu.ForeColor}" BackgroundColor="{Binding WXMu.BackColor}" />
+                <local:DGCell Grid.Column="27" CellContent="{Binding WXShui.Text}" CircleVisibility="{Binding WXShui.ShowAsBall}" CircleColor="{Binding WXShui.BallColor}" TextColor="{Binding  WXShui.ForeColor}" BackgroundColor="{Binding WXShui.BackColor}" />
+                <local:DGCell Grid.Column="28" CellContent="{Binding WXHuo.Text}" CircleVisibility="{Binding WXHuo.ShowAsBall}" CircleColor="{Binding WXHuo.BallColor}" TextColor="{Binding  WXHuo.ForeColor}" BackgroundColor="{Binding WXHuo.BackColor}" />
+                <local:DGCell Grid.Column="29" CellContent="{Binding WXTu.Text}" CircleVisibility="{Binding WXTu.ShowAsBall}" CircleColor="{Binding WXTu.BallColor}" TextColor="{Binding  WXTu.ForeColor}" BackgroundColor="{Binding WXTu.BackColor}" />
+                <Line Grid.Column="0" Grid.ColumnSpan="16" Visibility="{Binding HasLine1}" X1="{Binding Line1StartX}" Y1="{Binding Line1StartY}" X2="{Binding Line1EndX}" Y2="{Binding Line1EndY}" Stroke="Gray" StrokeThickness="2" />
+                <Line Grid.Column="0" Grid.ColumnSpan="16" Visibility="{Binding HasLine2}" X1="{Binding Line2StartX}" Y1="{Binding Line2StartY}" X2="{Binding Line2EndX}" Y2="{Binding Line2EndY}" Stroke="Gray" StrokeThickness="2" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="BlueSpanTemplate">
+            <Grid Height="25">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                </Grid.ColumnDefinitions>
+                <local:DGCell Grid.Column="0" CellContent="{Binding Cell_01.Text}" CircleVisibility="{Binding Cell_01.ShowAsBall}" CircleColor="{Binding Cell_01.BallColor}" TextColor="{Binding Cell_01.ForeColor}" BackgroundColor="{Binding Cell_01.BackColor}" />
+                <local:DGCell Grid.Column="1" CellContent="{Binding Cell_02.Text}" CircleVisibility="{Binding Cell_02.ShowAsBall}" CircleColor="{Binding Cell_02.BallColor}" TextColor="{Binding Cell_02.ForeColor}" BackgroundColor="{Binding Cell_02.BackColor}" />
+                <local:DGCell Grid.Column="2" CellContent="{Binding Cell_03.Text}" CircleVisibility="{Binding Cell_03.ShowAsBall}" CircleColor="{Binding Cell_03.BallColor}" TextColor="{Binding Cell_03.ForeColor}" BackgroundColor="{Binding Cell_03.BackColor}" />
+                <local:DGCell Grid.Column="3" CellContent="{Binding Cell_04.Text}" CircleVisibility="{Binding Cell_04.ShowAsBall}" CircleColor="{Binding Cell_04.BallColor}" TextColor="{Binding Cell_04.ForeColor}" BackgroundColor="{Binding Cell_04.BackColor}" />
+                <local:DGCell Grid.Column="4" CellContent="{Binding Cell_05.Text}" CircleVisibility="{Binding Cell_05.ShowAsBall}" CircleColor="{Binding Cell_05.BallColor}" TextColor="{Binding Cell_05.ForeColor}" BackgroundColor="{Binding Cell_05.BackColor}" />
+                <local:DGCell Grid.Column="5" CellContent="{Binding Cell_06.Text}" CircleVisibility="{Binding Cell_06.ShowAsBall}" CircleColor="{Binding Cell_06.BallColor}" TextColor="{Binding Cell_06.ForeColor}" BackgroundColor="{Binding Cell_06.BackColor}" />
+                <local:DGCell Grid.Column="6" CellContent="{Binding Cell_07.Text}" CircleVisibility="{Binding Cell_07.ShowAsBall}" CircleColor="{Binding Cell_07.BallColor}" TextColor="{Binding Cell_07.ForeColor}" BackgroundColor="{Binding Cell_07.BackColor}" />
+                <local:DGCell Grid.Column="7" CellContent="{Binding Cell_08.Text}" CircleVisibility="{Binding Cell_08.ShowAsBall}" CircleColor="{Binding Cell_08.BallColor}" TextColor="{Binding Cell_08.ForeColor}" BackgroundColor="{Binding Cell_08.BackColor}" />
+                <local:DGCell Grid.Column="8" CellContent="{Binding Cell_09.Text}" CircleVisibility="{Binding Cell_09.ShowAsBall}" CircleColor="{Binding Cell_09.BallColor}" TextColor="{Binding Cell_09.ForeColor}" BackgroundColor="{Binding Cell_09.BackColor}" />
+                <local:DGCell Grid.Column="9" CellContent="{Binding Cell_10.Text}" CircleVisibility="{Binding Cell_10.ShowAsBall}" CircleColor="{Binding Cell_10.BallColor}" TextColor="{Binding Cell_10.ForeColor}" BackgroundColor="{Binding Cell_10.BackColor}" />
+                <local:DGCell Grid.Column="10" CellContent="{Binding Cell_11.Text}" CircleVisibility="{Binding Cell_11.ShowAsBall}" CircleColor="{Binding Cell_11.BallColor}" TextColor="{Binding Cell_11.ForeColor}" BackgroundColor="{Binding Cell_11.BackColor}" />
+                <local:DGCell Grid.Column="11" CellContent="{Binding Cell_12.Text}" CircleVisibility="{Binding Cell_12.ShowAsBall}" CircleColor="{Binding Cell_12.BallColor}" TextColor="{Binding Cell_12.ForeColor}" BackgroundColor="{Binding Cell_12.BackColor}" />
+                <local:DGCell Grid.Column="12" CellContent="{Binding Cell_13.Text}" CircleVisibility="{Binding Cell_13.ShowAsBall}" CircleColor="{Binding Cell_13.BallColor}" TextColor="{Binding Cell_13.ForeColor}" BackgroundColor="{Binding Cell_13.BackColor}" />
+                <local:DGCell Grid.Column="13" CellContent="{Binding Cell_14.Text}" CircleVisibility="{Binding Cell_14.ShowAsBall}" CircleColor="{Binding Cell_14.BallColor}" TextColor="{Binding Cell_14.ForeColor}" BackgroundColor="{Binding Cell_14.BackColor}" />
+                <local:DGCell Grid.Column="14" CellContent="{Binding Cell_15.Text}" CircleVisibility="{Binding Cell_15.ShowAsBall}" CircleColor="{Binding Cell_15.BallColor}" TextColor="{Binding Cell_15.ForeColor}" BackgroundColor="{Binding Cell_15.BackColor}" />
+                <local:DGCell Grid.Column="15" CellContent="{Binding Cell_16.Text}" CircleVisibility="{Binding Cell_16.ShowAsBall}" CircleColor="{Binding Cell_16.BallColor}" TextColor="{Binding Cell_16.ForeColor}" BackgroundColor="{Binding Cell_16.BackColor}" />
+                <local:DGCell Grid.Column="16" CellContent="{Binding Odd.Text}" CircleVisibility="{Binding Odd.ShowAsBall}" CircleColor="{Binding Odd.BallColor}" TextColor="{Binding  Odd.ForeColor}" BackgroundColor="{Binding Odd.BackColor}" />
+                <local:DGCell Grid.Column="17" CellContent="{Binding Even.Text}" CircleVisibility="{Binding Even.ShowAsBall}" CircleColor="{Binding Even.BallColor}" TextColor="{Binding  Even.ForeColor}" BackgroundColor="{Binding Even.BackColor}" />
+                <local:DGCell Grid.Column="18" CellContent="{Binding Big.Text}" CircleVisibility="{Binding Big.ShowAsBall}" CircleColor="{Binding Big.BallColor}" TextColor="{Binding  Big.ForeColor}" BackgroundColor="{Binding Big.BackColor}" />
+                <local:DGCell Grid.Column="19" CellContent="{Binding Small.Text}" CircleVisibility="{Binding Small.ShowAsBall}" CircleColor="{Binding Small.BallColor}" TextColor="{Binding  Small.ForeColor}" BackgroundColor="{Binding Small.BackColor}" />
+                <local:DGCell Grid.Column="20" CellContent="{Binding Primary.Text}" CircleVisibility="{Binding Primary.ShowAsBall}" CircleColor="{Binding Primary.BallColor}" TextColor="{Binding  Primary.ForeColor}" BackgroundColor="{Binding Primary.BackColor}" />
+                <local:DGCell Grid.Column="21" CellContent="{Binding Composite.Text}" CircleVisibility="{Binding Composite.ShowAsBall}" CircleColor="{Binding Composite.BallColor}" TextColor="{Binding  Composite.ForeColor}" BackgroundColor="{Binding Composite.BackColor}" />
+                <local:DGCell Grid.Column="22" CellContent="{Binding Remain0.Text}" CircleVisibility="{Binding Remain0.ShowAsBall}" CircleColor="{Binding Remain0.BallColor}" TextColor="{Binding  Remain0.ForeColor}" BackgroundColor="{Binding Remain0.BackColor}" />
+                <local:DGCell Grid.Column="23" CellContent="{Binding Remain1.Text}" CircleVisibility="{Binding Remain1.ShowAsBall}" CircleColor="{Binding Remain1.BallColor}" TextColor="{Binding  Remain1.ForeColor}" BackgroundColor="{Binding Remain1.BackColor}" />
+                <local:DGCell Grid.Column="24" CellContent="{Binding Remain2.Text}" CircleVisibility="{Binding Remain2.ShowAsBall}" CircleColor="{Binding Remain2.BallColor}" TextColor="{Binding  Remain2.ForeColor}" BackgroundColor="{Binding Remain2.BackColor}" />
+                <local:DGCell Grid.Column="25" CellContent="{Binding WXJin.Text}" CircleVisibility="{Binding WXJin.ShowAsBall}" CircleColor="{Binding WXJin.BallColor}" TextColor="{Binding  WXJin.ForeColor}" BackgroundColor="{Binding WXJin.BackColor}" />
+                <local:DGCell Grid.Column="26" CellContent="{Binding WXMu.Text}" CircleVisibility="{Binding WXMu.ShowAsBall}" CircleColor="{Binding WXMu.BallColor}" TextColor="{Binding  WXMu.ForeColor}" BackgroundColor="{Binding WXMu.BackColor}" />
+                <local:DGCell Grid.Column="27" CellContent="{Binding WXShui.Text}" CircleVisibility="{Binding WXShui.ShowAsBall}" CircleColor="{Binding WXShui.BallColor}" TextColor="{Binding  WXShui.ForeColor}" BackgroundColor="{Binding WXShui.BackColor}" />
+                <local:DGCell Grid.Column="28" CellContent="{Binding WXHuo.Text}" CircleVisibility="{Binding WXHuo.ShowAsBall}" CircleColor="{Binding WXHuo.BallColor}" TextColor="{Binding  WXHuo.ForeColor}" BackgroundColor="{Binding WXHuo.BackColor}" />
+                <local:DGCell Grid.Column="29" CellContent="{Binding WXTu.Text}" CircleVisibility="{Binding WXTu.ShowAsBall}" CircleColor="{Binding WXTu.BallColor}" TextColor="{Binding  WXTu.ForeColor}" BackgroundColor="{Binding WXTu.BackColor}" />
+                <Line Grid.Column="0" Grid.ColumnSpan="16" Visibility="{Binding HasLine1}" X1="{Binding Line1StartX}" Y1="{Binding Line1StartY}" X2="{Binding Line1EndX}" Y2="{Binding Line1EndY}" Stroke="Gray" StrokeThickness="2" />
+                <Line Grid.Column="0" Grid.ColumnSpan="16" Visibility="{Binding HasLine2}" X1="{Binding Line2StartX}" Y1="{Binding Line2StartY}" X2="{Binding Line2EndX}" Y2="{Binding Line2EndY}" Stroke="Gray" StrokeThickness="2" />
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <ListBox x:Name="ListBoxCtrl" BorderThickness='0'>
+        <ListBox.ItemContainerStyle>
+            <Style TargetType="ListBoxItem">
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+            </Style>
+        </ListBox.ItemContainerStyle>
+    </ListBox>
+</UserControl>

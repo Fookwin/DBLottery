@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/selected_attribute_panel"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal" 
+        android:padding="5dp"
+        android:background="@drawable/background_panel_header">
+        
+        <TextView
+            android:id="@+id/selected_attribute"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/darkred" />
+
+        <ImageView
+            android:id="@+id/goto_detail_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="right|center"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/icon_goto" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/recommend_filter_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp" >
+        </ListView>
+
+        <ExpandableListView
+            android:id="@+id/filter_category_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp" >
+        </ExpandableListView>
+    </FrameLayout>
+
+</LinearLayout>

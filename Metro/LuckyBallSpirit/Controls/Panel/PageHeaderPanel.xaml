@@ -1,0 +1,52 @@
+﻿<UserControl
+    x:Class="LuckyBallSpirit.Controls.PageHeaderPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LuckyBallSpirit.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <!-- Back button and page title -->
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.8,1" StartPoint="0.2,0">
+                <GradientStop Color="#FF3C0000" Offset="1"/>
+                <GradientStop Color="#FF6F0000" Offset="0.5"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="backButton" VerticalAlignment="Top" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Click="backButton_Click" Style="{StaticResource BackButtonStyle}"/>
+
+        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="福盈 双色球 - 中国梦 我的梦" FontSize="15" VerticalAlignment="Bottom" Foreground="LightGray"/>        
+        
+        <TextBlock x:Name="pageTitle" Grid.Row="1" Grid.Column="1" Foreground="Gold" FontSize="30" VerticalAlignment="Center"/>
+        <TextBlock x:Name="subTitle" Grid.Row="1" Grid.Column="2" Foreground="LightGray" FontSize="15" VerticalAlignment="Center" Margin="20,0,0,0"/>
+
+        <local:AdViewCtrl Grid.Row="0" Grid.RowSpan="2" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+        <Button x:Name="RB_GoToSettingsPage" Grid.Row="0" Grid.RowSpan="2" Grid.Column="4" Click="RB_GoToSettingsPage_Click"
+                Style="{StaticResource TextButtonStyle}">
+            <Button.Content>
+                <StackPanel>
+                    <Image Height="35" Source="ms-appx:///Resources/Setting.png" HorizontalAlignment="Center"/>
+                    <TextBlock HorizontalAlignment="Center" Text="更多设置" FontSize="15"/>
+                </StackPanel>
+            </Button.Content>
+        </Button>
+    </Grid>
+</UserControl>

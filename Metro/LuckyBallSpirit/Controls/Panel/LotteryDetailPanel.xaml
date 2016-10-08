@@ -1,0 +1,102 @@
+﻿<UserControl
+    x:Class="LuckyBallSpirit.Controls.LotteryDetailPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LuckyBallSpirit.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:LuckyBallSpirit.Controls"
+    mc:Ignorable="d"
+    Width="550" Height="520">
+
+    <Border Padding="20,15,20,0" CornerRadius="10">
+        <Border.Background>
+            <SolidColorBrush Color="White" Opacity="0.5"/>
+        </Border.Background>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <controls:HelpInspecter HelpID="27" Grid.RowSpan="5" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="第" FontSize="30" Foreground="Black"/>
+                    <TextBlock Text="{Binding Issue}" FontSize="30" Foreground="DarkRed"/>
+                    <TextBlock Text="期" FontSize="30" Foreground="Black"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="20,0,0,0" VerticalAlignment="Center">
+                    <TextBlock Text="开奖时间： " FontSize="20" Foreground="DimGray"/>
+                    <TextBlock Text="{Binding Date}" FontSize="20" Foreground="DimGray"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <controls:NumButton Num="{Binding Red1}" PrimaryColor="Red" SelectMode="NotSelectable" SecondaryColor="LightPink" SelectStatus="Selected"/>
+                <controls:NumButton Margin="10,0,0,0" Num="{Binding Red2}" PrimaryColor="Red" SelectMode="NotSelectable" SecondaryColor="LightPink" SelectStatus="Selected"/>
+                <controls:NumButton Margin="10,0,0,0" Num="{Binding Red3}" PrimaryColor="Red" SelectMode="NotSelectable" SecondaryColor="LightPink" SelectStatus="Selected"/>
+                <controls:NumButton Margin="10,0,0,0" Num="{Binding Red4}" PrimaryColor="Red" SelectMode="NotSelectable" SecondaryColor="LightPink" SelectStatus="Selected"/>
+                <controls:NumButton Margin="10,0,0,0" Num="{Binding Red5}" PrimaryColor="Red" SelectMode="NotSelectable" SecondaryColor="LightPink" SelectStatus="Selected"/>
+                <controls:NumButton Margin="10,0,0,0" Num="{Binding Red6}" PrimaryColor="Red" SelectMode="NotSelectable" SecondaryColor="LightPink" SelectStatus="Selected"/>
+                <controls:NumButton Margin="10,0,0,0" Num="{Binding Blue}" PrimaryColor="Blue" SelectMode="NotSelectable" SecondaryColor="LightBlue" SelectStatus="Selected"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="0,0,20,0">
+                    <TextBlock Text="销售金额： " FontSize="18" Foreground="DimGray"/>
+                    <TextBlock Text="{Binding BetAmount}" FontSize="18" Foreground="Red"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <TextBlock Text="奖池金额： " FontSize="18" Foreground="DimGray"/>
+                    <TextBlock Text="{Binding PoolAmount}" FontSize="18" Foreground="Red"/>
+                </StackPanel>
+            </StackPanel>
+
+            <ListBox Grid.Row="3" ItemsSource="{Binding Winners}" Background="Transparent" IsHitTestVisible="False">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border CornerRadius="5" Margin="0,5">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="Red" Offset="0"/>
+                                    <GradientStop Color="#FFC80000" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+
+                            <Grid Height="40" MinWidth="500">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" Text="{Binding Name}" Foreground="White" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
+                                <TextBlock Grid.Column="1" Text="{Binding Count}" Foreground="White" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
+                                <TextBlock Grid.Column="2" Text="{Binding Bonus}" Foreground="Yellow" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Margin" Value="0" />
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+
+            <TextBlock Grid.Row="4" Text="{Binding More}" FontSize="12" Foreground="DimGray" TextWrapping="Wrap" Margin="0,5,0,0"/>
+        </Grid>
+    </Border>
+</UserControl>

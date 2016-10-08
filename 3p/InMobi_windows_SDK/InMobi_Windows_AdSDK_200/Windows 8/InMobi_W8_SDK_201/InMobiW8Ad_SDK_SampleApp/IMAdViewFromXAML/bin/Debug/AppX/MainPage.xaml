@@ -1,0 +1,39 @@
+﻿<Page
+    x:Class="IMAdViewFromXAML.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:IMAdViewFromXAML"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:Ad="using:InMobi.W8.AdSDK">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Orientation="Vertical">
+        <Ad:IMAdView x:ConnectionId='1'
+            x:Name="AdView1"
+            RefreshInterval="30"
+            AdSize="11"
+            AppId="701aa3fd1aef48a581bfd0784978c83a"
+            Height="50" Width="320"
+            Margin="0,50,0,0"
+            AnimationType="SLIDE_IN_LEFT"                                                                                        
+            >
+            <Ad:IMAdView.IMAdRequest>
+                <Ad:IMAdRequest  LocationInquiryAllowed="False"  >
+                </Ad:IMAdRequest>
+            </Ad:IMAdView.IMAdRequest>
+        </Ad:IMAdView>
+            
+            <Button x:ConnectionId='2' Name="btnLoadAd"                           Content="Load Ad" HorizontalAlignment="Center"></Button>
+            <Button x:ConnectionId='3' Name="btnViewInterstitialAd" 
+                    Content="Interstitial Ad" 
+                    Margin="0,20,0,0"
+                                                          
+                    HorizontalAlignment="Center">
+                
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>
+

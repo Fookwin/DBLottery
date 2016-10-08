@@ -1,0 +1,129 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dip" >
+
+    <LinearLayout
+        android:id="@+id/local_cache_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dip" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="---------- 本地缓存 ----------"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/darkred" />
+
+        <Button
+            android:id="@+id/clean_cache_button"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center" 
+            android:layout_margin="5dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:background="@drawable/background_button_light"
+            android:text="清除本地缓存">
+        </Button>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="* 为了提高软件响应速度，我们会保存一些数据会在本机上，清除这些数据可以使软件恢复初始状态，通常这样可以解决一些由于缓存数据错误导致的软件不工作。"
+            android:textColor="@color/dimgray" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dip" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="---------- 异常属性筛选条件 ----------"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/darkred" />
+
+        <com.fookwin.lotteryspirit.view.NumberEditor
+            android:id="@+id/happen_prop_editor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip" >
+        </com.fookwin.lotteryspirit.view.NumberEditor>
+
+        <com.fookwin.lotteryspirit.view.NumberEditor
+            android:id="@+id/current_omission_editor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip" >
+        </com.fookwin.lotteryspirit.view.NumberEditor>
+
+        <com.fookwin.lotteryspirit.view.NumberEditor
+            android:id="@+id/prop_energy_editor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip" >
+        </com.fookwin.lotteryspirit.view.NumberEditor>
+
+        <com.fookwin.lotteryspirit.view.NumberEditor
+            android:id="@+id/max_prop_energy_editor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip" >
+        </com.fookwin.lotteryspirit.view.NumberEditor>
+
+        <com.fookwin.lotteryspirit.view.NumberEditor
+            android:id="@+id/recommend_threshold_editor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip" >
+        </com.fookwin.lotteryspirit.view.NumberEditor>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="* 当属性的偏离值大于指定值，该属性会以 “荐” 标记。"
+            android:textColor="@color/dimgray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="10dp" >
+
+            <Button
+                android:id="@+id/commit_button"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center" 
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:background="@drawable/background_button_light" 
+                android:text="记住设置修改">
+            </Button>
+
+            <Button
+                android:id="@+id/asdefault_button"
+                android:layout_width="0dp"
+                android:layout_height="40dp" 
+                android:layout_weight="1"
+                android:layout_gravity="center" 
+                android:layout_margin="5dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:background="@drawable/background_button_light"
+                android:text="恢复默认设置">
+            </Button>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

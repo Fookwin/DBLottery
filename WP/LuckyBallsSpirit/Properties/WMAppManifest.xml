@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2014/deployment" AppPlatformVersion="8.1">
+  <DefaultLanguage xmlns="" code="zh-Hans" />
+  <Languages xmlns="">
+    <Language code="zh-TW" />
+    <Language code="zh-MO" />
+    <Language code="zh-HK" />
+    <Language code="zh-CHT" />
+    <Language code="zh-Hant" />
+    <Language code="zh-SG" />
+    <Language code="zh-CN" />
+    <Language code="zh-CHS" />
+    <Language code="zh-Hans" />
+    <Language code="zh" />
+  </Languages>
+  <App xmlns="" ProductID="{019a3702-3087-4bb6-8a57-8ddfccdba494}" Title="福盈双色球" RuntimeType="Silverlight" Version="1.0.4.0" Genre="apps.normal" Author="Fookwin" Description="福盈双色球" Publisher="Fookwin" PublisherID="{be60cfc6-c10d-4577-98c6-8161a25ab59c}">
+    <IconPath IsRelative="true" IsResource="false">Logo.png</IconPath>
+    <Capabilities>
+      <Capability Name="ID_CAP_NETWORKING" />
+      <Capability Name="ID_CAP_SENSORS" />
+      <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
+      <Capability Name="ID_CAP_LOCATION" />
+      <Capability Name="ID_CAP_PUSH_NOTIFICATION" />
+      <Capability Name="ID_CAP_IDENTITY_DEVICE" />
+      <Capability Name="ID_CAP_IDENTITY_USER" />
+      <Capability Name="ID_CAP_PHONEDIALER" />
+      <Capability Name="ID_CAP_MEDIALIB_PHOTO" />
+    </Capabilities>
+    <Tasks>
+      <DefaultTask Name="_default" NavigationPage="WelcomePage.xaml" />
+    </Tasks>
+    <Tokens>
+      <PrimaryToken TokenID="LuckyBallsSpiritToken" TaskName="_default">
+        <TemplateFlip>
+          <SmallImageURI IsRelative="true" IsResource="false">MediumLogo.png</SmallImageURI>
+          <Count>0</Count>
+          <BackgroundImageURI IsRelative="true" IsResource="false">MediumLogo.png</BackgroundImageURI>
+          <Title>福盈双色球</Title>
+          <BackContent>
+          </BackContent>
+          <BackBackgroundImageURI>
+          </BackBackgroundImageURI>
+          <BackTitle>
+          </BackTitle>
+          <LargeBackgroundImageURI IsRelative="true" IsResource="false">LargeLogo.png</LargeBackgroundImageURI>
+          <LargeBackContent />
+          <LargeBackBackgroundImageURI IsRelative="true" IsResource="false">
+          </LargeBackBackgroundImageURI>
+          <DeviceLockImageURI>
+          </DeviceLockImageURI>
+          <HasLarge>True</HasLarge>
+        </TemplateFlip>
+      </PrimaryToken>
+    </Tokens>
+    <ScreenResolutions>
+      <ScreenResolution Name="ID_RESOLUTION_WVGA" />
+      <ScreenResolution Name="ID_RESOLUTION_WXGA" />
+      <ScreenResolution Name="ID_RESOLUTION_HD720P" />
+    </ScreenResolutions>
+  </App>
+</Deployment>

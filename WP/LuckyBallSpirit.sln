@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuckyBallData", "LuckyBallData\LuckyBallData.csproj", "{6BEED827-4500-45FC-AC61-3E2194BFA2CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuckyBallsSpirit", "LuckyBallsSpirit\LuckyBallsSpirit.csproj", "{019A3702-3087-4BB6-8A57-8DDFCCDBA494}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6BEED827-4500-45FC-AC61-3E2194BFA2CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BEED827-4500-45FC-AC61-3E2194BFA2CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BEED827-4500-45FC-AC61-3E2194BFA2CD}.Debug|ARM.ActiveCfg = Debug|ARM
+		{6BEED827-4500-45FC-AC61-3E2194BFA2CD}.Debug|ARM.Build.0 = Debug|ARM
+		{6BEED827-4500-45FC-AC61-3E2194BFA2CD}.Debug|x86.ActiveCfg = Debug|x86
+		{6BEED827-4500-45FC-AC61-3E2194BFA2CD}.Debug|x86.Build.0 = Debug|x86
+		{6BEED827-4500-45FC-AC61-3E2194BFA2CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BEED827-4500-45FC-AC61-3E2194BFA2CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BEED827-4500-45FC-AC61-3E2194BFA2CD}.Release|ARM.ActiveCfg = Release|ARM
+		{6BEED827-4500-45FC-AC61-3E2194BFA2CD}.Release|ARM.Build.0 = Release|ARM
+		{6BEED827-4500-45FC-AC61-3E2194BFA2CD}.Release|x86.ActiveCfg = Release|x86
+		{6BEED827-4500-45FC-AC61-3E2194BFA2CD}.Release|x86.Build.0 = Release|x86
+		{019A3702-3087-4BB6-8A57-8DDFCCDBA494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{019A3702-3087-4BB6-8A57-8DDFCCDBA494}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{019A3702-3087-4BB6-8A57-8DDFCCDBA494}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{019A3702-3087-4BB6-8A57-8DDFCCDBA494}.Debug|ARM.ActiveCfg = Debug|ARM
+		{019A3702-3087-4BB6-8A57-8DDFCCDBA494}.Debug|ARM.Build.0 = Debug|ARM
+		{019A3702-3087-4BB6-8A57-8DDFCCDBA494}.Debug|ARM.Deploy.0 = Debug|ARM
+		{019A3702-3087-4BB6-8A57-8DDFCCDBA494}.Debug|x86.ActiveCfg = Debug|x86
+		{019A3702-3087-4BB6-8A57-8DDFCCDBA494}.Debug|x86.Build.0 = Debug|x86
+		{019A3702-3087-4BB6-8A57-8DDFCCDBA494}.Debug|x86.Deploy.0 = Debug|x86
+		{019A3702-3087-4BB6-8A57-8DDFCCDBA494}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{019A3702-3087-4BB6-8A57-8DDFCCDBA494}.Release|Any CPU.Build.0 = Release|Any CPU
+		{019A3702-3087-4BB6-8A57-8DDFCCDBA494}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{019A3702-3087-4BB6-8A57-8DDFCCDBA494}.Release|ARM.ActiveCfg = Release|ARM
+		{019A3702-3087-4BB6-8A57-8DDFCCDBA494}.Release|ARM.Build.0 = Release|ARM
+		{019A3702-3087-4BB6-8A57-8DDFCCDBA494}.Release|ARM.Deploy.0 = Release|ARM
+		{019A3702-3087-4BB6-8A57-8DDFCCDBA494}.Release|x86.ActiveCfg = Release|x86
+		{019A3702-3087-4BB6-8A57-8DDFCCDBA494}.Release|x86.Build.0 = Release|x86
+		{019A3702-3087-4BB6-8A57-8DDFCCDBA494}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

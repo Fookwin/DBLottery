@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="19278ZZXMicroCreation.5103613603842" Publisher="CN=B0AC9B34-1B04-46B4-98BE-4A3592030B8A" Version="1.2.0.14" />
+  <Properties>
+    <DisplayName>福盈双色球</DisplayName>
+    <PublisherDisplayName>Innovation@ZZX</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="LuckyBallSpirit.App">
+      <VisualElements DisplayName="福盈双色球" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="LuckyBallSpirit" ForegroundText="light" BackgroundColor="darkGoldenrod" ToastCapable="true">
+        <DefaultTile ShowName="allLogos" WideLogo="Assets\WideLogo.png" />
+        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="darkGoldenrod" />
+        <InitialRotationPreference>
+          <Rotation Preference="landscape" />
+          <Rotation Preference="landscapeFlipped" />
+        </InitialRotationPreference>
+      </VisualElements>
+      <Extensions>
+        <Extension Category="windows.fileTypeAssociation">
+          <FileTypeAssociation Name="inmobi">
+            <DisplayName>inmobi</DisplayName>
+            <EditFlags AlwaysUnsafe="true" />
+            <SupportedFileTypes>
+              <FileType ContentType="txt/plain">.dat</FileType>
+            </SupportedFileTypes>
+          </FileTypeAssociation>
+        </Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClientServer" />
+    <Capability Name="internetClient" />
+    <DeviceCapability Name="location" />
+  </Capabilities>
+</Package>

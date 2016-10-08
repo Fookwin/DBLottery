@@ -1,0 +1,51 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <ImageView
+        android:id="@+id/form_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:scaleType="center"
+        android:src="@drawable/image_form" />
+
+    <android.support.v7.widget.GridLayout
+        xmlns:app="http://schemas.android.com/apk/res/com.fookwin.lotteryspirit"
+        android:id="@+id/fill_grid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        app:columnCount="16"
+        app:rowCount="37" >
+
+    </android.support.v7.widget.GridLayout>
+
+    <TextView
+        android:id="@+id/status_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|center"
+        android:textAppearance="?android:attr/textAppearanceLarge" 
+        android:textColor="@color/dimgrey"/>
+
+    <ImageView
+        android:id="@+id/to_pre_btn"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_margin="5dp"
+        android:layout_gravity="top|left"
+        android:src="@drawable/icon_to_upper" />
+
+    <ImageView
+        android:id="@+id/to_next_btn"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_margin="5dp"
+        android:layout_gravity="bottom|left"
+        android:src="@drawable/icon_to_lower" />
+
+</FrameLayout>

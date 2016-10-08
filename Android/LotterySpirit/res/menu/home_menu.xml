@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:showAsAction="always|withText"
+        android:title="@string/action_settings" 
+        android:icon="@drawable/icon_menu_more">
+        <menu>
+            <item
+                android:id="@+id/goto_mypurchase"
+                android:icon="@drawable/icon_ball"
+                android:showAsAction="ifRoom"
+                android:title="@string/menu_my_purchases">
+            </item>
+            <item
+                android:id="@+id/goto_feedback"
+                android:icon="@drawable/icon_feedback"
+                android:showAsAction="ifRoom"
+                android:title="@string/menu_feedback">
+            </item>
+            <item
+                android:id="@+id/goto_configration"
+                android:icon="@drawable/icon_configration"
+                android:showAsAction="ifRoom"
+                android:title="@string/menu_system_setting">
+            </item>
+            <item
+                android:id="@+id/goto_donation"
+                android:icon="@drawable/icon_donation"
+                android:showAsAction="ifRoom"
+                android:title="@string/menu_donation">
+            </item>
+            <item
+                android:id="@+id/goto_about"
+                android:icon="@drawable/icon_about"
+                android:showAsAction="ifRoom"
+                android:title="@string/menu_about">
+            </item>
+
+        </menu>
+    </item>
+
+</menu>

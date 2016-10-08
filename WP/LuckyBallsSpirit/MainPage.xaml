@@ -1,0 +1,84 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="LuckyBallsSpirit.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:LuckyBallsSpirit.Controls"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="#FFF5F5F5">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+
+        <controls:PageHeaderPanel x:Name="pageHeaderPanel" Grid.Row="0" Title="最新开奖" DisplayContextMenuButton="True" ExtendMenuText="更多"/>
+
+        <ScrollViewer x:Name="ScrollViewContainer" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+           
+   
+        </ScrollViewer>
+
+        <Border Grid.Row="2"  Background="Transparent" BorderBrush="Gray" BorderThickness="0,1,0,0">
+            <Grid >
+                <Grid x:Name="pageFootPanel" Visibility="Collapsed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel x:Name="GoToHomePageBtn" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center" MouseLeftButtonUp="GoToHomePageBtn_MouseEnter">
+                        <Image x:Name="NewsIcon" Source="/Assets/icon_news_red.png" Height="40" Width="40"/>
+                        <TextBlock x:Name="NewsText" Text="最新" FontSize="20" Foreground="DarkRed" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel x:Name="GoToAnalysisPageBtn" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" MouseLeftButtonUp="GoToAnalysisPageBtn_MouseEnter">
+                        <Image x:Name="AnalysisIcon" Source="/Assets/icon_analysis_grey.png" Height="40" Width="40"/>
+                        <TextBlock x:Name="AnalysisText" Text="分析" FontSize="20" Foreground="Gray" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel x:Name="GoToSelectionPageBtn" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" MouseLeftButtonUp="GoToSelectionPageBtn_MouseEnter">
+                        <Image x:Name="SelectionIcon" Source="/Assets/icon_selection_grey.png" Height="40" Width="40"/>
+                        <TextBlock x:Name="SelectionText" Text="选号" FontSize="20" Foreground="Gray" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+
+                <Grid x:Name="WaitingProgress" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>  
+                
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <TextBlock x:Name="ProgressMessage" Grid.Row="0" Grid.Column="0" FontSize="18" TextAlignment="Center" 
+                        Foreground="Gray" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                    <Button x:Name="RetryButton" Width="60" Height="30" Grid.Row="0" Grid.Column="1"
+                            FontSize="20" VerticalAlignment="Center"
+                            Content="重试" Style="{StaticResource TextButtonStyle}" Foreground="DarkRed"
+                            Visibility="Collapsed" Click="RetryButton_Click"/>   
+
+                    <ProgressBar x:Name="ProgressBar" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Padding="0"/>
+
+                </Grid> 
+            </Grid>
+        </Border>
+    </Grid>
+</phone:PhoneApplicationPage>

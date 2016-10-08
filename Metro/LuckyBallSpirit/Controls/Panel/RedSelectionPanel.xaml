@@ -1,0 +1,58 @@
+﻿<UserControl
+    x:Class="LuckyBallSpirit.Controls.RedSelectionPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LuckyBallSpirit.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:LuckyBallSpirit.Controls" 
+    mc:Ignorable="d">
+    
+    <Grid>        
+        <Border x:Name="SP_RedSelection" Grid.Column="1">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <controls:NumButton x:Name="Red01" Num="01" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected"/>
+                    <controls:NumButton x:Name="Red02" Num="02" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red03" Num="03" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red04" Num="04" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red05" Num="05" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red06" Num="06" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red07" Num="07" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red08" Num="08" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red09" Num="09" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red10" Num="10" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red11" Num="11" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                    <controls:NumButton x:Name="Red12" Num="12" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected" />
+                    <controls:NumButton x:Name="Red13" Num="13" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red14" Num="14" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red15" Num="15" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red16" Num="16" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red17" Num="17" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red18" Num="18" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red19" Num="19" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red20" Num="20" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red21" Num="21" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red22" Num="22" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected" Margin="10,0,0,0"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                    <controls:NumButton x:Name="Red23" Num="23" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected"/>
+                    <controls:NumButton x:Name="Red24" Num="24" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected"  Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red25" Num="25" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected"  Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red26" Num="26" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected"  Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red27" Num="27" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected"  Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red28" Num="28" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected"  Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red29" Num="29" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected"  Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red30" Num="30" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected"  Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red31" Num="31" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected"  Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red32" Num="32" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected"  Margin="10,0,0,0"/>
+                    <controls:NumButton x:Name="Red33" Num="33" ShowDescription="Visible" PrimaryColor="Red" SecondaryColor="LightPink" SelectStatus="NotSelected"  Margin="10,0,0,0"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

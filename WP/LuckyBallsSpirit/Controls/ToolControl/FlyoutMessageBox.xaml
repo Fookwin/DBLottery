@@ -1,0 +1,48 @@
+﻿<UserControl
+    x:Class="LuckyBallsSpirit.Controls.FlyoutMessageBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Storyboard x:Name="ShowPopupStory">
+            <DoubleAnimation
+                  Storyboard.TargetName="flyoutPopup"
+                  Storyboard.TargetProperty="VerticalOffset"
+                  From="-40.0" To="10.0" Duration="0:0:1"/>
+        </Storyboard>
+
+        <Storyboard x:Name="HidePopupStory">
+            <DoubleAnimation
+                  Storyboard.TargetName="flyoutPopup"
+                  Storyboard.TargetProperty="VerticalOffset"
+                  From="10.0" To="-40.0" Duration="0:0:1"/>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Popup x:Name="flyoutPopup" IsOpen="True" VerticalOffset="-40">
+        <Border x:Name="mainBorder" Padding="5" HorizontalAlignment="Center" Background="#DFFFFFFF" 
+                CornerRadius="5" MouseEnter="mainBorder_MouseEnter" MouseLeave="mainBorder_MouseLeave">
+            <Grid Width="250">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+
+                <Image x:Name="I_Icon" Grid.Column="0" Width="20" Height="20" VerticalAlignment="Center"/>
+
+                <TextBlock x:Name="TB_Message" Grid.Column="1" FontSize="18" Foreground="DimGray" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+
+                <Button x:Name="BT_Delete" Margin="5,0" Grid.Column="2" Click="BT_Delete_Click" VerticalAlignment="Center" HorizontalAlignment="Right"
+                        Style="{StaticResource TextButtonStyle}">
+                    <Button.Content>
+                        <Image Source="/Assets/delete.png" Width="15" Height="15" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
+        </Border>
+    </Popup>
+</UserControl>

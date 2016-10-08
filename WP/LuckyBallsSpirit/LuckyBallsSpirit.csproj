@@ -1,0 +1,618 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{019A3702-3087-4BB6-8A57-8DDFCCDBA494}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LuckyBallsSpirit</RootNamespace>
+    <AssemblyName>LuckyBallsSpirit</AssemblyName>
+    <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <SilverlightVersion>
+    </SilverlightVersion>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>LuckyBallsSpirit_$(Configuration)_$(Platform).xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>LuckyBallsSpirit.App</SilverlightAppEntry>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
+    <TargetFrameworkProfile />
+    <DefaultLanguage>en-US</DefaultLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>4014</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\x86\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\x86\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|ARM' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\ARM\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|ARM' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\ARM\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget />
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Panel\AnalysisToolPanel.xaml.cs">
+      <DependentUpon>AnalysisToolPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Panel\FilterConditionPanel.xaml.cs">
+      <DependentUpon>FilterConditionPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Panel\FilterHistoryPanel.xaml.cs">
+      <DependentUpon>FilterHistoryPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Panel\FilterRedNumSetPanel.xaml.cs">
+      <DependentUpon>FilterRedNumSetPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Panel\LotteryFilterPanel.xaml.cs">
+      <DependentUpon>LotteryFilterPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Panel\LotterySchemePanel.xaml.cs">
+      <DependentUpon>LotterySchemePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Panel\LotterySelectionFloatPanel.xaml.cs">
+      <DependentUpon>LotterySelectionFloatPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Panel\LotterySelectionPanel.xaml.cs">
+      <DependentUpon>LotterySelectionPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Panel\NewsPanel.xaml.cs">
+      <DependentUpon>NewsPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Panel\SelectionDanTuoPanel.cs">
+      <DependentUpon>SelectionDanTuoPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Panel\SelectionRandomPanel.xaml.cs">
+      <DependentUpon>SelectionRandomPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Panel\SelectionStandardPanel.xaml.cs">
+      <DependentUpon>SelectionStandardPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Panel\StatusDataGridPanel.xaml.cs">
+      <DependentUpon>StatusDataGridPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Panel\StatusOptionsPanel.xaml.cs">
+      <DependentUpon>StatusOptionsPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToolControl\AdBannerView.xaml.cs">
+      <DependentUpon>AdBannerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToolControl\BlueSelectionPanel.xaml.cs">
+      <DependentUpon>BlueSelectionPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToolControl\DataGrid\DGCell.xaml.cs">
+      <DependentUpon>DGCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToolControl\DataGrid\DGContentHealder.xaml.cs">
+      <DependentUpon>DGContentHealder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToolControl\DataGrid\DGContentPanel.xaml.cs">
+      <DependentUpon>DGContentPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToolControl\DataGrid\DGIndexHeader.xaml.cs">
+      <DependentUpon>DGIndexHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToolControl\DataGrid\DGIndexPanel.xaml.cs">
+      <DependentUpon>DGIndexPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToolControl\NumGroupPanel.xaml.cs">
+      <DependentUpon>NumGroupPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToolControl\PageHeaderPanel.xaml.cs">
+      <DependentUpon>PageHeaderPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Panel\LotteryAttributePanel.xaml.cs">
+      <DependentUpon>LotteryAttributePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Panel\LotteryDetailPanel.xaml.cs">
+      <DependentUpon>LotteryDetailPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Panel\LotteryStatusPanel.xaml.cs">
+      <DependentUpon>LotteryStatusPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Panel\LotteryPurchasePanel.xaml.cs">
+      <DependentUpon>LotteryPurchasePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToolControl\FloatControl.xaml.cs">
+      <DependentUpon>FloatControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToolControl\FlyoutMessageBox.xaml.cs">
+      <DependentUpon>FlyoutMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToolControl\NumButton.xaml.cs">
+      <DependentUpon>NumButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToolControl\RedSelectionPanel.xaml.cs">
+      <DependentUpon>RedSelectionPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToolControl\ReleaseTimeCountDownPanel.xaml.cs">
+      <DependentUpon>ReleaseTimeCountDownPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToolControl\UpdateNotification.xaml.cs">
+      <DependentUpon>UpdateNotification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToolControl\ValueEditor.xaml.cs">
+      <DependentUpon>ValueEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToolControl\ValueListPicker.xaml.cs">
+      <DependentUpon>ValueListPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToolControl\ValuePickerFlyoutCombo.xaml.cs">
+      <DependentUpon>ValuePickerFlyoutCombo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\AttributeInfo.cs" />
+    <Compile Include="DataModel\ColorPicker.cs" />
+    <Compile Include="DataModel\Converters.cs" />
+    <Compile Include="DataModel\DGUtil.cs" />
+    <Compile Include="DataModel\FilterPanelBase.cs" />
+    <Compile Include="DataModel\LBDataManager.cs" />
+    <Compile Include="DataModel\LotteryInfo.cs" />
+    <Compile Include="DataModel\LotteryWebSite.cs" />
+    <Compile Include="DataModel\MessageCenter.cs" />
+    <Compile Include="DataModel\NumberBallViewModel.cs" />
+    <Compile Include="DataModel\PropertyInfo.cs" />
+    <Compile Include="DataModel\PurchaseInfo.cs" />
+    <Compile Include="DataModel\SelectionPanelBase.cs" />
+    <Compile Include="DataModel\StatusListViewModel.cs" />
+    <Compile Include="LocalizedStrings.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AttributeDetailPage.xaml.cs">
+      <DependentUpon>AttributeDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LotteryAttributePage.cs">
+      <DependentUpon>LotteryAttributePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LotteryDetailPage.xaml.cs">
+      <DependentUpon>LotteryDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LotteryExportPage.cs">
+      <DependentUpon>LotteryExportPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LotteryHistoryPage.xaml.cs">
+      <DependentUpon>LotteryHistoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LotterySelectionPage.cs">
+      <DependentUpon>LotterySelectionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LotteryStatusPage.cs">
+      <DependentUpon>LotteryStatusPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <DependentUpon>AssemblyInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\AppResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="WelcomePage.xaml.cs">
+      <DependentUpon>WelcomePage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="Controls\Panel\AnalysisToolPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Panel\FilterConditionPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Panel\FilterHistoryPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Panel\FilterRedNumSetPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Panel\LotteryFilterPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Panel\LotterySchemePanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Panel\LotterySelectionFloatPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Panel\LotterySelectionPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Panel\NewsPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Panel\SelectionDanTuoPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Panel\SelectionRandomPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Panel\SelectionStandardPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Panel\StatusDataGridPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Panel\StatusOptionsPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ToolControl\AdBannerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ToolControl\BlueSelectionPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ToolControl\DataGrid\DGCell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ToolControl\DataGrid\DGContentHealder.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ToolControl\DataGrid\DGContentPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ToolControl\DataGrid\DGIndexHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ToolControl\DataGrid\DGIndexPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ToolControl\NumGroupPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ToolControl\PageHeaderPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Panel\LotteryAttributePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Panel\LotteryDetailPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Panel\LotteryStatusPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Panel\LotteryPurchasePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ToolControl\FloatControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ToolControl\FlyoutMessageBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ToolControl\NumButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ToolControl\RedSelectionPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ToolControl\ReleaseTimeCountDownPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ToolControl\UpdateNotification.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ToolControl\ValueEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ToolControl\ValueListPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ToolControl\ValuePickerFlyoutCombo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AttributeDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\LotteryAttributePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\LotteryDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\LotteryExportPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\LotteryHistoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\LotterySelectionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\LotteryStatusPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WelcomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AdMediator.config" />
+    <None Include="LuckyBallsSpirit_2014_04_16_22_58_44.sap" />
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="packages.config" />
+    <None Include="Properties\AppManifest.xml" />
+    <None Include="Properties\WMAppManifest.xml">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Analysis.png" />
+    <Content Include="Assets\Attribute.png" />
+    <Content Include="Assets\Attribute_Analysis.png" />
+    <Content Include="Assets\Back.png" />
+    <Content Include="Assets\background_wood.jpg" />
+    <Content Include="Assets\BadgeLogo.png" />
+    <Content Include="Assets\Bonus.png" />
+    <Content Include="Assets\Bucket.png" />
+    <Content Include="Assets\delete.png" />
+    <Content Include="Assets\Diagram.png" />
+    <Content Include="Assets\Draw.png" />
+    <Content Include="Assets\DrawHistory.png" />
+    <Content Include="Assets\edit.png" />
+    <Content Include="Assets\Error.png" />
+    <Content Include="Assets\Export.png" />
+    <Content Include="Assets\Filter.png" />
+    <Content Include="Assets\Finger_Left.png" />
+    <Content Include="Assets\Finter_Right.png" />
+    <Content Include="Assets\History.png" />
+    <Content Include="Assets\Home.png" />
+    <Content Include="Assets\icon_analysis_grey.png" />
+    <Content Include="Assets\icon_analysis_red.png" />
+    <Content Include="Assets\icon_attribute_analysis.png" />
+    <Content Include="Assets\icon_click_finger.png" />
+    <Content Include="Assets\icon_dantuo_selector.png" />
+    <Content Include="Assets\icon_goto.png" />
+    <Content Include="Assets\icon_lottery_history.png" />
+    <Content Include="Assets\icon_news_grey.png" />
+    <Content Include="Assets\icon_news_red.png" />
+    <Content Include="Assets\icon_recommended.png" />
+    <Content Include="Assets\icon_recommend_mark_light.png" />
+    <Content Include="Assets\icon_recommend_mark_right_light.png" />
+    <Content Include="Assets\icon_selection_grey.png" />
+    <Content Include="Assets\icon_selection_red.png" />
+    <Content Include="Assets\icon_standard_selection.png" />
+    <Content Include="Assets\icon_trend_chart.png" />
+    <Content Include="Assets\image_welcome_screen.png" />
+    <Content Include="Assets\Information.png" />
+    <Content Include="Assets\Login.png" />
+    <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\Message.png" />
+    <Content Include="Assets\Money.png" />
+    <Content Include="Assets\New.png" />
+    <Content Include="Assets\Number_Analysis.png" />
+    <Content Include="Assets\Page_Background.jpg" />
+    <Content Include="Assets\Panel_Background.jpg" />
+    <Content Include="Assets\PruchasePucket.png" />
+    <Content Include="Assets\Purchase.png" />
+    <Content Include="Assets\Recommend.png" />
+    <Content Include="Assets\Recommend_Small.png" />
+    <Content Include="Assets\Refresh.png" />
+    <Content Include="Assets\Save.png" />
+    <Content Include="Assets\Selection.png" />
+    <Content Include="Assets\Setting.png" />
+    <Content Include="Assets\SplashScreen.png" />
+    <Content Include="Assets\SquareTile150x150.png" />
+    <Content Include="Assets\SquareTile71x71.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Success.png" />
+    <Content Include="Assets\Suggestion.png" />
+    <Content Include="Assets\Tip.png" />
+    <Content Include="Assets\Warning.png" />
+    <Content Include="Assets\WideLogo.png" />
+    <Content Include="LargeLogo.png" />
+    <Content Include="Logo.png" />
+    <Content Include="MediumLogo.png" />
+    <Content Include="SmallLogo.png" />
+    <Resource Include="Assets\PanoramaBackground.png" />
+    <Content Include="Assets\AlignmentGrid.png" />
+    <Content Include="Assets\ApplicationIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tiles\FlipCycleTileMedium.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tiles\FlipCycleTileSmall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tiles\IconicTileMediumLarge.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tiles\IconicTileSmall.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\AppResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LuckyBallData\LuckyBallData.csproj">
+      <Project>{6BEED827-4500-45FC-AC61-3E2194BFA2CD}</Project>
+      <Name>LuckyBallData</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="AdDuplex.WindowsPhone, Version=9.0.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AdDuplexWP8.9.0.0.6\lib\wp8\AdDuplex.WindowsPhone.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CN.SmartMad.Ads.WindowsPhone">
+      <HintPath>..\..\3p\SmartMad-SDK\SmartMad\CN.SmartMad.Ads.WindowsPhone.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.ProtocolBuffersLite, Version=2.4.1.521, Culture=neutral, PublicKeyToken=55f7125234beb589, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\3p\msnaiasdk\MSNADSDK\Google.ProtocolBuffersLite.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.ProtocolBuffersLite.Serialization, Version=2.4.1.521, Culture=neutral, PublicKeyToken=55f7125234beb589, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\3p\msnaiasdk\MSNADSDK\Google.ProtocolBuffersLite.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AdMediator.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.AdMediator.WindowsPhone8, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.AdMediator.WindowsPhone8.AdDuplex, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AdMediator.WindowsPhone8.AdDuplex.2.1.3\lib\wp\Microsoft.AdMediator.WindowsPhone8.AdDuplex.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AdMediator.WindowsPhone81SL.MicrosoftAdvertising, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AdMediator.WindowsPhone81SL.MicrosoftAdvertising.2.1.3\lib\wp\Microsoft.AdMediator.WindowsPhone81SL.MicrosoftAdvertising.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Advertising.Mobile, Version=8.1.50112.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Advertising.WindowsPhone.SL81.8.1.50112.0\lib\wp81\Microsoft.Advertising.Mobile.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Advertising.Mobile.Common, Version=8.1.50112.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Advertising.WindowsPhone.SL81.8.1.50112.0\lib\wp81\Microsoft.Advertising.Mobile.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Advertising.Mobile.UI, Version=8.1.50112.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Advertising.WindowsPhone.SL81.8.1.50112.0\lib\wp81\Microsoft.Advertising.Mobile.UI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Phone.Controls, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Controls.Maps, Version=8.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\3p\SmartMad-SDK\SmartMad\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions />
+</Project>

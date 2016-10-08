@@ -1,0 +1,155 @@
+﻿<common:LayoutAwarePage
+    x:Name="pageRoot"
+    x:Class="LuckyBallSpirit.Pages.PurchaseHistoryPage"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LuckyBallSpirit.Pages"
+    xmlns:common="using:LuckyBallSpirit.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ctrls="using:LuckyBallSpirit.Controls"
+    xmlns:data="using:LuckyBallSpirit.DataModel"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <common:BooleanToVisibilityConverter x:Key="_BooleanToVisibilityConverter"/>
+        <common:BooleanToVisibilityRevertConverter x:Key="_BooleanToVisibilityRevertConverter"/>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="ms-appx:///Resources/Page_Background.jpg"/>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+
+        <ctrls:PageHeaderPanel x:Name="pageHeaderPanel" Grid.Row="0" PageTitle="我的彩票" 
+                               ShowBackButton="{Binding Frame.CanGoBack, ElementName=pageRoot}"/>
+
+        <ScrollViewer Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Stretch" HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Disabled" VerticalScrollMode="Disabled">
+            <Grid Height="520" VerticalAlignment="Top" Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="1" Padding="20" Background="#99FFFFFF" CornerRadius="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+
+                        <ListView x:Name="Issue_List" SelectionMode="Single" Background="Transparent" 
+                                  SelectionChanged="Issue_List_SelectionChanged">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>                                        
+                                        <StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="第" FontSize="18" Foreground="DimGray"/>
+                                                <TextBlock Text="{Binding Value.Issue}" Foreground="DarkRed" FontSize="18"/>
+                                                <TextBlock Text="期" FontSize="18"  Foreground="DimGray"/>
+                                                <TextBlock Text="{Binding Value.ReleaseDate}" Foreground="DimGray" FontSize="15" Margin="20,0,0,0"/>
+                                            </StackPanel>
+
+                                            <StackPanel Orientation="Horizontal" Visibility="{Binding Value.Released, Converter={StaticResource _BooleanToVisibilityConverter}}">
+                                                <TextBlock Text="{Binding Value.Lottery.Scheme.RedsExp}" FontSize="18" Foreground="Red" FontWeight="Bold"/>
+                                                <TextBlock Text="{Binding Value.Lottery.Scheme.BlueExp}" FontSize="18" Foreground="Blue" FontWeight="Bold" Margin="20,0,0,0"/>
+                                            </StackPanel>
+
+                                            <TextBlock Text="等待开奖中..." FontSize="18" Foreground="DarkGray"
+                                                       Visibility="{Binding Value.Released, Converter={StaticResource _BooleanToVisibilityRevertConverter}}"/>
+                                        </StackPanel>                                            
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="BorderThickness" Value="0,0,0,1" />
+                                    <Setter Property="BorderBrush" Value="Gray" />
+                                    <Setter Property="Margin" Value="0" />
+                                    <Setter Property="Padding" Value="5" />
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                        </ListView>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
+                            <Button x:Name="BT_CleanAll" Click="BT_CleanAll_Click" Foreground="DimGray" Style="{StaticResource TextButtonStyle}">
+                                <Button.Content>
+                                    <Grid>
+                                        <Ellipse Stroke="DimGray" StrokeThickness="2" Height="40" Width="40"/>
+                                        <TextBlock Text="清空" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                </Button.Content>
+                            </Button>
+
+                            <Button x:Name="BT_DeleteSelected" Click="BT_DeleteSelected_Click" Foreground="DimGray"
+                                    Style="{StaticResource TextButtonStyle}" Visibility="Collapsed" Margin="10,0,0,0">
+                                <Button.Content>
+                                    <Grid>
+                                        <Ellipse Stroke="DimGray" StrokeThickness="2" Height="40" Width="40"/>
+                                        <TextBlock Text="删除" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                </Button.Content>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Border x:Name="BR_PurchaseDetailCtrls" Grid.Column="3" CornerRadius="10">
+                    <ctrls:PurchasePanel x:Name="CL_PurchaseBucket"/>
+                </Border>
+
+                <ctrls:PurchaseDetailPanel x:Name="CL_PurchaseDetail" Grid.RowSpan="2" Grid.Column="5" Padding="10"/>
+            </Grid>
+        </ScrollViewer>
+
+        <ctrls:PageFootPanel x:Name="pageFootPanel" ActiveCommand="PersonalPage" Grid.Row="2"/>
+
+        <VisualStateManager.VisualStateGroups>
+
+            <!-- Visual states reflect the application's view state -->
+            <VisualStateGroup x:Name="ApplicationViewStates">
+                <VisualState x:Name="FullScreenLandscape"/>
+                <VisualState x:Name="Filled"/>
+
+                <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
+                <VisualState x:Name="FullScreenPortrait">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <!-- The back button and title have different styles when snapped -->
+                <VisualState x:Name="Snapped">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedBackButtonStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pageTitle" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedPageHeaderTextStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</common:LayoutAwarePage>

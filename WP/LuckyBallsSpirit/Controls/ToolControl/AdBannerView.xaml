@@ -1,0 +1,16 @@
+﻿<UserControl xmlns:WindowsPhone8="clr-namespace:Microsoft.AdMediator.WindowsPhone8;assembly=Microsoft.AdMediator.WindowsPhone8"  x:Class="LuckyBallsSpirit.Controls.AdBannerView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <StackPanel x:Name="AdPanel" Orientation="Vertical" Background="Transparent">
+        <WindowsPhone8:AdMediatorControl x:Name="AdMediatorCtrl" 
+                                         Height="auto" Width="480"
+                                         Id="AdMediator-Id-ED325550-CD0E-438C-8205-5267FF45908A" />
+        <TextBlock Text="------    赞助商广告    ------" Foreground="#FFFDFDFD" FontSize="12" 
+                   HorizontalAlignment="Center" Margin="0,2"/>
+    </StackPanel>
+
+</UserControl>

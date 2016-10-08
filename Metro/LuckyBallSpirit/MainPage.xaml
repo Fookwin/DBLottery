@@ -1,0 +1,138 @@
+﻿<common:LayoutAwarePage
+    x:Name="pageRoot"
+    x:Class="LuckyBallSpirit.MainPage"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LuckyBallSpirit"
+    xmlns:common="using:LuckyBallSpirit.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ctrls="using:LuckyBallSpirit.Controls"    
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <!-- Collection of items displayed by this page -->
+        <CollectionViewSource x:Name="itemsViewSource" Source="{Binding Winners}"/>
+    </Page.Resources>
+
+    <!--
+        This grid acts as a root panel for the page that defines two rows:
+        * Row 0 contains the back button and page title
+        * Row 1 contains the rest of the page layout
+    -->
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Resources/Page_Background.jpg"/>
+        </Grid.Background>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+
+        <ctrls:PageHeaderPanel x:Name="pageHeaderPanel" Grid.Row="0" PageTitle="最新开奖" 
+                               ShowBackButton="{Binding Frame.CanGoBack, ElementName=pageRoot}"/>
+
+        <ScrollViewer x:Name="ViwerContainer" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Stretch"
+                      HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled" Background="Transparent"                      
+                      IsVerticalRailEnabled="False" IsVerticalScrollChainingEnabled="False" VerticalScrollMode="Disabled">
+
+            <Grid VerticalAlignment="Top" Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left">                        
+                        <TextBlock x:Name="Latest_Issue" Text="最新开奖" FontSize="30" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <ctrls:LotteryDetailPanel Grid.Row="1" x:Name="LotteryDetailPanel" Visibility="Collapsed"/>
+                </Grid>
+
+                <Grid Grid.Column="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <TextBlock Text="号码分析" FontSize="30" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    
+                    <ctrls:LotteryStatusPanel x:Name="LotteryStatusPanel" Grid.Row="1" Visibility="Collapsed"/>
+                </Grid>
+
+                <Grid Grid.Column="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <TextBlock Text="属性分析" FontSize="30" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    
+                    <ctrls:LotteryAttributePanel x:Name="CT_RecommenedAttributes" Grid.Row="1" Visibility="Collapsed"/>
+                </Grid>
+
+                <Grid Grid.Column="7">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <TextBlock Text="购彩记录" FontSize="30" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    </StackPanel>
+                    
+                    <ctrls:PurchasePanel x:Name="CT_Purchase" Grid.Row="1" Visibility="Collapsed"/>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+
+        <Grid Grid.Row="2">
+            <ctrls:PageFootPanel x:Name="pageFootPanel" ActiveCommand="MainPage" Visibility="Collapsed"/>
+
+            <Grid x:Name="WaitingProgress" Background="DarkRed" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+
+                <TextBlock x:Name="ProgressMessage" Grid.Row="0" Grid.Column="0" FontSize="20" TextAlignment="Center" 
+                    Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                <Button x:Name="RetryButton" Width="100" Height="30" Grid.Row="0" Grid.Column="1"
+                        FontSize="20" VerticalAlignment="Center"
+                        Content="重新加载" Style="{StaticResource TextButtonStyle}" Foreground="Yellow"
+                        Visibility="Collapsed" Click="RetryButton_Click"/>
+
+                <ProgressBar x:Name="ProgressBar" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Padding="0"/>
+
+            </Grid>
+        </Grid>
+
+    </Grid>
+</common:LayoutAwarePage>

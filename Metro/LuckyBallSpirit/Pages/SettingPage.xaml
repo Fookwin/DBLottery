@@ -1,0 +1,85 @@
+﻿<common:LayoutAwarePage
+    x:Class="LuckyBallSpirit.Pages.SettingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LuckyBallSpirit.Pages"
+    xmlns:common="using:LuckyBallSpirit.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ctrls="using:LuckyBallSpirit.Controls"
+    mc:Ignorable="d">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="ms-appx:///Resources/Page_Background.jpg"/>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <ctrls:PageHeaderPanel x:Name="pageHeaderPanel" Grid.Row="0" PageTitle="更多设置" ShowSettingButton="False" 
+                               ShowBackButton="{Binding Frame.CanGoBack, ElementName=pageRoot}"/>
+
+        <Grid Grid.Row="1" Margin="0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="1" Background="#99FFFFFF" CornerRadius="10" Padding="10" Width="200">
+                <ListView x:Name="Command_List"  SelectionMode="Single" HorizontalAlignment="Stretch"
+                     Background="Transparent" IsItemClickEnabled="True" Tapped="Command_List_Tapped">
+                    <ListView.Items>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="ms-appx:///Resources/Feedback.png" Width="25" Margin="10,0"/>
+                            <TextBlock x:Name="SuggestionCmmand" Text="意见反馈" FontSize="20" Foreground="DimGray"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="ms-appx:///Resources/Configration.png" Width="25" Margin="10,0"/>
+                            <TextBlock x:Name="SystemCmmand" Text="系统设置" FontSize="20" Foreground="DimGray"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="ms-appx:///Resources/Donation.png" Width="25" Margin="10,0"/>
+                            <TextBlock x:Name="DonateCmmand" Text="友情赞助" FontSize="20" Foreground="DimGray"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="ms-appx:///Resources/About.png" Width="25" Margin="10,0"/>
+                            <TextBlock x:Name="AboutCmmand" Text="关注福盈" FontSize="20" Foreground="DimGray"/>
+                        </StackPanel>
+                    </ListView.Items>
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="BorderThickness" Value="0,0,0,1" />
+                            <Setter Property="BorderBrush" Value="Gray" />
+                            <Setter Property="Margin" Value="0" />
+                            <Setter Property="Padding" Value="10" />
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </Border>
+
+            <Border Grid.Column="3" Background="#99FFFFFF" CornerRadius="10" Padding="10" Width="500">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                        <ctrls:FeedbackSettingPanel x:Name="FeedbackView" Visibility="Collapsed"/>
+                        <ctrls:SystemSettingPanel x:Name="SystemSettingView" Visibility="Collapsed"/>
+                        <ctrls:DonationPanel x:Name="DonationView" Visibility="Collapsed"/>
+                        <ctrls:AboutPanel x:Name="AboutView" Visibility="Collapsed"/>
+                    </Grid>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </Grid>
+</common:LayoutAwarePage>

@@ -1,0 +1,63 @@
+﻿<UserControl
+    x:Class="LuckyBallsSpirit.Controls.StatusOptionsPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:LuckyBallsSpirit.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel x:Name="RedDivPanel" Orientation="Horizontal" Margin="0,0,20,0">
+                <TextBlock Text="可选分区：" FontSize="15" Foreground="DarkOrange" VerticalAlignment="Center"/>
+                <RadioButton x:Name="RB_Div_3"  Foreground="DimGray" GroupName="RedDivision" Content="三分区" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedDiv_SelectionChanged" IsChecked="True"/>
+                <RadioButton x:Name="RB_Div_4"  Foreground="DimGray" GroupName="RedDivision" Content="四分区" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedDiv_SelectionChanged"/>
+                <RadioButton x:Name="RB_Div_7"  Foreground="DimGray" GroupName="RedDivision" Content="七分区" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedDiv_SelectionChanged"/>
+                <RadioButton x:Name="RB_Div_11" Foreground="DimGray" GroupName="RedDivision" Content="十一分区" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedDiv_SelectionChanged"/>
+
+                <TextBlock Text="标记形式：" FontSize="15" Foreground="DarkOrange" VerticalAlignment="Center" Margin="20,0,0,0"/>
+                <RadioButton x:Name="RB_None_Con" Foreground="DimGray" GroupName="RedConnection" Content="不显示" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedCon_SelectionChanged" IsChecked="True"/>
+                <RadioButton x:Name="RB_HOR_Con" Foreground="DimGray" GroupName="RedConnection" Content="横连" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedCon_SelectionChanged"/>
+                <RadioButton x:Name="RB_VRL_Con" Foreground="DimGray" GroupName="RedConnection" Content="竖连" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedCon_SelectionChanged"/>
+                <RadioButton x:Name="RB_OLQ_Con" Foreground="DimGray" GroupName="RedConnection" Content="斜连" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedCon_SelectionChanged"/>
+                <RadioButton x:Name="RB_ODD_Con" Foreground="DimGray" GroupName="RedConnection" Content="奇连" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedCon_SelectionChanged"/>
+                <RadioButton x:Name="RB_EVN_Con" Foreground="DimGray" GroupName="RedConnection" Content="偶连" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedCon_SelectionChanged"/>
+                <RadioButton x:Name="RB_Mis_Brk" Foreground="DimGray" GroupName="RedConnection" Content="遗漏分层" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RB_Mis_Brk_Checked"/>
+            </StackPanel>
+
+            <StackPanel x:Name="RedPositionPanel" Orientation="Horizontal" Margin="0,0,20,0">
+                <TextBlock Text="红球位置：" FontSize="15" Foreground="DarkOrange" VerticalAlignment="Center"/>
+                <RadioButton x:Name="RB_RedPos_1" Foreground="DimGray" GroupName="RedPosition" Content="第一位" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedPos_SelectionChanged" IsChecked="True"/>
+                <RadioButton x:Name="RB_RedPos_2" Foreground="DimGray" GroupName="RedPosition" Content="第二位" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedPos_SelectionChanged"/>
+                <RadioButton x:Name="RB_RedPos_3" Foreground="DimGray" GroupName="RedPosition" Content="第三位" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedPos_SelectionChanged"/>
+                <RadioButton x:Name="RB_RedPos_4" Foreground="DimGray" GroupName="RedPosition" Content="第四位" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedPos_SelectionChanged"/>
+                <RadioButton x:Name="RB_RedPos_5" Foreground="DimGray" GroupName="RedPosition" Content="第五位" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedPos_SelectionChanged"/>
+                <RadioButton x:Name="RB_RedPos_6" Foreground="DimGray" GroupName="RedPosition" Content="第六位" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedPos_SelectionChanged"/>
+            </StackPanel>
+
+            <StackPanel x:Name="RedDetailExpendPanel" Orientation="Horizontal" Margin="0,0,20,0">
+                <TextBlock Text="显示详情：" FontSize="15" Foreground="DarkOrange" VerticalAlignment="Center"/>
+                <RadioButton x:Name="RB_None_Detail" Foreground="DimGray" GroupName="RedDetail" Content="不显示" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedDetail_SelectionChanged" IsChecked="True"/>
+                <RadioButton x:Name="RB_SUM_Detail" Foreground="DimGray" GroupName="RedDetail" Content="和值" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedDetail_SelectionChanged"/>
+                <RadioButton x:Name="RB_CON_Detail" Foreground="DimGray" GroupName="RedDetail" Content="连号" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedDetail_SelectionChanged"/>
+                <RadioButton x:Name="RB_ONE_Detail" Foreground="DimGray" GroupName="RedDetail" Content="奇偶" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedDetail_SelectionChanged"/>
+                <RadioButton x:Name="RB_PNC_Detail" Foreground="DimGray" GroupName="RedDetail" Content="质合" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedDetail_SelectionChanged"/>
+                <RadioButton x:Name="RB_BNS_Detail" Foreground="DimGray" GroupName="RedDetail" Content="大小" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedDetail_SelectionChanged"/>
+                <RadioButton x:Name="RB_RM0_Detail" Foreground="DimGray" GroupName="RedDetail" Content="除3余0" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedDetail_SelectionChanged"/>
+                <RadioButton x:Name="RB_RM1_Detail" Foreground="DimGray" GroupName="RedDetail" Content="除3余1" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedDetail_SelectionChanged"/>
+                <RadioButton x:Name="RB_RM2_Detail" Foreground="DimGray" GroupName="RedDetail" Content="除3余2" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedDetail_SelectionChanged"/>
+                <RadioButton x:Name="RB_DV1_Detail" Foreground="DimGray" GroupName="RedDetail" Content="3分1区" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedDetail_SelectionChanged"/>
+                <RadioButton x:Name="RB_DV2_Detail" Foreground="DimGray" GroupName="RedDetail" Content="3分2区" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedDetail_SelectionChanged"/>
+                <RadioButton x:Name="RB_DV3_Detail" Foreground="DimGray" GroupName="RedDetail" Content="3分3区" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RedDetail_SelectionChanged"/>
+            </StackPanel>
+
+            <StackPanel x:Name="ListCountPanel" Orientation="Horizontal">
+                <TextBlock Text="显示期数：" FontSize="15" Foreground="DarkOrange" VerticalAlignment="Center"/>
+                <RadioButton x:Name="RB_ListCnt_30" Foreground="DimGray" GroupName="DisplayCount" Content="最近30期" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RB_ListCnt_30_Checked" IsChecked="True"/>
+                <RadioButton x:Name="RB_ListCnt_50" Foreground="DimGray" GroupName="DisplayCount" Content="最近50期" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RB_ListCnt_50_Checked"/>
+                <RadioButton x:Name="RB_ListCnt_100" Foreground="DimGray" GroupName="DisplayCount" Content="最近100期" FontSize="15" Style="{StaticResource CheckBoxButtonLikeStyle}" Checked="RB_ListCnt_100_Checked"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

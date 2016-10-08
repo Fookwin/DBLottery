@@ -1,0 +1,170 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="LuckyBallsSpirit.Pages.LotteryExportPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="clr-namespace:LuckyBallsSpirit.DataModel"
+    xmlns:controls="clr-namespace:LuckyBallsSpirit.Controls"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False">
+
+    <UserControl.Resources>
+        <data:BooleanToVisibilityConverter x:Key="_BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+    
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid Background="#FFF5F5F5">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <controls:PageHeaderPanel x:Name="pageHeaderPanel" Grid.Row="0" Title="导出选号"/>
+
+        <Border Grid.Row="1" Padding="2">
+            <Border Padding="10" Background="White">                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="输出格式：" Foreground="DimGray" />
+                        <TextBlock x:Name="OutputFormatSample" Foreground="Black"/>
+                    </StackPanel>
+                    
+                    <Button x:Name="ExpandMoreBtn" Grid.Row="0" Click="ExpandMoreBtn_Click" Style="{StaticResource TextButtonStyle}" 
+                            HorizontalAlignment="Right">
+                        <Button.Content>
+                            <Grid>
+                                <Ellipse Stroke="Gray" StrokeThickness="2" Height="40" Width="40"/>
+                                <TextBlock Text="编辑" Foreground="Gray" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+
+                    <Border Grid.Row="1" BorderBrush="DimGray" BorderThickness="0, 1">
+                        <StackPanel x:Name="BR_CustomOrderPanel" Margin="0,5" HorizontalAlignment="Center" Visibility="Collapsed">
+                            <TextBlock Text="选择红球间隔符" FontSize="20" Foreground="DimGray" HorizontalAlignment="Center"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                <RadioButton x:Name="RB_Red_Space" Style="{StaticResource CheckBoxButtonLikeStyle}" Content="[ ] 空格" IsChecked="True" 
+                                                GroupName="Red_Separaters" FontSize="15" Foreground="DimGray" VerticalAlignment="Center" Checked="RB_Output_Option_Checked" Margin="0,0,10,0"/>
+                                <RadioButton x:Name="RB_Red_Comma" Style="{StaticResource CheckBoxButtonLikeStyle}" Content="[,] 逗号" FontSize="15" 
+                                                GroupName="Red_Separaters" Foreground="DimGray" VerticalAlignment="Center" Checked="RB_Output_Option_Checked" Margin="0,0,10,0"/>
+                                <RadioButton x:Name="RB_Red_Dot" Style="{StaticResource CheckBoxButtonLikeStyle}" Content="[.] 圆点" FontSize="15"  
+                                                GroupName="Red_Separaters" Foreground="DimGray" VerticalAlignment="Center" Checked="RB_Output_Option_Checked" Margin="0,0,10,0"/>
+                                <RadioButton x:Name="RB_Red_Strigula" Style="{StaticResource CheckBoxButtonLikeStyle}" Content="[-] 横线" FontSize="15"  
+                                                GroupName="Red_Separaters" Foreground="DimGray" VerticalAlignment="Center" Checked="RB_Output_Option_Checked" Margin="0,0,10,0"/>
+                                <RadioButton x:Name="RB_Red_Colon" Style="{StaticResource CheckBoxButtonLikeStyle}" Content="[:] 冒号" FontSize="15"  
+                                                GroupName="Red_Separaters" Foreground="DimGray" VerticalAlignment="Center" Checked="RB_Output_Option_Checked" Margin="0,0,10,0"/>
+                                <RadioButton x:Name="RB_Red_Plus" Style="{StaticResource CheckBoxButtonLikeStyle}" Content="[+] 加号" FontSize="15"  
+                                                GroupName="Red_Separaters" Foreground="DimGray" VerticalAlignment="Center" Checked="RB_Output_Option_Checked"/>
+                            </StackPanel>
+
+                            <TextBlock Text="选择红蓝间隔符" FontSize="20" Foreground="DimGray" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                <RadioButton x:Name="RB_Blue_Colon" Style="{StaticResource CheckBoxButtonLikeStyle}" Content="[:] 冒号" FontSize="15" IsChecked="True" 
+                                                GroupName="Blue_Separaters" Foreground="DimGray" VerticalAlignment="Center" Checked="RB_Output_Option_Checked" Margin="0,0,10,0"/>
+                                <RadioButton x:Name="RB_Blue_Plus" Style="{StaticResource CheckBoxButtonLikeStyle}" Content="[+] 加号" FontSize="15"  
+                                                GroupName="Blue_Separaters" Foreground="DimGray" VerticalAlignment="Center" Checked="RB_Output_Option_Checked" Margin="0,0,10,0"/>
+                                <RadioButton x:Name="RB_Blue_Space" Style="{StaticResource CheckBoxButtonLikeStyle}" Content="[ ] 空格" FontSize="15" 
+                                                GroupName="Blue_Separaters" Foreground="DimGray" VerticalAlignment="Center" Checked="RB_Output_Option_Checked" Margin="0,0,10,0"/>
+                                <RadioButton x:Name="RB_Blue_Comma" Style="{StaticResource CheckBoxButtonLikeStyle}" Content="[,] 逗号" FontSize="15" 
+                                                GroupName="Blue_Separaters" Foreground="DimGray" VerticalAlignment="Center" Checked="RB_Output_Option_Checked" Margin="0,0,10,0"/>
+                                <RadioButton x:Name="RB_Blue_Dot" Style="{StaticResource CheckBoxButtonLikeStyle}" Content="[.] 圆点" FontSize="15"
+                                                GroupName="Blue_Separaters" Foreground="DimGray" VerticalAlignment="Center" Checked="RB_Output_Option_Checked" Margin="0,0,10,0"/>
+                                <RadioButton x:Name="RB_Blue_Strigula" Style="{StaticResource CheckBoxButtonLikeStyle}" Content="[-] 横线" FontSize="15" 
+                                                GroupName="Blue_Separaters" Foreground="DimGray" VerticalAlignment="Center" Checked="RB_Output_Option_Checked"/>
+                            </StackPanel>
+
+                            <TextBlock Text="请查看网站的[单式上传]格式说明!" Foreground="DimGray" HorizontalAlignment="Center" FontSize="15" Margin="0,10,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                    <ListBox x:Name="LV_SelectedSchemes" Grid.Row="2" Margin="0,10,0,0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="White" Padding="10" BorderBrush="Gray" BorderThickness="0,0,0,1">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="10"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Text="{Binding}" Grid.Column="0" FontSize="20" HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" Foreground="DimGray" TextAlignment="Center"/>
+
+                                        <Button x:Name="BT_Delete" Grid.Column="1" Click="BT_DeleteScheme_Click" Style="{StaticResource TextButtonStyle}">
+                                            <Button.Content>
+                                                <Grid>
+                                                    <Ellipse Stroke="White" Fill="White" StrokeThickness="2" Height="25" Width="25"/>
+                                                    <Image Source="/Assets/delete.png" Width="15" Height="15" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                                </Grid>
+                                            </Button.Content>
+                                        </Button>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="Margin" Value="0,1" />
+                                <Setter Property="Padding" Value="0" />
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+                </Grid>
+            </Border>
+        </Border>
+
+        <Grid Grid.Row="2" Background="DarkRed" Height="60">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="0" HorizontalAlignment="Center">
+                <TextBlock Text="共" FontSize="20" Foreground="White" VerticalAlignment="Center"/>
+                <TextBlock x:Name="TB_Count" FontSize="20" Foreground="Yellow" VerticalAlignment="Center"/>
+                <TextBlock Text="注" FontSize="20" Foreground="White" Margin="0,0,5,0" VerticalAlignment="Center"/>
+                <TextBlock x:Name="TB_Cost" FontSize="20" Foreground="Yellow" VerticalAlignment="Center"/>
+                <TextBlock Text="元" FontSize="20" Foreground="White" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <Button x:Name="BT_Rollback" Grid.Column="1" Margin="5, 0" Click="BT_Rollback_Click" Foreground="White" Style="{StaticResource TextButtonStyle}">
+                <Grid>
+                    <Ellipse Stroke="White" StrokeThickness="2" Height="40" Width="40"/>
+                    <TextBlock Text="恢复" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Grid>
+            </Button>
+            
+            <Button x:Name="BT_Copy" Grid.Column="2" Click="BT_CopyContent_Click" Foreground="White" Style="{StaticResource TextButtonStyle}"
+                                    Margin="10,0" VerticalAlignment="Center">
+                <Button.Content>
+                    <Grid>
+                        <Ellipse Stroke="White" StrokeThickness="2" Height="40" Width="40"/>
+                        <TextBlock Text="复制" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </Button.Content>
+            </Button>
+        </Grid>
+    </Grid>
+    
+</phone:PhoneApplicationPage>

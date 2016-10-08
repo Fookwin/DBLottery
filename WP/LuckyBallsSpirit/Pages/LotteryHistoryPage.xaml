@@ -1,0 +1,86 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="LuckyBallsSpirit.Pages.LotteryHistoryPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="clr-namespace:LuckyBallsSpirit.DataModel"
+    xmlns:controls="clr-namespace:LuckyBallsSpirit.Controls"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False">
+
+    <UserControl.Resources>
+        <data:BooleanToVisibilityConverter x:Key="_BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+    
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <controls:PageHeaderPanel x:Name="pageHeaderPanel" Grid.Row="0" Title="历史开奖"/>
+
+        <Border Grid.Row="1" Padding="2" Background="#FFF5F5F5">
+            
+            <ListBox x:Name="LotteryListCtrl" SelectionChanged="LotteryListCtrl_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="0, 1" Background="White" Height="80">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"/>
+                                    <RowDefinition Height="2*"/>
+                                </Grid.RowDefinitions>
+                                
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,0,5">
+                                    <TextBlock Text="第" FontSize="18" Foreground="Black"/>
+                                    <TextBlock Text="{Binding Issue}" FontSize="18" Foreground="DarkRed"/>
+                                    <TextBlock Text="期" FontSize="18" Foreground="Black"/>
+
+                                    <TextBlock Text="开奖时间：" FontSize="18" Foreground="Gray" Margin="10,0,0,0"/>
+                                    <TextBlock Text="{Binding DateExp}" FontSize="18" Foreground="Black"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                    <controls:NumButton Num="{Binding Scheme.Red1Exp}" PrimaryColor="Red" SecondaryColor="LightPink" SelectMode="NotSelectable" SelectStatus="Selected"/>
+                                    <controls:NumButton Num="{Binding Scheme.Red2Exp}" PrimaryColor="Red" SecondaryColor="LightPink" SelectMode="NotSelectable" SelectStatus="Selected" Margin="10,0,0,0"/>
+                                    <controls:NumButton Num="{Binding Scheme.Red3Exp}" PrimaryColor="Red" SecondaryColor="LightPink" SelectMode="NotSelectable" SelectStatus="Selected" Margin="10,0,0,0"/>
+                                    <controls:NumButton Num="{Binding Scheme.Red4Exp}" PrimaryColor="Red" SecondaryColor="LightPink" SelectMode="NotSelectable" SelectStatus="Selected" Margin="10,0,0,0"/>
+                                    <controls:NumButton Num="{Binding Scheme.Red5Exp}" PrimaryColor="Red" SecondaryColor="LightPink" SelectMode="NotSelectable" SelectStatus="Selected" Margin="10,0,0,0"/>
+                                    <controls:NumButton Num="{Binding Scheme.Red6Exp}" PrimaryColor="Red" SecondaryColor="LightPink" SelectMode="NotSelectable" SelectStatus="Selected" Margin="10,0,0,0"/>
+                                    <controls:NumButton Num="{Binding Scheme.BlueExp}" PrimaryColor="Blue" SecondaryColor="LightBlue" SelectMode="NotSelectable" SelectStatus="Selected" Margin="10,0,0,0"/>
+                                </StackPanel>
+
+                                <Image Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Source="/Assets/icon_goto.png" Height="30" Margin="10, 0"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Margin" Value="0" />
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+        </Border>
+    </Grid>
+    
+</phone:PhoneApplicationPage>

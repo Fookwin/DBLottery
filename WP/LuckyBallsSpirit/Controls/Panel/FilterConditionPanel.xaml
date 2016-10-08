@@ -1,0 +1,114 @@
+﻿<UserControl
+    x:Class="LuckyBallsSpirit.Controls.FilterConditionPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:LuckyBallsSpirit.Controls"
+    xmlns:data="clr-namespace:LuckyBallsSpirit.DataModel"
+    xmlns:local="clr-namespace:LuckyBallsSpirit.Controls"
+    mc:Ignorable="d" MinHeight="420">
+
+    <UserControl.Resources>
+        <data:RecommandedBoolToColor x:Key="_RecommandedBoolToColor"/>
+        <data:BooleanToVisibilityConverter x:Key="_BooleanToVisibilityConverter"/>
+        <data:BooleanToVisibilityRevertConverter x:Key="_BooleanToVisibilityRevertConverter"/>
+    </UserControl.Resources>
+
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="SelectedFilter" Grid.Row="0" Background="White" Height="80" Margin="0,2" MouseEnter="SelectedFilter_MouseEnter">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="65"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
+                <TextBlock Text="{Binding DisplayName}" Foreground="DarkRed" FontSize="20"/>
+                <TextBlock Text="{Binding Description}" Foreground="Gray" FontSize="15"/>
+            </StackPanel>
+
+            <Image Grid.Column="2" Source="/Assets/icon_goto.png" Height="30" Margin="10, 0"/>
+        </Grid>
+
+        <ListBox x:Name="LB_Filter_Groups" Grid.Row="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Border Padding="0,10" Background="DarkCyan">
+                            <Button Style="{StaticResource TextButtonStyle}" Click="Contract_Button_Click">
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="+" FontSize="25" Foreground="White" Margin="5,0" VerticalAlignment="Center" 
+                                           Visibility="{Binding Expanded, Converter={StaticResource _BooleanToVisibilityRevertConverter}}"/>
+                                        <TextBlock Text="-" FontSize="25" Foreground="White" Margin="5,0" VerticalAlignment="Center"
+                                           Visibility="{Binding Expanded, Converter={StaticResource _BooleanToVisibilityConverter}}"/>
+                                        <TextBlock Text="{Binding DisplayName}" FontSize="20" Foreground="White" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                        </Border>
+
+                        <ListBox x:Name="LB_Filter_Items" ItemsSource="{Binding Attributes}" Foreground="DimGray"
+                                 Visibility="{Binding Expanded, Converter={StaticResource _BooleanToVisibilityConverter}}"
+                                 SelectionChanged="LB_Filter_Items_SelectionChanged" SelectedItem="{Binding SelectedItem}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Background="White" Height="80">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="65"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Grid.Column="0" Source="/Assets/icon_recommend_mark_light.png" Height="60" Width="60" 
+                                               VerticalAlignment="Top" HorizontalAlignment="Left"
+                                               Visibility="{Binding Recommended, Converter={StaticResource _BooleanToVisibilityConverter}}"/>
+
+                                        <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding DisplayName}" Foreground="DarkCyan" FontSize="25"/>
+                                            <TextBlock Text="{Binding Description}" Foreground="Gray" FontSize="15"/>
+                                        </StackPanel>
+
+                                        <Image Grid.Column="2" Source="/Assets/icon_goto.png" Height="30" Margin="10, 0"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                            
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="Margin" Value="0, 1" />
+                                    <Setter Property="Padding" Value="0" />
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                        </ListBox>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Margin" Value="0,2" />
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Background="DarkCyan">
+            <RadioButton x:Name="CB_ShowFilterOnly" GroupName="FillterOption" Content="显示推荐属性" IsChecked="True" FontSize="12" 
+                  Checked="CB_ShowFilterOnly_Checked" BorderThickness="0" Margin="0,-10"/>
+            <RadioButton x:Name="CB_ShowFilterOnlyAll" GroupName="FillterOption" Content="显示全部属性" IsChecked="false" FontSize="12" 
+                  Checked="CB_ShowFilterOnlyAll_Checked" BorderThickness="0" Margin="0,-10"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

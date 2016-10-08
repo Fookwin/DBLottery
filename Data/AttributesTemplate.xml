@@ -1,0 +1,2598 @@
+<Attributes>
+  <Red_InPosition_Omission Display="红球定位分析">
+    <Red_InPos_1 Display="红球第一位" Region="1~28" Description="红球第一位号码分析" HelpID="1">
+      <State Expression="1" Region="1" />
+      <State Expression="2" Region="2" />
+      <State Expression="3" Region="3" />
+      <State Expression="4" Region="4" />
+      <State Expression="5" Region="5" />
+      <State Expression="6" Region="6" />
+      <State Expression="7~8" Region="7~8" />
+      <State Expression="9~10" Region="9~10" />
+      <State Expression="11~15" Region="11~15" />
+      <State Expression="15~28" Region="15~28" />
+    </Red_InPos_1>
+    <Red_InPos_2 Display="红球第二位" Region="2~29" Description="红球第二位号码分析" HelpID="2">
+      <State Expression="2~3" Region="2~3" />
+      <State Expression="4~5" Region="4~5" />
+      <State Expression="6" Region="6" />
+      <State Expression="7" Region="7" />
+      <State Expression="8" Region="8" />
+      <State Expression="9~10" Region="9~10" />
+      <State Expression="11~12" Region="11~12" />
+      <State Expression="13~14" Region="13~14" />
+      <State Expression="15~16" Region="15~16" />
+      <State Expression="17~29" Region="17~29" />
+    </Red_InPos_2>
+    <Red_InPos_3 Display="红球第三位" Region="3~30" Description="红球第三位号码分析" HelpID="3">
+      <State Expression="3~6" Region="3~6" />
+      <State Expression="7~8" Region="7~8" />
+      <State Expression="9~10" Region="9~10" />
+      <State Expression="11~12" Region="11~12" />
+      <State Expression="13~14" Region="13~14" />
+      <State Expression="15~16" Region="15~16" />
+      <State Expression="17~18" Region="17~18" />
+      <State Expression="19~20" Region="19~20" />
+      <State Expression="21~22" Region="21~22" />
+      <State Expression="23~30" Region="23~30" />
+    </Red_InPos_3>
+    <Red_InPos_4 Display="红球第四位" Region="4~31" Description="红球第四位号码分析" HelpID="4">
+      <State Expression="4~10" Region="4~10" />
+      <State Expression="11~12" Region="11~12" />
+      <State Expression="13~14" Region="13~14" />
+      <State Expression="15~16" Region="15~16" />
+      <State Expression="17~18" Region="17~18" />
+      <State Expression="19~20" Region="19~20" />
+      <State Expression="21~22" Region="21~22" />
+      <State Expression="23~24" Region="23~24" />
+      <State Expression="25~26" Region="25~26" />
+      <State Expression="27~31" Region="27~31" />
+    </Red_InPos_4>
+    <Red_InPos_5 Display="红球第五位" Region="5~32" Description="红球第五位号码分析" HelpID="5">
+      <State Expression="5~16" Region="5~16" />
+      <State Expression="17~20" Region="17~20" />
+      <State Expression="21~22" Region="21~22" />
+      <State Expression="23~24" Region="23~24" />
+      <State Expression="25~26" Region="25~26" />
+      <State Expression="27" Region="27" />
+      <State Expression="28" Region="28" />
+      <State Expression="29" Region="29" />
+      <State Expression="30" Region="30" />
+      <State Expression="31~32" Region="31~32" />
+    </Red_InPos_5>
+    <Red_InPos_6 Display="红球第六位" Region="6~33" Description="红球第六位号码分析" HelpID="6">
+      <State Expression="6~23" Region="6~23" />
+      <State Expression="24~25" Region="24~25" />
+      <State Expression="26" Region="26" />
+      <State Expression="27" Region="27" />
+      <State Expression="28" Region="28" />
+      <State Expression="29" Region="29" />
+      <State Expression="30" Region="30" />
+      <State Expression="31" Region="31" />
+      <State Expression="32" Region="32" />
+      <State Expression="33" Region="33" />
+    </Red_InPos_6>
+  </Red_InPosition_Omission>
+  <Red_InPosition_Mantissa Display="红球定位尾数分析">
+    <Red_Mantissa_InPos_1 Display="红球第一位尾数" Region="0~9" Description="红球第一位号码尾数分析" HelpID="1">
+      <State Expression="0" Region="0" />
+      <State Expression="1" Region="1" />
+      <State Expression="2" Region="2" />
+      <State Expression="3" Region="3" />
+      <State Expression="4" Region="4" />
+      <State Expression="5" Region="5" />
+      <State Expression="6" Region="6" />
+      <State Expression="7" Region="7" />
+      <State Expression="8" Region="8" />
+      <State Expression="9" Region="9" />
+    </Red_Mantissa_InPos_1>
+    <Red_Mantissa_InPos_2 Display="红球第二位尾数" Region="0~9" Description="红球第二位号码尾数分析" HelpID="2">
+      <State Expression="0" Region="0" />
+      <State Expression="1" Region="1" />
+      <State Expression="2" Region="2" />
+      <State Expression="3" Region="3" />
+      <State Expression="4" Region="4" />
+      <State Expression="5" Region="5" />
+      <State Expression="6" Region="6" />
+      <State Expression="7" Region="7" />
+      <State Expression="8" Region="8" />
+      <State Expression="9" Region="9" />
+    </Red_Mantissa_InPos_2>
+    <Red_Mantissa_InPos_3 Display="红球第三位尾数" Region="0~9" Description="红球第三位号码尾数分析" HelpID="3">
+      <State Expression="0" Region="0" />
+      <State Expression="1" Region="1" />
+      <State Expression="2" Region="2" />
+      <State Expression="3" Region="3" />
+      <State Expression="4" Region="4" />
+      <State Expression="5" Region="5" />
+      <State Expression="6" Region="6" />
+      <State Expression="7" Region="7" />
+      <State Expression="8" Region="8" />
+      <State Expression="9" Region="9" />
+    </Red_Mantissa_InPos_3>
+    <Red_Mantissa_InPos_4 Display="红球第四位尾数" Region="0~9" Description="红球第四位号码尾数分析" HelpID="4">
+      <State Expression="0" Region="0" />
+      <State Expression="1" Region="1" />
+      <State Expression="2" Region="2" />
+      <State Expression="3" Region="3" />
+      <State Expression="4" Region="4" />
+      <State Expression="5" Region="5" />
+      <State Expression="6" Region="6" />
+      <State Expression="7" Region="7" />
+      <State Expression="8" Region="8" />
+      <State Expression="9" Region="9" />
+    </Red_Mantissa_InPos_4>
+    <Red_Mantissa_InPos_5 Display="红球第五位尾数" Region="0~9" Description="红球第五位号码尾数分析" HelpID="5">
+      <State Expression="0" Region="0" />
+      <State Expression="1" Region="1" />
+      <State Expression="2" Region="2" />
+      <State Expression="3" Region="3" />
+      <State Expression="4" Region="4" />
+      <State Expression="5" Region="5" />
+      <State Expression="6" Region="6" />
+      <State Expression="7" Region="7" />
+      <State Expression="8" Region="8" />
+      <State Expression="9" Region="9" />
+    </Red_Mantissa_InPos_5>
+    <Red_Mantissa_InPos_6 Display="红球第六位尾数" Region="0~9" Description="红球第六位号码尾数分析" HelpID="6">
+      <State Expression="0" Region="0" />
+      <State Expression="1" Region="1" />
+      <State Expression="2" Region="2" />
+      <State Expression="3" Region="3" />
+      <State Expression="4" Region="4" />
+      <State Expression="5" Region="5" />
+      <State Expression="6" Region="6" />
+      <State Expression="7" Region="7" />
+      <State Expression="8" Region="8" />
+      <State Expression="9" Region="9" />
+    </Red_Mantissa_InPos_6>
+  </Red_InPosition_Mantissa>
+  <Red_Mantissa Display="红球尾数分析">
+    <Red_Mantissa_Max Display="红球最大尾数" Region="2~9" Description="红球中最大尾数分析" HelpID="7">
+      <State Expression="2" Region="2" />
+      <State Expression="3" Region="3" />
+      <State Expression="4" Region="4" />
+      <State Expression="5" Region="5" />
+      <State Expression="6" Region="6" />
+      <State Expression="7" Region="7" />
+      <State Expression="8" Region="8" />
+      <State Expression="9" Region="9" />
+    </Red_Mantissa_Max>
+    <Red_Mantissa_Min Display="红球最小尾数" Region="0~8" Description="红球中最小尾数分析" HelpID="7">
+      <State Expression="0" Region="0" />
+      <State Expression="1" Region="1" />
+      <State Expression="2" Region="2" />
+      <State Expression="3" Region="3" />
+      <State Expression="4" Region="4" />
+      <State Expression="5" Region="5" />
+      <State Expression="6" Region="6" />
+      <State Expression="7" Region="7" />
+      <State Expression="8" Region="8" />
+    </Red_Mantissa_Min>
+  </Red_Mantissa>
+  <Red_InZone Display="红球区域分布分析">
+    <Red_Zone_In03_01 Display="红球三分区第一区" Region="0~6" Description="红球三分区第一区(01~11)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Zone_In03_01>
+    <Red_Zone_In03_02 Display="红球三分区第二区" Region="0~6" Description="红球三分区第二区(12~22)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Zone_In03_02>
+    <Red_Zone_In03_03 Display="红球三分区第三区" Region="0~6" Description="红球三分区第三区(23~33)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Zone_In03_03>
+    <Red_Zone_In04_01 Display="红球四分区第一区" Region="0~6" Description="红球四分区第一区(01~08)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Zone_In04_01>
+    <Red_Zone_In04_02 Display="红球四分区第二区" Region="0~6" Description="红球四分区第二区(09~16)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Zone_In04_02>
+    <Red_Zone_In04_03 Display="红球四分区第三区" Region="0~6" Description="红球四分区第三区(18~25)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Zone_In04_03>
+    <Red_Zone_In04_04 Display="红球四分区第四区" Region="0~6" Description="红球四分区第四区(26~33)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Zone_In04_04>
+    <Red_Zone_In07_01 Display="红球七分区第一区" Region="0~5" Description="红球七分区第一区(01~05)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+    </Red_Zone_In07_01>
+    <Red_Zone_In07_02 Display="红球七分区第二区" Region="0~5" Description="红球七分区第二区(06~10)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+    </Red_Zone_In07_02>
+    <Red_Zone_In07_03 Display="红球七分区第三区" Region="0~5" Description="红球七分区第三区(11~15)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+    </Red_Zone_In07_03>
+    <Red_Zone_In07_04 Display="红球七分区第四区" Region="0~5" Description="红球七分区第四区(15~20)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+    </Red_Zone_In07_04>
+    <Red_Zone_In07_05 Display="红球七分区第五区" Region="0~5" Description="红球七分区第五区(21~25)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+    </Red_Zone_In07_05>
+    <Red_Zone_In07_06 Display="红球七分区第六区" Region="0~5" Description="红球七分区第六区(26~30)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+    </Red_Zone_In07_06>
+    <Red_Zone_In07_07 Display="红球七分区第七区" Region="0~5" Description="红球七分区第七区(31~33)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+    </Red_Zone_In07_07>
+    <Red_Zone_In11_01 Display="红球11分区第一区" Region="0~3" Description="红球11分区第一区(01~03)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+    </Red_Zone_In11_01>
+    <Red_Zone_In11_02 Display="红球11分区第二区" Region="0~3" Description="红球11分区第二区(04~06)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+    </Red_Zone_In11_02>
+    <Red_Zone_In11_03 Display="红球11分区第三区" Region="0~3" Description="红球11分区第三区(07~09)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+    </Red_Zone_In11_03>
+    <Red_Zone_In11_04 Display="红球11分区第四区" Region="0~3" Description="红球11分区第四区(10~12)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+    </Red_Zone_In11_04>
+    <Red_Zone_In11_05 Display="红球11分区第五区" Region="0~3" Description="红球11分区第五区(13~15)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+    </Red_Zone_In11_05>
+    <Red_Zone_In11_06 Display="红球11分区第六区" Region="0~3" Description="红球11分区第六区(16~18)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+    </Red_Zone_In11_06>
+    <Red_Zone_In11_07 Display="红球11分区第七区" Region="0~3" Description="红球11分区第七区(19~21)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+    </Red_Zone_In11_07>
+    <Red_Zone_In11_08 Display="红球11分区第八区" Region="0~3" Description="红球11分区第八区(22~24)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+    </Red_Zone_In11_08>
+    <Red_Zone_In11_09 Display="红球11分区第九区" Region="0~3" Description="红球11分区第九区(25~27)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+    </Red_Zone_In11_09>
+    <Red_Zone_In11_10 Display="红球11分区第十区" Region="0~3" Description="红球11分区第十区(28~30)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+    </Red_Zone_In11_10>
+    <Red_Zone_In11_11 Display="红球11分区第十一区" Region="0~3" Description="红球11分区第十一区(31~33)出号个数分析" HelpID="8">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+    </Red_Zone_In11_11>
+  </Red_InZone>
+  <Red_Matrix Display="红球矩阵行列分析">
+    <Red_Row_1 Display="红球第一行" Region="0~3" Description="红球第一行(31 32 33)出号个数" HelpID="9">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+    </Red_Row_1>
+    <Red_Row_2 Display="红球第二行" Region="0~6" Description="红球第二行(30 13 14 15 16 17)出号个数" HelpID="9">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Row_2>
+    <Red_Row_3 Display="红球第三行" Region="0~6" Description="红球第三行(29 12 03 04 05 18)出号个数" HelpID="9">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Row_3>
+    <Red_Row_4 Display="红球第四行" Region="0~6" Description="红球第四行(28 11 02 01 06 19)出号个数" HelpID="9">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Row_4>
+    <Red_Row_5 Display="红球第五行" Region="0~6" Description="红球第五行(27 10 09 08 07 20)出号个数" HelpID="9">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Row_5>
+    <Red_Row_6 Display="红球第六行" Region="0~6" Description="红球第六行(26 25 24 23 22 21)出号个数" HelpID="9">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Row_6>
+    <Red_Column_1 Display="红球第一列" Region="0~6" Description="红球第一列(26 27 28 29 30 31)出号个数" HelpID="9">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Column_1>
+    <Red_Column_2 Display="红球第二列" Region="0~6" Description="红球第二列(25 10 11 12 13 32)出号个数" HelpID="9">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Column_2>
+    <Red_Column_3 Display="红球第三列" Region="0~6" Description="红球第三列(24 09 02 03 13 33)出号个数" HelpID="9">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Column_3>
+    <Red_Column_4 Display="红球第四列" Region="0~5" Description="红球第四列(23 08 01 04 15)出号个数" HelpID="9">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+    </Red_Column_4>
+    <Red_Column_5 Display="红球第五列" Region="0~5" Description="红球第五列(22 07 06 05 16)出号个数" HelpID="9">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+    </Red_Column_5>
+    <Red_Column_6 Display="红球第六列" Region="0~5" Description="红球第六列(21 20 19 18 17)出号个数" HelpID="9">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+    </Red_Column_6>
+  </Red_Matrix>
+  <Red_Repeat_Previous Display="红球隔期重现分析">
+    <Red_Repeat_Previous_0 Display="红球隔0期" Region="0~6" Description="红球重复上期个数" HelpID="10">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Repeat_Previous_0>
+    <Red_Repeat_Previous_1 Display="红球隔1期" Region="0~6" Description="红球隔一期重复个数" HelpID="10">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Repeat_Previous_1>
+    <Red_Repeat_Previous_2 Display="红球隔2期" Region="0~6" Description="红球隔二期重复个数" HelpID="10">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Repeat_Previous_2>
+    <Red_Repeat_Previous_3 Display="红球隔3期" Region="0~6" Description="红球隔三期重复个数" HelpID="10">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Repeat_Previous_3>
+    <Red_Repeat_Previous_4 Display="红球隔4期" Region="0~6" Description="红球隔四期重复个数" HelpID="10">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Repeat_Previous_4>
+    <Red_Repeat_Previous_5 Display="红球隔5期" Region="0~6" Description="红球隔五期重复个数" HelpID="10">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Repeat_Previous_5>
+    <Red_Repeat_Previous_6 Display="红球隔6期" Region="0~6" Description="红球隔六期重复个数" HelpID="10">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Repeat_Previous_6>
+    <Red_Repeat_Previous_7 Display="红球隔7期" Region="0~6" Description="红球隔七期重复个数" HelpID="10">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Repeat_Previous_7>
+    <Red_Repeat_Previous_8 Display="红球隔8期" Region="0~6" Description="红球隔八期重复个数" HelpID="10">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Repeat_Previous_8>
+    <Red_Repeat_Previous_9 Display="红球隔9期" Region="0~6" Description="红球隔九期重复个数" HelpID="10">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Repeat_Previous_9>
+  </Red_Repeat_Previous>
+  <Red_Sum Display="红球和值分析">
+    <Red_Sum Display="红球和值" Region="21~183" Description="红球和值范围" HelpID="11">
+      <State Expression="21~70" Region="21~70" />
+      <State Expression="71~80" Region="71~80" />
+      <State Expression="81~90" Region="81~90" />
+      <State Expression="91~100" Region="91~100" />
+      <State Expression="101~110" Region="101~110" />
+      <State Expression="111~120" Region="111~120" />
+      <State Expression="121~130" Region="121~130" />
+      <State Expression="131~183" Region="131~183" />
+    </Red_Sum>
+    <Red_Sum_Mantissa Display="红球和值尾" Region="0~9" Description="红球和值尾数分析" HelpID="11">
+      <State Expression="0" Region="0" />
+      <State Expression="1" Region="1" />
+      <State Expression="2" Region="2" />
+      <State Expression="3" Region="3" />
+      <State Expression="4" Region="4" />
+      <State Expression="5" Region="5" />
+      <State Expression="6" Region="6" />
+      <State Expression="7" Region="7" />
+      <State Expression="8" Region="8" />
+      <State Expression="9" Region="9" />
+    </Red_Sum_Mantissa>
+    <Red_Odd_Sum Display="红球奇数和" Region="0~168" Description="红球奇数和值范围" HelpID="11">
+      <State Expression="0~9" Region="0~9" />
+      <State Expression="10~19" Region="10~19" />
+      <State Expression="20~29" Region="20~29" />
+      <State Expression="30~39" Region="30~39" />
+      <State Expression="40~49" Region="40~49" />
+      <State Expression="50~59" Region="50~59" />
+      <State Expression="60~69" Region="60~69" />
+      <State Expression="70~79" Region="70~79" />
+      <State Expression="80~89" Region="80~89" />
+      <State Expression="90~168" Region="90~168" />
+    </Red_Odd_Sum>
+    <Red_Odd_Sum_Mantissa Display="红球奇数和尾" Region="0~9" Description="红球奇数和尾数" HelpID="11">
+      <State Expression="0" Region="0" />
+      <State Expression="1" Region="1" />
+      <State Expression="2" Region="2" />
+      <State Expression="3" Region="3" />
+      <State Expression="4" Region="4" />
+      <State Expression="5" Region="5" />
+      <State Expression="6" Region="6" />
+      <State Expression="7" Region="7" />
+      <State Expression="8" Region="8" />
+      <State Expression="9" Region="9" />
+    </Red_Odd_Sum_Mantissa>
+    <Red_Even_Sum Display="红球偶数和" Region="0~162" Description="红球偶数和值范围" HelpID="11">
+      <State Expression="0~9" Region="0~9" />
+      <State Expression="10~19" Region="10~19" />
+      <State Expression="20~29" Region="20~29" />
+      <State Expression="30~39" Region="30~39" />
+      <State Expression="40~49" Region="40~49" />
+      <State Expression="50~59" Region="50~59" />
+      <State Expression="60~69" Region="60~69" />
+      <State Expression="70~79" Region="70~79" />
+      <State Expression="80~89" Region="80~89" />
+      <State Expression="90~180" Region="90~180" />
+    </Red_Even_Sum>
+    <Red_Even_Sum_Mantissa Display="红球偶数和尾" Region="0~9" Description="红球偶数和值尾数" HelpID="11">
+      <State Expression="0" Region="0" />
+      <State Expression="1" Region="1" />
+      <State Expression="2" Region="2" />
+      <State Expression="3" Region="3" />
+      <State Expression="4" Region="4" />
+      <State Expression="5" Region="5" />
+      <State Expression="6" Region="6" />
+      <State Expression="7" Region="7" />
+      <State Expression="8" Region="8" />
+      <State Expression="9" Region="9" />
+    </Red_Even_Sum_Mantissa>
+    <Red_Composite_Sum Display="红球合数和" Region="0~176" Description="红球合数和值范围" HelpID="11">
+      <State Expression="0~29" Region="0~29" />
+      <State Expression="30~39" Region="30~39" />
+      <State Expression="40~49" Region="40~49" />
+      <State Expression="50~59" Region="50~59" />
+      <State Expression="60~69" Region="60~69" />
+      <State Expression="70~79" Region="70~79" />
+      <State Expression="80~89" Region="80~89" />
+      <State Expression="90~99" Region="90~99" />
+      <State Expression="100~109" Region="100~109" />
+      <State Expression="110~176" Region="110~176" />
+    </Red_Composite_Sum>
+    <Red_Composite_Sum_Mantissa Display="红球合数和尾" Region="0~9" Description="红球合数和尾数" HelpID="11">
+      <State Expression="0" Region="0" />
+      <State Expression="1" Region="1" />
+      <State Expression="2" Region="2" />
+      <State Expression="3" Region="3" />
+      <State Expression="4" Region="4" />
+      <State Expression="5" Region="5" />
+      <State Expression="6" Region="6" />
+      <State Expression="7" Region="7" />
+      <State Expression="8" Region="8" />
+      <State Expression="9" Region="9" />
+    </Red_Composite_Sum_Mantissa>
+    <Red_Primary_Sum Display="红球质数和" Region="0~132" Description="红球质数和值范围" HelpID="11">
+      <State Expression="0~9" Region="0~9" />
+      <State Expression="10~19" Region="10~19" />
+      <State Expression="20~29" Region="20~29" />
+      <State Expression="30~39" Region="30~39" />
+      <State Expression="40~49" Region="40~49" />
+      <State Expression="50~59" Region="50~59" />
+      <State Expression="60~69" Region="60~69" />
+      <State Expression="70~79" Region="70~79" />
+      <State Expression="80~89" Region="80~89" />
+      <State Expression="90~132" Region="90~132" />
+    </Red_Primary_Sum>
+    <Red_Primary_Sum_Mantissa Display="红球质数和尾" Region="0~9" Description="红球质数和尾数" HelpID="11">
+      <State Expression="0" Region="0" />
+      <State Expression="1" Region="1" />
+      <State Expression="2" Region="2" />
+      <State Expression="3" Region="3" />
+      <State Expression="4" Region="4" />
+      <State Expression="5" Region="5" />
+      <State Expression="6" Region="6" />
+      <State Expression="7" Region="7" />
+      <State Expression="8" Region="8" />
+      <State Expression="9" Region="9" />
+    </Red_Primary_Sum_Mantissa>
+  </Red_Sum>
+  <Red_BasicAttribute Display="红球属性分析">
+    <Red_BigSmall Display="红球大小比" Region="0~6" Description="红球大数和小数出现个数对比" HelpID="12">
+      <State Expression="0-6" Region="0" />
+      <State Expression="1-5" Region="1" />
+      <State Expression="2-4" Region="2" />
+      <State Expression="3-3" Region="3" />
+      <State Expression="4-2" Region="4" />
+      <State Expression="5-1" Region="5" />
+      <State Expression="6-0" Region="6" />
+    </Red_BigSmall>
+    <Red_OddEven Display="红球奇偶比" Region="0~6" Description="红球奇数和偶数出现个数对比" HelpID="13">
+      <State Expression="0-6" Region="0" />
+      <State Expression="1-5" Region="1" />
+      <State Expression="2-4" Region="2" />
+      <State Expression="3-3" Region="3" />
+      <State Expression="4-2" Region="4" />
+      <State Expression="5-1" Region="5" />
+      <State Expression="6-0" Region="6" />
+    </Red_OddEven>
+    <Red_PrimaryComposite Display="红球质合比" Region="0~6" Description="红球质数和合数出现个数对比" HelpID="14">
+      <State Expression="0-6" Region="0" />
+      <State Expression="1-5" Region="1" />
+      <State Expression="2-4" Region="2" />
+      <State Expression="3-3" Region="3" />
+      <State Expression="4-2" Region="4" />
+      <State Expression="5-1" Region="5" />
+      <State Expression="6-0" Region="6" />
+    </Red_PrimaryComposite>
+    <Red_012 Display="红球012路" Region="1~28" Description="红球除三余数（0,1,2）出现个数对比" HelpID="15">
+      <State Expression="0-0-6" Region="1" />
+      <State Expression="0-1-5" Region="2" />
+      <State Expression="0-2-4" Region="3" />
+      <State Expression="0-3-3" Region="4" />
+      <State Expression="0-4-2" Region="5" />
+      <State Expression="0-5-1" Region="6" />
+      <State Expression="0-6-0" Region="7" />
+      <State Expression="1-0-5" Region="8" />
+      <State Expression="1-1-4" Region="9" />
+      <State Expression="1-2-3" Region="10" />
+      <State Expression="1-3-2" Region="11" />
+      <State Expression="1-4-1" Region="12" />
+      <State Expression="1-5-0" Region="13" />
+      <State Expression="2-0-4" Region="14" />
+      <State Expression="2-1-3" Region="15" />
+      <State Expression="2-2-2" Region="16" />
+      <State Expression="2-3-1" Region="17" />
+      <State Expression="2-4-0" Region="18" />
+      <State Expression="3-0-3" Region="19" />
+      <State Expression="3-1-2" Region="20" />
+      <State Expression="3-2-1" Region="21" />
+      <State Expression="3-3-0" Region="22" />
+      <State Expression="4-0-2" Region="23" />
+      <State Expression="4-1-1" Region="24" />
+      <State Expression="4-2-0" Region="25" />
+      <State Expression="5-0-1" Region="26" />
+      <State Expression="5-1-0" Region="27" />
+      <State Expression="6-0-0" Region="28" />
+    </Red_012>
+    <Red_SmallMidBig Display="红球小中大" Region="1~28" Description="红球三分区出现个数对比" HelpID="16">
+      <State Expression="0-0-6" Region="1" />
+      <State Expression="0-1-5" Region="2" />
+      <State Expression="0-2-4" Region="3" />
+      <State Expression="0-3-3" Region="4" />
+      <State Expression="0-4-2" Region="5" />
+      <State Expression="0-5-1" Region="6" />
+      <State Expression="0-6-0" Region="7" />
+      <State Expression="1-0-5" Region="8" />
+      <State Expression="1-1-4" Region="9" />
+      <State Expression="1-2-3" Region="10" />
+      <State Expression="1-3-2" Region="11" />
+      <State Expression="1-4-1" Region="12" />
+      <State Expression="1-5-0" Region="13" />
+      <State Expression="2-0-4" Region="14" />
+      <State Expression="2-1-3" Region="15" />
+      <State Expression="2-2-2" Region="16" />
+      <State Expression="2-3-1" Region="17" />
+      <State Expression="2-4-0" Region="18" />
+      <State Expression="3-0-3" Region="19" />
+      <State Expression="3-1-2" Region="20" />
+      <State Expression="3-2-1" Region="21" />
+      <State Expression="3-3-0" Region="22" />
+      <State Expression="4-0-2" Region="23" />
+      <State Expression="4-1-1" Region="24" />
+      <State Expression="4-2-0" Region="25" />
+      <State Expression="5-0-1" Region="26" />
+      <State Expression="5-1-0" Region="27" />
+      <State Expression="6-0-0" Region="28" />
+    </Red_SmallMidBig>
+    <Red_FuGeZhong Display="红球重跳变" Region="1~28" Description="红球重复上期，隔一期重现和重复其他期个数对比" HelpID="17">
+      <State Expression="0-0-6" Region="1" />
+      <State Expression="0-1-5" Region="2" />
+      <State Expression="0-2-4" Region="3" />
+      <State Expression="0-3-3" Region="4" />
+      <State Expression="0-4-2" Region="5" />
+      <State Expression="0-5-1" Region="6" />
+      <State Expression="0-6-0" Region="7" />
+      <State Expression="1-0-5" Region="8" />
+      <State Expression="1-1-4" Region="9" />
+      <State Expression="1-2-3" Region="10" />
+      <State Expression="1-3-2" Region="11" />
+      <State Expression="1-4-1" Region="12" />
+      <State Expression="1-5-0" Region="13" />
+      <State Expression="2-0-4" Region="14" />
+      <State Expression="2-1-3" Region="15" />
+      <State Expression="2-2-2" Region="16" />
+      <State Expression="2-3-1" Region="17" />
+      <State Expression="2-4-0" Region="18" />
+      <State Expression="3-0-3" Region="19" />
+      <State Expression="3-1-2" Region="20" />
+      <State Expression="3-2-1" Region="21" />
+      <State Expression="3-3-0" Region="22" />
+      <State Expression="4-0-2" Region="23" />
+      <State Expression="4-1-1" Region="24" />
+      <State Expression="4-2-0" Region="25" />
+      <State Expression="5-0-1" Region="26" />
+      <State Expression="5-1-0" Region="27" />
+      <State Expression="6-0-0" Region="28" />
+    </Red_FuGeZhong>
+    <Red_5Xing_1 Display="红球第一位五行" Region="1~5" Description="红球第一位五行属性" HelpID="18">
+      <State Expression="金" Region="1" />
+      <State Expression="木" Region="2" />
+      <State Expression="水" Region="3" />
+      <State Expression="火" Region="4" />
+      <State Expression="土" Region="5" />
+    </Red_5Xing_1>
+    <Red_5Xing_2 Display="红球第二位五行" Region="1~5" Description="红球第二位五行属性" HelpID="18">
+      <State Expression="金" Region="1" />
+      <State Expression="木" Region="2" />
+      <State Expression="水" Region="3" />
+      <State Expression="火" Region="4" />
+      <State Expression="土" Region="5" />
+    </Red_5Xing_2>
+    <Red_5Xing_3 Display="红球第三位五行" Region="1~5" Description="红球第三位五行属性" HelpID="18">
+      <State Expression="金" Region="1" />
+      <State Expression="木" Region="2" />
+      <State Expression="水" Region="3" />
+      <State Expression="火" Region="4" />
+      <State Expression="土" Region="5" />
+    </Red_5Xing_3>
+    <Red_5Xing_4 Display="红球第四位五行" Region="1~5" Description="红球第四位五行属性" HelpID="18">
+      <State Expression="金" Region="1" />
+      <State Expression="木" Region="2" />
+      <State Expression="水" Region="3" />
+      <State Expression="火" Region="4" />
+      <State Expression="土" Region="5" />
+    </Red_5Xing_4>
+    <Red_5Xing_5 Display="红球第五位五行" Region="1~5" Description="红球第五位五行属性" HelpID="18">
+      <State Expression="金" Region="1" />
+      <State Expression="木" Region="2" />
+      <State Expression="水" Region="3" />
+      <State Expression="火" Region="4" />
+      <State Expression="土" Region="5" />
+    </Red_5Xing_5>
+    <Red_5Xing_6 Display="红球第六位五行" Region="1~5" Description="红球第六位五行属性" HelpID="18">
+      <State Expression="金" Region="1" />
+      <State Expression="木" Region="2" />
+      <State Expression="水" Region="3" />
+      <State Expression="火" Region="4" />
+      <State Expression="土" Region="5" />
+    </Red_5Xing_6>
+  </Red_BasicAttribute>
+  <Red_Omission Display="红球遗漏分析">
+    <Red_Omission_01 Display="红球01" Region="0~1" Description="红球01遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_01>
+    <Red_Omission_02 Display="红球02" Region="0~1" Description="红球02遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_02>
+    <Red_Omission_03 Display="红球03" Region="0~1" Description="红球03遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_03>
+    <Red_Omission_04 Display="红球04" Region="0~1" Description="红球04遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_04>
+    <Red_Omission_05 Display="红球05" Region="0~1" Description="红球05遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_05>
+    <Red_Omission_06 Display="红球06" Region="0~1" Description="红球06遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_06>
+    <Red_Omission_07 Display="红球07" Region="0~1" Description="红球07遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_07>
+    <Red_Omission_08 Display="红球08" Region="0~1" Description="红球08遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_08>
+    <Red_Omission_09 Display="红球09" Region="0~1" Description="红球09遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_09>
+    <Red_Omission_10 Display="红球10" Region="0~1" Description="红球10遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_10>
+    <Red_Omission_11 Display="红球11" Region="0~1" Description="红球11遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_11>
+    <Red_Omission_12 Display="红球12" Region="0~1" Description="红球12遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_12>
+    <Red_Omission_13 Display="红球13" Region="0~1" Description="红球13遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_13>
+    <Red_Omission_14 Display="红球14" Region="0~1" Description="红球14遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_14>
+    <Red_Omission_15 Display="红球15" Region="0~1" Description="红球15遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_15>
+    <Red_Omission_16 Display="红球16" Region="0~1" Description="红球16遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_16>
+    <Red_Omission_17 Display="红球17" Region="0~1" Description="红球17遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_17>
+    <Red_Omission_18 Display="红球18" Region="0~1" Description="红球18遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_18>
+    <Red_Omission_19 Display="红球19" Region="0~1" Description="红球19遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_19>
+    <Red_Omission_20 Display="红球20" Region="0~1" Description="红球20遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_20>
+    <Red_Omission_21 Display="红球21" Region="0~1" Description="红球21遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_21>
+    <Red_Omission_22 Display="红球22" Region="0~1" Description="红球22遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_22>
+    <Red_Omission_23 Display="红球23" Region="0~1" Description="红球23遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_23>
+    <Red_Omission_24 Display="红球24" Region="0~1" Description="红球24遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_24>
+    <Red_Omission_25 Display="红球25" Region="0~1" Description="红球25遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_25>
+    <Red_Omission_26 Display="红球26" Region="0~1" Description="红球26遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_26>
+    <Red_Omission_27 Display="红球27" Region="0~1" Description="红球27遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_27>
+    <Red_Omission_28 Display="红球28" Region="0~1" Description="红球28遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_28>
+    <Red_Omission_29 Display="红球29" Region="0~1" Description="红球29遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_29>
+    <Red_Omission_30 Display="红球30" Region="0~1" Description="红球30遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_30>
+    <Red_Omission_31 Display="红球31" Region="0~1" Description="红球31遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_31>
+    <Red_Omission_32 Display="红球32" Region="0~1" Description="红球32遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_32>
+    <Red_Omission_33 Display="红球33" Region="0~1" Description="红球33遗漏分析" HelpID="19">
+      <State Expression="不出" Region="0" />
+      <State Expression="出现" Region="1" />
+    </Red_Omission_33>
+  </Red_Omission>
+  <Red_Remainder Display="红球余数分析">
+    <Red_Remainder_Devide3_0 Display="红球除3余0" Region="0~6" Description="红球中除3余0的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide3_0>
+    <Red_Remainder_Devide3_1 Display="红球除3余1" Region="0~6" Description="红球中除3余1的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide3_1>
+    <Red_Remainder_Devide3_2 Display="红球除3余2" Region="0~6" Description="红球中除3余2的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide3_2>
+    <Red_Remainder_Devide4_0 Display="红球除4余0" Region="0~6" Description="红球中除4余0的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide4_0>
+    <Red_Remainder_Devide4_1 Display="红球除4余1" Region="0~6" Description="红球中除4余1的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide4_1>
+    <Red_Remainder_Devide4_2 Display="红球除4余2" Region="0~6" Description="红球中除4余2的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide4_2>
+    <Red_Remainder_Devide4_3 Display="红球除4余3" Region="0~6" Description="红球中除4余3的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide4_3>
+    <Red_Remainder_Devide5_0 Display="红球除5余0" Region="0~6" Description="红球中除5余0的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide5_0>
+    <Red_Remainder_Devide5_1 Display="红球除5余1" Region="0~6" Description="红球中除5余1的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide5_1>
+    <Red_Remainder_Devide5_2 Display="红球除5余2" Region="0~6" Description="红球中除5余2的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide5_2>
+    <Red_Remainder_Devide5_3 Display="红球除5余3" Region="0~6" Description="红球中除5余3的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide5_3>
+    <Red_Remainder_Devide5_4 Display="红球除5余4" Region="0~6" Description="红球中除5余4的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide5_4>
+    <Red_Remainder_Devide6_0 Display="红球除6余0" Region="0~6" Description="红球中除6余0的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide6_0>
+    <Red_Remainder_Devide6_1 Display="红球除6余1" Region="0~6" Description="红球中除6余1的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide6_1>
+    <Red_Remainder_Devide6_2 Display="红球除6余2" Region="0~6" Description="红球中除6余2的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide6_2>
+    <Red_Remainder_Devide6_3 Display="红球除6余3" Region="0~6" Description="红球中除6余3的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide6_3>
+    <Red_Remainder_Devide6_4 Display="红球除6余4" Region="0~6" Description="红球中除6余4的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide6_4>
+    <Red_Remainder_Devide6_5 Display="红球除6余5" Region="0~6" Description="红球中除6余5的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide6_5>
+    <Red_Remainder_Devide7_0 Display="红球除7余0" Region="0~6" Description="红球中除7余0的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide7_0>
+    <Red_Remainder_Devide7_1 Display="红球除7余1" Region="0~6" Description="红球中除7余1的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide7_1>
+    <Red_Remainder_Devide7_2 Display="红球除7余2" Region="0~6" Description="红球中除7余2的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide7_2>
+    <Red_Remainder_Devide7_3 Display="红球除7余3" Region="0~6" Description="红球中除7余3的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide7_3>
+    <Red_Remainder_Devide7_4 Display="红球除7余4" Region="0~6" Description="红球中除7余4的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide7_4>
+    <Red_Remainder_Devide7_5 Display="红球除7余5" Region="0~6" Description="红球中除7余5的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide7_5>
+    <Red_Remainder_Devide7_6 Display="红球除7余6" Region="0~6" Description="红球中除7余6的数字出现个数" HelpID="20">
+      <State Expression="0个" Region="0" />
+      <State Expression="1个" Region="1" />
+      <State Expression="2个" Region="2" />
+      <State Expression="3个" Region="3" />
+      <State Expression="4个" Region="4" />
+      <State Expression="5个" Region="5" />
+      <State Expression="6个" Region="6" />
+    </Red_Remainder_Devide7_6>
+  </Red_Remainder>
+  <Red_CompareByPosition_Sum Display="红球定位和值分析">
+    <Red_Sum_Pos12 Display="红球一二位和" Region="3~57" Description="" HelpID="21">
+      <State Expression="3~5" Region="3~5" />
+      <State Expression="6~8" Region="6~8" />
+      <State Expression="9~11" Region="9~11" />
+      <State Expression="12~14" Region="12~14" />
+      <State Expression="15~17" Region="15~17" />
+      <State Expression="18~20" Region="18~20" />
+      <State Expression="21~23" Region="21~23" />
+      <State Expression="24~26" Region="24~26" />
+      <State Expression="27~29" Region="27~29" />
+      <State Expression="30~32" Region="30~32" />
+      <State Expression="33~35" Region="33~35" />
+      <State Expression="36~38" Region="36~38" />
+      <State Expression="39~41" Region="39~41" />
+      <State Expression="42~44" Region="42~44" />
+      <State Expression="45~47" Region="45~47" />
+      <State Expression="48~50" Region="48~50" />
+      <State Expression="51~53" Region="51~53" />
+      <State Expression="54~57" Region="54~57" />
+    </Red_Sum_Pos12>
+    <Red_Sum_Pos13 Display="红球一三位和" Region="4~58" Description="" HelpID="21">
+      <State Expression="4~5" Region="4~5" />
+      <State Expression="6~8" Region="6~8" />
+      <State Expression="9~11" Region="9~11" />
+      <State Expression="12~14" Region="12~14" />
+      <State Expression="15~17" Region="15~17" />
+      <State Expression="18~20" Region="18~20" />
+      <State Expression="21~23" Region="21~23" />
+      <State Expression="24~26" Region="24~26" />
+      <State Expression="27~29" Region="27~29" />
+      <State Expression="30~32" Region="30~32" />
+      <State Expression="33~35" Region="33~35" />
+      <State Expression="36~38" Region="36~38" />
+      <State Expression="39~41" Region="39~41" />
+      <State Expression="42~44" Region="42~44" />
+      <State Expression="45~47" Region="45~47" />
+      <State Expression="48~50" Region="48~50" />
+      <State Expression="51~53" Region="51~53" />
+      <State Expression="54~56" Region="54~56" />
+      <State Expression="57~58" Region="57~58" />
+    </Red_Sum_Pos13>
+    <Red_Sum_Pos14 Display="红球一四位和" Region="5~59" Description="" HelpID="21">
+      <State Expression="5~8" Region="5~8" />
+      <State Expression="9~11" Region="9~11" />
+      <State Expression="12~14" Region="12~14" />
+      <State Expression="15~17" Region="15~17" />
+      <State Expression="18~20" Region="18~20" />
+      <State Expression="21~23" Region="21~23" />
+      <State Expression="24~26" Region="24~26" />
+      <State Expression="27~29" Region="27~29" />
+      <State Expression="30~32" Region="30~32" />
+      <State Expression="33~35" Region="33~35" />
+      <State Expression="36~38" Region="36~38" />
+      <State Expression="39~41" Region="39~41" />
+      <State Expression="42~44" Region="42~44" />
+      <State Expression="45~47" Region="45~47" />
+      <State Expression="48~50" Region="48~50" />
+      <State Expression="51~53" Region="51~53" />
+      <State Expression="54~56" Region="54~56" />
+      <State Expression="57~59" Region="57~59" />
+    </Red_Sum_Pos14>
+    <Red_Sum_Pos15 Display="红球一五位和" Region="6~60" Description="" HelpID="21">
+      <State Expression="6~8" Region="6~8" />
+      <State Expression="9~11" Region="9~11" />
+      <State Expression="12~14" Region="12~14" />
+      <State Expression="15~17" Region="15~17" />
+      <State Expression="18~20" Region="18~20" />
+      <State Expression="21~23" Region="21~23" />
+      <State Expression="24~26" Region="24~26" />
+      <State Expression="27~29" Region="27~29" />
+      <State Expression="30~32" Region="30~32" />
+      <State Expression="33~35" Region="33~35" />
+      <State Expression="36~38" Region="36~38" />
+      <State Expression="39~41" Region="39~41" />
+      <State Expression="42~44" Region="42~44" />
+      <State Expression="45~47" Region="45~47" />
+      <State Expression="48~50" Region="48~50" />
+      <State Expression="51~53" Region="51~53" />
+      <State Expression="54~56" Region="54~56" />
+      <State Expression="57~60" Region="57~60" />
+    </Red_Sum_Pos15>
+    <Red_Sum_Pos16 Display="红球一六位和" Region="7~61" Description="" HelpID="21">
+      <State Expression="7~8" Region="7~8" />
+      <State Expression="9~11" Region="9~11" />
+      <State Expression="12~14" Region="12~14" />
+      <State Expression="15~17" Region="15~17" />
+      <State Expression="18~20" Region="18~20" />
+      <State Expression="21~23" Region="21~23" />
+      <State Expression="24~26" Region="24~26" />
+      <State Expression="27~29" Region="27~29" />
+      <State Expression="30~32" Region="30~32" />
+      <State Expression="33~35" Region="33~35" />
+      <State Expression="36~38" Region="36~38" />
+      <State Expression="39~41" Region="39~41" />
+      <State Expression="42~44" Region="42~44" />
+      <State Expression="45~47" Region="45~47" />
+      <State Expression="48~50" Region="48~50" />
+      <State Expression="51~53" Region="51~53" />
+      <State Expression="54~56" Region="54~56" />
+      <State Expression="57~59" Region="57~59" />
+      <State Expression="60~61" Region="60~61" />
+    </Red_Sum_Pos16>
+    <Red_Sum_Pos23 Display="红球二三位和" Region="5~59" Description="" HelpID="21">
+      <State Expression="5~8" Region="5~8" />
+      <State Expression="9~11" Region="9~11" />
+      <State Expression="12~14" Region="12~14" />
+      <State Expression="15~17" Region="15~17" />
+      <State Expression="18~20" Region="18~20" />
+      <State Expression="21~23" Region="21~23" />
+      <State Expression="24~26" Region="24~26" />
+      <State Expression="27~29" Region="27~29" />
+      <State Expression="30~32" Region="30~32" />
+      <State Expression="33~35" Region="33~35" />
+      <State Expression="36~38" Region="36~38" />
+      <State Expression="39~41" Region="39~41" />
+      <State Expression="42~44" Region="42~44" />
+      <State Expression="45~47" Region="45~47" />
+      <State Expression="48~50" Region="48~50" />
+      <State Expression="51~53" Region="51~53" />
+      <State Expression="54~56" Region="54~56" />
+      <State Expression="57~59" Region="57~59" />
+    </Red_Sum_Pos23>
+    <Red_Sum_Pos24 Display="红球二四位和" Region="6~60" Description="" HelpID="21">
+      <State Expression="6~8" Region="6~8" />
+      <State Expression="9~11" Region="9~11" />
+      <State Expression="12~14" Region="12~14" />
+      <State Expression="15~17" Region="15~17" />
+      <State Expression="18~20" Region="18~20" />
+      <State Expression="21~23" Region="21~23" />
+      <State Expression="24~26" Region="24~26" />
+      <State Expression="27~29" Region="27~29" />
+      <State Expression="30~32" Region="30~32" />
+      <State Expression="33~35" Region="33~35" />
+      <State Expression="36~38" Region="36~38" />
+      <State Expression="39~41" Region="39~41" />
+      <State Expression="42~44" Region="42~44" />
+      <State Expression="45~47" Region="45~47" />
+      <State Expression="48~50" Region="48~50" />
+      <State Expression="51~53" Region="51~53" />
+      <State Expression="54~56" Region="54~56" />
+      <State Expression="57~60" Region="57~60" />
+    </Red_Sum_Pos24>
+    <Red_Sum_Pos25 Display="红球二五位和" Region="7~61" Description="" HelpID="21">
+      <State Expression="7~8" Region="7~8" />
+      <State Expression="9~11" Region="9~11" />
+      <State Expression="12~14" Region="12~14" />
+      <State Expression="15~17" Region="15~17" />
+      <State Expression="18~20" Region="18~20" />
+      <State Expression="21~23" Region="21~23" />
+      <State Expression="24~26" Region="24~26" />
+      <State Expression="27~29" Region="27~29" />
+      <State Expression="30~32" Region="30~32" />
+      <State Expression="33~35" Region="33~35" />
+      <State Expression="36~38" Region="36~38" />
+      <State Expression="39~41" Region="39~41" />
+      <State Expression="42~44" Region="42~44" />
+      <State Expression="45~47" Region="45~47" />
+      <State Expression="48~50" Region="48~50" />
+      <State Expression="51~53" Region="51~53" />
+      <State Expression="54~56" Region="54~56" />
+      <State Expression="57~59" Region="57~59" />
+      <State Expression="60~61" Region="60~61" />
+    </Red_Sum_Pos25>
+    <Red_Sum_Pos26 Display="红球二六位和" Region="8~62" Description="" HelpID="21">
+      <State Expression="8~11" Region="8~11" />
+      <State Expression="12~14" Region="12~14" />
+      <State Expression="15~17" Region="15~17" />
+      <State Expression="18~20" Region="18~20" />
+      <State Expression="21~23" Region="21~23" />
+      <State Expression="24~26" Region="24~26" />
+      <State Expression="27~29" Region="27~29" />
+      <State Expression="30~32" Region="30~32" />
+      <State Expression="33~35" Region="33~35" />
+      <State Expression="36~38" Region="36~38" />
+      <State Expression="39~41" Region="39~41" />
+      <State Expression="42~44" Region="42~44" />
+      <State Expression="45~47" Region="45~47" />
+      <State Expression="48~50" Region="48~50" />
+      <State Expression="51~53" Region="51~53" />
+      <State Expression="54~56" Region="54~56" />
+      <State Expression="57~59" Region="57~59" />
+      <State Expression="60~62" Region="60~62" />
+    </Red_Sum_Pos26>
+    <Red_Sum_Pos34 Display="红球三四位和" Region="7~61" Description="" HelpID="21">
+      <State Expression="7~8" Region="7~8" />
+      <State Expression="9~11" Region="9~11" />
+      <State Expression="12~14" Region="12~14" />
+      <State Expression="15~17" Region="15~17" />
+      <State Expression="18~20" Region="18~20" />
+      <State Expression="21~23" Region="21~23" />
+      <State Expression="24~26" Region="24~26" />
+      <State Expression="27~29" Region="27~29" />
+      <State Expression="30~32" Region="30~32" />
+      <State Expression="33~35" Region="33~35" />
+      <State Expression="36~38" Region="36~38" />
+      <State Expression="39~41" Region="39~41" />
+      <State Expression="42~44" Region="42~44" />
+      <State Expression="45~47" Region="45~47" />
+      <State Expression="48~50" Region="48~50" />
+      <State Expression="51~53" Region="51~53" />
+      <State Expression="54~56" Region="54~56" />
+      <State Expression="57~59" Region="57~59" />
+      <State Expression="60~61" Region="60~61" />
+    </Red_Sum_Pos34>
+    <Red_Sum_Pos35 Display="红球三五位和" Region="8~62" Description="" HelpID="21">
+      <State Expression="8~11" Region="8~11" />
+      <State Expression="12~14" Region="12~14" />
+      <State Expression="15~17" Region="15~17" />
+      <State Expression="18~20" Region="18~20" />
+      <State Expression="21~23" Region="21~23" />
+      <State Expression="24~26" Region="24~26" />
+      <State Expression="27~29" Region="27~29" />
+      <State Expression="30~32" Region="30~32" />
+      <State Expression="33~35" Region="33~35" />
+      <State Expression="36~38" Region="36~38" />
+      <State Expression="39~41" Region="39~41" />
+      <State Expression="42~44" Region="42~44" />
+      <State Expression="45~47" Region="45~47" />
+      <State Expression="48~50" Region="48~50" />
+      <State Expression="51~53" Region="51~53" />
+      <State Expression="54~56" Region="54~56" />
+      <State Expression="57~59" Region="57~59" />
+      <State Expression="60~62" Region="60~62" />
+    </Red_Sum_Pos35>
+    <Red_Sum_Pos36 Display="红球三六位和" Region="9~63" Description="" HelpID="21">
+      <State Expression="9~11" Region="9~11" />
+      <State Expression="12~14" Region="12~14" />
+      <State Expression="15~17" Region="15~17" />
+      <State Expression="18~20" Region="18~20" />
+      <State Expression="21~23" Region="21~23" />
+      <State Expression="24~26" Region="24~26" />
+      <State Expression="27~29" Region="27~29" />
+      <State Expression="30~32" Region="30~32" />
+      <State Expression="33~35" Region="33~35" />
+      <State Expression="36~38" Region="36~38" />
+      <State Expression="39~41" Region="39~41" />
+      <State Expression="42~44" Region="42~44" />
+      <State Expression="45~47" Region="45~47" />
+      <State Expression="48~50" Region="48~50" />
+      <State Expression="51~53" Region="51~53" />
+      <State Expression="54~56" Region="54~56" />
+      <State Expression="57~59" Region="57~59" />
+      <State Expression="60~63" Region="60~63" />
+    </Red_Sum_Pos36>
+    <Red_Sum_Pos45 Display="红球四五位和" Region="9~63" Description="" HelpID="21">
+      <State Expression="9~11" Region="9~11" />
+      <State Expression="12~14" Region="12~14" />
+      <State Expression="15~17" Region="15~17" />
+      <State Expression="18~20" Region="18~20" />
+      <State Expression="21~23" Region="21~23" />
+      <State Expression="24~26" Region="24~26" />
+      <State Expression="27~29" Region="27~29" />
+      <State Expression="30~32" Region="30~32" />
+      <State Expression="33~35" Region="33~35" />
+      <State Expression="36~38" Region="36~38" />
+      <State Expression="39~41" Region="39~41" />
+      <State Expression="42~44" Region="42~44" />
+      <State Expression="45~47" Region="45~47" />
+      <State Expression="48~50" Region="48~50" />
+      <State Expression="51~53" Region="51~53" />
+      <State Expression="54~56" Region="54~56" />
+      <State Expression="57~59" Region="57~59" />
+      <State Expression="60~63" Region="60~63" />
+    </Red_Sum_Pos45>
+    <Red_Sum_Pos46 Display="红球四六位和" Region="10~64" Description="" HelpID="21">
+      <State Expression="10~11" Region="10~11" />
+      <State Expression="12~14" Region="12~14" />
+      <State Expression="15~17" Region="15~17" />
+      <State Expression="18~20" Region="18~20" />
+      <State Expression="21~23" Region="21~23" />
+      <State Expression="24~26" Region="24~26" />
+      <State Expression="27~29" Region="27~29" />
+      <State Expression="30~32" Region="30~32" />
+      <State Expression="33~35" Region="33~35" />
+      <State Expression="36~38" Region="36~38" />
+      <State Expression="39~41" Region="39~41" />
+      <State Expression="42~44" Region="42~44" />
+      <State Expression="45~47" Region="45~47" />
+      <State Expression="48~50" Region="48~50" />
+      <State Expression="51~53" Region="51~53" />
+      <State Expression="54~56" Region="54~56" />
+      <State Expression="57~59" Region="57~59" />
+      <State Expression="60~64" Region="60~64" />
+    </Red_Sum_Pos46>
+    <Red_Sum_Pos56 Display="红球五六位和" Region="11~65" Description="" HelpID="21">
+      <State Expression="11~14" Region="11~14" />
+      <State Expression="15~17" Region="15~17" />
+      <State Expression="18~20" Region="18~20" />
+      <State Expression="21~23" Region="21~23" />
+      <State Expression="24~26" Region="24~26" />
+      <State Expression="27~29" Region="27~29" />
+      <State Expression="30~32" Region="30~32" />
+      <State Expression="33~35" Region="33~35" />
+      <State Expression="36~38" Region="36~38" />
+      <State Expression="39~41" Region="39~41" />
+      <State Expression="42~44" Region="42~44" />
+      <State Expression="45~47" Region="45~47" />
+      <State Expression="48~50" Region="48~50" />
+      <State Expression="51~53" Region="51~53" />
+      <State Expression="54~56" Region="54~56" />
+      <State Expression="57~59" Region="57~59" />
+      <State Expression="60~63" Region="60~63" />
+      <State Expression="64~65" Region="64~65" />
+    </Red_Sum_Pos56>
+  </Red_CompareByPosition_Sum>
+  <Red_CompareByPosition_Diff Display="红球定位差值分析">
+    <Red_Diff_Pos12 Display="红球一二位差" Region="1~28" Description="" HelpID="21">
+      <State Expression="1~2" Region="1~2" />
+      <State Expression="3~4" Region="3~4" />
+      <State Expression="5~6" Region="5~6" />
+      <State Expression="7~8" Region="7~8" />
+      <State Expression="9~10" Region="9~10" />
+      <State Expression="11~12" Region="11~12" />
+      <State Expression="13~14" Region="13~14" />
+      <State Expression="15~16" Region="15~16" />
+      <State Expression="17~18" Region="17~18" />
+      <State Expression="19~20" Region="19~20" />
+      <State Expression="21~22" Region="21~22" />
+      <State Expression="23~24" Region="23~24" />
+      <State Expression="25~26" Region="25~26" />
+      <State Expression="27~28" Region="27~28" />
+    </Red_Diff_Pos12>
+    <Red_Diff_Pos13 Display="红球一三位差" Region="2~29" Description="" HelpID="21">
+      <State Expression="2~4" Region="2~4" />
+      <State Expression="5~6" Region="5~6" />
+      <State Expression="7~8" Region="7~8" />
+      <State Expression="9~10" Region="9~10" />
+      <State Expression="11~12" Region="11~12" />
+      <State Expression="13~14" Region="13~14" />
+      <State Expression="15~16" Region="15~16" />
+      <State Expression="17~18" Region="17~18" />
+      <State Expression="19~20" Region="19~20" />
+      <State Expression="21~22" Region="21~22" />
+      <State Expression="23~24" Region="23~24" />
+      <State Expression="25~26" Region="25~26" />
+      <State Expression="27~29" Region="27~29" />
+    </Red_Diff_Pos13>
+    <Red_Diff_Pos14 Display="红球一四位差" Region="3~30" Description="" HelpID="21">
+      <State Expression="3~4" Region="3~4" />
+      <State Expression="5~6" Region="5~6" />
+      <State Expression="7~8" Region="7~8" />
+      <State Expression="9~10" Region="9~10" />
+      <State Expression="11~12" Region="11~12" />
+      <State Expression="13~14" Region="13~14" />
+      <State Expression="15~16" Region="15~16" />
+      <State Expression="17~18" Region="17~18" />
+      <State Expression="19~20" Region="19~20" />
+      <State Expression="21~22" Region="21~22" />
+      <State Expression="23~24" Region="23~24" />
+      <State Expression="25~26" Region="25~26" />
+      <State Expression="27~28" Region="27~28" />
+      <State Expression="29~30" Region="29~30" />
+    </Red_Diff_Pos14>
+    <Red_Diff_Pos15 Display="红球一五位差" Region="4~31" Description="" HelpID="21">
+      <State Expression="4~6" Region="4~6" />
+      <State Expression="7~8" Region="7~8" />
+      <State Expression="9~10" Region="9~10" />
+      <State Expression="11~12" Region="11~12" />
+      <State Expression="13~14" Region="13~14" />
+      <State Expression="15~16" Region="15~16" />
+      <State Expression="17~18" Region="17~18" />
+      <State Expression="19~20" Region="19~20" />
+      <State Expression="21~22" Region="21~22" />
+      <State Expression="23~24" Region="23~24" />
+      <State Expression="25~26" Region="25~26" />
+      <State Expression="27~28" Region="27~28" />
+      <State Expression="29~31" Region="29~31" />
+    </Red_Diff_Pos15>
+    <Red_Diff_Pos16 Display="红球一六位差" Region="5~32" Description="" HelpID="21">
+      <State Expression="5~6" Region="5~6" />
+      <State Expression="7~8" Region="7~8" />
+      <State Expression="9~10" Region="9~10" />
+      <State Expression="11~12" Region="11~12" />
+      <State Expression="13~14" Region="13~14" />
+      <State Expression="15~16" Region="15~16" />
+      <State Expression="17~18" Region="17~18" />
+      <State Expression="19~20" Region="19~20" />
+      <State Expression="21~22" Region="21~22" />
+      <State Expression="23~24" Region="23~24" />
+      <State Expression="25~26" Region="25~26" />
+      <State Expression="27~28" Region="27~28" />
+      <State Expression="29~30" Region="29~30" />
+      <State Expression="31~32" Region="31~32" />
+    </Red_Diff_Pos16>
+    <Red_Diff_Pos23 Display="红球二三位差" Region="1~28" Description="" HelpID="21">
+      <State Expression="1~2" Region="1~2" />
+      <State Expression="3~4" Region="3~4" />
+      <State Expression="5~6" Region="5~6" />
+      <State Expression="7~8" Region="7~8" />
+      <State Expression="9~10" Region="9~10" />
+      <State Expression="11~12" Region="11~12" />
+      <State Expression="13~14" Region="13~14" />
+      <State Expression="15~16" Region="15~16" />
+      <State Expression="17~18" Region="17~18" />
+      <State Expression="19~20" Region="19~20" />
+      <State Expression="21~22" Region="21~22" />
+      <State Expression="23~24" Region="23~24" />
+      <State Expression="25~26" Region="25~26" />
+      <State Expression="27~28" Region="27~28" />
+    </Red_Diff_Pos23>
+    <Red_Diff_Pos24 Display="红球二四位差" Region="2~29" Description="" HelpID="21">
+      <State Expression="2~4" Region="2~4" />
+      <State Expression="5~6" Region="5~6" />
+      <State Expression="7~8" Region="7~8" />
+      <State Expression="9~10" Region="9~10" />
+      <State Expression="11~12" Region="11~12" />
+      <State Expression="13~14" Region="13~14" />
+      <State Expression="15~16" Region="15~16" />
+      <State Expression="17~18" Region="17~18" />
+      <State Expression="19~20" Region="19~20" />
+      <State Expression="21~22" Region="21~22" />
+      <State Expression="23~24" Region="23~24" />
+      <State Expression="25~26" Region="25~26" />
+      <State Expression="27~29" Region="27~29" />
+    </Red_Diff_Pos24>
+    <Red_Diff_Pos25 Display="红球二五位差" Region="3~30" Description="" HelpID="21">
+      <State Expression="3~4" Region="3~4" />
+      <State Expression="5~6" Region="5~6" />
+      <State Expression="7~8" Region="7~8" />
+      <State Expression="9~10" Region="9~10" />
+      <State Expression="11~12" Region="11~12" />
+      <State Expression="13~14" Region="13~14" />
+      <State Expression="15~16" Region="15~16" />
+      <State Expression="17~18" Region="17~18" />
+      <State Expression="19~20" Region="19~20" />
+      <State Expression="21~22" Region="21~22" />
+      <State Expression="23~24" Region="23~24" />
+      <State Expression="25~26" Region="25~26" />
+      <State Expression="27~28" Region="27~28" />
+      <State Expression="29~30" Region="29~30" />
+    </Red_Diff_Pos25>
+    <Red_Diff_Pos26 Display="红球二六位差" Region="4~31" Description="" HelpID="21">
+      <State Expression="4~6" Region="4~6" />
+      <State Expression="7~8" Region="7~8" />
+      <State Expression="9~10" Region="9~10" />
+      <State Expression="11~12" Region="11~12" />
+      <State Expression="13~14" Region="13~14" />
+      <State Expression="15~16" Region="15~16" />
+      <State Expression="17~18" Region="17~18" />
+      <State Expression="19~20" Region="19~20" />
+      <State Expression="21~22" Region="21~22" />
+      <State Expression="23~24" Region="23~24" />
+      <State Expression="25~26" Region="25~26" />
+      <State Expression="27~28" Region="27~28" />
+      <State Expression="29~31" Region="29~31" />
+    </Red_Diff_Pos26>
+    <Red_Diff_Pos34 Display="红球三四位差" Region="1~28" Description="" HelpID="21">
+      <State Expression="1~2" Region="1~2" />
+      <State Expression="3~4" Region="3~4" />
+      <State Expression="5~6" Region="5~6" />
+      <State Expression="7~8" Region="7~8" />
+      <State Expression="9~10" Region="9~10" />
+      <State Expression="11~12" Region="11~12" />
+      <State Expression="13~14" Region="13~14" />
+      <State Expression="15~16" Region="15~16" />
+      <State Expression="17~18" Region="17~18" />
+      <State Expression="19~20" Region="19~20" />
+      <State Expression="21~22" Region="21~22" />
+      <State Expression="23~24" Region="23~24" />
+      <State Expression="25~26" Region="25~26" />
+      <State Expression="27~28" Region="27~28" />
+    </Red_Diff_Pos34>
+    <Red_Diff_Pos35 Display="红球三五位差" Region="2~29" Description="" HelpID="21">
+      <State Expression="2~4" Region="2~4" />
+      <State Expression="5~6" Region="5~6" />
+      <State Expression="7~8" Region="7~8" />
+      <State Expression="9~10" Region="9~10" />
+      <State Expression="11~12" Region="11~12" />
+      <State Expression="13~14" Region="13~14" />
+      <State Expression="15~16" Region="15~16" />
+      <State Expression="17~18" Region="17~18" />
+      <State Expression="19~20" Region="19~20" />
+      <State Expression="21~22" Region="21~22" />
+      <State Expression="23~24" Region="23~24" />
+      <State Expression="25~26" Region="25~26" />
+      <State Expression="27~29" Region="27~29" />
+    </Red_Diff_Pos35>
+    <Red_Diff_Pos36 Display="红球三六位差" Region="3~30" Description="" HelpID="21">
+      <State Expression="3~4" Region="3~4" />
+      <State Expression="5~6" Region="5~6" />
+      <State Expression="7~8" Region="7~8" />
+      <State Expression="9~10" Region="9~10" />
+      <State Expression="11~12" Region="11~12" />
+      <State Expression="13~14" Region="13~14" />
+      <State Expression="15~16" Region="15~16" />
+      <State Expression="17~18" Region="17~18" />
+      <State Expression="19~20" Region="19~20" />
+      <State Expression="21~22" Region="21~22" />
+      <State Expression="23~24" Region="23~24" />
+      <State Expression="25~26" Region="25~26" />
+      <State Expression="27~28" Region="27~28" />
+      <State Expression="29~30" Region="29~30" />
+    </Red_Diff_Pos36>
+    <Red_Diff_Pos45 Display="红球四五位差" Region="1~28" Description="" HelpID="21">
+      <State Expression="1~2" Region="1~2" />
+      <State Expression="3~4" Region="3~4" />
+      <State Expression="5~6" Region="5~6" />
+      <State Expression="7~8" Region="7~8" />
+      <State Expression="9~10" Region="9~10" />
+      <State Expression="11~12" Region="11~12" />
+      <State Expression="13~14" Region="13~14" />
+      <State Expression="15~16" Region="15~16" />
+      <State Expression="17~18" Region="17~18" />
+      <State Expression="19~20" Region="19~20" />
+      <State Expression="21~22" Region="21~22" />
+      <State Expression="23~24" Region="23~24" />
+      <State Expression="25~26" Region="25~26" />
+      <State Expression="27~28" Region="27~28" />
+    </Red_Diff_Pos45>
+    <Red_Diff_Pos46 Display="红球四六位差" Region="2~29" Description="" HelpID="21">
+      <State Expression="2~4" Region="2~4" />
+      <State Expression="5~6" Region="5~6" />
+      <State Expression="7~8" Region="7~8" />
+      <State Expression="9~10" Region="9~10" />
+      <State Expression="11~12" Region="11~12" />
+      <State Expression="13~14" Region="13~14" />
+      <State Expression="15~16" Region="15~16" />
+      <State Expression="17~18" Region="17~18" />
+      <State Expression="19~20" Region="19~20" />
+      <State Expression="21~22" Region="21~22" />
+      <State Expression="23~24" Region="23~24" />
+      <State Expression="25~26" Region="25~26" />
+      <State Expression="27~29" Region="27~29" />
+    </Red_Diff_Pos46>
+    <Red_Diff_Pos56 Display="红球五六位差" Region="1~28" Description="" HelpID="21">
+      <State Expression="1~2" Region="1~2" />
+      <State Expression="3~4" Region="3~4" />
+      <State Expression="5~6" Region="5~6" />
+      <State Expression="7~8" Region="7~8" />
+      <State Expression="9~10" Region="9~10" />
+      <State Expression="11~12" Region="11~12" />
+      <State Expression="13~14" Region="13~14" />
+      <State Expression="15~16" Region="15~16" />
+      <State Expression="17~18" Region="17~18" />
+      <State Expression="19~20" Region="19~20" />
+      <State Expression="21~22" Region="21~22" />
+      <State Expression="23~24" Region="23~24" />
+      <State Expression="25~26" Region="25~26" />
+      <State Expression="27~28" Region="27~28" />
+    </Red_Diff_Pos56>
+  </Red_CompareByPosition_Diff>
+  <Red_CompareByPosition_Attribute Display="红球定位属性比较分析">
+    <Red_OE_Pos12 Display="红球12位奇偶对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="奇奇" Region="1" />
+      <State Expression="奇偶" Region="2" />
+      <State Expression="偶奇" Region="3" />
+      <State Expression="偶偶" Region="4" />
+    </Red_OE_Pos12>
+    <Red_OE_Pos13 Display="红球13位奇偶对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="奇奇" Region="1" />
+      <State Expression="奇偶" Region="2" />
+      <State Expression="偶奇" Region="3" />
+      <State Expression="偶偶" Region="4" />
+    </Red_OE_Pos13>
+    <Red_OE_Pos14 Display="红球14位奇偶对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="奇奇" Region="1" />
+      <State Expression="奇偶" Region="2" />
+      <State Expression="偶奇" Region="3" />
+      <State Expression="偶偶" Region="4" />
+    </Red_OE_Pos14>
+    <Red_OE_Pos15 Display="红球15位奇偶对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="奇奇" Region="1" />
+      <State Expression="奇偶" Region="2" />
+      <State Expression="偶奇" Region="3" />
+      <State Expression="偶偶" Region="4" />
+    </Red_OE_Pos15>
+    <Red_OE_Pos16 Display="红球16位奇偶对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="奇奇" Region="1" />
+      <State Expression="奇偶" Region="2" />
+      <State Expression="偶奇" Region="3" />
+      <State Expression="偶偶" Region="4" />
+    </Red_OE_Pos16>
+    <Red_OE_Pos23 Display="红球23位奇偶对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="奇奇" Region="1" />
+      <State Expression="奇偶" Region="2" />
+      <State Expression="偶奇" Region="3" />
+      <State Expression="偶偶" Region="4" />
+    </Red_OE_Pos23>
+    <Red_OE_Pos24 Display="红球24位奇偶对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="奇奇" Region="1" />
+      <State Expression="奇偶" Region="2" />
+      <State Expression="偶奇" Region="3" />
+      <State Expression="偶偶" Region="4" />
+    </Red_OE_Pos24>
+    <Red_OE_Pos25 Display="红球25位奇偶对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="奇奇" Region="1" />
+      <State Expression="奇偶" Region="2" />
+      <State Expression="偶奇" Region="3" />
+      <State Expression="偶偶" Region="4" />
+    </Red_OE_Pos25>
+    <Red_OE_Pos26 Display="红球26位奇偶对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="奇奇" Region="1" />
+      <State Expression="奇偶" Region="2" />
+      <State Expression="偶奇" Region="3" />
+      <State Expression="偶偶" Region="4" />
+    </Red_OE_Pos26>
+    <Red_OE_Pos34 Display="红球34位奇偶对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="奇奇" Region="1" />
+      <State Expression="奇偶" Region="2" />
+      <State Expression="偶奇" Region="3" />
+      <State Expression="偶偶" Region="4" />
+    </Red_OE_Pos34>
+    <Red_OE_Pos35 Display="红球35位奇偶对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="奇奇" Region="1" />
+      <State Expression="奇偶" Region="2" />
+      <State Expression="偶奇" Region="3" />
+      <State Expression="偶偶" Region="4" />
+    </Red_OE_Pos35>
+    <Red_OE_Pos36 Display="红球36位奇偶对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="奇奇" Region="1" />
+      <State Expression="奇偶" Region="2" />
+      <State Expression="偶奇" Region="3" />
+      <State Expression="偶偶" Region="4" />
+    </Red_OE_Pos36>
+    <Red_OE_Pos45 Display="红球45位奇偶对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="奇奇" Region="1" />
+      <State Expression="奇偶" Region="2" />
+      <State Expression="偶奇" Region="3" />
+      <State Expression="偶偶" Region="4" />
+    </Red_OE_Pos45>
+    <Red_OE_Pos46 Display="红球46位奇偶对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="奇奇" Region="1" />
+      <State Expression="奇偶" Region="2" />
+      <State Expression="偶奇" Region="3" />
+      <State Expression="偶偶" Region="4" />
+    </Red_OE_Pos46>
+    <Red_OE_Pos56 Display="红球56位奇偶对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="奇奇" Region="1" />
+      <State Expression="奇偶" Region="2" />
+      <State Expression="偶奇" Region="3" />
+      <State Expression="偶偶" Region="4" />
+    </Red_OE_Pos56>
+    <Red_PC_Pos12 Display="红球12位质合对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="质质" Region="1" />
+      <State Expression="质合" Region="2" />
+      <State Expression="合质" Region="3" />
+      <State Expression="合合" Region="4" />
+    </Red_PC_Pos12>
+    <Red_PC_Pos13 Display="红球13位质合对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="质质" Region="1" />
+      <State Expression="质合" Region="2" />
+      <State Expression="合质" Region="3" />
+      <State Expression="合合" Region="4" />
+    </Red_PC_Pos13>
+    <Red_PC_Pos14 Display="红球14位质合对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="质质" Region="1" />
+      <State Expression="质合" Region="2" />
+      <State Expression="合质" Region="3" />
+      <State Expression="合合" Region="4" />
+    </Red_PC_Pos14>
+    <Red_PC_Pos15 Display="红球15位质合对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="质质" Region="1" />
+      <State Expression="质合" Region="2" />
+      <State Expression="合质" Region="3" />
+      <State Expression="合合" Region="4" />
+    </Red_PC_Pos15>
+    <Red_PC_Pos16 Display="红球16位质合对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="质质" Region="1" />
+      <State Expression="质合" Region="2" />
+      <State Expression="合质" Region="3" />
+      <State Expression="合合" Region="4" />
+    </Red_PC_Pos16>
+    <Red_PC_Pos23 Display="红球23位质合对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="质质" Region="1" />
+      <State Expression="质合" Region="2" />
+      <State Expression="合质" Region="3" />
+      <State Expression="合合" Region="4" />
+    </Red_PC_Pos23>
+    <Red_PC_Pos24 Display="红球24位质合对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="质质" Region="1" />
+      <State Expression="质合" Region="2" />
+      <State Expression="合质" Region="3" />
+      <State Expression="合合" Region="4" />
+    </Red_PC_Pos24>
+    <Red_PC_Pos25 Display="红球25位质合对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="质质" Region="1" />
+      <State Expression="质合" Region="2" />
+      <State Expression="合质" Region="3" />
+      <State Expression="合合" Region="4" />
+    </Red_PC_Pos25>
+    <Red_PC_Pos26 Display="红球26位质合对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="质质" Region="1" />
+      <State Expression="质合" Region="2" />
+      <State Expression="合质" Region="3" />
+      <State Expression="合合" Region="4" />
+    </Red_PC_Pos26>
+    <Red_PC_Pos34 Display="红球34位质合对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="质质" Region="1" />
+      <State Expression="质合" Region="2" />
+      <State Expression="合质" Region="3" />
+      <State Expression="合合" Region="4" />
+    </Red_PC_Pos34>
+    <Red_PC_Pos35 Display="红球35位质合对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="质质" Region="1" />
+      <State Expression="质合" Region="2" />
+      <State Expression="合质" Region="3" />
+      <State Expression="合合" Region="4" />
+    </Red_PC_Pos35>
+    <Red_PC_Pos36 Display="红球36位质合对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="质质" Region="1" />
+      <State Expression="质合" Region="2" />
+      <State Expression="合质" Region="3" />
+      <State Expression="合合" Region="4" />
+    </Red_PC_Pos36>
+    <Red_PC_Pos45 Display="红球45位质合对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="质质" Region="1" />
+      <State Expression="质合" Region="2" />
+      <State Expression="合质" Region="3" />
+      <State Expression="合合" Region="4" />
+    </Red_PC_Pos45>
+    <Red_PC_Pos46 Display="红球46位质合对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="质质" Region="1" />
+      <State Expression="质合" Region="2" />
+      <State Expression="合质" Region="3" />
+      <State Expression="合合" Region="4" />
+    </Red_PC_Pos46>
+    <Red_PC_Pos56 Display="红球56位质合对比" Region="1~4" Description="" HelpID="21">
+      <State Expression="质质" Region="1" />
+      <State Expression="质合" Region="2" />
+      <State Expression="合质" Region="3" />
+      <State Expression="合合" Region="4" />
+    </Red_PC_Pos56>
+    <Red_WX_Pos12 Display="红球12位五行对比" Region="1~25" Description="" HelpID="21">
+      <State Expression="金金" Region="1" />
+      <State Expression="金木" Region="2" />
+      <State Expression="金水" Region="3" />
+      <State Expression="金火" Region="4" />
+      <State Expression="金土" Region="5" />
+      <State Expression="木金" Region="6" />
+      <State Expression="木木" Region="7" />
+      <State Expression="木水" Region="8" />
+      <State Expression="木火" Region="9" />
+      <State Expression="木土" Region="10" />
+      <State Expression="水金" Region="11" />
+      <State Expression="水木" Region="12" />
+      <State Expression="水水" Region="13" />
+      <State Expression="水火" Region="14" />
+      <State Expression="水土" Region="15" />
+      <State Expression="火金" Region="16" />
+      <State Expression="火木" Region="17" />
+      <State Expression="火水" Region="18" />
+      <State Expression="火火" Region="19" />
+      <State Expression="火土" Region="20" />
+      <State Expression="土金" Region="21" />
+      <State Expression="土木" Region="22" />
+      <State Expression="土水" Region="23" />
+      <State Expression="土火" Region="24" />
+      <State Expression="土土" Region="25" />
+    </Red_WX_Pos12>
+    <Red_WX_Pos13 Display="红球13位五行对比" Region="1~25" Description="" HelpID="21">
+      <State Expression="金金" Region="1" />
+      <State Expression="金木" Region="2" />
+      <State Expression="金水" Region="3" />
+      <State Expression="金火" Region="4" />
+      <State Expression="金土" Region="5" />
+      <State Expression="木金" Region="6" />
+      <State Expression="木木" Region="7" />
+      <State Expression="木水" Region="8" />
+      <State Expression="木火" Region="9" />
+      <State Expression="木土" Region="10" />
+      <State Expression="水金" Region="11" />
+      <State Expression="水木" Region="12" />
+      <State Expression="水水" Region="13" />
+      <State Expression="水火" Region="14" />
+      <State Expression="水土" Region="15" />
+      <State Expression="火金" Region="16" />
+      <State Expression="火木" Region="17" />
+      <State Expression="火水" Region="18" />
+      <State Expression="火火" Region="19" />
+      <State Expression="火土" Region="20" />
+      <State Expression="土金" Region="21" />
+      <State Expression="土木" Region="22" />
+      <State Expression="土水" Region="23" />
+      <State Expression="土火" Region="24" />
+      <State Expression="土土" Region="25" />
+    </Red_WX_Pos13>
+    <Red_WX_Pos14 Display="红球14位五行对比" Region="1~25" Description="" HelpID="21">
+      <State Expression="金金" Region="1" />
+      <State Expression="金木" Region="2" />
+      <State Expression="金水" Region="3" />
+      <State Expression="金火" Region="4" />
+      <State Expression="金土" Region="5" />
+      <State Expression="木金" Region="6" />
+      <State Expression="木木" Region="7" />
+      <State Expression="木水" Region="8" />
+      <State Expression="木火" Region="9" />
+      <State Expression="木土" Region="10" />
+      <State Expression="水金" Region="11" />
+      <State Expression="水木" Region="12" />
+      <State Expression="水水" Region="13" />
+      <State Expression="水火" Region="14" />
+      <State Expression="水土" Region="15" />
+      <State Expression="火金" Region="16" />
+      <State Expression="火木" Region="17" />
+      <State Expression="火水" Region="18" />
+      <State Expression="火火" Region="19" />
+      <State Expression="火土" Region="20" />
+      <State Expression="土金" Region="21" />
+      <State Expression="土木" Region="22" />
+      <State Expression="土水" Region="23" />
+      <State Expression="土火" Region="24" />
+      <State Expression="土土" Region="25" />
+    </Red_WX_Pos14>
+    <Red_WX_Pos15 Display="红球15位五行对比" Region="1~25" Description="" HelpID="21">
+      <State Expression="金金" Region="1" />
+      <State Expression="金木" Region="2" />
+      <State Expression="金水" Region="3" />
+      <State Expression="金火" Region="4" />
+      <State Expression="金土" Region="5" />
+      <State Expression="木金" Region="6" />
+      <State Expression="木木" Region="7" />
+      <State Expression="木水" Region="8" />
+      <State Expression="木火" Region="9" />
+      <State Expression="木土" Region="10" />
+      <State Expression="水金" Region="11" />
+      <State Expression="水木" Region="12" />
+      <State Expression="水水" Region="13" />
+      <State Expression="水火" Region="14" />
+      <State Expression="水土" Region="15" />
+      <State Expression="火金" Region="16" />
+      <State Expression="火木" Region="17" />
+      <State Expression="火水" Region="18" />
+      <State Expression="火火" Region="19" />
+      <State Expression="火土" Region="20" />
+      <State Expression="土金" Region="21" />
+      <State Expression="土木" Region="22" />
+      <State Expression="土水" Region="23" />
+      <State Expression="土火" Region="24" />
+      <State Expression="土土" Region="25" />
+    </Red_WX_Pos15>
+    <Red_WX_Pos16 Display="红球16位五行对比" Region="1~25" Description="" HelpID="21">
+      <State Expression="金金" Region="1" />
+      <State Expression="金木" Region="2" />
+      <State Expression="金水" Region="3" />
+      <State Expression="金火" Region="4" />
+      <State Expression="金土" Region="5" />
+      <State Expression="木金" Region="6" />
+      <State Expression="木木" Region="7" />
+      <State Expression="木水" Region="8" />
+      <State Expression="木火" Region="9" />
+      <State Expression="木土" Region="10" />
+      <State Expression="水金" Region="11" />
+      <State Expression="水木" Region="12" />
+      <State Expression="水水" Region="13" />
+      <State Expression="水火" Region="14" />
+      <State Expression="水土" Region="15" />
+      <State Expression="火金" Region="16" />
+      <State Expression="火木" Region="17" />
+      <State Expression="火水" Region="18" />
+      <State Expression="火火" Region="19" />
+      <State Expression="火土" Region="20" />
+      <State Expression="土金" Region="21" />
+      <State Expression="土木" Region="22" />
+      <State Expression="土水" Region="23" />
+      <State Expression="土火" Region="24" />
+      <State Expression="土土" Region="25" />
+    </Red_WX_Pos16>
+    <Red_WX_Pos23 Display="红球23位五行对比" Region="1~25" Description="" HelpID="21">
+      <State Expression="金金" Region="1" />
+      <State Expression="金木" Region="2" />
+      <State Expression="金水" Region="3" />
+      <State Expression="金火" Region="4" />
+      <State Expression="金土" Region="5" />
+      <State Expression="木金" Region="6" />
+      <State Expression="木木" Region="7" />
+      <State Expression="木水" Region="8" />
+      <State Expression="木火" Region="9" />
+      <State Expression="木土" Region="10" />
+      <State Expression="水金" Region="11" />
+      <State Expression="水木" Region="12" />
+      <State Expression="水水" Region="13" />
+      <State Expression="水火" Region="14" />
+      <State Expression="水土" Region="15" />
+      <State Expression="火金" Region="16" />
+      <State Expression="火木" Region="17" />
+      <State Expression="火水" Region="18" />
+      <State Expression="火火" Region="19" />
+      <State Expression="火土" Region="20" />
+      <State Expression="土金" Region="21" />
+      <State Expression="土木" Region="22" />
+      <State Expression="土水" Region="23" />
+      <State Expression="土火" Region="24" />
+      <State Expression="土土" Region="25" />
+    </Red_WX_Pos23>
+    <Red_WX_Pos24 Display="红球24位五行对比" Region="1~25" Description="" HelpID="21">
+      <State Expression="金金" Region="1" />
+      <State Expression="金木" Region="2" />
+      <State Expression="金水" Region="3" />
+      <State Expression="金火" Region="4" />
+      <State Expression="金土" Region="5" />
+      <State Expression="木金" Region="6" />
+      <State Expression="木木" Region="7" />
+      <State Expression="木水" Region="8" />
+      <State Expression="木火" Region="9" />
+      <State Expression="木土" Region="10" />
+      <State Expression="水金" Region="11" />
+      <State Expression="水木" Region="12" />
+      <State Expression="水水" Region="13" />
+      <State Expression="水火" Region="14" />
+      <State Expression="水土" Region="15" />
+      <State Expression="火金" Region="16" />
+      <State Expression="火木" Region="17" />
+      <State Expression="火水" Region="18" />
+      <State Expression="火火" Region="19" />
+      <State Expression="火土" Region="20" />
+      <State Expression="土金" Region="21" />
+      <State Expression="土木" Region="22" />
+      <State Expression="土水" Region="23" />
+      <State Expression="土火" Region="24" />
+      <State Expression="土土" Region="25" />
+    </Red_WX_Pos24>
+    <Red_WX_Pos25 Display="红球25位五行对比" Region="1~25" Description="" HelpID="21">
+      <State Expression="金金" Region="1" />
+      <State Expression="金木" Region="2" />
+      <State Expression="金水" Region="3" />
+      <State Expression="金火" Region="4" />
+      <State Expression="金土" Region="5" />
+      <State Expression="木金" Region="6" />
+      <State Expression="木木" Region="7" />
+      <State Expression="木水" Region="8" />
+      <State Expression="木火" Region="9" />
+      <State Expression="木土" Region="10" />
+      <State Expression="水金" Region="11" />
+      <State Expression="水木" Region="12" />
+      <State Expression="水水" Region="13" />
+      <State Expression="水火" Region="14" />
+      <State Expression="水土" Region="15" />
+      <State Expression="火金" Region="16" />
+      <State Expression="火木" Region="17" />
+      <State Expression="火水" Region="18" />
+      <State Expression="火火" Region="19" />
+      <State Expression="火土" Region="20" />
+      <State Expression="土金" Region="21" />
+      <State Expression="土木" Region="22" />
+      <State Expression="土水" Region="23" />
+      <State Expression="土火" Region="24" />
+      <State Expression="土土" Region="25" />
+    </Red_WX_Pos25>
+    <Red_WX_Pos26 Display="红球26位五行对比" Region="1~25" Description="" HelpID="21">
+      <State Expression="金金" Region="1" />
+      <State Expression="金木" Region="2" />
+      <State Expression="金水" Region="3" />
+      <State Expression="金火" Region="4" />
+      <State Expression="金土" Region="5" />
+      <State Expression="木金" Region="6" />
+      <State Expression="木木" Region="7" />
+      <State Expression="木水" Region="8" />
+      <State Expression="木火" Region="9" />
+      <State Expression="木土" Region="10" />
+      <State Expression="水金" Region="11" />
+      <State Expression="水木" Region="12" />
+      <State Expression="水水" Region="13" />
+      <State Expression="水火" Region="14" />
+      <State Expression="水土" Region="15" />
+      <State Expression="火金" Region="16" />
+      <State Expression="火木" Region="17" />
+      <State Expression="火水" Region="18" />
+      <State Expression="火火" Region="19" />
+      <State Expression="火土" Region="20" />
+      <State Expression="土金" Region="21" />
+      <State Expression="土木" Region="22" />
+      <State Expression="土水" Region="23" />
+      <State Expression="土火" Region="24" />
+      <State Expression="土土" Region="25" />
+    </Red_WX_Pos26>
+    <Red_WX_Pos34 Display="红球34位五行对比" Region="1~25" Description="" HelpID="21">
+      <State Expression="金金" Region="1" />
+      <State Expression="金木" Region="2" />
+      <State Expression="金水" Region="3" />
+      <State Expression="金火" Region="4" />
+      <State Expression="金土" Region="5" />
+      <State Expression="木金" Region="6" />
+      <State Expression="木木" Region="7" />
+      <State Expression="木水" Region="8" />
+      <State Expression="木火" Region="9" />
+      <State Expression="木土" Region="10" />
+      <State Expression="水金" Region="11" />
+      <State Expression="水木" Region="12" />
+      <State Expression="水水" Region="13" />
+      <State Expression="水火" Region="14" />
+      <State Expression="水土" Region="15" />
+      <State Expression="火金" Region="16" />
+      <State Expression="火木" Region="17" />
+      <State Expression="火水" Region="18" />
+      <State Expression="火火" Region="19" />
+      <State Expression="火土" Region="20" />
+      <State Expression="土金" Region="21" />
+      <State Expression="土木" Region="22" />
+      <State Expression="土水" Region="23" />
+      <State Expression="土火" Region="24" />
+      <State Expression="土土" Region="25" />
+    </Red_WX_Pos34>
+    <Red_WX_Pos35 Display="红球35位五行对比" Region="1~25" Description="" HelpID="21">
+      <State Expression="金金" Region="1" />
+      <State Expression="金木" Region="2" />
+      <State Expression="金水" Region="3" />
+      <State Expression="金火" Region="4" />
+      <State Expression="金土" Region="5" />
+      <State Expression="木金" Region="6" />
+      <State Expression="木木" Region="7" />
+      <State Expression="木水" Region="8" />
+      <State Expression="木火" Region="9" />
+      <State Expression="木土" Region="10" />
+      <State Expression="水金" Region="11" />
+      <State Expression="水木" Region="12" />
+      <State Expression="水水" Region="13" />
+      <State Expression="水火" Region="14" />
+      <State Expression="水土" Region="15" />
+      <State Expression="火金" Region="16" />
+      <State Expression="火木" Region="17" />
+      <State Expression="火水" Region="18" />
+      <State Expression="火火" Region="19" />
+      <State Expression="火土" Region="20" />
+      <State Expression="土金" Region="21" />
+      <State Expression="土木" Region="22" />
+      <State Expression="土水" Region="23" />
+      <State Expression="土火" Region="24" />
+      <State Expression="土土" Region="25" />
+    </Red_WX_Pos35>
+    <Red_WX_Pos36 Display="红球36位五行对比" Region="1~25" Description="" HelpID="21">
+      <State Expression="金金" Region="1" />
+      <State Expression="金木" Region="2" />
+      <State Expression="金水" Region="3" />
+      <State Expression="金火" Region="4" />
+      <State Expression="金土" Region="5" />
+      <State Expression="木金" Region="6" />
+      <State Expression="木木" Region="7" />
+      <State Expression="木水" Region="8" />
+      <State Expression="木火" Region="9" />
+      <State Expression="木土" Region="10" />
+      <State Expression="水金" Region="11" />
+      <State Expression="水木" Region="12" />
+      <State Expression="水水" Region="13" />
+      <State Expression="水火" Region="14" />
+      <State Expression="水土" Region="15" />
+      <State Expression="火金" Region="16" />
+      <State Expression="火木" Region="17" />
+      <State Expression="火水" Region="18" />
+      <State Expression="火火" Region="19" />
+      <State Expression="火土" Region="20" />
+      <State Expression="土金" Region="21" />
+      <State Expression="土木" Region="22" />
+      <State Expression="土水" Region="23" />
+      <State Expression="土火" Region="24" />
+      <State Expression="土土" Region="25" />
+    </Red_WX_Pos36>
+    <Red_WX_Pos45 Display="红球45位五行对比" Region="1~25" Description="" HelpID="21">
+      <State Expression="金金" Region="1" />
+      <State Expression="金木" Region="2" />
+      <State Expression="金水" Region="3" />
+      <State Expression="金火" Region="4" />
+      <State Expression="金土" Region="5" />
+      <State Expression="木金" Region="6" />
+      <State Expression="木木" Region="7" />
+      <State Expression="木水" Region="8" />
+      <State Expression="木火" Region="9" />
+      <State Expression="木土" Region="10" />
+      <State Expression="水金" Region="11" />
+      <State Expression="水木" Region="12" />
+      <State Expression="水水" Region="13" />
+      <State Expression="水火" Region="14" />
+      <State Expression="水土" Region="15" />
+      <State Expression="火金" Region="16" />
+      <State Expression="火木" Region="17" />
+      <State Expression="火水" Region="18" />
+      <State Expression="火火" Region="19" />
+      <State Expression="火土" Region="20" />
+      <State Expression="土金" Region="21" />
+      <State Expression="土木" Region="22" />
+      <State Expression="土水" Region="23" />
+      <State Expression="土火" Region="24" />
+      <State Expression="土土" Region="25" />
+    </Red_WX_Pos45>
+    <Red_WX_Pos46 Display="红球46位五行对比" Region="1~25" Description="" HelpID="21">
+      <State Expression="金金" Region="1" />
+      <State Expression="金木" Region="2" />
+      <State Expression="金水" Region="3" />
+      <State Expression="金火" Region="4" />
+      <State Expression="金土" Region="5" />
+      <State Expression="木金" Region="6" />
+      <State Expression="木木" Region="7" />
+      <State Expression="木水" Region="8" />
+      <State Expression="木火" Region="9" />
+      <State Expression="木土" Region="10" />
+      <State Expression="水金" Region="11" />
+      <State Expression="水木" Region="12" />
+      <State Expression="水水" Region="13" />
+      <State Expression="水火" Region="14" />
+      <State Expression="水土" Region="15" />
+      <State Expression="火金" Region="16" />
+      <State Expression="火木" Region="17" />
+      <State Expression="火水" Region="18" />
+      <State Expression="火火" Region="19" />
+      <State Expression="火土" Region="20" />
+      <State Expression="土金" Region="21" />
+      <State Expression="土木" Region="22" />
+      <State Expression="土水" Region="23" />
+      <State Expression="土火" Region="24" />
+      <State Expression="土土" Region="25" />
+    </Red_WX_Pos46>
+    <Red_WX_Pos56 Display="红球56位五行对比" Region="1~25" Description="" HelpID="21">
+      <State Expression="金金" Region="1" />
+      <State Expression="金木" Region="2" />
+      <State Expression="金水" Region="3" />
+      <State Expression="金火" Region="4" />
+      <State Expression="金土" Region="5" />
+      <State Expression="木金" Region="6" />
+      <State Expression="木木" Region="7" />
+      <State Expression="木水" Region="8" />
+      <State Expression="木火" Region="9" />
+      <State Expression="木土" Region="10" />
+      <State Expression="水金" Region="11" />
+      <State Expression="水木" Region="12" />
+      <State Expression="水水" Region="13" />
+      <State Expression="水火" Region="14" />
+      <State Expression="水土" Region="15" />
+      <State Expression="火金" Region="16" />
+      <State Expression="火木" Region="17" />
+      <State Expression="火水" Region="18" />
+      <State Expression="火火" Region="19" />
+      <State Expression="火土" Region="20" />
+      <State Expression="土金" Region="21" />
+      <State Expression="土木" Region="22" />
+      <State Expression="土水" Region="23" />
+      <State Expression="土火" Region="24" />
+      <State Expression="土土" Region="25" />
+    </Red_WX_Pos56>
+    <Red_012_Pos12 Display="红球12位012对比" Region="1~9" Description="" HelpID="21">
+      <State Expression="0-0" Region="1" />
+      <State Expression="0-1" Region="2" />
+      <State Expression="0-2" Region="3" />
+      <State Expression="1-0" Region="4" />
+      <State Expression="1-1" Region="5" />
+      <State Expression="1-2" Region="6" />
+      <State Expression="2-0" Region="7" />
+      <State Expression="2-1" Region="8" />
+      <State Expression="2-2" Region="9" />
+    </Red_012_Pos12>
+    <Red_012_Pos13 Display="红球13位012对比" Region="1~9" Description="" HelpID="21">
+      <State Expression="0-0" Region="1" />
+      <State Expression="0-1" Region="2" />
+      <State Expression="0-2" Region="3" />
+      <State Expression="1-0" Region="4" />
+      <State Expression="1-1" Region="5" />
+      <State Expression="1-2" Region="6" />
+      <State Expression="2-0" Region="7" />
+      <State Expression="2-1" Region="8" />
+      <State Expression="2-2" Region="9" />
+    </Red_012_Pos13>
+    <Red_012_Pos14 Display="红球14位012对比" Region="1~9" Description="" HelpID="21">
+      <State Expression="0-0" Region="1" />
+      <State Expression="0-1" Region="2" />
+      <State Expression="0-2" Region="3" />
+      <State Expression="1-0" Region="4" />
+      <State Expression="1-1" Region="5" />
+      <State Expression="1-2" Region="6" />
+      <State Expression="2-0" Region="7" />
+      <State Expression="2-1" Region="8" />
+      <State Expression="2-2" Region="9" />
+    </Red_012_Pos14>
+    <Red_012_Pos15 Display="红球15位012对比" Region="1~9" Description="" HelpID="21">
+      <State Expression="0-0" Region="1" />
+      <State Expression="0-1" Region="2" />
+      <State Expression="0-2" Region="3" />
+      <State Expression="1-0" Region="4" />
+      <State Expression="1-1" Region="5" />
+      <State Expression="1-2" Region="6" />
+      <State Expression="2-0" Region="7" />
+      <State Expression="2-1" Region="8" />
+      <State Expression="2-2" Region="9" />
+    </Red_012_Pos15>
+    <Red_012_Pos16 Display="红球16位012对比" Region="1~9" Description="" HelpID="21">
+      <State Expression="0-0" Region="1" />
+      <State Expression="0-1" Region="2" />
+      <State Expression="0-2" Region="3" />
+      <State Expression="1-0" Region="4" />
+      <State Expression="1-1" Region="5" />
+      <State Expression="1-2" Region="6" />
+      <State Expression="2-0" Region="7" />
+      <State Expression="2-1" Region="8" />
+      <State Expression="2-2" Region="9" />
+    </Red_012_Pos16>
+    <Red_012_Pos23 Display="红球23位012对比" Region="1~9" Description="" HelpID="21">
+      <State Expression="0-0" Region="1" />
+      <State Expression="0-1" Region="2" />
+      <State Expression="0-2" Region="3" />
+      <State Expression="1-0" Region="4" />
+      <State Expression="1-1" Region="5" />
+      <State Expression="1-2" Region="6" />
+      <State Expression="2-0" Region="7" />
+      <State Expression="2-1" Region="8" />
+      <State Expression="2-2" Region="9" />
+    </Red_012_Pos23>
+    <Red_012_Pos24 Display="红球24位012对比" Region="1~9" Description="" HelpID="21">
+      <State Expression="0-0" Region="1" />
+      <State Expression="0-1" Region="2" />
+      <State Expression="0-2" Region="3" />
+      <State Expression="1-0" Region="4" />
+      <State Expression="1-1" Region="5" />
+      <State Expression="1-2" Region="6" />
+      <State Expression="2-0" Region="7" />
+      <State Expression="2-1" Region="8" />
+      <State Expression="2-2" Region="9" />
+    </Red_012_Pos24>
+    <Red_012_Pos25 Display="红球25位012对比" Region="1~9" Description="" HelpID="21">
+      <State Expression="0-0" Region="1" />
+      <State Expression="0-1" Region="2" />
+      <State Expression="0-2" Region="3" />
+      <State Expression="1-0" Region="4" />
+      <State Expression="1-1" Region="5" />
+      <State Expression="1-2" Region="6" />
+      <State Expression="2-0" Region="7" />
+      <State Expression="2-1" Region="8" />
+      <State Expression="2-2" Region="9" />
+    </Red_012_Pos25>
+    <Red_012_Pos26 Display="红球26位012对比" Region="1~9" Description="" HelpID="21">
+      <State Expression="0-0" Region="1" />
+      <State Expression="0-1" Region="2" />
+      <State Expression="0-2" Region="3" />
+      <State Expression="1-0" Region="4" />
+      <State Expression="1-1" Region="5" />
+      <State Expression="1-2" Region="6" />
+      <State Expression="2-0" Region="7" />
+      <State Expression="2-1" Region="8" />
+      <State Expression="2-2" Region="9" />
+    </Red_012_Pos26>
+    <Red_012_Pos34 Display="红球34位012对比" Region="1~9" Description="" HelpID="21">
+      <State Expression="0-0" Region="1" />
+      <State Expression="0-1" Region="2" />
+      <State Expression="0-2" Region="3" />
+      <State Expression="1-0" Region="4" />
+      <State Expression="1-1" Region="5" />
+      <State Expression="1-2" Region="6" />
+      <State Expression="2-0" Region="7" />
+      <State Expression="2-1" Region="8" />
+      <State Expression="2-2" Region="9" />
+    </Red_012_Pos34>
+    <Red_012_Pos35 Display="红球35位012对比" Region="1~9" Description="" HelpID="21">
+      <State Expression="0-0" Region="1" />
+      <State Expression="0-1" Region="2" />
+      <State Expression="0-2" Region="3" />
+      <State Expression="1-0" Region="4" />
+      <State Expression="1-1" Region="5" />
+      <State Expression="1-2" Region="6" />
+      <State Expression="2-0" Region="7" />
+      <State Expression="2-1" Region="8" />
+      <State Expression="2-2" Region="9" />
+    </Red_012_Pos35>
+    <Red_012_Pos36 Display="红球36位012对比" Region="1~9" Description="" HelpID="21">
+      <State Expression="0-0" Region="1" />
+      <State Expression="0-1" Region="2" />
+      <State Expression="0-2" Region="3" />
+      <State Expression="1-0" Region="4" />
+      <State Expression="1-1" Region="5" />
+      <State Expression="1-2" Region="6" />
+      <State Expression="2-0" Region="7" />
+      <State Expression="2-1" Region="8" />
+      <State Expression="2-2" Region="9" />
+    </Red_012_Pos36>
+    <Red_012_Pos45 Display="红球45位012对比" Region="1~9" Description="" HelpID="21">
+      <State Expression="0-0" Region="1" />
+      <State Expression="0-1" Region="2" />
+      <State Expression="0-2" Region="3" />
+      <State Expression="1-0" Region="4" />
+      <State Expression="1-1" Region="5" />
+      <State Expression="1-2" Region="6" />
+      <State Expression="2-0" Region="7" />
+      <State Expression="2-1" Region="8" />
+      <State Expression="2-2" Region="9" />
+    </Red_012_Pos45>
+    <Red_012_Pos46 Display="红球46位012对比" Region="1~9" Description="" HelpID="21">
+      <State Expression="0-0" Region="1" />
+      <State Expression="0-1" Region="2" />
+      <State Expression="0-2" Region="3" />
+      <State Expression="1-0" Region="4" />
+      <State Expression="1-1" Region="5" />
+      <State Expression="1-2" Region="6" />
+      <State Expression="2-0" Region="7" />
+      <State Expression="2-1" Region="8" />
+      <State Expression="2-2" Region="9" />
+    </Red_012_Pos46>
+    <Red_012_Pos56 Display="红球56位012对比" Region="1~9" Description="" HelpID="21">
+      <State Expression="0-0" Region="1" />
+      <State Expression="0-1" Region="2" />
+      <State Expression="0-2" Region="3" />
+      <State Expression="1-0" Region="4" />
+      <State Expression="1-1" Region="5" />
+      <State Expression="1-2" Region="6" />
+      <State Expression="2-0" Region="7" />
+      <State Expression="2-1" Region="8" />
+      <State Expression="2-2" Region="9" />
+    </Red_012_Pos56>
+  </Red_CompareByPosition_Attribute>
+  <Blue_BasicAttribute Display="蓝球属性分析">
+    <Blue_Mantissa_Omission Display="蓝球尾数" Region="0~9" Description="" HelpID="22">
+      <State Expression="0" Region="0" />
+      <State Expression="1" Region="1" />
+      <State Expression="2" Region="2" />
+      <State Expression="3" Region="3" />
+      <State Expression="4" Region="4" />
+      <State Expression="5" Region="5" />
+      <State Expression="6" Region="6" />
+      <State Expression="7" Region="7" />
+      <State Expression="8" Region="8" />
+      <State Expression="9" Region="9" />
+    </Blue_Mantissa_Omission>
+    <Blue_Omission Display="蓝球遗漏" Region="1~16" Description="" HelpID="23">
+      <State Expression="1" Region="1" />
+      <State Expression="2" Region="2" />
+      <State Expression="3" Region="3" />
+      <State Expression="4" Region="4" />
+      <State Expression="5" Region="5" />
+      <State Expression="6" Region="6" />
+      <State Expression="7" Region="7" />
+      <State Expression="8" Region="8" />
+      <State Expression="9" Region="9" />
+      <State Expression="10" Region="10" />
+      <State Expression="11" Region="11" />
+      <State Expression="12" Region="12" />
+      <State Expression="13" Region="13" />
+      <State Expression="14" Region="14" />
+      <State Expression="15" Region="15" />
+      <State Expression="16" Region="16" />
+    </Blue_Omission>
+    <Blue_Amplitude Display="蓝球振幅" Region="0~15" Description="" HelpID="24">
+      <State Expression="0" Region="0" />
+      <State Expression="1" Region="1" />
+      <State Expression="2" Region="2" />
+      <State Expression="3" Region="3" />
+      <State Expression="4" Region="4" />
+      <State Expression="5" Region="5" />
+      <State Expression="6" Region="6" />
+      <State Expression="7" Region="7" />
+      <State Expression="8" Region="8" />
+      <State Expression="9" Region="9" />
+      <State Expression="10" Region="10" />
+      <State Expression="11" Region="11" />
+      <State Expression="12" Region="12" />
+      <State Expression="13" Region="13" />
+      <State Expression="14" Region="14" />
+      <State Expression="15" Region="15" />
+    </Blue_Amplitude>
+  </Blue_BasicAttribute>
+  <Blue_Matrix Display="蓝球行列分析">
+    <Blue_Rows Display="蓝球行" Region="1~4" Description="" HelpID="25">
+      <State Expression="第一行" Region="1" />
+      <State Expression="第二行" Region="2" />
+      <State Expression="第三行" Region="3" />
+      <State Expression="第四行" Region="4" />
+    </Blue_Rows>
+    <Blue_Columns Display="蓝球列" Region="1~4" Description="" HelpID="25">
+      <State Expression="第一列" Region="1" />
+      <State Expression="第二列" Region="2" />
+      <State Expression="第三列" Region="3" />
+      <State Expression="第四列" Region="4" />
+    </Blue_Columns>
+  </Blue_Matrix>
+  <Blue_Mantissa_Repeat_Previous Display="蓝球尾隔期重现分析">
+    <Blue_Mantissa_Repeat_Previous_0 Display="蓝球隔0期" Region="0~1" Description="" HelpID="26">
+      <State Expression="不出" Region="0" />
+      <State Expression="重现" Region="1" />
+    </Blue_Mantissa_Repeat_Previous_0>
+    <Blue_Mantissa_Repeat_Previous_1 Display="蓝球隔1期" Region="0~1" Description="" HelpID="26">
+      <State Expression="不出" Region="0" />
+      <State Expression="重现" Region="1" />
+    </Blue_Mantissa_Repeat_Previous_1>
+    <Blue_Mantissa_Repeat_Previous_2 Display="蓝球隔2期" Region="0~1" Description="" HelpID="26">
+      <State Expression="不出" Region="0" />
+      <State Expression="重现" Region="1" />
+    </Blue_Mantissa_Repeat_Previous_2>
+    <Blue_Mantissa_Repeat_Previous_3 Display="蓝球隔3期" Region="0~1" Description="" HelpID="26">
+      <State Expression="不出" Region="0" />
+      <State Expression="重现" Region="1" />
+    </Blue_Mantissa_Repeat_Previous_3>
+    <Blue_Mantissa_Repeat_Previous_4 Display="蓝球隔4期" Region="0~1" Description="" HelpID="26">
+      <State Expression="不出" Region="0" />
+      <State Expression="重现" Region="1" />
+    </Blue_Mantissa_Repeat_Previous_4>
+    <Blue_Mantissa_Repeat_Previous_5 Display="蓝球隔5期" Region="0~1" Description="" HelpID="26">
+      <State Expression="不出" Region="0" />
+      <State Expression="重现" Region="1" />
+    </Blue_Mantissa_Repeat_Previous_5>
+    <Blue_Mantissa_Repeat_Previous_6 Display="蓝球隔6期" Region="0~1" Description="" HelpID="26">
+      <State Expression="不出" Region="0" />
+      <State Expression="重现" Region="1" />
+    </Blue_Mantissa_Repeat_Previous_6>
+    <Blue_Mantissa_Repeat_Previous_7 Display="蓝球隔7期" Region="0~1" Description="" HelpID="26">
+      <State Expression="不出" Region="0" />
+      <State Expression="重现" Region="1" />
+    </Blue_Mantissa_Repeat_Previous_7>
+    <Blue_Mantissa_Repeat_Previous_8 Display="蓝球隔8期" Region="0~1" Description="" HelpID="26">
+      <State Expression="不出" Region="0" />
+      <State Expression="重现" Region="1" />
+    </Blue_Mantissa_Repeat_Previous_8>
+    <Blue_Mantissa_Repeat_Previous_9 Display="蓝球隔9期" Region="0~1" Description="" HelpID="26">
+      <State Expression="不出" Region="0" />
+      <State Expression="重现" Region="1" />
+    </Blue_Mantissa_Repeat_Previous_9>
+  </Blue_Mantissa_Repeat_Previous>
+</Attributes>

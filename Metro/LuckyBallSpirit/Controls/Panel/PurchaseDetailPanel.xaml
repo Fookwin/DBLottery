@@ -1,0 +1,212 @@
+﻿<UserControl
+    x:Class="LuckyBallSpirit.Controls.PurchaseDetailPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LuckyBallSpirit.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:LuckyBallSpirit.DataModel"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <data:NumHitToOpacityConverter x:Key="_NumHitToOpacityConverter"/>
+        <data:FilterWinToVisibilityConverter x:Key="_FilterWinToVisibilityConverter"/>
+        <data:FilterLossToVisibilityConverter x:Key="_FilterLossToVisibilityConverter"/>        
+    </UserControl.Resources>
+
+    <Border Background="#99FFFFFF" CornerRadius="10" Padding="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Padding="10" BorderBrush="DarkGray" BorderThickness="0,0,2,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="投注号码" FontSize="20" Foreground="DimGray"  HorizontalAlignment="Center"/>
+                    <ListView x:Name="LV_SchemeSelection" Grid.Row="1" Margin="0,10" SelectionMode="Multiple" SelectionChanged="LV_SchemeSelection_SelectionChanged">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Padding="5">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Grid>
+                                            <Ellipse Width="30" Height="30" Fill="Red" Stroke="DarkRed" Opacity="{Binding IsHitRed1, Converter={StaticResource _NumHitToOpacityConverter}}"/>
+                                            <TextBlock Text="{Binding Red1}" Foreground="White" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        </Grid>
+                                        <Grid Margin="5,0,0,0">
+                                            <Ellipse Width="30" Height="30" Fill="Red" Stroke="DarkRed" Opacity="{Binding IsHitRed2, Converter={StaticResource _NumHitToOpacityConverter}}"/>
+                                            <TextBlock Text="{Binding Red2}" Foreground="White" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        </Grid>
+                                        <Grid Margin="5,0,0,0">
+                                            <Ellipse Width="30" Height="30" Fill="Red" Stroke="DarkRed" Opacity="{Binding IsHitRed3, Converter={StaticResource _NumHitToOpacityConverter}}"/>
+                                            <TextBlock Text="{Binding Red3}" Foreground="White" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        </Grid>
+                                        <Grid Margin="5,0,0,0">
+                                            <Ellipse Width="30" Height="30" Fill="Red" Stroke="DarkRed" Opacity="{Binding IsHitRed4, Converter={StaticResource _NumHitToOpacityConverter}}"/>
+                                            <TextBlock Text="{Binding Red4}" Foreground="White" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        </Grid>
+                                        <Grid Margin="5,0,0,0">
+                                            <Ellipse Width="30" Height="30" Fill="Red" Stroke="DarkRed" Opacity="{Binding IsHitRed5, Converter={StaticResource _NumHitToOpacityConverter}}"/>
+                                            <TextBlock Text="{Binding Red5}" Foreground="White" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        </Grid>
+                                        <Grid Margin="5,0,0,0">
+                                            <Ellipse Width="30" Height="30" Fill="Red" Stroke="DarkRed" Opacity="{Binding IsHitRed6, Converter={StaticResource _NumHitToOpacityConverter}}"/>
+                                            <TextBlock Text="{Binding Red6}" Foreground="White" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        </Grid>
+                                        <Grid Margin="5,0,0,0">
+                                            <Ellipse Width="30" Height="30" Fill="Blue" Stroke="DarkBlue" Opacity="{Binding IsHitBlue, Converter={StaticResource _NumHitToOpacityConverter}}"/>
+                                            <TextBlock Text="{Binding Blue}" Foreground="White" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Margin" Value="0, 0" />
+                                <Setter Property="Padding" Value="0" />
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
+                        <Button x:Name="BT_SelectAllSchemes" Click="BT_BT_SelectAllSchemes_Click" 
+                                Foreground="DimGray" Style="{StaticResource TextButtonStyle}">
+                            <Button.Content>
+                                <Grid>
+                                    <Ellipse Stroke="DimGray" StrokeThickness="2" Height="40" Width="40"/>
+                                    <TextBlock Text="全选" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Grid>
+                            </Button.Content>
+                        </Button>
+
+                        <Button x:Name="BT_UnselectAllSchemes" Click="BT_UnselectAllSchemes_Click" Margin="10,0,0,0"
+                                Foreground="DimGray" Style="{StaticResource TextButtonStyle}">
+                            <Button.Content>
+                                <Grid>
+                                    <Ellipse Stroke="DimGray" StrokeThickness="2" Height="40" Width="40"/>
+                                    <TextBlock Text="不选" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Grid>
+                            </Button.Content>
+                        </Button>
+
+                        <Button x:Name="BT_AddSchemeToSelection" Click="BT_AddSchemeToSelection_Click" Margin="10,0,0,0"
+                                Foreground="DimGray" Style="{StaticResource TextButtonStyle}" Visibility="Collapsed">
+                            <Button.Content>
+                                <Grid>
+                                    <Ellipse Stroke="DimGray" StrokeThickness="2" Height="40" Width="40"/>
+                                    <TextBlock Text="加入" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Grid>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="0" Grid.Column="1" Padding="10" BorderBrush="DarkGray" BorderThickness="0,0,0,2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="初始选号" FontSize="20" Foreground="DimGray" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <ListView x:Name="LV_NumberSelection" Grid.Row="1" Margin="0,10" SelectionChanged="LV_NumberSelection_SelectionChanged" SelectionMode="Multiple">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="DarkRed" CornerRadius="5" Padding="10" Width="500">
+                                    <TextBlock Text="{Binding DisplayExpression}" Foreground="White" TextWrapping="Wrap" FontSize="15"/>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Margin" Value="0, 0" />
+                                <Setter Property="Padding" Value="0" />
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+
+                    <Button x:Name="BT_AddNumSetToSelection" Grid.Row="2" Click="BT_AddNumSetToSelection_Click" 
+                            Foreground="DimGray" HorizontalAlignment="Center"
+                            Visibility="Collapsed" Style="{StaticResource TextButtonStyle}">
+                        <Button.Content>
+                            <Grid>
+                                <Ellipse Stroke="DimGray" StrokeThickness="2" Height="40" Width="40"/>
+                                <TextBlock Text="加入" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Grid>
+                        </Button.Content>
+                    </Button> 
+                </Grid>
+            </Border>
+
+            <Border Grid.Row="1" Grid.Column="1" Padding="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="过滤条件" Grid.Row="0" FontSize="20" Foreground="DimGray" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <ListView x:Name="LV_FilterSelection" Grid.Row="1" Margin="0,10" SelectionChanged="LV_FilterSelection_SelectionChanged" SelectionMode="Multiple">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="DarkCyan" Padding="10" Width="500" CornerRadius="5">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Width="25" Height="25" Margin="0,0,5,0" Source="ms-appx:///Resources/Right.png"
+                                           Visibility="{Binding Win, Converter={StaticResource _FilterWinToVisibilityConverter}}"/>
+                                        <Image Width="25" Height="25" Margin="0,0,5,0" Source="ms-appx:///Resources/Wrong.png"
+                                           Visibility="{Binding Win, Converter={StaticResource _FilterLossToVisibilityConverter}}"/>
+                                        <TextBlock Text="{Binding Target.DisplayExpression}" Foreground="White" TextWrapping="Wrap" FontSize="15"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Margin" Value="0, 0" />
+                                <Setter Property="Padding" Value="0" />
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+
+                    <Button x:Name="BT_AddFilterToSelection" Grid.Row="2" Click="BT_AddFilterToSelection_Click" 
+                            Foreground="DimGray" HorizontalAlignment="Center"
+                            Visibility="Collapsed" Style="{StaticResource TextButtonStyle}">
+                        <Button.Content>
+                            <Grid>
+                                <Ellipse Stroke="DimGray" StrokeThickness="2" Height="40" Width="40"/>
+                                <TextBlock Text="加入" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>

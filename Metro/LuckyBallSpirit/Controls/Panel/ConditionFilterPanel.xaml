@@ -1,0 +1,214 @@
+﻿<UserControl
+    x:Class="LuckyBallSpirit.Controls.ConditionFilterPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LuckyBallSpirit.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:LuckyBallSpirit.Controls"
+    xmlns:data="using:LuckyBallSpirit.DataModel"
+    xmlns:common="using:LuckyBallSpirit.Common"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <CollectionViewSource x:Name="cvsAttributeCategories" IsSourceGrouped="True" ItemsPath="Attributes"/>
+        <data:RecommandedBoolToBorderThickness x:Key="_RecommandedBoolToBorderThickness"/>
+        <common:BooleanToVisibilityConverter x:Key="_BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+
+        <SemanticZoom x:Name="semanticZoom" Grid.Row="0" Grid.Column="0">
+            <SemanticZoom.ZoomedOutView>
+                <ListView>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Width="300" Padding="0,5" Background="DarkCyan">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="+" FontSize="25" Foreground="White" Margin="5,0" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Group.DisplayName}" FontSize="15" Foreground="White" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Margin" Value="0, 0" />
+                            <Setter Property="Padding" Value="0" />
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </SemanticZoom.ZoomedOutView>
+
+            <SemanticZoom.ZoomedInView>
+                <ListView x:Name="LB_Filter_Categories" ItemsSource="{Binding Source={StaticResource cvsAttributeCategories}}" 
+                        SelectionChanged="LB_Filter_Categories_SelectionChanged">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Width="275">
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0">
+                                    <TextBlock Text="{Binding DisplayName}" Foreground="DimGray" FontSize="18"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="最大偏离"  Foreground="LightGray" FontSize="12" Margin="0,0,5,0"/>
+                                        <TextBlock Text="{Binding MaxScore}" Foreground="LightGray" FontSize="12" FontWeight="Black"/>
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <Grid RenderTransformOrigin="0.5,0.5" 
+                                        HorizontalAlignment="Right" Visibility="{Binding Recommended, 
+                                        Converter={StaticResource _BooleanToVisibilityConverter}}">
+
+                                    <Grid.RenderTransform>
+                                        <CompositeTransform Rotation="45"/>
+                                    </Grid.RenderTransform>
+
+                                    <Ellipse Height="50" Width="50" StrokeThickness="5">
+                                        <Ellipse.Stroke>
+                                            <SolidColorBrush Color="DarkCyan" Opacity="0.8"/>
+                                        </Ellipse.Stroke>
+                                    </Ellipse>
+
+                                    <TextBlock Text="荐" FontSize="35" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock.Foreground>
+                                            <SolidColorBrush Color="DarkCyan" Opacity="0.8"/>
+                                        </TextBlock.Foreground>
+                                    </TextBlock>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="BorderThickness" Value="0,0,0,1" />
+                            <Setter Property="BorderBrush" Value="LightGray" />
+                            <Setter Property="Margin" Value="0" />
+                            <Setter Property="Padding" Value="5" />
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+
+                    <ListView.GroupStyle>
+                        <GroupStyle HidesIfEmpty="True">
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate>
+                                    <Border Width="300" Padding="0,5" Background="DarkCyan">
+                                        <Button Style="{StaticResource TextButtonStyle}" Click="Contract_Button_Click">
+                                            <Button.Content>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="-" FontSize="20" Foreground="White" Margin="5,0" VerticalAlignment="Center"/>
+                                                    <TextBlock Text="{Binding DisplayName}" FontSize="15" Foreground="White" VerticalAlignment="Center"/>
+                                                </StackPanel>
+                                            </Button.Content>
+                                        </Button>
+                                    </Border>
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+
+                            <GroupStyle.Panel>
+                                <ItemsPanelTemplate>
+                                    <VariableSizedWrapGrid/>
+                                </ItemsPanelTemplate>
+                            </GroupStyle.Panel>
+                        </GroupStyle>
+                    </ListView.GroupStyle>
+                </ListView>
+            </SemanticZoom.ZoomedInView>
+        </SemanticZoom>
+
+        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Padding="5" Margin="0,5" CornerRadius="5">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#CC008B8B"/>
+                    <GradientStop Color="DarkCyan" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="筛选条件" Grid.Row="0" Grid.Column="0" FontSize="18" Foreground="Yellow" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <CheckBox x:Name="CB_ShowFilterOnly" Grid.Row="1" Grid.Column="0" Margin="0,0,10,0"
+                          Content="只显示异常属性" IsChecked="True" FontSize="15" HorizontalAlignment="Left" Click="CB_ShowFilterOnly_Click"/>
+
+                <local:ValueEditorCtrl x:Name="TB_HitPropLowLimit" Grid.Row="0" Grid.Column="1" ValueName="出现概率大于"
+                                           HighLimit="100" LowLimit="0" HorizontalAlignment="Center" Margin="0,2"
+                                           VerticalAlignment="Center" ValueChanged="TB_HitPropLowLimit_TextChanged"/>
+
+                <local:ValueEditorCtrl x:Name="TB_OmissionLowLimit" Grid.Row="0" Grid.Column="2" ValueName="当前遗漏大于" 
+                                           HighLimit="100000000" LowLimit="0" HorizontalAlignment="Center" Margin="0,2"
+                                           VerticalAlignment="Center" ValueChanged="TB_OmissionLowLimit_TextChanged"/>
+
+                <local:ValueEditorCtrl x:Name="TB_ProtentialLowLimit" Grid.Row="1" Grid.Column="1" ValueName="偏离指数大于"
+                                           HighLimit="100" LowLimit="0" HorizontalAlignment="Center" Margin="0,2"
+                                           VerticalAlignment="Center" ValueChanged="TB_ProtentialLowLimit_TextChanged"/>
+ 
+                <local:ValueEditorCtrl x:Name="TB_MaxDeviationLimit" Grid.Row="1" Grid.Column="2" ValueName="最大偏离大于"
+                                           HighLimit="100" LowLimit="0" HorizontalAlignment="Center" Margin="0,2"
+                                           VerticalAlignment="Center" ValueChanged="TB_MaxDeviationLimit_TextChanged"/>
+            </Grid>
+        </Border>
+
+        <GridView x:Name="Ctrl_RangeSelection" Grid.Row="0" Grid.Column="1" SelectionMode="Multiple" Margin="10,0,0,0" BorderBrush="DarkCyan" BorderThickness="1,0,0,0">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Border Width="110" BorderBrush="Red" BorderThickness="{Binding Recommended, Converter={StaticResource _RecommandedBoolToBorderThickness}}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="{Binding DisplayName}" Grid.Column="0" FontSize="18" Foreground="DimGray" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            
+                            <Border Grid.Column="1" Width="30" BorderBrush="LightGray" BorderThickness="2,0,0,0">
+                                <TextBlock Text="{Binding Score}" FontSize="15" Foreground="DarkCyan" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>                                
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapGrid Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+
+            <GridView.ItemContainerStyle>
+                <Style TargetType="GridViewItem">
+                    <Setter Property="BorderThickness" Value="0,0,0,1" />
+                    <Setter Property="BorderBrush" Value="LightGray" />
+                    <Setter Property="Margin" Value="0" />
+                    <Setter Property="Padding" Value="5,0" />
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                </Style>
+            </GridView.ItemContainerStyle>
+        </GridView>
+    </Grid>
+</UserControl>

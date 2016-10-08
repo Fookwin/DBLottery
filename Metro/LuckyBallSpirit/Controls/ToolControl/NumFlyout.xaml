@@ -1,0 +1,32 @@
+﻿<UserControl
+    x:Class="LuckyBallSpirit.Controls.ToolControl.NumFlyout"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LuckyBallSpirit.Controls.ToolControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:LuckyBallSpirit.Controls"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Popup x:Name="flyoutPopup" Closed="OnPopupClosed" IsLightDismissEnabled="True" >
+        <Border x:Name="mainBorder" BorderBrush="DarkRed" BorderThickness="1" Background="White" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <controls:NumButton x:Name="BT_Num" Grid.Row="0" Grid.Column="0" Num="{Binding Num}" ShowDescription="Collapsed"  
+                                    PrimaryColor="{Binding PrimaryColor}" SecondaryColor="{Binding SecondaryColor}" 
+                                    SelectStatus="NotSelected" Width="100" Height="100"/>
+                
+                <Button x:Name="BT_ShowDetail"/>
+            </Grid>
+        </Border>
+    </Popup>
+</UserControl>

@@ -1,0 +1,1365 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBHistoryModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="DBHistoryModelStoreContainer">
+          <EntitySet Name="Attributes" EntityType="DBHistoryModel.Store.Attributes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Basic" EntityType="DBHistoryModel.Store.Basic" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Detail" EntityType="DBHistoryModel.Store.Detail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Omission" EntityType="DBHistoryModel.Store.Omission" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="Attributes">
+          <Key>
+            <PropertyRef Name="Issue" />
+          </Key>
+          <Property Name="Issue" Type="int" Nullable="false" />
+          <Property Name="Red_InPos_1" Type="int" Nullable="false" />
+          <Property Name="Red_InPos_2" Type="int" Nullable="false" />
+          <Property Name="Red_InPos_3" Type="int" Nullable="false" />
+          <Property Name="Red_InPos_4" Type="int" Nullable="false" />
+          <Property Name="Red_InPos_5" Type="int" Nullable="false" />
+          <Property Name="Red_InPos_6" Type="int" Nullable="false" />
+          <Property Name="Red_Mantissa_InPos_1" Type="int" Nullable="false" />
+          <Property Name="Red_Mantissa_InPos_2" Type="int" Nullable="false" />
+          <Property Name="Red_Mantissa_InPos_3" Type="int" Nullable="false" />
+          <Property Name="Red_Mantissa_InPos_4" Type="int" Nullable="false" />
+          <Property Name="Red_Mantissa_InPos_5" Type="int" Nullable="false" />
+          <Property Name="Red_Mantissa_InPos_6" Type="int" Nullable="false" />
+          <Property Name="Red_Mantissa_Max" Type="int" Nullable="false" />
+          <Property Name="Red_Mantissa_Min" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In03_01" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In03_02" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In03_03" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In04_01" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In04_02" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In04_03" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In04_04" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In07_01" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In07_02" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In07_03" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In07_04" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In07_05" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In07_06" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In07_07" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In11_01" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In11_02" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In11_03" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In11_04" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In11_05" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In11_06" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In11_07" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In11_08" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In11_09" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In11_10" Type="int" Nullable="false" />
+          <Property Name="Red_Zone_In11_11" Type="int" Nullable="false" />
+          <Property Name="Red_Row_1" Type="int" Nullable="false" />
+          <Property Name="Red_Row_2" Type="int" Nullable="false" />
+          <Property Name="Red_Row_3" Type="int" Nullable="false" />
+          <Property Name="Red_Row_4" Type="int" Nullable="false" />
+          <Property Name="Red_Row_5" Type="int" Nullable="false" />
+          <Property Name="Red_Row_6" Type="int" Nullable="false" />
+          <Property Name="Red_Column_1" Type="int" Nullable="false" />
+          <Property Name="Red_Column_2" Type="int" Nullable="false" />
+          <Property Name="Red_Column_3" Type="int" Nullable="false" />
+          <Property Name="Red_Column_4" Type="int" Nullable="false" />
+          <Property Name="Red_Column_5" Type="int" Nullable="false" />
+          <Property Name="Red_Column_6" Type="int" Nullable="false" />
+          <Property Name="Red_Repeat_Previous_0" Type="int" Nullable="false" />
+          <Property Name="Red_Repeat_Previous_1" Type="int" Nullable="false" />
+          <Property Name="Red_Repeat_Previous_2" Type="int" Nullable="false" />
+          <Property Name="Red_Repeat_Previous_3" Type="int" Nullable="false" />
+          <Property Name="Red_Repeat_Previous_4" Type="int" Nullable="false" />
+          <Property Name="Red_Repeat_Previous_5" Type="int" Nullable="false" />
+          <Property Name="Red_Repeat_Previous_6" Type="int" Nullable="false" />
+          <Property Name="Red_Repeat_Previous_7" Type="int" Nullable="false" />
+          <Property Name="Red_Repeat_Previous_8" Type="int" Nullable="false" />
+          <Property Name="Red_Repeat_Previous_9" Type="int" Nullable="false" />
+          <Property Name="Red_Sum" Type="int" Nullable="false" />
+          <Property Name="Red_Sum_Mantissa " Type="int" Nullable="false" />
+          <Property Name="Red_Odd_Sum " Type="int" Nullable="false" />
+          <Property Name="Red_Odd_Sum_Mantissa" Type="int" Nullable="false" />
+          <Property Name="Red_Even_Sum" Type="int" Nullable="false" />
+          <Property Name="Red_Even_Sum_Mantissa" Type="int" Nullable="false" />
+          <Property Name="Red_Composite_Sum" Type="int" Nullable="false" />
+          <Property Name="Red_Composite_Sum_Mantissa" Type="int" Nullable="false" />
+          <Property Name="Red_Primary_Sum" Type="int" Nullable="false" />
+          <Property Name="Red_Primary_Sum_Mantissa" Type="int" Nullable="false" />
+          <Property Name="Red_BigSmall" Type="int" Nullable="false" />
+          <Property Name="Red_OddEven" Type="int" Nullable="false" />
+          <Property Name="Red_PrimaryComposite" Type="int" Nullable="false" />
+          <Property Name="Red_012" Type="int" Nullable="false" />
+          <Property Name="Red_SmallMidBig" Type="int" Nullable="false" />
+          <Property Name="Red_FuGeZhong" Type="int" Nullable="false" />
+          <Property Name="Red_5Xing_1" Type="int" Nullable="false" />
+          <Property Name="Red_5Xing_2" Type="int" Nullable="false" />
+          <Property Name="Red_5Xing_3" Type="int" Nullable="false" />
+          <Property Name="Red_5Xing_4" Type="int" Nullable="false" />
+          <Property Name="Red_5Xing_5" Type="int" Nullable="false" />
+          <Property Name="Red_5Xing_6" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_01" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_02" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_03" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_04" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_05" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_06" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_07" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_08" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_09" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_10" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_11" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_12" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_13" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_14" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_15" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_16" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_17" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_18" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_19" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_20" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_21" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_22" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_23" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_24" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_25" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_26" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_27" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_28" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_29" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_30" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_31" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_32" Type="int" Nullable="false" />
+          <Property Name="Red_Omission_33" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide3_0" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide3_1" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide3_2" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide4_0" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide4_1" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide4_2" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide4_3" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide5_0" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide5_1" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide5_2" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide5_3" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide5_4" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide6_0" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide6_1" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide6_2" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide6_3" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide6_4" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide6_5" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide7_0" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide7_1" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide7_2" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide7_3" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide7_4" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide7_5" Type="int" Nullable="false" />
+          <Property Name="Red_Remainder_Devide7_6" Type="int" Nullable="false" />
+          <Property Name="Red_Sum_Pos12" Type="int" Nullable="false" />
+          <Property Name="Red_Sum_Pos13" Type="int" Nullable="false" />
+          <Property Name="Red_Sum_Pos14" Type="int" Nullable="false" />
+          <Property Name="Red_Sum_Pos15" Type="int" Nullable="false" />
+          <Property Name="Red_Sum_Pos16" Type="int" Nullable="false" />
+          <Property Name="Red_Sum_Pos23" Type="int" Nullable="false" />
+          <Property Name="Red_Sum_Pos24" Type="int" Nullable="false" />
+          <Property Name="Red_Sum_Pos25" Type="int" Nullable="false" />
+          <Property Name="Red_Sum_Pos26" Type="int" Nullable="false" />
+          <Property Name="Red_Sum_Pos34" Type="int" Nullable="false" />
+          <Property Name="Red_Sum_Pos35" Type="int" Nullable="false" />
+          <Property Name="Red_Sum_Pos36" Type="int" Nullable="false" />
+          <Property Name="Red_Sum_Pos45" Type="int" Nullable="false" />
+          <Property Name="Red_Sum_Pos46" Type="int" Nullable="false" />
+          <Property Name="Red_Sum_Pos56" Type="int" Nullable="false" />
+          <Property Name="Red_Diff_Pos12" Type="int" Nullable="false" />
+          <Property Name="Red_Diff_Pos13" Type="int" Nullable="false" />
+          <Property Name="Red_Diff_Pos14" Type="int" Nullable="false" />
+          <Property Name="Red_Diff_Pos15" Type="int" Nullable="false" />
+          <Property Name="Red_Diff_Pos16" Type="int" Nullable="false" />
+          <Property Name="Red_Diff_Pos23" Type="int" Nullable="false" />
+          <Property Name="Red_Diff_Pos24" Type="int" Nullable="false" />
+          <Property Name="Red_Diff_Pos25" Type="int" Nullable="false" />
+          <Property Name="Red_Diff_Pos26" Type="int" Nullable="false" />
+          <Property Name="Red_Diff_Pos34" Type="int" Nullable="false" />
+          <Property Name="Red_Diff_Pos35" Type="int" Nullable="false" />
+          <Property Name="Red_Diff_Pos36" Type="int" Nullable="false" />
+          <Property Name="Red_Diff_Pos45" Type="int" Nullable="false" />
+          <Property Name="Red_Diff_Pos46" Type="int" Nullable="false" />
+          <Property Name="Red_Diff_Pos56" Type="int" Nullable="false" />
+          <Property Name="Red_OE_Pos12" Type="int" Nullable="false" />
+          <Property Name="Red_OE_Pos13" Type="int" Nullable="false" />
+          <Property Name="Red_OE_Pos14" Type="int" Nullable="false" />
+          <Property Name="Red_OE_Pos15" Type="int" Nullable="false" />
+          <Property Name="Red_OE_Pos16" Type="int" Nullable="false" />
+          <Property Name="Red_OE_Pos23" Type="int" Nullable="false" />
+          <Property Name="Red_OE_Pos24" Type="int" Nullable="false" />
+          <Property Name="Red_OE_Pos25" Type="int" Nullable="false" />
+          <Property Name="Red_OE_Pos26" Type="int" Nullable="false" />
+          <Property Name="Red_OE_Pos34" Type="int" Nullable="false" />
+          <Property Name="Red_OE_Pos35" Type="int" Nullable="false" />
+          <Property Name="Red_OE_Pos36" Type="int" Nullable="false" />
+          <Property Name="Red_OE_Pos45" Type="int" Nullable="false" />
+          <Property Name="Red_OE_Pos46" Type="int" Nullable="false" />
+          <Property Name="Red_OE_Pos56" Type="int" Nullable="false" />
+          <Property Name="Red_PC_Pos12" Type="int" Nullable="false" />
+          <Property Name="Red_PC_Pos13" Type="int" Nullable="false" />
+          <Property Name="Red_PC_Pos14" Type="int" Nullable="false" />
+          <Property Name="Red_PC_Pos15" Type="int" Nullable="false" />
+          <Property Name="Red_PC_Pos16" Type="int" Nullable="false" />
+          <Property Name="Red_PC_Pos23" Type="int" Nullable="false" />
+          <Property Name="Red_PC_Pos24" Type="int" Nullable="false" />
+          <Property Name="Red_PC_Pos25" Type="int" Nullable="false" />
+          <Property Name="Red_PC_Pos26" Type="int" Nullable="false" />
+          <Property Name="Red_PC_Pos34" Type="int" Nullable="false" />
+          <Property Name="Red_PC_Pos35" Type="int" Nullable="false" />
+          <Property Name="Red_PC_Pos36" Type="int" Nullable="false" />
+          <Property Name="Red_PC_Pos45" Type="int" Nullable="false" />
+          <Property Name="Red_PC_Pos46" Type="int" Nullable="false" />
+          <Property Name="Red_PC_Pos56" Type="int" Nullable="false" />
+          <Property Name="Red_WX_Pos12" Type="int" Nullable="false" />
+          <Property Name="Red_WX_Pos13" Type="int" Nullable="false" />
+          <Property Name="Red_WX_Pos14" Type="int" Nullable="false" />
+          <Property Name="Red_WX_Pos15" Type="int" Nullable="false" />
+          <Property Name="Red_WX_Pos16" Type="int" Nullable="false" />
+          <Property Name="Red_WX_Pos23" Type="int" Nullable="false" />
+          <Property Name="Red_WX_Pos24" Type="int" Nullable="false" />
+          <Property Name="Red_WX_Pos25" Type="int" Nullable="false" />
+          <Property Name="Red_WX_Pos26" Type="int" Nullable="false" />
+          <Property Name="Red_WX_Pos34" Type="int" Nullable="false" />
+          <Property Name="Red_WX_Pos35" Type="int" Nullable="false" />
+          <Property Name="Red_WX_Pos36" Type="int" Nullable="false" />
+          <Property Name="Red_WX_Pos45" Type="int" Nullable="false" />
+          <Property Name="Red_WX_Pos46" Type="int" Nullable="false" />
+          <Property Name="Red_WX_Pos56" Type="int" Nullable="false" />
+          <Property Name="Red_012_Pos12" Type="int" Nullable="false" />
+          <Property Name="Red_012_Pos13" Type="int" Nullable="false" />
+          <Property Name="Red_012_Pos14" Type="int" Nullable="false" />
+          <Property Name="Red_012_Pos15" Type="int" Nullable="false" />
+          <Property Name="Red_012_Pos16" Type="int" Nullable="false" />
+          <Property Name="Red_012_Pos23" Type="int" Nullable="false" />
+          <Property Name="Red_012_Pos24" Type="int" Nullable="false" />
+          <Property Name="Red_012_Pos25" Type="int" Nullable="false" />
+          <Property Name="Red_012_Pos26" Type="int" Nullable="false" />
+          <Property Name="Red_012_Pos34" Type="int" Nullable="false" />
+          <Property Name="Red_012_Pos35" Type="int" Nullable="false" />
+          <Property Name="Red_012_Pos36" Type="int" Nullable="false" />
+          <Property Name="Red_012_Pos45" Type="int" Nullable="false" />
+          <Property Name="Red_012_Pos46" Type="int" Nullable="false" />
+          <Property Name="Red_012_Pos56" Type="int" Nullable="false" />
+          <Property Name="Blue_Mantissa_Omission" Type="int" Nullable="false" />
+          <Property Name="Blue_Omission" Type="int" Nullable="false" />
+          <Property Name="Blue_Amplitude" Type="int" Nullable="false" />
+          <Property Name="Blue_Rows" Type="int" Nullable="false" />
+          <Property Name="Blue_Columns" Type="int" Nullable="false" />
+          <Property Name="Blue_Mantissa_Repeat_Previous_0" Type="int" Nullable="false" />
+          <Property Name="Blue_Mantissa_Repeat_Previous_1" Type="int" Nullable="false" />
+          <Property Name="Blue_Mantissa_Repeat_Previous_2" Type="int" Nullable="false" />
+          <Property Name="Blue_Mantissa_Repeat_Previous_3" Type="int" Nullable="false" />
+          <Property Name="Blue_Mantissa_Repeat_Previous_4" Type="int" Nullable="false" />
+          <Property Name="Blue_Mantissa_Repeat_Previous_5" Type="int" Nullable="false" />
+          <Property Name="Blue_Mantissa_Repeat_Previous_6" Type="int" Nullable="false" />
+          <Property Name="Blue_Mantissa_Repeat_Previous_7" Type="int" Nullable="false" />
+          <Property Name="Blue_Mantissa_Repeat_Previous_8" Type="int" Nullable="false" />
+          <Property Name="Blue_Mantissa_Repeat_Previous_9" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Basic">
+          <Key>
+            <PropertyRef Name="Issue" />
+          </Key>
+          <Property Name="Issue" Type="int" Nullable="false" />
+          <Property Name="Red1" Type="int" Nullable="false" />
+          <Property Name="Red2" Type="int" Nullable="false" />
+          <Property Name="Red3" Type="int" Nullable="false" />
+          <Property Name="Red4" Type="int" Nullable="false" />
+          <Property Name="Red5" Type="int" Nullable="false" />
+          <Property Name="Red6" Type="int" Nullable="false" />
+          <Property Name="Blue" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Detail">
+          <Key>
+            <PropertyRef Name="Issue" />
+          </Key>
+          <Property Name="Issue" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Prize1Bonus" Type="money" Nullable="false" />
+          <Property Name="Prize2Bonus" Type="money" Nullable="false" />
+          <Property Name="Prize1Count" Type="int" Nullable="false" />
+          <Property Name="Prize2Count" Type="int" Nullable="false" />
+          <Property Name="Prize3Count" Type="int" Nullable="false" />
+          <Property Name="Prize4Count" Type="int" Nullable="false" />
+          <Property Name="Prize5Count" Type="int" Nullable="false" />
+          <Property Name="Prize6Count" Type="int" Nullable="false" />
+          <Property Name="BetAmount" Type="int" Nullable="false" />
+          <Property Name="PoolAmount" Type="int" Nullable="false" />
+          <Property Name="More" Type="ntext" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Omission">
+          <Key>
+            <PropertyRef Name="Issue" />
+          </Key>
+          <Property Name="Issue" Type="int" Nullable="false" />
+          <Property Name="Red_01_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_02_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_03_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_04_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_05_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_06_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_07_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_08_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_09_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_10_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_11_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_12_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_13_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_14_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_15_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_16_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_17_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_18_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_19_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_20_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_21_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_22_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_23_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_24_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_25_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_26_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_27_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_28_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_29_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_30_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_31_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_32_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_33_Hit" Type="int" Nullable="false" />
+          <Property Name="Red_01_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_02_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_03_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_04_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_05_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_06_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_07_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_08_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_09_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_10_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_11_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_12_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_13_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_14_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_15_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_16_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_17_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_18_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_19_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_20_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_21_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_22_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_23_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_24_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_25_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_26_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_27_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_28_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_29_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_30_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_31_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_32_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_33_Omission" Type="int" Nullable="false" />
+          <Property Name="Red_01_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_02_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_03_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_04_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_05_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_06_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_07_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_08_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_09_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_10_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_11_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_12_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_13_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_14_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_15_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_16_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_17_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_18_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_19_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_20_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_21_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_22_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_23_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_24_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_25_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_26_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_27_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_28_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_29_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_30_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_31_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_32_Temperature" Type="int" Nullable="false" />
+          <Property Name="Red_33_Temperature" Type="int" Nullable="false" />
+          <Property Name="Blue_01_Hit" Type="int" Nullable="false" />
+          <Property Name="Blue_02_Hit" Type="int" Nullable="false" />
+          <Property Name="Blue_03_Hit" Type="int" Nullable="false" />
+          <Property Name="Blue_04_Hit" Type="int" Nullable="false" />
+          <Property Name="Blue_05_Hit" Type="int" Nullable="false" />
+          <Property Name="Blue_06_Hit" Type="int" Nullable="false" />
+          <Property Name="Blue_07_Hit" Type="int" Nullable="false" />
+          <Property Name="Blue_08_Hit" Type="int" Nullable="false" />
+          <Property Name="Blue_09_Hit" Type="int" Nullable="false" />
+          <Property Name="Blue_10_Hit" Type="int" Nullable="false" />
+          <Property Name="Blue_11_Hit" Type="int" Nullable="false" />
+          <Property Name="Blue_12_Hit" Type="int" Nullable="false" />
+          <Property Name="Blue_13_Hit" Type="int" Nullable="false" />
+          <Property Name="Blue_14_Hit" Type="int" Nullable="false" />
+          <Property Name="Blue_15_Hit" Type="int" Nullable="false" />
+          <Property Name="Blue_16_Hit" Type="int" Nullable="false" />
+          <Property Name="Blue_01_Omission" Type="int" Nullable="false" />
+          <Property Name="Blue_02_Omission" Type="int" Nullable="false" />
+          <Property Name="Blue_03_Omission" Type="int" Nullable="false" />
+          <Property Name="Blue_04_Omission" Type="int" Nullable="false" />
+          <Property Name="Blue_05_Omission" Type="int" Nullable="false" />
+          <Property Name="Blue_06_Omission" Type="int" Nullable="false" />
+          <Property Name="Blue_07_Omission" Type="int" Nullable="false" />
+          <Property Name="Blue_08_Omission" Type="int" Nullable="false" />
+          <Property Name="Blue_09_Omission" Type="int" Nullable="false" />
+          <Property Name="Blue_10_Omission" Type="int" Nullable="false" />
+          <Property Name="Blue_11_Omission" Type="int" Nullable="false" />
+          <Property Name="Blue_12_Omission" Type="int" Nullable="false" />
+          <Property Name="Blue_13_Omission" Type="int" Nullable="false" />
+          <Property Name="Blue_14_Omission" Type="int" Nullable="false" />
+          <Property Name="Blue_15_Omission" Type="int" Nullable="false" />
+          <Property Name="Blue_16_Omission" Type="int" Nullable="false" />
+          <Property Name="Blue_01_Temperature" Type="int" Nullable="false" />
+          <Property Name="Blue_02_Temperature" Type="int" Nullable="false" />
+          <Property Name="Blue_03_Temperature" Type="int" Nullable="false" />
+          <Property Name="Blue_04_Temperature" Type="int" Nullable="false" />
+          <Property Name="Blue_05_Temperature" Type="int" Nullable="false" />
+          <Property Name="Blue_06_Temperature" Type="int" Nullable="false" />
+          <Property Name="Blue_07_Temperature" Type="int" Nullable="false" />
+          <Property Name="Blue_08_Temperature" Type="int" Nullable="false" />
+          <Property Name="Blue_09_Temperature" Type="int" Nullable="false" />
+          <Property Name="Blue_10_Temperature" Type="int" Nullable="false" />
+          <Property Name="Blue_11_Temperature" Type="int" Nullable="false" />
+          <Property Name="Blue_12_Temperature" Type="int" Nullable="false" />
+          <Property Name="Blue_13_Temperature" Type="int" Nullable="false" />
+          <Property Name="Blue_14_Temperature" Type="int" Nullable="false" />
+          <Property Name="Blue_15_Temperature" Type="int" Nullable="false" />
+          <Property Name="Blue_16_Temperature" Type="int" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBHistoryModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DBHistoryEntity" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Attributes" EntityType="DBHistoryModel.Attribute" />
+          <EntitySet Name="Basics" EntityType="DBHistoryModel.Basic" />
+          <EntitySet Name="Details" EntityType="DBHistoryModel.Detail" />
+          <EntitySet Name="Omissions" EntityType="DBHistoryModel.Omission" />
+        </EntityContainer>
+        <EntityType Name="Attribute">
+          <Key>
+            <PropertyRef Name="Issue" />
+          </Key>
+          <Property Name="Issue" Type="Int32" Nullable="false" />
+          <Property Name="Red_InPos_1" Type="Int32" Nullable="false" />
+          <Property Name="Red_InPos_2" Type="Int32" Nullable="false" />
+          <Property Name="Red_InPos_3" Type="Int32" Nullable="false" />
+          <Property Name="Red_InPos_4" Type="Int32" Nullable="false" />
+          <Property Name="Red_InPos_5" Type="Int32" Nullable="false" />
+          <Property Name="Red_InPos_6" Type="Int32" Nullable="false" />
+          <Property Name="Red_Mantissa_InPos_1" Type="Int32" Nullable="false" />
+          <Property Name="Red_Mantissa_InPos_2" Type="Int32" Nullable="false" />
+          <Property Name="Red_Mantissa_InPos_3" Type="Int32" Nullable="false" />
+          <Property Name="Red_Mantissa_InPos_4" Type="Int32" Nullable="false" />
+          <Property Name="Red_Mantissa_InPos_5" Type="Int32" Nullable="false" />
+          <Property Name="Red_Mantissa_InPos_6" Type="Int32" Nullable="false" />
+          <Property Name="Red_Mantissa_Max" Type="Int32" Nullable="false" />
+          <Property Name="Red_Mantissa_Min" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In03_01" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In03_02" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In03_03" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In04_01" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In04_02" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In04_03" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In04_04" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In07_01" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In07_02" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In07_03" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In07_04" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In07_05" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In07_06" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In07_07" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In11_01" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In11_02" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In11_03" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In11_04" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In11_05" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In11_06" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In11_07" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In11_08" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In11_09" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In11_10" Type="Int32" Nullable="false" />
+          <Property Name="Red_Zone_In11_11" Type="Int32" Nullable="false" />
+          <Property Name="Red_Row_1" Type="Int32" Nullable="false" />
+          <Property Name="Red_Row_2" Type="Int32" Nullable="false" />
+          <Property Name="Red_Row_3" Type="Int32" Nullable="false" />
+          <Property Name="Red_Row_4" Type="Int32" Nullable="false" />
+          <Property Name="Red_Row_5" Type="Int32" Nullable="false" />
+          <Property Name="Red_Row_6" Type="Int32" Nullable="false" />
+          <Property Name="Red_Column_1" Type="Int32" Nullable="false" />
+          <Property Name="Red_Column_2" Type="Int32" Nullable="false" />
+          <Property Name="Red_Column_3" Type="Int32" Nullable="false" />
+          <Property Name="Red_Column_4" Type="Int32" Nullable="false" />
+          <Property Name="Red_Column_5" Type="Int32" Nullable="false" />
+          <Property Name="Red_Column_6" Type="Int32" Nullable="false" />
+          <Property Name="Red_Repeat_Previous_0" Type="Int32" Nullable="false" />
+          <Property Name="Red_Repeat_Previous_1" Type="Int32" Nullable="false" />
+          <Property Name="Red_Repeat_Previous_2" Type="Int32" Nullable="false" />
+          <Property Name="Red_Repeat_Previous_3" Type="Int32" Nullable="false" />
+          <Property Name="Red_Repeat_Previous_4" Type="Int32" Nullable="false" />
+          <Property Name="Red_Repeat_Previous_5" Type="Int32" Nullable="false" />
+          <Property Name="Red_Repeat_Previous_6" Type="Int32" Nullable="false" />
+          <Property Name="Red_Repeat_Previous_7" Type="Int32" Nullable="false" />
+          <Property Name="Red_Repeat_Previous_8" Type="Int32" Nullable="false" />
+          <Property Name="Red_Repeat_Previous_9" Type="Int32" Nullable="false" />
+          <Property Name="Red_Sum" Type="Int32" Nullable="false" />
+          <Property Name="Red_Sum_Mantissa_" Type="Int32" Nullable="false" />
+          <Property Name="Red_Odd_Sum_" Type="Int32" Nullable="false" />
+          <Property Name="Red_Odd_Sum_Mantissa" Type="Int32" Nullable="false" />
+          <Property Name="Red_Even_Sum" Type="Int32" Nullable="false" />
+          <Property Name="Red_Even_Sum_Mantissa" Type="Int32" Nullable="false" />
+          <Property Name="Red_Composite_Sum" Type="Int32" Nullable="false" />
+          <Property Name="Red_Composite_Sum_Mantissa" Type="Int32" Nullable="false" />
+          <Property Name="Red_Primary_Sum" Type="Int32" Nullable="false" />
+          <Property Name="Red_Primary_Sum_Mantissa" Type="Int32" Nullable="false" />
+          <Property Name="Red_BigSmall" Type="Int32" Nullable="false" />
+          <Property Name="Red_OddEven" Type="Int32" Nullable="false" />
+          <Property Name="Red_PrimaryComposite" Type="Int32" Nullable="false" />
+          <Property Name="Red_012" Type="Int32" Nullable="false" />
+          <Property Name="Red_SmallMidBig" Type="Int32" Nullable="false" />
+          <Property Name="Red_FuGeZhong" Type="Int32" Nullable="false" />
+          <Property Name="Red_5Xing_1" Type="Int32" Nullable="false" />
+          <Property Name="Red_5Xing_2" Type="Int32" Nullable="false" />
+          <Property Name="Red_5Xing_3" Type="Int32" Nullable="false" />
+          <Property Name="Red_5Xing_4" Type="Int32" Nullable="false" />
+          <Property Name="Red_5Xing_5" Type="Int32" Nullable="false" />
+          <Property Name="Red_5Xing_6" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_01" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_02" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_03" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_04" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_05" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_06" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_07" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_08" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_09" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_10" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_11" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_12" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_13" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_14" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_15" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_16" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_17" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_18" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_19" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_20" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_21" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_22" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_23" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_24" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_25" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_26" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_27" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_28" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_29" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_30" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_31" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_32" Type="Int32" Nullable="false" />
+          <Property Name="Red_Omission_33" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide3_0" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide3_1" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide3_2" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide4_0" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide4_1" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide4_2" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide4_3" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide5_0" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide5_1" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide5_2" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide5_3" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide5_4" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide6_0" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide6_1" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide6_2" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide6_3" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide6_4" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide6_5" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide7_0" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide7_1" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide7_2" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide7_3" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide7_4" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide7_5" Type="Int32" Nullable="false" />
+          <Property Name="Red_Remainder_Devide7_6" Type="Int32" Nullable="false" />
+          <Property Name="Red_Sum_Pos12" Type="Int32" Nullable="false" />
+          <Property Name="Red_Sum_Pos13" Type="Int32" Nullable="false" />
+          <Property Name="Red_Sum_Pos14" Type="Int32" Nullable="false" />
+          <Property Name="Red_Sum_Pos15" Type="Int32" Nullable="false" />
+          <Property Name="Red_Sum_Pos16" Type="Int32" Nullable="false" />
+          <Property Name="Red_Sum_Pos23" Type="Int32" Nullable="false" />
+          <Property Name="Red_Sum_Pos24" Type="Int32" Nullable="false" />
+          <Property Name="Red_Sum_Pos25" Type="Int32" Nullable="false" />
+          <Property Name="Red_Sum_Pos26" Type="Int32" Nullable="false" />
+          <Property Name="Red_Sum_Pos34" Type="Int32" Nullable="false" />
+          <Property Name="Red_Sum_Pos35" Type="Int32" Nullable="false" />
+          <Property Name="Red_Sum_Pos36" Type="Int32" Nullable="false" />
+          <Property Name="Red_Sum_Pos45" Type="Int32" Nullable="false" />
+          <Property Name="Red_Sum_Pos46" Type="Int32" Nullable="false" />
+          <Property Name="Red_Sum_Pos56" Type="Int32" Nullable="false" />
+          <Property Name="Red_Diff_Pos12" Type="Int32" Nullable="false" />
+          <Property Name="Red_Diff_Pos13" Type="Int32" Nullable="false" />
+          <Property Name="Red_Diff_Pos14" Type="Int32" Nullable="false" />
+          <Property Name="Red_Diff_Pos15" Type="Int32" Nullable="false" />
+          <Property Name="Red_Diff_Pos16" Type="Int32" Nullable="false" />
+          <Property Name="Red_Diff_Pos23" Type="Int32" Nullable="false" />
+          <Property Name="Red_Diff_Pos24" Type="Int32" Nullable="false" />
+          <Property Name="Red_Diff_Pos25" Type="Int32" Nullable="false" />
+          <Property Name="Red_Diff_Pos26" Type="Int32" Nullable="false" />
+          <Property Name="Red_Diff_Pos34" Type="Int32" Nullable="false" />
+          <Property Name="Red_Diff_Pos35" Type="Int32" Nullable="false" />
+          <Property Name="Red_Diff_Pos36" Type="Int32" Nullable="false" />
+          <Property Name="Red_Diff_Pos45" Type="Int32" Nullable="false" />
+          <Property Name="Red_Diff_Pos46" Type="Int32" Nullable="false" />
+          <Property Name="Red_Diff_Pos56" Type="Int32" Nullable="false" />
+          <Property Name="Red_OE_Pos12" Type="Int32" Nullable="false" />
+          <Property Name="Red_OE_Pos13" Type="Int32" Nullable="false" />
+          <Property Name="Red_OE_Pos14" Type="Int32" Nullable="false" />
+          <Property Name="Red_OE_Pos15" Type="Int32" Nullable="false" />
+          <Property Name="Red_OE_Pos16" Type="Int32" Nullable="false" />
+          <Property Name="Red_OE_Pos23" Type="Int32" Nullable="false" />
+          <Property Name="Red_OE_Pos24" Type="Int32" Nullable="false" />
+          <Property Name="Red_OE_Pos25" Type="Int32" Nullable="false" />
+          <Property Name="Red_OE_Pos26" Type="Int32" Nullable="false" />
+          <Property Name="Red_OE_Pos34" Type="Int32" Nullable="false" />
+          <Property Name="Red_OE_Pos35" Type="Int32" Nullable="false" />
+          <Property Name="Red_OE_Pos36" Type="Int32" Nullable="false" />
+          <Property Name="Red_OE_Pos45" Type="Int32" Nullable="false" />
+          <Property Name="Red_OE_Pos46" Type="Int32" Nullable="false" />
+          <Property Name="Red_OE_Pos56" Type="Int32" Nullable="false" />
+          <Property Name="Red_PC_Pos12" Type="Int32" Nullable="false" />
+          <Property Name="Red_PC_Pos13" Type="Int32" Nullable="false" />
+          <Property Name="Red_PC_Pos14" Type="Int32" Nullable="false" />
+          <Property Name="Red_PC_Pos15" Type="Int32" Nullable="false" />
+          <Property Name="Red_PC_Pos16" Type="Int32" Nullable="false" />
+          <Property Name="Red_PC_Pos23" Type="Int32" Nullable="false" />
+          <Property Name="Red_PC_Pos24" Type="Int32" Nullable="false" />
+          <Property Name="Red_PC_Pos25" Type="Int32" Nullable="false" />
+          <Property Name="Red_PC_Pos26" Type="Int32" Nullable="false" />
+          <Property Name="Red_PC_Pos34" Type="Int32" Nullable="false" />
+          <Property Name="Red_PC_Pos35" Type="Int32" Nullable="false" />
+          <Property Name="Red_PC_Pos36" Type="Int32" Nullable="false" />
+          <Property Name="Red_PC_Pos45" Type="Int32" Nullable="false" />
+          <Property Name="Red_PC_Pos46" Type="Int32" Nullable="false" />
+          <Property Name="Red_PC_Pos56" Type="Int32" Nullable="false" />
+          <Property Name="Red_WX_Pos12" Type="Int32" Nullable="false" />
+          <Property Name="Red_WX_Pos13" Type="Int32" Nullable="false" />
+          <Property Name="Red_WX_Pos14" Type="Int32" Nullable="false" />
+          <Property Name="Red_WX_Pos15" Type="Int32" Nullable="false" />
+          <Property Name="Red_WX_Pos16" Type="Int32" Nullable="false" />
+          <Property Name="Red_WX_Pos23" Type="Int32" Nullable="false" />
+          <Property Name="Red_WX_Pos24" Type="Int32" Nullable="false" />
+          <Property Name="Red_WX_Pos25" Type="Int32" Nullable="false" />
+          <Property Name="Red_WX_Pos26" Type="Int32" Nullable="false" />
+          <Property Name="Red_WX_Pos34" Type="Int32" Nullable="false" />
+          <Property Name="Red_WX_Pos35" Type="Int32" Nullable="false" />
+          <Property Name="Red_WX_Pos36" Type="Int32" Nullable="false" />
+          <Property Name="Red_WX_Pos45" Type="Int32" Nullable="false" />
+          <Property Name="Red_WX_Pos46" Type="Int32" Nullable="false" />
+          <Property Name="Red_WX_Pos56" Type="Int32" Nullable="false" />
+          <Property Name="Red_012_Pos12" Type="Int32" Nullable="false" />
+          <Property Name="Red_012_Pos13" Type="Int32" Nullable="false" />
+          <Property Name="Red_012_Pos14" Type="Int32" Nullable="false" />
+          <Property Name="Red_012_Pos15" Type="Int32" Nullable="false" />
+          <Property Name="Red_012_Pos16" Type="Int32" Nullable="false" />
+          <Property Name="Red_012_Pos23" Type="Int32" Nullable="false" />
+          <Property Name="Red_012_Pos24" Type="Int32" Nullable="false" />
+          <Property Name="Red_012_Pos25" Type="Int32" Nullable="false" />
+          <Property Name="Red_012_Pos26" Type="Int32" Nullable="false" />
+          <Property Name="Red_012_Pos34" Type="Int32" Nullable="false" />
+          <Property Name="Red_012_Pos35" Type="Int32" Nullable="false" />
+          <Property Name="Red_012_Pos36" Type="Int32" Nullable="false" />
+          <Property Name="Red_012_Pos45" Type="Int32" Nullable="false" />
+          <Property Name="Red_012_Pos46" Type="Int32" Nullable="false" />
+          <Property Name="Red_012_Pos56" Type="Int32" Nullable="false" />
+          <Property Name="Blue_Mantissa_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Blue_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Blue_Amplitude" Type="Int32" Nullable="false" />
+          <Property Name="Blue_Rows" Type="Int32" Nullable="false" />
+          <Property Name="Blue_Columns" Type="Int32" Nullable="false" />
+          <Property Name="Blue_Mantissa_Repeat_Previous_0" Type="Int32" Nullable="false" />
+          <Property Name="Blue_Mantissa_Repeat_Previous_1" Type="Int32" Nullable="false" />
+          <Property Name="Blue_Mantissa_Repeat_Previous_2" Type="Int32" Nullable="false" />
+          <Property Name="Blue_Mantissa_Repeat_Previous_3" Type="Int32" Nullable="false" />
+          <Property Name="Blue_Mantissa_Repeat_Previous_4" Type="Int32" Nullable="false" />
+          <Property Name="Blue_Mantissa_Repeat_Previous_5" Type="Int32" Nullable="false" />
+          <Property Name="Blue_Mantissa_Repeat_Previous_6" Type="Int32" Nullable="false" />
+          <Property Name="Blue_Mantissa_Repeat_Previous_7" Type="Int32" Nullable="false" />
+          <Property Name="Blue_Mantissa_Repeat_Previous_8" Type="Int32" Nullable="false" />
+          <Property Name="Blue_Mantissa_Repeat_Previous_9" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Basic">
+          <Key>
+            <PropertyRef Name="Issue" />
+          </Key>
+          <Property Name="Issue" Type="Int32" Nullable="false" />
+          <Property Name="Red1" Type="Int32" Nullable="false" />
+          <Property Name="Red2" Type="Int32" Nullable="false" />
+          <Property Name="Red3" Type="Int32" Nullable="false" />
+          <Property Name="Red4" Type="Int32" Nullable="false" />
+          <Property Name="Red5" Type="Int32" Nullable="false" />
+          <Property Name="Red6" Type="Int32" Nullable="false" />
+          <Property Name="Blue" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Detail">
+          <Key>
+            <PropertyRef Name="Issue" />
+          </Key>
+          <Property Name="Issue" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Prize1Bonus" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Prize2Bonus" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Prize1Count" Type="Int32" Nullable="false" />
+          <Property Name="Prize2Count" Type="Int32" Nullable="false" />
+          <Property Name="Prize3Count" Type="Int32" Nullable="false" />
+          <Property Name="Prize4Count" Type="Int32" Nullable="false" />
+          <Property Name="Prize5Count" Type="Int32" Nullable="false" />
+          <Property Name="Prize6Count" Type="Int32" Nullable="false" />
+          <Property Name="BetAmount" Type="Int32" Nullable="false" />
+          <Property Name="PoolAmount" Type="Int32" Nullable="false" />
+          <Property Name="More" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Omission">
+          <Key>
+            <PropertyRef Name="Issue" />
+          </Key>
+          <Property Name="Issue" Type="Int32" Nullable="false" />
+          <Property Name="Red_01_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_02_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_03_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_04_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_05_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_06_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_07_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_08_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_09_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_10_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_11_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_12_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_13_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_14_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_15_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_16_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_17_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_18_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_19_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_20_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_21_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_22_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_23_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_24_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_25_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_26_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_27_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_28_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_29_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_30_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_31_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_32_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_33_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Red_01_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_02_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_03_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_04_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_05_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_06_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_07_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_08_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_09_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_10_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_11_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_12_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_13_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_14_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_15_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_16_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_17_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_18_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_19_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_20_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_21_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_22_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_23_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_24_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_25_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_26_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_27_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_28_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_29_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_30_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_31_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_32_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_33_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Red_01_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_02_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_03_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_04_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_05_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_06_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_07_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_08_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_09_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_10_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_11_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_12_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_13_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_14_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_15_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_16_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_17_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_18_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_19_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_20_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_21_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_22_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_23_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_24_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_25_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_26_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_27_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_28_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_29_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_30_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_31_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_32_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Red_33_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Blue_01_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Blue_02_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Blue_03_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Blue_04_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Blue_05_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Blue_06_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Blue_07_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Blue_08_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Blue_09_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Blue_10_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Blue_11_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Blue_12_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Blue_13_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Blue_14_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Blue_15_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Blue_16_Hit" Type="Int32" Nullable="false" />
+          <Property Name="Blue_01_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Blue_02_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Blue_03_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Blue_04_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Blue_05_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Blue_06_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Blue_07_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Blue_08_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Blue_09_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Blue_10_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Blue_11_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Blue_12_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Blue_13_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Blue_14_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Blue_15_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Blue_16_Omission" Type="Int32" Nullable="false" />
+          <Property Name="Blue_01_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Blue_02_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Blue_03_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Blue_04_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Blue_05_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Blue_06_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Blue_07_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Blue_08_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Blue_09_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Blue_10_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Blue_11_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Blue_12_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Blue_13_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Blue_14_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Blue_15_Temperature" Type="Int32" Nullable="false" />
+          <Property Name="Blue_16_Temperature" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBHistoryModelStoreContainer" CdmEntityContainer="DBHistoryEntity">
+          <EntitySetMapping Name="Attributes">
+            <EntityTypeMapping TypeName="DBHistoryModel.Attribute">
+              <MappingFragment StoreEntitySet="Attributes">
+                <ScalarProperty Name="Issue" ColumnName="Issue" />
+                <ScalarProperty Name="Red_InPos_1" ColumnName="Red_InPos_1" />
+                <ScalarProperty Name="Red_InPos_2" ColumnName="Red_InPos_2" />
+                <ScalarProperty Name="Red_InPos_3" ColumnName="Red_InPos_3" />
+                <ScalarProperty Name="Red_InPos_4" ColumnName="Red_InPos_4" />
+                <ScalarProperty Name="Red_InPos_5" ColumnName="Red_InPos_5" />
+                <ScalarProperty Name="Red_InPos_6" ColumnName="Red_InPos_6" />
+                <ScalarProperty Name="Red_Mantissa_InPos_1" ColumnName="Red_Mantissa_InPos_1" />
+                <ScalarProperty Name="Red_Mantissa_InPos_2" ColumnName="Red_Mantissa_InPos_2" />
+                <ScalarProperty Name="Red_Mantissa_InPos_3" ColumnName="Red_Mantissa_InPos_3" />
+                <ScalarProperty Name="Red_Mantissa_InPos_4" ColumnName="Red_Mantissa_InPos_4" />
+                <ScalarProperty Name="Red_Mantissa_InPos_5" ColumnName="Red_Mantissa_InPos_5" />
+                <ScalarProperty Name="Red_Mantissa_InPos_6" ColumnName="Red_Mantissa_InPos_6" />
+                <ScalarProperty Name="Red_Mantissa_Max" ColumnName="Red_Mantissa_Max" />
+                <ScalarProperty Name="Red_Mantissa_Min" ColumnName="Red_Mantissa_Min" />
+                <ScalarProperty Name="Red_Zone_In03_01" ColumnName="Red_Zone_In03_01" />
+                <ScalarProperty Name="Red_Zone_In03_02" ColumnName="Red_Zone_In03_02" />
+                <ScalarProperty Name="Red_Zone_In03_03" ColumnName="Red_Zone_In03_03" />
+                <ScalarProperty Name="Red_Zone_In04_01" ColumnName="Red_Zone_In04_01" />
+                <ScalarProperty Name="Red_Zone_In04_02" ColumnName="Red_Zone_In04_02" />
+                <ScalarProperty Name="Red_Zone_In04_03" ColumnName="Red_Zone_In04_03" />
+                <ScalarProperty Name="Red_Zone_In04_04" ColumnName="Red_Zone_In04_04" />
+                <ScalarProperty Name="Red_Zone_In07_01" ColumnName="Red_Zone_In07_01" />
+                <ScalarProperty Name="Red_Zone_In07_02" ColumnName="Red_Zone_In07_02" />
+                <ScalarProperty Name="Red_Zone_In07_03" ColumnName="Red_Zone_In07_03" />
+                <ScalarProperty Name="Red_Zone_In07_04" ColumnName="Red_Zone_In07_04" />
+                <ScalarProperty Name="Red_Zone_In07_05" ColumnName="Red_Zone_In07_05" />
+                <ScalarProperty Name="Red_Zone_In07_06" ColumnName="Red_Zone_In07_06" />
+                <ScalarProperty Name="Red_Zone_In07_07" ColumnName="Red_Zone_In07_07" />
+                <ScalarProperty Name="Red_Zone_In11_01" ColumnName="Red_Zone_In11_01" />
+                <ScalarProperty Name="Red_Zone_In11_02" ColumnName="Red_Zone_In11_02" />
+                <ScalarProperty Name="Red_Zone_In11_03" ColumnName="Red_Zone_In11_03" />
+                <ScalarProperty Name="Red_Zone_In11_04" ColumnName="Red_Zone_In11_04" />
+                <ScalarProperty Name="Red_Zone_In11_05" ColumnName="Red_Zone_In11_05" />
+                <ScalarProperty Name="Red_Zone_In11_06" ColumnName="Red_Zone_In11_06" />
+                <ScalarProperty Name="Red_Zone_In11_07" ColumnName="Red_Zone_In11_07" />
+                <ScalarProperty Name="Red_Zone_In11_08" ColumnName="Red_Zone_In11_08" />
+                <ScalarProperty Name="Red_Zone_In11_09" ColumnName="Red_Zone_In11_09" />
+                <ScalarProperty Name="Red_Zone_In11_10" ColumnName="Red_Zone_In11_10" />
+                <ScalarProperty Name="Red_Zone_In11_11" ColumnName="Red_Zone_In11_11" />
+                <ScalarProperty Name="Red_Row_1" ColumnName="Red_Row_1" />
+                <ScalarProperty Name="Red_Row_2" ColumnName="Red_Row_2" />
+                <ScalarProperty Name="Red_Row_3" ColumnName="Red_Row_3" />
+                <ScalarProperty Name="Red_Row_4" ColumnName="Red_Row_4" />
+                <ScalarProperty Name="Red_Row_5" ColumnName="Red_Row_5" />
+                <ScalarProperty Name="Red_Row_6" ColumnName="Red_Row_6" />
+                <ScalarProperty Name="Red_Column_1" ColumnName="Red_Column_1" />
+                <ScalarProperty Name="Red_Column_2" ColumnName="Red_Column_2" />
+                <ScalarProperty Name="Red_Column_3" ColumnName="Red_Column_3" />
+                <ScalarProperty Name="Red_Column_4" ColumnName="Red_Column_4" />
+                <ScalarProperty Name="Red_Column_5" ColumnName="Red_Column_5" />
+                <ScalarProperty Name="Red_Column_6" ColumnName="Red_Column_6" />
+                <ScalarProperty Name="Red_Repeat_Previous_0" ColumnName="Red_Repeat_Previous_0" />
+                <ScalarProperty Name="Red_Repeat_Previous_1" ColumnName="Red_Repeat_Previous_1" />
+                <ScalarProperty Name="Red_Repeat_Previous_2" ColumnName="Red_Repeat_Previous_2" />
+                <ScalarProperty Name="Red_Repeat_Previous_3" ColumnName="Red_Repeat_Previous_3" />
+                <ScalarProperty Name="Red_Repeat_Previous_4" ColumnName="Red_Repeat_Previous_4" />
+                <ScalarProperty Name="Red_Repeat_Previous_5" ColumnName="Red_Repeat_Previous_5" />
+                <ScalarProperty Name="Red_Repeat_Previous_6" ColumnName="Red_Repeat_Previous_6" />
+                <ScalarProperty Name="Red_Repeat_Previous_7" ColumnName="Red_Repeat_Previous_7" />
+                <ScalarProperty Name="Red_Repeat_Previous_8" ColumnName="Red_Repeat_Previous_8" />
+                <ScalarProperty Name="Red_Repeat_Previous_9" ColumnName="Red_Repeat_Previous_9" />
+                <ScalarProperty Name="Red_Sum" ColumnName="Red_Sum" />
+                <ScalarProperty Name="Red_Sum_Mantissa_" ColumnName="Red_Sum_Mantissa " />
+                <ScalarProperty Name="Red_Odd_Sum_" ColumnName="Red_Odd_Sum " />
+                <ScalarProperty Name="Red_Odd_Sum_Mantissa" ColumnName="Red_Odd_Sum_Mantissa" />
+                <ScalarProperty Name="Red_Even_Sum" ColumnName="Red_Even_Sum" />
+                <ScalarProperty Name="Red_Even_Sum_Mantissa" ColumnName="Red_Even_Sum_Mantissa" />
+                <ScalarProperty Name="Red_Composite_Sum" ColumnName="Red_Composite_Sum" />
+                <ScalarProperty Name="Red_Composite_Sum_Mantissa" ColumnName="Red_Composite_Sum_Mantissa" />
+                <ScalarProperty Name="Red_Primary_Sum" ColumnName="Red_Primary_Sum" />
+                <ScalarProperty Name="Red_Primary_Sum_Mantissa" ColumnName="Red_Primary_Sum_Mantissa" />
+                <ScalarProperty Name="Red_BigSmall" ColumnName="Red_BigSmall" />
+                <ScalarProperty Name="Red_OddEven" ColumnName="Red_OddEven" />
+                <ScalarProperty Name="Red_PrimaryComposite" ColumnName="Red_PrimaryComposite" />
+                <ScalarProperty Name="Red_012" ColumnName="Red_012" />
+                <ScalarProperty Name="Red_SmallMidBig" ColumnName="Red_SmallMidBig" />
+                <ScalarProperty Name="Red_FuGeZhong" ColumnName="Red_FuGeZhong" />
+                <ScalarProperty Name="Red_5Xing_1" ColumnName="Red_5Xing_1" />
+                <ScalarProperty Name="Red_5Xing_2" ColumnName="Red_5Xing_2" />
+                <ScalarProperty Name="Red_5Xing_3" ColumnName="Red_5Xing_3" />
+                <ScalarProperty Name="Red_5Xing_4" ColumnName="Red_5Xing_4" />
+                <ScalarProperty Name="Red_5Xing_5" ColumnName="Red_5Xing_5" />
+                <ScalarProperty Name="Red_5Xing_6" ColumnName="Red_5Xing_6" />
+                <ScalarProperty Name="Red_Omission_01" ColumnName="Red_Omission_01" />
+                <ScalarProperty Name="Red_Omission_02" ColumnName="Red_Omission_02" />
+                <ScalarProperty Name="Red_Omission_03" ColumnName="Red_Omission_03" />
+                <ScalarProperty Name="Red_Omission_04" ColumnName="Red_Omission_04" />
+                <ScalarProperty Name="Red_Omission_05" ColumnName="Red_Omission_05" />
+                <ScalarProperty Name="Red_Omission_06" ColumnName="Red_Omission_06" />
+                <ScalarProperty Name="Red_Omission_07" ColumnName="Red_Omission_07" />
+                <ScalarProperty Name="Red_Omission_08" ColumnName="Red_Omission_08" />
+                <ScalarProperty Name="Red_Omission_09" ColumnName="Red_Omission_09" />
+                <ScalarProperty Name="Red_Omission_10" ColumnName="Red_Omission_10" />
+                <ScalarProperty Name="Red_Omission_11" ColumnName="Red_Omission_11" />
+                <ScalarProperty Name="Red_Omission_12" ColumnName="Red_Omission_12" />
+                <ScalarProperty Name="Red_Omission_13" ColumnName="Red_Omission_13" />
+                <ScalarProperty Name="Red_Omission_14" ColumnName="Red_Omission_14" />
+                <ScalarProperty Name="Red_Omission_15" ColumnName="Red_Omission_15" />
+                <ScalarProperty Name="Red_Omission_16" ColumnName="Red_Omission_16" />
+                <ScalarProperty Name="Red_Omission_17" ColumnName="Red_Omission_17" />
+                <ScalarProperty Name="Red_Omission_18" ColumnName="Red_Omission_18" />
+                <ScalarProperty Name="Red_Omission_19" ColumnName="Red_Omission_19" />
+                <ScalarProperty Name="Red_Omission_20" ColumnName="Red_Omission_20" />
+                <ScalarProperty Name="Red_Omission_21" ColumnName="Red_Omission_21" />
+                <ScalarProperty Name="Red_Omission_22" ColumnName="Red_Omission_22" />
+                <ScalarProperty Name="Red_Omission_23" ColumnName="Red_Omission_23" />
+                <ScalarProperty Name="Red_Omission_24" ColumnName="Red_Omission_24" />
+                <ScalarProperty Name="Red_Omission_25" ColumnName="Red_Omission_25" />
+                <ScalarProperty Name="Red_Omission_26" ColumnName="Red_Omission_26" />
+                <ScalarProperty Name="Red_Omission_27" ColumnName="Red_Omission_27" />
+                <ScalarProperty Name="Red_Omission_28" ColumnName="Red_Omission_28" />
+                <ScalarProperty Name="Red_Omission_29" ColumnName="Red_Omission_29" />
+                <ScalarProperty Name="Red_Omission_30" ColumnName="Red_Omission_30" />
+                <ScalarProperty Name="Red_Omission_31" ColumnName="Red_Omission_31" />
+                <ScalarProperty Name="Red_Omission_32" ColumnName="Red_Omission_32" />
+                <ScalarProperty Name="Red_Omission_33" ColumnName="Red_Omission_33" />
+                <ScalarProperty Name="Red_Remainder_Devide3_0" ColumnName="Red_Remainder_Devide3_0" />
+                <ScalarProperty Name="Red_Remainder_Devide3_1" ColumnName="Red_Remainder_Devide3_1" />
+                <ScalarProperty Name="Red_Remainder_Devide3_2" ColumnName="Red_Remainder_Devide3_2" />
+                <ScalarProperty Name="Red_Remainder_Devide4_0" ColumnName="Red_Remainder_Devide4_0" />
+                <ScalarProperty Name="Red_Remainder_Devide4_1" ColumnName="Red_Remainder_Devide4_1" />
+                <ScalarProperty Name="Red_Remainder_Devide4_2" ColumnName="Red_Remainder_Devide4_2" />
+                <ScalarProperty Name="Red_Remainder_Devide4_3" ColumnName="Red_Remainder_Devide4_3" />
+                <ScalarProperty Name="Red_Remainder_Devide5_0" ColumnName="Red_Remainder_Devide5_0" />
+                <ScalarProperty Name="Red_Remainder_Devide5_1" ColumnName="Red_Remainder_Devide5_1" />
+                <ScalarProperty Name="Red_Remainder_Devide5_2" ColumnName="Red_Remainder_Devide5_2" />
+                <ScalarProperty Name="Red_Remainder_Devide5_3" ColumnName="Red_Remainder_Devide5_3" />
+                <ScalarProperty Name="Red_Remainder_Devide5_4" ColumnName="Red_Remainder_Devide5_4" />
+                <ScalarProperty Name="Red_Remainder_Devide6_0" ColumnName="Red_Remainder_Devide6_0" />
+                <ScalarProperty Name="Red_Remainder_Devide6_1" ColumnName="Red_Remainder_Devide6_1" />
+                <ScalarProperty Name="Red_Remainder_Devide6_2" ColumnName="Red_Remainder_Devide6_2" />
+                <ScalarProperty Name="Red_Remainder_Devide6_3" ColumnName="Red_Remainder_Devide6_3" />
+                <ScalarProperty Name="Red_Remainder_Devide6_4" ColumnName="Red_Remainder_Devide6_4" />
+                <ScalarProperty Name="Red_Remainder_Devide6_5" ColumnName="Red_Remainder_Devide6_5" />
+                <ScalarProperty Name="Red_Remainder_Devide7_0" ColumnName="Red_Remainder_Devide7_0" />
+                <ScalarProperty Name="Red_Remainder_Devide7_1" ColumnName="Red_Remainder_Devide7_1" />
+                <ScalarProperty Name="Red_Remainder_Devide7_2" ColumnName="Red_Remainder_Devide7_2" />
+                <ScalarProperty Name="Red_Remainder_Devide7_3" ColumnName="Red_Remainder_Devide7_3" />
+                <ScalarProperty Name="Red_Remainder_Devide7_4" ColumnName="Red_Remainder_Devide7_4" />
+                <ScalarProperty Name="Red_Remainder_Devide7_5" ColumnName="Red_Remainder_Devide7_5" />
+                <ScalarProperty Name="Red_Remainder_Devide7_6" ColumnName="Red_Remainder_Devide7_6" />
+                <ScalarProperty Name="Red_Sum_Pos12" ColumnName="Red_Sum_Pos12" />
+                <ScalarProperty Name="Red_Sum_Pos13" ColumnName="Red_Sum_Pos13" />
+                <ScalarProperty Name="Red_Sum_Pos14" ColumnName="Red_Sum_Pos14" />
+                <ScalarProperty Name="Red_Sum_Pos15" ColumnName="Red_Sum_Pos15" />
+                <ScalarProperty Name="Red_Sum_Pos16" ColumnName="Red_Sum_Pos16" />
+                <ScalarProperty Name="Red_Sum_Pos23" ColumnName="Red_Sum_Pos23" />
+                <ScalarProperty Name="Red_Sum_Pos24" ColumnName="Red_Sum_Pos24" />
+                <ScalarProperty Name="Red_Sum_Pos25" ColumnName="Red_Sum_Pos25" />
+                <ScalarProperty Name="Red_Sum_Pos26" ColumnName="Red_Sum_Pos26" />
+                <ScalarProperty Name="Red_Sum_Pos34" ColumnName="Red_Sum_Pos34" />
+                <ScalarProperty Name="Red_Sum_Pos35" ColumnName="Red_Sum_Pos35" />
+                <ScalarProperty Name="Red_Sum_Pos36" ColumnName="Red_Sum_Pos36" />
+                <ScalarProperty Name="Red_Sum_Pos45" ColumnName="Red_Sum_Pos45" />
+                <ScalarProperty Name="Red_Sum_Pos46" ColumnName="Red_Sum_Pos46" />
+                <ScalarProperty Name="Red_Sum_Pos56" ColumnName="Red_Sum_Pos56" />
+                <ScalarProperty Name="Red_Diff_Pos12" ColumnName="Red_Diff_Pos12" />
+                <ScalarProperty Name="Red_Diff_Pos13" ColumnName="Red_Diff_Pos13" />
+                <ScalarProperty Name="Red_Diff_Pos14" ColumnName="Red_Diff_Pos14" />
+                <ScalarProperty Name="Red_Diff_Pos15" ColumnName="Red_Diff_Pos15" />
+                <ScalarProperty Name="Red_Diff_Pos16" ColumnName="Red_Diff_Pos16" />
+                <ScalarProperty Name="Red_Diff_Pos23" ColumnName="Red_Diff_Pos23" />
+                <ScalarProperty Name="Red_Diff_Pos24" ColumnName="Red_Diff_Pos24" />
+                <ScalarProperty Name="Red_Diff_Pos25" ColumnName="Red_Diff_Pos25" />
+                <ScalarProperty Name="Red_Diff_Pos26" ColumnName="Red_Diff_Pos26" />
+                <ScalarProperty Name="Red_Diff_Pos34" ColumnName="Red_Diff_Pos34" />
+                <ScalarProperty Name="Red_Diff_Pos35" ColumnName="Red_Diff_Pos35" />
+                <ScalarProperty Name="Red_Diff_Pos36" ColumnName="Red_Diff_Pos36" />
+                <ScalarProperty Name="Red_Diff_Pos45" ColumnName="Red_Diff_Pos45" />
+                <ScalarProperty Name="Red_Diff_Pos46" ColumnName="Red_Diff_Pos46" />
+                <ScalarProperty Name="Red_Diff_Pos56" ColumnName="Red_Diff_Pos56" />
+                <ScalarProperty Name="Red_OE_Pos12" ColumnName="Red_OE_Pos12" />
+                <ScalarProperty Name="Red_OE_Pos13" ColumnName="Red_OE_Pos13" />
+                <ScalarProperty Name="Red_OE_Pos14" ColumnName="Red_OE_Pos14" />
+                <ScalarProperty Name="Red_OE_Pos15" ColumnName="Red_OE_Pos15" />
+                <ScalarProperty Name="Red_OE_Pos16" ColumnName="Red_OE_Pos16" />
+                <ScalarProperty Name="Red_OE_Pos23" ColumnName="Red_OE_Pos23" />
+                <ScalarProperty Name="Red_OE_Pos24" ColumnName="Red_OE_Pos24" />
+                <ScalarProperty Name="Red_OE_Pos25" ColumnName="Red_OE_Pos25" />
+                <ScalarProperty Name="Red_OE_Pos26" ColumnName="Red_OE_Pos26" />
+                <ScalarProperty Name="Red_OE_Pos34" ColumnName="Red_OE_Pos34" />
+                <ScalarProperty Name="Red_OE_Pos35" ColumnName="Red_OE_Pos35" />
+                <ScalarProperty Name="Red_OE_Pos36" ColumnName="Red_OE_Pos36" />
+                <ScalarProperty Name="Red_OE_Pos45" ColumnName="Red_OE_Pos45" />
+                <ScalarProperty Name="Red_OE_Pos46" ColumnName="Red_OE_Pos46" />
+                <ScalarProperty Name="Red_OE_Pos56" ColumnName="Red_OE_Pos56" />
+                <ScalarProperty Name="Red_PC_Pos12" ColumnName="Red_PC_Pos12" />
+                <ScalarProperty Name="Red_PC_Pos13" ColumnName="Red_PC_Pos13" />
+                <ScalarProperty Name="Red_PC_Pos14" ColumnName="Red_PC_Pos14" />
+                <ScalarProperty Name="Red_PC_Pos15" ColumnName="Red_PC_Pos15" />
+                <ScalarProperty Name="Red_PC_Pos16" ColumnName="Red_PC_Pos16" />
+                <ScalarProperty Name="Red_PC_Pos23" ColumnName="Red_PC_Pos23" />
+                <ScalarProperty Name="Red_PC_Pos24" ColumnName="Red_PC_Pos24" />
+                <ScalarProperty Name="Red_PC_Pos25" ColumnName="Red_PC_Pos25" />
+                <ScalarProperty Name="Red_PC_Pos26" ColumnName="Red_PC_Pos26" />
+                <ScalarProperty Name="Red_PC_Pos34" ColumnName="Red_PC_Pos34" />
+                <ScalarProperty Name="Red_PC_Pos35" ColumnName="Red_PC_Pos35" />
+                <ScalarProperty Name="Red_PC_Pos36" ColumnName="Red_PC_Pos36" />
+                <ScalarProperty Name="Red_PC_Pos45" ColumnName="Red_PC_Pos45" />
+                <ScalarProperty Name="Red_PC_Pos46" ColumnName="Red_PC_Pos46" />
+                <ScalarProperty Name="Red_PC_Pos56" ColumnName="Red_PC_Pos56" />
+                <ScalarProperty Name="Red_WX_Pos12" ColumnName="Red_WX_Pos12" />
+                <ScalarProperty Name="Red_WX_Pos13" ColumnName="Red_WX_Pos13" />
+                <ScalarProperty Name="Red_WX_Pos14" ColumnName="Red_WX_Pos14" />
+                <ScalarProperty Name="Red_WX_Pos15" ColumnName="Red_WX_Pos15" />
+                <ScalarProperty Name="Red_WX_Pos16" ColumnName="Red_WX_Pos16" />
+                <ScalarProperty Name="Red_WX_Pos23" ColumnName="Red_WX_Pos23" />
+                <ScalarProperty Name="Red_WX_Pos24" ColumnName="Red_WX_Pos24" />
+                <ScalarProperty Name="Red_WX_Pos25" ColumnName="Red_WX_Pos25" />
+                <ScalarProperty Name="Red_WX_Pos26" ColumnName="Red_WX_Pos26" />
+                <ScalarProperty Name="Red_WX_Pos34" ColumnName="Red_WX_Pos34" />
+                <ScalarProperty Name="Red_WX_Pos35" ColumnName="Red_WX_Pos35" />
+                <ScalarProperty Name="Red_WX_Pos36" ColumnName="Red_WX_Pos36" />
+                <ScalarProperty Name="Red_WX_Pos45" ColumnName="Red_WX_Pos45" />
+                <ScalarProperty Name="Red_WX_Pos46" ColumnName="Red_WX_Pos46" />
+                <ScalarProperty Name="Red_WX_Pos56" ColumnName="Red_WX_Pos56" />
+                <ScalarProperty Name="Red_012_Pos12" ColumnName="Red_012_Pos12" />
+                <ScalarProperty Name="Red_012_Pos13" ColumnName="Red_012_Pos13" />
+                <ScalarProperty Name="Red_012_Pos14" ColumnName="Red_012_Pos14" />
+                <ScalarProperty Name="Red_012_Pos15" ColumnName="Red_012_Pos15" />
+                <ScalarProperty Name="Red_012_Pos16" ColumnName="Red_012_Pos16" />
+                <ScalarProperty Name="Red_012_Pos23" ColumnName="Red_012_Pos23" />
+                <ScalarProperty Name="Red_012_Pos24" ColumnName="Red_012_Pos24" />
+                <ScalarProperty Name="Red_012_Pos25" ColumnName="Red_012_Pos25" />
+                <ScalarProperty Name="Red_012_Pos26" ColumnName="Red_012_Pos26" />
+                <ScalarProperty Name="Red_012_Pos34" ColumnName="Red_012_Pos34" />
+                <ScalarProperty Name="Red_012_Pos35" ColumnName="Red_012_Pos35" />
+                <ScalarProperty Name="Red_012_Pos36" ColumnName="Red_012_Pos36" />
+                <ScalarProperty Name="Red_012_Pos45" ColumnName="Red_012_Pos45" />
+                <ScalarProperty Name="Red_012_Pos46" ColumnName="Red_012_Pos46" />
+                <ScalarProperty Name="Red_012_Pos56" ColumnName="Red_012_Pos56" />
+                <ScalarProperty Name="Blue_Mantissa_Omission" ColumnName="Blue_Mantissa_Omission" />
+                <ScalarProperty Name="Blue_Omission" ColumnName="Blue_Omission" />
+                <ScalarProperty Name="Blue_Amplitude" ColumnName="Blue_Amplitude" />
+                <ScalarProperty Name="Blue_Rows" ColumnName="Blue_Rows" />
+                <ScalarProperty Name="Blue_Columns" ColumnName="Blue_Columns" />
+                <ScalarProperty Name="Blue_Mantissa_Repeat_Previous_0" ColumnName="Blue_Mantissa_Repeat_Previous_0" />
+                <ScalarProperty Name="Blue_Mantissa_Repeat_Previous_1" ColumnName="Blue_Mantissa_Repeat_Previous_1" />
+                <ScalarProperty Name="Blue_Mantissa_Repeat_Previous_2" ColumnName="Blue_Mantissa_Repeat_Previous_2" />
+                <ScalarProperty Name="Blue_Mantissa_Repeat_Previous_3" ColumnName="Blue_Mantissa_Repeat_Previous_3" />
+                <ScalarProperty Name="Blue_Mantissa_Repeat_Previous_4" ColumnName="Blue_Mantissa_Repeat_Previous_4" />
+                <ScalarProperty Name="Blue_Mantissa_Repeat_Previous_5" ColumnName="Blue_Mantissa_Repeat_Previous_5" />
+                <ScalarProperty Name="Blue_Mantissa_Repeat_Previous_6" ColumnName="Blue_Mantissa_Repeat_Previous_6" />
+                <ScalarProperty Name="Blue_Mantissa_Repeat_Previous_7" ColumnName="Blue_Mantissa_Repeat_Previous_7" />
+                <ScalarProperty Name="Blue_Mantissa_Repeat_Previous_8" ColumnName="Blue_Mantissa_Repeat_Previous_8" />
+                <ScalarProperty Name="Blue_Mantissa_Repeat_Previous_9" ColumnName="Blue_Mantissa_Repeat_Previous_9" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Basics">
+            <EntityTypeMapping TypeName="DBHistoryModel.Basic">
+              <MappingFragment StoreEntitySet="Basic">
+                <ScalarProperty Name="Issue" ColumnName="Issue" />
+                <ScalarProperty Name="Red1" ColumnName="Red1" />
+                <ScalarProperty Name="Red2" ColumnName="Red2" />
+                <ScalarProperty Name="Red3" ColumnName="Red3" />
+                <ScalarProperty Name="Red4" ColumnName="Red4" />
+                <ScalarProperty Name="Red5" ColumnName="Red5" />
+                <ScalarProperty Name="Red6" ColumnName="Red6" />
+                <ScalarProperty Name="Blue" ColumnName="Blue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Details">
+            <EntityTypeMapping TypeName="DBHistoryModel.Detail">
+              <MappingFragment StoreEntitySet="Detail">
+                <ScalarProperty Name="Issue" ColumnName="Issue" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Prize1Bonus" ColumnName="Prize1Bonus" />
+                <ScalarProperty Name="Prize2Bonus" ColumnName="Prize2Bonus" />
+                <ScalarProperty Name="Prize1Count" ColumnName="Prize1Count" />
+                <ScalarProperty Name="Prize2Count" ColumnName="Prize2Count" />
+                <ScalarProperty Name="Prize3Count" ColumnName="Prize3Count" />
+                <ScalarProperty Name="Prize4Count" ColumnName="Prize4Count" />
+                <ScalarProperty Name="Prize5Count" ColumnName="Prize5Count" />
+                <ScalarProperty Name="Prize6Count" ColumnName="Prize6Count" />
+                <ScalarProperty Name="BetAmount" ColumnName="BetAmount" />
+                <ScalarProperty Name="PoolAmount" ColumnName="PoolAmount" />
+                <ScalarProperty Name="More" ColumnName="More" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Omissions">
+            <EntityTypeMapping TypeName="DBHistoryModel.Omission">
+              <MappingFragment StoreEntitySet="Omission">
+                <ScalarProperty Name="Issue" ColumnName="Issue" />
+                <ScalarProperty Name="Red_01_Hit" ColumnName="Red_01_Hit" />
+                <ScalarProperty Name="Red_02_Hit" ColumnName="Red_02_Hit" />
+                <ScalarProperty Name="Red_03_Hit" ColumnName="Red_03_Hit" />
+                <ScalarProperty Name="Red_04_Hit" ColumnName="Red_04_Hit" />
+                <ScalarProperty Name="Red_05_Hit" ColumnName="Red_05_Hit" />
+                <ScalarProperty Name="Red_06_Hit" ColumnName="Red_06_Hit" />
+                <ScalarProperty Name="Red_07_Hit" ColumnName="Red_07_Hit" />
+                <ScalarProperty Name="Red_08_Hit" ColumnName="Red_08_Hit" />
+                <ScalarProperty Name="Red_09_Hit" ColumnName="Red_09_Hit" />
+                <ScalarProperty Name="Red_10_Hit" ColumnName="Red_10_Hit" />
+                <ScalarProperty Name="Red_11_Hit" ColumnName="Red_11_Hit" />
+                <ScalarProperty Name="Red_12_Hit" ColumnName="Red_12_Hit" />
+                <ScalarProperty Name="Red_13_Hit" ColumnName="Red_13_Hit" />
+                <ScalarProperty Name="Red_14_Hit" ColumnName="Red_14_Hit" />
+                <ScalarProperty Name="Red_15_Hit" ColumnName="Red_15_Hit" />
+                <ScalarProperty Name="Red_16_Hit" ColumnName="Red_16_Hit" />
+                <ScalarProperty Name="Red_17_Hit" ColumnName="Red_17_Hit" />
+                <ScalarProperty Name="Red_18_Hit" ColumnName="Red_18_Hit" />
+                <ScalarProperty Name="Red_19_Hit" ColumnName="Red_19_Hit" />
+                <ScalarProperty Name="Red_20_Hit" ColumnName="Red_20_Hit" />
+                <ScalarProperty Name="Red_21_Hit" ColumnName="Red_21_Hit" />
+                <ScalarProperty Name="Red_22_Hit" ColumnName="Red_22_Hit" />
+                <ScalarProperty Name="Red_23_Hit" ColumnName="Red_23_Hit" />
+                <ScalarProperty Name="Red_24_Hit" ColumnName="Red_24_Hit" />
+                <ScalarProperty Name="Red_25_Hit" ColumnName="Red_25_Hit" />
+                <ScalarProperty Name="Red_26_Hit" ColumnName="Red_26_Hit" />
+                <ScalarProperty Name="Red_27_Hit" ColumnName="Red_27_Hit" />
+                <ScalarProperty Name="Red_28_Hit" ColumnName="Red_28_Hit" />
+                <ScalarProperty Name="Red_29_Hit" ColumnName="Red_29_Hit" />
+                <ScalarProperty Name="Red_30_Hit" ColumnName="Red_30_Hit" />
+                <ScalarProperty Name="Red_31_Hit" ColumnName="Red_31_Hit" />
+                <ScalarProperty Name="Red_32_Hit" ColumnName="Red_32_Hit" />
+                <ScalarProperty Name="Red_33_Hit" ColumnName="Red_33_Hit" />
+                <ScalarProperty Name="Red_01_Omission" ColumnName="Red_01_Omission" />
+                <ScalarProperty Name="Red_02_Omission" ColumnName="Red_02_Omission" />
+                <ScalarProperty Name="Red_03_Omission" ColumnName="Red_03_Omission" />
+                <ScalarProperty Name="Red_04_Omission" ColumnName="Red_04_Omission" />
+                <ScalarProperty Name="Red_05_Omission" ColumnName="Red_05_Omission" />
+                <ScalarProperty Name="Red_06_Omission" ColumnName="Red_06_Omission" />
+                <ScalarProperty Name="Red_07_Omission" ColumnName="Red_07_Omission" />
+                <ScalarProperty Name="Red_08_Omission" ColumnName="Red_08_Omission" />
+                <ScalarProperty Name="Red_09_Omission" ColumnName="Red_09_Omission" />
+                <ScalarProperty Name="Red_10_Omission" ColumnName="Red_10_Omission" />
+                <ScalarProperty Name="Red_11_Omission" ColumnName="Red_11_Omission" />
+                <ScalarProperty Name="Red_12_Omission" ColumnName="Red_12_Omission" />
+                <ScalarProperty Name="Red_13_Omission" ColumnName="Red_13_Omission" />
+                <ScalarProperty Name="Red_14_Omission" ColumnName="Red_14_Omission" />
+                <ScalarProperty Name="Red_15_Omission" ColumnName="Red_15_Omission" />
+                <ScalarProperty Name="Red_16_Omission" ColumnName="Red_16_Omission" />
+                <ScalarProperty Name="Red_17_Omission" ColumnName="Red_17_Omission" />
+                <ScalarProperty Name="Red_18_Omission" ColumnName="Red_18_Omission" />
+                <ScalarProperty Name="Red_19_Omission" ColumnName="Red_19_Omission" />
+                <ScalarProperty Name="Red_20_Omission" ColumnName="Red_20_Omission" />
+                <ScalarProperty Name="Red_21_Omission" ColumnName="Red_21_Omission" />
+                <ScalarProperty Name="Red_22_Omission" ColumnName="Red_22_Omission" />
+                <ScalarProperty Name="Red_23_Omission" ColumnName="Red_23_Omission" />
+                <ScalarProperty Name="Red_24_Omission" ColumnName="Red_24_Omission" />
+                <ScalarProperty Name="Red_25_Omission" ColumnName="Red_25_Omission" />
+                <ScalarProperty Name="Red_26_Omission" ColumnName="Red_26_Omission" />
+                <ScalarProperty Name="Red_27_Omission" ColumnName="Red_27_Omission" />
+                <ScalarProperty Name="Red_28_Omission" ColumnName="Red_28_Omission" />
+                <ScalarProperty Name="Red_29_Omission" ColumnName="Red_29_Omission" />
+                <ScalarProperty Name="Red_30_Omission" ColumnName="Red_30_Omission" />
+                <ScalarProperty Name="Red_31_Omission" ColumnName="Red_31_Omission" />
+                <ScalarProperty Name="Red_32_Omission" ColumnName="Red_32_Omission" />
+                <ScalarProperty Name="Red_33_Omission" ColumnName="Red_33_Omission" />
+                <ScalarProperty Name="Red_01_Temperature" ColumnName="Red_01_Temperature" />
+                <ScalarProperty Name="Red_02_Temperature" ColumnName="Red_02_Temperature" />
+                <ScalarProperty Name="Red_03_Temperature" ColumnName="Red_03_Temperature" />
+                <ScalarProperty Name="Red_04_Temperature" ColumnName="Red_04_Temperature" />
+                <ScalarProperty Name="Red_05_Temperature" ColumnName="Red_05_Temperature" />
+                <ScalarProperty Name="Red_06_Temperature" ColumnName="Red_06_Temperature" />
+                <ScalarProperty Name="Red_07_Temperature" ColumnName="Red_07_Temperature" />
+                <ScalarProperty Name="Red_08_Temperature" ColumnName="Red_08_Temperature" />
+                <ScalarProperty Name="Red_09_Temperature" ColumnName="Red_09_Temperature" />
+                <ScalarProperty Name="Red_10_Temperature" ColumnName="Red_10_Temperature" />
+                <ScalarProperty Name="Red_11_Temperature" ColumnName="Red_11_Temperature" />
+                <ScalarProperty Name="Red_12_Temperature" ColumnName="Red_12_Temperature" />
+                <ScalarProperty Name="Red_13_Temperature" ColumnName="Red_13_Temperature" />
+                <ScalarProperty Name="Red_14_Temperature" ColumnName="Red_14_Temperature" />
+                <ScalarProperty Name="Red_15_Temperature" ColumnName="Red_15_Temperature" />
+                <ScalarProperty Name="Red_16_Temperature" ColumnName="Red_16_Temperature" />
+                <ScalarProperty Name="Red_17_Temperature" ColumnName="Red_17_Temperature" />
+                <ScalarProperty Name="Red_18_Temperature" ColumnName="Red_18_Temperature" />
+                <ScalarProperty Name="Red_19_Temperature" ColumnName="Red_19_Temperature" />
+                <ScalarProperty Name="Red_20_Temperature" ColumnName="Red_20_Temperature" />
+                <ScalarProperty Name="Red_21_Temperature" ColumnName="Red_21_Temperature" />
+                <ScalarProperty Name="Red_22_Temperature" ColumnName="Red_22_Temperature" />
+                <ScalarProperty Name="Red_23_Temperature" ColumnName="Red_23_Temperature" />
+                <ScalarProperty Name="Red_24_Temperature" ColumnName="Red_24_Temperature" />
+                <ScalarProperty Name="Red_25_Temperature" ColumnName="Red_25_Temperature" />
+                <ScalarProperty Name="Red_26_Temperature" ColumnName="Red_26_Temperature" />
+                <ScalarProperty Name="Red_27_Temperature" ColumnName="Red_27_Temperature" />
+                <ScalarProperty Name="Red_28_Temperature" ColumnName="Red_28_Temperature" />
+                <ScalarProperty Name="Red_29_Temperature" ColumnName="Red_29_Temperature" />
+                <ScalarProperty Name="Red_30_Temperature" ColumnName="Red_30_Temperature" />
+                <ScalarProperty Name="Red_31_Temperature" ColumnName="Red_31_Temperature" />
+                <ScalarProperty Name="Red_32_Temperature" ColumnName="Red_32_Temperature" />
+                <ScalarProperty Name="Red_33_Temperature" ColumnName="Red_33_Temperature" />
+                <ScalarProperty Name="Blue_01_Hit" ColumnName="Blue_01_Hit" />
+                <ScalarProperty Name="Blue_02_Hit" ColumnName="Blue_02_Hit" />
+                <ScalarProperty Name="Blue_03_Hit" ColumnName="Blue_03_Hit" />
+                <ScalarProperty Name="Blue_04_Hit" ColumnName="Blue_04_Hit" />
+                <ScalarProperty Name="Blue_05_Hit" ColumnName="Blue_05_Hit" />
+                <ScalarProperty Name="Blue_06_Hit" ColumnName="Blue_06_Hit" />
+                <ScalarProperty Name="Blue_07_Hit" ColumnName="Blue_07_Hit" />
+                <ScalarProperty Name="Blue_08_Hit" ColumnName="Blue_08_Hit" />
+                <ScalarProperty Name="Blue_09_Hit" ColumnName="Blue_09_Hit" />
+                <ScalarProperty Name="Blue_10_Hit" ColumnName="Blue_10_Hit" />
+                <ScalarProperty Name="Blue_11_Hit" ColumnName="Blue_11_Hit" />
+                <ScalarProperty Name="Blue_12_Hit" ColumnName="Blue_12_Hit" />
+                <ScalarProperty Name="Blue_13_Hit" ColumnName="Blue_13_Hit" />
+                <ScalarProperty Name="Blue_14_Hit" ColumnName="Blue_14_Hit" />
+                <ScalarProperty Name="Blue_15_Hit" ColumnName="Blue_15_Hit" />
+                <ScalarProperty Name="Blue_16_Hit" ColumnName="Blue_16_Hit" />
+                <ScalarProperty Name="Blue_01_Omission" ColumnName="Blue_01_Omission" />
+                <ScalarProperty Name="Blue_02_Omission" ColumnName="Blue_02_Omission" />
+                <ScalarProperty Name="Blue_03_Omission" ColumnName="Blue_03_Omission" />
+                <ScalarProperty Name="Blue_04_Omission" ColumnName="Blue_04_Omission" />
+                <ScalarProperty Name="Blue_05_Omission" ColumnName="Blue_05_Omission" />
+                <ScalarProperty Name="Blue_06_Omission" ColumnName="Blue_06_Omission" />
+                <ScalarProperty Name="Blue_07_Omission" ColumnName="Blue_07_Omission" />
+                <ScalarProperty Name="Blue_08_Omission" ColumnName="Blue_08_Omission" />
+                <ScalarProperty Name="Blue_09_Omission" ColumnName="Blue_09_Omission" />
+                <ScalarProperty Name="Blue_10_Omission" ColumnName="Blue_10_Omission" />
+                <ScalarProperty Name="Blue_11_Omission" ColumnName="Blue_11_Omission" />
+                <ScalarProperty Name="Blue_12_Omission" ColumnName="Blue_12_Omission" />
+                <ScalarProperty Name="Blue_13_Omission" ColumnName="Blue_13_Omission" />
+                <ScalarProperty Name="Blue_14_Omission" ColumnName="Blue_14_Omission" />
+                <ScalarProperty Name="Blue_15_Omission" ColumnName="Blue_15_Omission" />
+                <ScalarProperty Name="Blue_16_Omission" ColumnName="Blue_16_Omission" />
+                <ScalarProperty Name="Blue_01_Temperature" ColumnName="Blue_01_Temperature" />
+                <ScalarProperty Name="Blue_02_Temperature" ColumnName="Blue_02_Temperature" />
+                <ScalarProperty Name="Blue_03_Temperature" ColumnName="Blue_03_Temperature" />
+                <ScalarProperty Name="Blue_04_Temperature" ColumnName="Blue_04_Temperature" />
+                <ScalarProperty Name="Blue_05_Temperature" ColumnName="Blue_05_Temperature" />
+                <ScalarProperty Name="Blue_06_Temperature" ColumnName="Blue_06_Temperature" />
+                <ScalarProperty Name="Blue_07_Temperature" ColumnName="Blue_07_Temperature" />
+                <ScalarProperty Name="Blue_08_Temperature" ColumnName="Blue_08_Temperature" />
+                <ScalarProperty Name="Blue_09_Temperature" ColumnName="Blue_09_Temperature" />
+                <ScalarProperty Name="Blue_10_Temperature" ColumnName="Blue_10_Temperature" />
+                <ScalarProperty Name="Blue_11_Temperature" ColumnName="Blue_11_Temperature" />
+                <ScalarProperty Name="Blue_12_Temperature" ColumnName="Blue_12_Temperature" />
+                <ScalarProperty Name="Blue_13_Temperature" ColumnName="Blue_13_Temperature" />
+                <ScalarProperty Name="Blue_14_Temperature" ColumnName="Blue_14_Temperature" />
+                <ScalarProperty Name="Blue_15_Temperature" ColumnName="Blue_15_Temperature" />
+                <ScalarProperty Name="Blue_16_Temperature" ColumnName="Blue_16_Temperature" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

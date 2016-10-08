@@ -1,0 +1,1 @@
+E:\My Projects\ZZX_Local\Lotto\3p\InMobi_windows_SDK\InMobi_Windows_AdSDK_200\Windows 8\InMobi_W8_SDK_201\InMobiW8Ad_SDK_SampleApp\IMAdViewFromXAML\IMAdViewFromXAML.csproj;neutral
