@@ -39,12 +39,12 @@
                     <TextBox x:Name="TB_Lottery_Version" Width="50"/>
                 </StackPanel>
                 <StackPanel Margin="5" VerticalAlignment="Center">
-                    <TextBlock Text="发布信息"/>
-                    <TextBox x:Name="TB_Release_Version" Width="50"/>
-                </StackPanel>
-                <StackPanel Margin="5" VerticalAlignment="Center">
                     <TextBlock Text="历史数据"/>
                     <TextBox x:Name="TB_History_Version" Width="50"/>
+                </StackPanel>
+                <StackPanel Margin="5" VerticalAlignment="Center">
+                    <TextBlock Text="分析数据"/>
+                    <TextBox x:Name="TB_Release_Version" Width="50"/>
                 </StackPanel>
                 <StackPanel Margin="5" VerticalAlignment="Center">
                     <TextBlock Text="属性数据"/>

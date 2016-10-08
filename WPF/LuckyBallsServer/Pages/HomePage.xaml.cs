@@ -201,9 +201,6 @@ namespace LuckyBallsServer
 
             // update the next issue number.
             LB_Issue.Content = "第" + mgr.NextIssue + "期";
-
-            RandomReds();
-            RandomBlues();
         }
 
         private void BT_SaveChange_Click(object sender, RoutedEventArgs e)
@@ -304,11 +301,6 @@ namespace LuckyBallsServer
 
         private void BN_RadomReds_Click(object sender, RoutedEventArgs e)
         {
-            RandomReds();
-        }
-
-        private void RandomReds()
-        {
             // Reset all.
             for (int i = 1; i <= 33; ++i)
             {
@@ -348,11 +340,6 @@ namespace LuckyBallsServer
 
         private void BN_RadomBlues_Click(object sender, RoutedEventArgs e)
         {
-            RandomBlues();
-        }
-
-        private void RandomBlues()
-        {        
             // Reset all.
             for (int i = 1; i <= 16; ++i)
             {
