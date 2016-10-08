@@ -17,10 +17,21 @@ app.directive("ngGeneralHeaderDirective", function () {
 });
 
 app.controller('ng-index-header-ctrl', function ($scope, $interval) {
-   $scope.title = 'Test';
+   $scope.title = 'Lottery Data Management';
    $interval(function(){
        $scope.time = new Date().toLocaleString();   
    }, 1000);
+
+   $scope.navButtons = [
+        { title: 'HOME', href: '#/' },
+        { title: 'USERS', href: '#/users' },
+        { title: 'PUBLISH', href: '#/release' },
+   ];
+
+   $scope.selectedNavIndex = 0;
+   $scope.navigateTo = function (index) {
+       $scope.selectedNavIndex = index;
+   };
 });
 
 // app.service('userNameExtractor', function() {

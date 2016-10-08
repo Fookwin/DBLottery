@@ -1,9 +1,7 @@
-var BasicHttpBinding = require('wcf.js').BasicHttpBinding,
-    Proxy = require('wcf.js').Proxy, 
-    binding = new BasicHttpBinding(), 
-    proxy = new Proxy(binding, "http://dbdataquery.cloudapp.net/DBSqlService.svc"),
-    url = require('url'),
-    request = require('request');
+var url = require('url'),
+    request = require('request'),
+    global = require('../config/global.js'),
+    endPoint = require('../config/config.js')[global.env].endPoint;
 
 module.exports = releaseMgr;
 
@@ -24,19 +22,6 @@ releaseMgr.prototype = {
             return;
         }
         
-        var message = '<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">' +
-                        '<Header />' +
-                        '<Body>' +
-                            '<GetLotteryData xmlns="http://tempuri.org/">' +
-                                '<issue>' + issue + '</issue>' +
-                            '</GetLotteryData>' +
-                        '</Body>' +
-                      '</Envelope>';
-
-        proxy.send(message, "http://tempuri.org/ISqlService/GetLotteryData", function(response, ctx) {
-            console.log("called " + message);
-            res.status (200).json({error: null, data: response});
-        });
     },
     getDataFromWeb: function (req, res) {
         self = this;       
@@ -51,7 +36,7 @@ releaseMgr.prototype = {
         }   
         
         var options = {
-            'url': 'http://localhost:53998/RFxDBManageService.svc/ReadLotteryDataFromWeb/?issue=' + issue,
+            'url': endPoint + '/GetNextReleaseInfo',
         };
             
         request(options.url, function postResponse(err, response, body) {

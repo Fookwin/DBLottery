@@ -40,3 +40,5 @@ Android/android-support-v7-gridlayout/bin/
 Android/android-support-v7-gridlayout/gen/
 Android/BDIntegrationSDK_LibProject/bin/
 Android/BDIntegrationSDK_LibProject/gen/
+Cloud/DBWebApp/obj/
+Cloud/DBWebApp/node_modules/
