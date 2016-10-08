@@ -42,3 +42,12 @@ Android/BDIntegrationSDK_LibProject/bin/
 Android/BDIntegrationSDK_LibProject/gen/
 Cloud/DBWebApp/obj/
 Cloud/DBWebApp/node_modules/
+*.suo
+*.user
+MFC/Debug/
+*.aps
+MFC/Release/
+MFC/x64/
+MFC/Win32/
+Metro/packages/
+WP/LuckyBallData/Bin/

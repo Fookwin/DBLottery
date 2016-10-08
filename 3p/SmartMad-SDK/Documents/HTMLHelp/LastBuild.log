@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shfbBuild product="Sandcastle Help File Builder" version="1.9.7.0" projectFile="F:\Sandcastle Project\project1.shfbproj" started="2013/8/22 12:47:14">
+<buildStep step="Initializing">
+Finding tools...
+Found Sandcastle tools in &#39;D:\Program Files (x86)\Sandcastle\&#39;
+</buildStep>
+<buildStep step="ValidatingDocumentationSources">
+Validating and copying documentation source information
+Source: G:\svn_new\smartmad-sdk\trunk\smartmad.cn-3\windowsphone\CN.SmartMad.Ads.WindowsPhone_8_21\Projects\For WP8\CN.SmartMad.Ads.WindowsPhone\CN.SmartMad.Ads.WindowsPhone\Bin\Release\CN.SmartMad.Ads.WindowsPhone8.dll
+    Found assembly &#39;G:\svn_new\smartmad-sdk\trunk\smartmad.cn-3\windowsphone\CN.SmartMad.Ads.WindowsPhone_8_21\Projects\For WP8\CN.SmartMad.Ads.WindowsPhone\CN.SmartMad.Ads.WindowsPhone\Bin\Release\CN.SmartMad.Ads.WindowsPhone8.dll&#39;
+Source: G:\svn_new\smartmad-sdk\trunk\smartmad.cn-3\windowsphone\CN.SmartMad.Ads.WindowsPhone_8_21\Projects\For WP8\CN.SmartMad.Ads.WindowsPhone\CN.SmartMad.Ads.WindowsPhone\Bin\Release\CN.SmartMad.Ads.WindowsPhone8.xml
+
+Copying XML comments files
+    G:\svn_new\smartmad-sdk\trunk\smartmad.cn-3\windowsphone\CN.SmartMad.Ads.WindowsPhone_8_21\Projects\For WP8\CN.SmartMad.Ads.WindowsPhone\CN.SmartMad.Ads.WindowsPhone\Bin\Release\CN.SmartMad.Ads.WindowsPhone8.XML -&gt; F:\Sandcastle Project\Help\Working\CN.SmartMad.Ads.WindowsPhone8.XML
+</buildStep>
+<buildStep step="GenerateSharedContent">
+Generating shared content files (en-US, 英语(美国))...
+    Last step completed in 00:00:00.1970
+</buildStep>
+<buildStep step="GenerateApiFilter">
+Generating API filter for MRefBuilder...
+SHFB: Warning BE0008: Namespace &#39;N:CN.SmartMad.Ads.WindowsPhone.WPF&#39; excluded via namespace comments conflicted with API filter setting.  Exclusion ignored.
+    Last step completed in 00:00:00.0730
+</buildStep>
+<buildStep step="GenerateReflectionInfo">
+Generating reflection information...
+[D:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe]
+  MRefBuilder (v2.7.3.0)
+  Copyright ? 2006-2013, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright ? 2006-2013, Eric Woodruff, All Rights Reserved.
+  Info: Loaded 1 assemblies for reflection and 0 dependency assemblies.
+  Info: Wrote information on 1 namespaces, 8 types, and 73 members
+  XslTransform (v2.7.3.0)
+  Copyright ? 2006-2013, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright ? 2006-2013, Eric Woodruff, All Rights Reserved.
+  Info: Applying XSL transformation &#39;D:\Program Files (x86)\Sandcastle\ProductionTransforms\MergeDuplicates.xsl&#39;.
+    Last step completed in 00:00:08.5921
+</buildStep>
+<buildStep step="GenerateNamespaceSummaries">
+Generating namespace summary information...
+    Last step completed in 00:00:00.0350
+</buildStep>
+<buildStep step="ApplyVisibilityProperties">
+Applying visibility properties to reflection information file
+    0 attribute nodes removed
+    0 explicit interface implementations removed
+    0 local and base class EII elements removed
+    165 inherited member elements removed
+    0 protected members noted for removal
+    0 protected inherited framework members noted for removal
+    Last step completed in 00:00:00.2080
+</buildStep>
+<buildStep step="TransformReflectionInfo">
+Transforming reflection output...
+[D:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe]
+  XslTransform (v2.7.3.0)
+  Copyright ? 2006-2013, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright ? 2006-2013, Eric Woodruff, All Rights Reserved.
+  Info: Applying XSL transformation &#39;D:\Program Files (x86)\Sandcastle\\ProductionTransforms\ApplyVSDocModel.xsl&#39;.
+  Info: Applying XSL transformation &#39;D:\Program Files (x86)\Sandcastle\ProductionTransforms\AddGuidFilenames.xsl&#39;.
+  XslTransform (v2.7.3.0)
+  Copyright ? 2006-2013, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright ? 2006-2013, Eric Woodruff, All Rights Reserved.
+  Info: Applying XSL transformation &#39;D:\Program Files (x86)\Sandcastle\ProductionTransforms\ReflectionToManifest.xsl&#39;.
+    Last step completed in 00:00:03.0124
+</buildStep>
+<buildStep step="ModifyHelpTopicFilenames">
+Modifying help topic filenames in reflection information file
+    No changes required
+    Last step completed in 00:00:00.0150
+</buildStep>
+<buildStep step="CopyStandardContent">
+Copying standard help content...
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\adm.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\adm.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\adm_arch.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\adm_arch.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\adm_dev.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\adm_dev.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\adm_dev_arch.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\adm_dev_arch.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\alert_caution.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\alert_caution.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\alert_note.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\alert_note.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\alert_security.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\alert_security.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\arch.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\arch.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\big_adm.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\big_adm.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\big_arch.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\big_arch.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\big_dev.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\big_dev.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\big_kw.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\big_kw.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\box.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\box.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\Caution.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\Caution.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\CFW.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\CFW.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\collall.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\collall.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\collapse.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\collapse.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\collapse_all.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\collapse_all.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\copycode.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\copycode.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\copycodeHighlight.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\copycodeHighlight.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\dev.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\dev.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\dev_arch.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\dev_arch.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\dropdown.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\dropdown.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\dropdownHover.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\dropdownHover.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\drpdown.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\drpdown.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\drpdown_orange.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\drpdown_orange.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\drpdown_orange_up.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\drpdown_orange_up.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\drpup.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\drpup.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\exp.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\exp.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\expall.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\expall.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\expand_all.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\expand_all.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\filter1a.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\filter1a.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\filter1c.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\filter1c.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\footer.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\footer.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\gradient.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\gradient.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\greencheck.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\greencheck.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\greychck.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\greychck.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\header_prev_next.jpg -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\header_prev_next.jpg
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\header_sql_tutorial_blank.jpg -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\header_sql_tutorial_blank.jpg
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\header_sql_tutorial_logo.GIF -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\header_sql_tutorial_logo.GIF
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\kw.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\kw.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\kw_adm.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\kw_adm.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\kw_adm_arch.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\kw_adm_arch.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\kw_adm_dev.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\kw_adm_dev.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\kw_adm_dev_arch.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\kw_adm_dev_arch.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\kw_arch.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\kw_arch.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\kw_dev.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\kw_dev.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\kw_dev_arch.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\kw_dev_arch.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\LastChild.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\LastChild.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\load.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\load.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\load_hover.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\load_hover.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\note.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\note.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\pencil.GIF -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\pencil.GIF
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\privclass.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\privclass.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\privdelegate.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\privdelegate.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\privenum.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\privenum.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\privenumeration.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\privenumeration.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\privevent.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\privevent.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\privextension.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\privextension.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\privfield.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\privfield.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\privinterface.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\privinterface.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\privmethod.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\privmethod.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\privproperty.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\privproperty.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\privstructure.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\privstructure.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\protclass.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\protclass.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\protdelegate.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\protdelegate.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\protenum.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\protenum.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\protenumeration.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\protenumeration.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\protevent.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\protevent.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\protextension.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\protextension.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\protfield.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\protfield.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\protinterface.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\protinterface.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\protmethod.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\protmethod.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\protoperator.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\protoperator.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\protproperty.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\protproperty.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\protstructure.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\protstructure.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\pubclass.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\pubclass.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\pubdelegate.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\pubdelegate.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\pubenum.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\pubenum.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\pubenumeration.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\pubenumeration.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\pubevent.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\pubevent.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\pubextension.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\pubextension.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\pubfield.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\pubfield.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\pubinterface.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\pubinterface.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\pubmethod.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\pubmethod.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\puboperator.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\puboperator.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\pubproperty.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\pubproperty.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\pubstructure.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\pubstructure.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\requirements1a.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\requirements1a.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\requirements1c.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\requirements1c.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\save.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\save.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\save_hover.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\save_hover.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\security.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\security.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\seealso1a.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\seealso1a.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\seealso1c.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\seealso1c.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\slMobile.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\slMobile.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\static.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\static.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\icons\xna.gif -&gt; F:\Sandcastle Project\Help\Working\Output\Website\icons\xna.gif
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\scripts\CheckboxMenu.js -&gt; F:\Sandcastle Project\Help\Working\Output\Website\scripts\CheckboxMenu.js
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\scripts\CommonUtilities.js -&gt; F:\Sandcastle Project\Help\Working\Output\Website\scripts\CommonUtilities.js
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\scripts\Dropdown.js -&gt; F:\Sandcastle Project\Help\Working\Output\Website\scripts\Dropdown.js
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\scripts\EventUtilities.js -&gt; F:\Sandcastle Project\Help\Working\Output\Website\scripts\EventUtilities.js
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\scripts\script_feedBack.js -&gt; F:\Sandcastle Project\Help\Working\Output\Website\scripts\script_feedBack.js
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\scripts\script_manifold.js -&gt; F:\Sandcastle Project\Help\Working\Output\Website\scripts\script_manifold.js
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\scripts\SplitScreen.js -&gt; F:\Sandcastle Project\Help\Working\Output\Website\scripts\SplitScreen.js
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\styles\Presentation.css -&gt; F:\Sandcastle Project\Help\Working\Output\Website\styles\Presentation.css
+D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\styles\Whidbey\Presentation.css -&gt; F:\Sandcastle Project\Help\Working\Output\Website\styles\Whidbey\Presentation.css
+    Last step completed in 00:00:01.4532
+</buildStep>
+<buildStep step="CopyAdditionalContent">
+Copying additional content files...
+No additional content to copy
+    Last step completed in 00:00:00.0120
+</buildStep>
+<buildStep step="MergeTablesOfContents">
+Merging conceptual and additional tables of contents...
+    Last step completed in 00:00:00.0060
+</buildStep>
+<buildStep step="GenerateIntermediateTableOfContents">
+Generating intermediate table of contents file...
+[D:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe]
+  XslTransform (v2.7.3.0)
+  Copyright ? 2006-2013, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright ? 2006-2013, Eric Woodruff, All Rights Reserved.
+  Info: Applying XSL transformation &#39;D:\Program Files (x86)\Sandcastle\\ProductionTransforms\CreateVSToc.xsl&#39;.
+Generating conceptual content intermediate TOC file...
+    Last step completed in 00:00:00.9721
+</buildStep>
+<buildStep step="CreateBuildAssemblerConfigs">
+Creating Sandcastle configuration files...
+    sandcastle.config
+    Last step completed in 00:00:00.6841
+</buildStep>
+<buildStep step="MergeCustomConfigs">
+Merging custom build component configurations
+F:\Sandcastle Project\Help\Working\sandcastle.config
+    Last step completed in 00:00:00.1080
+</buildStep>
+<buildStep step="BuildReferenceTopics">
+Building reference help topics...
+[D:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe]
+  BuildAssembler (v2.7.3.0)
+  Copyright ? 2006-2013, Microsoft Corporation, All Rights Reserved.
+  Portions Copyright ? 2006-2013, Eric Woodruff, All Rights Reserved.
+  Info: CopyFromFileComponent: Instantiating component.
+  Info: CopyFromFileComponent: Loading data file &#39;D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\Transforms\skeleton.xml&#39;.
+  Info: CopyFromFileComponent: Loaded 1 copy commands
+  Info: CopyFromIndexComponent: Instantiating component.
+  Info: CopyFromIndexComponent: Searching for files that match &#39;*.xml&#39; in &#39;D:\Program Files (x86)\Sandcastle\Data\Reflection&#39;
+  Info: CopyFromIndexComponent: Searching for files that match &#39;reflection.xml&#39; in &#39;F:\Sandcastle Project\Help\Working&#39;
+  Info: CopyFromIndexComponent: Indexed 46698 elements
+  Info: CopyFromIndexComponent: Instantiating component.
+  Info: ForEachComponent: Instantiating component.
+  Info: ForEachComponent: Loading subcomponents.
+  Info: CopyFromIndexComponent: Instantiating component.
+  Info: ForEachComponent: Loaded 1 subcomponents.
+  Info: ForEachComponent: Instantiating component.
+  Info: ForEachComponent: Loading subcomponents.
+  Info: CopyFromIndexComponent: Instantiating component.
+  Info: ForEachComponent: Loaded 1 subcomponents.
+  Info: ForEachComponent: Instantiating component.
+  Info: ForEachComponent: Loading subcomponents.
+  Info: CopyFromIndexComponent: Instantiating component.
+  Info: ForEachComponent: Loaded 1 subcomponents.
+  Info: ForEachComponent: Instantiating component.
+  Info: ForEachComponent: Loading subcomponents.
+  Info: CopyFromIndexComponent: Instantiating component.
+  Info: ForEachComponent: Loaded 1 subcomponents.
+  Info: ForEachComponent: Instantiating component.
+  Info: ForEachComponent: Loading subcomponents.
+  Info: CopyFromIndexComponent: Instantiating component.
+  Info: ForEachComponent: Loaded 1 subcomponents.
+  Info: ForEachComponent: Instantiating component.
+  Info: ForEachComponent: Loading subcomponents.
+  Info: CopyFromIndexComponent: Instantiating component.
+  Info: ForEachComponent: Loaded 1 subcomponents.
+  Info: ForEachComponent: Instantiating component.
+  Info: ForEachComponent: Loading subcomponents.
+  Info: CopyFromIndexComponent: Instantiating component.
+  Info: ForEachComponent: Loaded 1 subcomponents.
+  Info: SyntaxComponent: Instantiating component.
+  Info: SyntaxComponent: Loaded 1 syntax generators.
+  Info: CopyFromIndexComponent: Instantiating component.
+  Info: CopyFromIndexComponent: Searching for files that match &#39;*.xml&#39; in &#39;D:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\WindowsPhone\v8.0&#39;
+  Info: CopyFromIndexComponent: Searching for files that match &#39;*.xml&#39; in &#39;D:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\en-US&#39;
+  Info: CopyFromIndexComponent: Searching for files that match &#39;CN.SmartMad.Ads.WindowsPhone8.XML&#39; in &#39;F:\Sandcastle Project\Help\Working&#39;
+  Info: CopyFromIndexComponent: Indexed 26195 elements
+  Info: ForEachComponent: Instantiating component.
+  Info: ForEachComponent: Loading subcomponents.
+  Info: IfThenComponent: Instantiating component.
+  Info: CopyFromIndexComponent: Instantiating component.
+  Info: CopyFromIndexComponent: Instantiating component.
+  Info: ForEachComponent: Loaded 2 subcomponents.
+  Info: CopyFromIndexComponent: Instantiating component.
+  Info: ShowMissingComponent: Instantiating component.
+  Info: ShowMissingComponent: 
+      [Sandcastle Tools, version 2.7.3.0]
+      Show Missing Documentation Component. Copyright ? 2006-2012, Eric Woodruff, All Rights Reserved
+      http://SHFB.CodePlex.com
+  Info: CodeBlockComponent: Instantiating component.
+  Info: CodeBlockComponent: 
+      [Sandcastle Help File Builder, version 1.9.7.0]
+      Code Block Component.  Copyright ? 2006-2013, Eric Woodruff, All Rights Reserved.
+      Portions copyright (c) 2003, Jonathan de Halleux, All rights reserved.
+      http://SHFB.CodePlex.com
+  Info: TransformComponent: Instantiating component.
+  Info: MultiFormatOutputComponent: Instantiating component.
+  Info: MultiFormatOutputComponent: 
+      [Sandcastle Help File Builder, version 1.9.7.0]
+      Multi-Format Output Component. Copyright ? 2006-2013, Eric Woodruff, All Rights Reserved
+      http://SHFB.CodePlex.com
+  Info: MultiFormatOutputComponent: Loading components for Website format
+  Info: SharedContentComponent: Instantiating component.
+  Info: SharedContentComponent: Searching for files that match &#39;D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\Content\shared_content.xml&#39;.
+  Info: SharedContentComponent: Loading shared content file &#39;D:\Program Files (x86)\Sandcastle\Presentation\VS2005\Content\shared_content.xml&#39;.
+  Info: SharedContentComponent: Found 1 files in D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\Content\shared_content.xml.
+  Info: SharedContentComponent: Searching for files that match &#39;D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\Content\reference_content.xml&#39;.
+  Info: SharedContentComponent: Loading shared content file &#39;D:\Program Files (x86)\Sandcastle\Presentation\VS2005\Content\reference_content.xml&#39;.
+  Info: SharedContentComponent: Found 1 files in D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\Content\reference_content.xml.
+  Info: SharedContentComponent: Searching for files that match &#39;D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\Content\syntax_content.xml&#39;.
+  Info: SharedContentComponent: Loading shared content file &#39;D:\Program Files (x86)\Sandcastle\Presentation\VS2005\Content\syntax_content.xml&#39;.
+  Info: SharedContentComponent: Found 1 files in D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\Content\syntax_content.xml.
+  Info: SharedContentComponent: Searching for files that match &#39;D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\Content\feedback_content.xml&#39;.
+  Info: SharedContentComponent: Loading shared content file &#39;D:\Program Files (x86)\Sandcastle\Presentation\VS2005\Content\feedBack_content.xml&#39;.
+  Info: SharedContentComponent: Found 1 files in D:\Program Files (x86)\Sandcastle\\Presentation\VS2005\Content\feedback_content.xml.
+  Info: SharedContentComponent: Searching for files that match &#39;SharedBuilderContent.xml&#39;.
+  Info: SharedContentComponent: Loading shared content file &#39;F:\Sandcastle Project\Help\Working\SharedBuilderContent.xml&#39;.
+  Info: SharedContentComponent: Overriding shared content item &#39;rootTopicTitle&#39; with value in file &#39;F:\Sandcastle Project\Help\Working\SharedBuilderContent.xml&#39;.
+  Info: SharedContentComponent: Overriding shared content item &#39;runningHeaderText&#39; with value in file &#39;F:\Sandcastle Project\Help\Working\SharedBuilderContent.xml&#39;.
+  Info: SharedContentComponent: Overriding shared content item &#39;locale&#39; with value in file &#39;F:\Sandcastle Project\Help\Working\SharedBuilderContent.xml&#39;.
+  Info: SharedContentComponent: Found 1 files in SharedBuilderContent.xml.
+  Info: SharedContentComponent: Searching for files that match &#39;PresentationStyleBuilderContent.xml&#39;.
+  Info: SharedContentComponent: Loading shared content file &#39;F:\Sandcastle Project\Help\Working\PresentationStyleBuilderContent.xml&#39;.
+  Info: SharedContentComponent: Overriding shared content item &#39;header&#39; with value in file &#39;F:\Sandcastle Project\Help\Working\PresentationStyleBuilderContent.xml&#39;.
+  Info: SharedContentComponent: Overriding shared content item &#39;footer&#39; with value in file &#39;F:\Sandcastle Project\Help\Working\PresentationStyleBuilderContent.xml&#39;.
+  Info: SharedContentComponent: Overriding shared content item &#39;fb_alias&#39; with value in file &#39;F:\Sandcastle Project\Help\Working\PresentationStyleBuilderContent.xml&#39;.
+  Info: SharedContentComponent: Overriding shared content item &#39;fb_product&#39; with value in file &#39;F:\Sandcastle Project\Help\Working\PresentationStyleBuilderContent.xml&#39;.
+  Info: SharedContentComponent: Overriding shared content item &#39;fb_body&#39; with value in file &#39;F:\Sandcastle Project\Help\Working\PresentationStyleBuilderContent.xml&#39;.
+  Info: SharedContentComponent: Overriding shared content item &#39;fb_send&#39; with value in file &#39;F:\Sandcastle Project\Help\Working\PresentationStyleBuilderContent.xml&#39;.
+  Info: SharedContentComponent: Overriding shared content item &#39;fb_headerFeedBack&#39; with value in file &#39;F:\Sandcastle Project\Help\Working\PresentationStyleBuilderContent.xml&#39;.
+  Info: SharedContentComponent: Overriding shared content item &#39;feedback_alias&#39; with value in file &#39;F:\Sandcastle Project\Help\Working\PresentationStyleBuilderContent.xml&#39;.
+  Info: SharedContentComponent: Overriding shared content item &#39;feedback_product&#39; with value in file &#39;F:\Sandcastle Project\Help\Working\PresentationStyleBuilderContent.xml&#39;.
+  Info: SharedContentComponent: Overriding shared content item &#39;feedback_body&#39; with value in file &#39;F:\Sandcastle Project\Help\Working\PresentationStyleBuilderContent.xml&#39;.
+  Info: SharedContentComponent: Found 1 files in PresentationStyleBuilderContent.xml.
+  Info: SharedContentComponent: Loaded 647 shared content items.
+  Info: ResolveConceptualLinksComponent: Instantiating component.
+  Info: ResolveConceptualLinksComponent: Collected 1 targets directories.
+  Info: ResolveReferenceLinksComponent2: Instantiating component.
+  Info: ResolveReferenceLinksComponent2: Loading None reference link type targets
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Diagnostics.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.CodeDom.Compiler.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Collections.Generic.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Globalization.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Net.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.IO.IsolatedStorage.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.IO.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Reflection.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Resources.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Security.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Runtime.InteropServices.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Text.RegularExpressions.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Threading.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Windows.Automation.Peers.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Collections.ObjectModel.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Collections.Specialized.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Collections.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Windows.Documents.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Windows.Automation.Provider.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Windows.Automation.Text.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Windows.Automation.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Windows.Controls.Primitives.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.ComponentModel.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Windows.Ink.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Windows.Input.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Windows.Controls.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Windows.Threading.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Windows.Interop.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Windows.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Windows.Markup.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Windows.Data.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Windows.Media.Animation.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Windows.Media.Imaging.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Windows.Media.Media3D.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Windows.Media.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Windows.Navigation.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Windows.Resources.xml
+  Info: ResolveReferenceLinksComponent2: Indexing targets in D:\Program Files (x86)\Sandcastle\Data\Reflection\System.Windows.Shapes.xml
+  Info: ResolveReferenceLinksComponent2: Loading Local reference link type targets
+  Info: ResolveReferenceLinksComponent2: Indexing targets in F:\Sandcastle Project\Help\Working\reflection.xml
+  Info: ResolveReferenceLinksComponent2: 46698 total reference link targets
+  Info: SaveComponent: Instantiating component.
+  Info: BuildAssembler: Building topic N:CN.SmartMad.Ads.WindowsPhone.WPF
+  Info: BuildAssembler: Building topic T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdBannerAnimationType
+  Info: BuildAssembler: Building topic T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdBannerView
+  Warn: ResolveReferenceLinksComponent2: [T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdBannerView] Unknown reference link target &#39;T:CN.SmartMad.Ads.WindowsPhone.ICoreView&#39;.
+  Info: BuildAssembler: Building topic AllMembers.T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdBannerView
+  Info: BuildAssembler: Building topic Properties.T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdBannerView
+  Info: BuildAssembler: Building topic Events.T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdBannerView
+  Info: BuildAssembler: Building topic Overload:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdBannerView.#ctor
+  Info: BuildAssembler: Building topic M:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdBannerView.#ctor
+  Info: BuildAssembler: Building topic M:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdBannerView.#ctor(System.String)
+  Info: BuildAssembler: Building topic P:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdBannerView.AdBannerAnimationType
+  Info: BuildAssembler: Building topic E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdBannerView.AdBannerClicked
+  Info: BuildAssembler: Building topic E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdBannerView.AdBannerDismissScreen
+  Info: BuildAssembler: Building topic E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdBannerView.AdBannerExpandClosed
+  Info: BuildAssembler: Building topic E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdBannerView.AdBannerLeaveApplication
+  Info: BuildAssembler: Building topic E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdBannerView.AdBannerPresentingScreen
+  Info: BuildAssembler: Building topic E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdBannerView.AdBannerReceived
+  Info: BuildAssembler: Building topic E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdBannerView.AdBannerReceiveFailed
+  Info: BuildAssembler: Building topic E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdBannerView.AdBannerWillExpand
+  Info: BuildAssembler: Building topic P:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdBannerView.AdSpaceId
+  Info: BuildAssembler: Building topic E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdBannerView.AppWillResumeFromAd
+  Info: BuildAssembler: Building topic E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdBannerView.AppWillSuspendForAd
+  Info: BuildAssembler: Building topic T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdEventCode
+  Info: BuildAssembler: Building topic AllMembers.T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdEventCode
+  Info: ShowMissingComponent: [M:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdEventCode.#ctor] Auto-documenting constructor
+  Info: BuildAssembler: Building topic Properties.T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdEventCode
+  Info: BuildAssembler: Building topic Fields.T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdEventCode
+  Info: BuildAssembler: Building topic M:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdEventCode.#ctor
+  Info: ShowMissingComponent: [M:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdEventCode.#ctor] Auto-documenting constructor
+  Info: BuildAssembler: Building topic F:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdEventCode.AD_TOO_MUCH_ON_SCREEN
+  Info: BuildAssembler: Building topic P:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdEventCode.EventCode
+  Info: BuildAssembler: Building topic F:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdEventCode.INTERNAL_ERROR
+  Info: BuildAssembler: Building topic F:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdEventCode.INVALID_AREA_OR_BE_COVERD
+  Info: BuildAssembler: Building topic F:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdEventCode.INVALID_ID
+  Info: BuildAssembler: Building topic F:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdEventCode.INVALID_REQUEST
+  Info: BuildAssembler: Building topic F:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdEventCode.NETWORK_ERROR
+  Info: BuildAssembler: Building topic F:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdEventCode.NO_FILL
+  Info: BuildAssembler: Building topic F:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdEventCode.OS_VERSION_TOO_LOW
+  Info: BuildAssembler: Building topic F:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdEventCode.PERMISSION_INCOMPLETE
+  Info: BuildAssembler: Building topic F:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdEventCode.SUCCEED
+  Info: BuildAssembler: Building topic T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdInterstitial
+  Warn: ResolveReferenceLinksComponent2: [T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdInterstitial] Unknown reference link target &#39;T:CN.SmartMad.Ads.WindowsPhone.ICoreView&#39;.
+  Info: BuildAssembler: Building topic AllMembers.T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdInterstitial
+  Info: BuildAssembler: Building topic Methods.T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdInterstitial
+  Info: BuildAssembler: Building topic Properties.T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdInterstitial
+  Info: BuildAssembler: Building topic Events.T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdInterstitial
+  Info: BuildAssembler: Building topic Overload:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdInterstitial.#ctor
+  Info: BuildAssembler: Building topic M:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdInterstitial.#ctor
+  Info: BuildAssembler: Building topic M:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdInterstitial.#ctor(System.String)
+  Info: BuildAssembler: Building topic M:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdInterstitial.#ctor(System.String,CN.SmartMad.Ads.WindowsPhone.WPF.SMAdInterstitialSizeType)
+  Info: BuildAssembler: Building topic P:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdInterstitial.AdInterstitialAnimationType
+  Info: BuildAssembler: Building topic E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdInterstitial.AdInterstitialClicked
+  Info: BuildAssembler: Building topic E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdInterstitial.AdInterstitialDismissScreen
+  Info: BuildAssembler: Building topic E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdInterstitial.AdInterstitialLeaveApplication
+  Info: BuildAssembler: Building topic E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdInterstitial.AdInterstitialPresentingScreen
+  Info: BuildAssembler: Building topic E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdInterstitial.AdInterstitialReceived
+  Info: BuildAssembler: Building topic E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdInterstitial.AdInterstitialReceiveFailed
+  Info: BuildAssembler: Building topic P:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdInterstitial.AdSize
+  Info: BuildAssembler: Building topic P:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdInterstitial.AdSpaceId
+  Info: BuildAssembler: Building topic M:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdInterstitial.RequestAd
+  Info: BuildAssembler: Building topic M:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdInterstitial.Show
+  Info: BuildAssembler: Building topic T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdInterstitialAnimationType
+  Info: BuildAssembler: Building topic T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdInterstitialSizeType
+  Info: BuildAssembler: Building topic T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager
+  Info: BuildAssembler: Building topic AllMembers.T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager
+  Info: ShowMissingComponent: [M:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.#ctor] Auto-documenting constructor
+  Info: BuildAssembler: Building topic Methods.T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager
+  Info: BuildAssembler: Building topic Properties.T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager
+  Info: BuildAssembler: Building topic Events.T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager
+  Info: BuildAssembler: Building topic M:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.#ctor
+  Info: ShowMissingComponent: [M:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.#ctor] Auto-documenting constructor
+  Info: BuildAssembler: Building topic E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.AdPrecacheCompleted
+  Warn: ResolveReferenceLinksComponent2: [E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.AdPrecacheCompleted] Unknown reference link target &#39;T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdPrecacheEventHandler&#39;.
+  Warn: ResolveReferenceLinksComponent2: [E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.AdPrecacheCompleted] Unknown reference link target &#39;T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdPrecacheEventHandler&#39;.
+  Info: BuildAssembler: Building topic E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.AdPrecacheError
+  Warn: ResolveReferenceLinksComponent2: [E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.AdPrecacheError] Unknown reference link target &#39;T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdPrecacheEventHandler`1&#39;.
+  Warn: ResolveReferenceLinksComponent2: [E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.AdPrecacheError] Unknown reference link target &#39;T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdPrecacheEventHandler`1&#39;.
+  Info: BuildAssembler: Building topic E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.AdPrecacheStarted
+  Warn: ResolveReferenceLinksComponent2: [E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.AdPrecacheStarted] Unknown reference link target &#39;T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdPrecacheEventHandler&#39;.
+  Warn: ResolveReferenceLinksComponent2: [E:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.AdPrecacheStarted] Unknown reference link target &#39;T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdPrecacheEventHandler&#39;.
+  Info: BuildAssembler: Building topic P:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.ApplicationId
+  Info: BuildAssembler: Building topic P:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.ChannelId
+  Info: BuildAssembler: Building topic M:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.EnableAdPrecache(System.String,CN.SmartMad.Ads.WindowsPhone.WPF.SMAdUnitType)
+  Info: BuildAssembler: Building topic P:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.IsDebugMode
+  Info: BuildAssembler: Building topic P:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.KeyWord
+  Info: BuildAssembler: Building topic P:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.RefreshInterval
+  Info: BuildAssembler: Building topic M:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.SetAdRefreshInterval(System.Int32)
+  Info: BuildAssembler: Building topic M:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.SetApplicationId(System.String)
+  Info: BuildAssembler: Building topic M:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.SetChannelId(System.String)
+  Warn: ShowMissingComponent: [M:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.SetChannelId(System.String)] Missing &lt;param name=&quot;channelId&quot;/&gt; documentation
+  Info: BuildAssembler: Building topic M:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.SetDebugMode(System.Boolean)
+  Info: BuildAssembler: Building topic M:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.SetKeywords(System.String)
+  Info: BuildAssembler: Building topic M:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.SetUserInformation(System.String)
+  Warn: ShowMissingComponent: [M:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.SetUserInformation(System.String)] Missing &lt;param name=&quot;jsonUserInfo&quot;/&gt; documentation
+  Info: BuildAssembler: Building topic P:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdManager.UserInformation
+  Info: BuildAssembler: Building topic T:CN.SmartMad.Ads.WindowsPhone.WPF.SMAdUnitType
+  Info: Processed 82 topic(s)
+  Info: 10 warning(s)
+  Diagnostic: CopyFromIndexComponent: &quot;reflection&quot; in-memory cache entries used: 2 of 15.
+  Diagnostic: CopyFromIndexComponent: &quot;comments&quot; in-memory cache entries used: 1 of 30.
+    Last step completed in 00:00:19.9765
+</buildStep>
+<buildStep step="CombiningIntermediateTocFiles">
+Combining conceptual and API intermediate TOC files...
+
+Clearing any prior web output
+    Last step completed in 00:00:00.5651
+</buildStep>
+<buildStep step="ExtractingHtmlInfo">
+Extracting HTML info for HTML Help 1 and/or website...
+[D:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe]
+Sandcastle Help File Builder, version 1.9.7.0
+Copyright ? 2006-2013, Eric Woodruff, All Rights Reserved
+E-Mail: Eric@EWoodruff.us
+
+Using LCID &#39;1033&#39;, code page &#39;65001&#39;, encoding charset &#39;UTF-8&#39;.
+
+Processing website files in F:\Sandcastle Project\Help\Working\Output\Website
+Processed 82 HTML files
+Sorting keywords and generating See Also indices
+Saving website keyword index to F:\Sandcastle Project\Help\Working\WebKI.xml
+Saving website table of contents to F:\Sandcastle Project\Help\Working\WebTOC.xml
+    Last step completed in 00:00:01.4732
+</buildStep>
+<buildStep step="GenerateHelpFormatTableOfContents">
+Generating website table of contents file...
+    Last step completed in 00:00:00.0060
+</buildStep>
+<buildStep step="GenerateFullTextIndex">
+Generating full-text index for the website...
+
+    Last step completed in 00:00:00.7591
+</buildStep>
+<buildStep step="CopyingWebsiteFiles">
+Copying website files to output folder...
+
+Copied 100 files
+Copied 200 files
+Copied 247 files for the website content
+    Last step completed in 00:00:01.5582
+</buildStep>
+<buildStep step="CleanIntermediates">
+Removing intermediate files...
+    Last step completed in 00:00:00.5121
+</buildStep>
+<buildStep step="Completed">
+
+Build completed successfully at 08/22/2013 12:47 下午.  Total time: 00:00:42.6904
+
+</buildStep>
+</shfbBuild>
