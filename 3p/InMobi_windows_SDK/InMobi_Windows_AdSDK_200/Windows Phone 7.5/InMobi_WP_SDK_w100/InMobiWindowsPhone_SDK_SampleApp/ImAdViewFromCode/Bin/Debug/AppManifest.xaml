@@ -1,6 +1,0 @@
-﻿<Deployment xmlns="http://schemas.microsoft.com/client/2007/deployment" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" EntryPointAssembly="ImAdViewFromCode" EntryPointType="ImAdViewFromCode.App" RuntimeVersion="3.0.40624.0">
-  <Deployment.Parts>
-    <AssemblyPart x:Name="ImAdViewFromCode" Source="ImAdViewFromCode.dll" />
-    <AssemblyPart x:Name="InMobiWP7SDK" Source="InMobiWP7SDK.dll" />
-  </Deployment.Parts>
-</Deployment>

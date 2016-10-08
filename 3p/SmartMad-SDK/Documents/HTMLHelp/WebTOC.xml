@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpTOC>
+
+  <HelpTOCNode Id="d5e1e646-507d-4975-9e1b-5f345c7be186" Title="CN.SmartMad.Ads.WindowsPhone.WPF Namespace" Url="html/0851014c-3062-019f-3a17-dd0aed8fbf5c.htm">
+    <HelpTOCNode Title="SMAdBannerAnimationType Enumeration" Url="html/d530fab8-2601-beaf-5b90-9d6ffc3f554a.htm" />
+    <HelpTOCNode Id="e1427699-5827-477f-85ea-a7bc5f59c82f" Title="SMAdBannerView Class" Url="html/c2c252a4-d415-21f3-74c3-e25ba913a5d0.htm">
+      <HelpTOCNode Title="SMAdBannerView Members" Url="html/68a1f7fd-72f8-350d-c0be-f039914df47f.htm" />
+      <HelpTOCNode Id="d95a2267-a56c-44a7-aadf-d83890e0cbf8" Title="SMAdBannerView Constructor " Url="html/808ab177-f0f3-ed80-7c63-6f69937b988c.htm">
+        <HelpTOCNode Title="SMAdBannerView Constructor " Url="html/08528d30-cf1e-b869-a51b-0726dd305cfe.htm" />
+        <HelpTOCNode Title="SMAdBannerView Constructor (String)" Url="html/daeb308b-ea4b-751c-098f-46cda04fd235.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="05a9cf2b-5f2c-475f-82fe-7af8b8420e5f" Title="SMAdBannerView Properties" Url="html/b6e65b84-452f-ccdb-827d-decd7bab9d03.htm">
+        <HelpTOCNode Title="AdBannerAnimationType Property " Url="html/f5cc70be-eec4-1cd8-5f8e-48e294c3d1d9.htm" />
+        <HelpTOCNode Title="AdSpaceId Property " Url="html/1ff366e8-354a-ea78-c96b-026455422772.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="6453a379-5de2-4a4b-9d54-5fb3f0d17ff4" Title="SMAdBannerView Events" Url="html/abd011d6-7cc5-8a2f-854e-af87c565aee5.htm">
+        <HelpTOCNode Title="AdBannerClicked Event" Url="html/b9db88cf-387d-9d1f-932c-05cb27b2b7a1.htm" />
+        <HelpTOCNode Title="AdBannerDismissScreen Event" Url="html/f1835b11-f27b-b70b-21b0-1c2fd5454d33.htm" />
+        <HelpTOCNode Title="AdBannerExpandClosed Event" Url="html/02de1a81-f1b6-85d5-fdc8-c4dabf2028c2.htm" />
+        <HelpTOCNode Title="AdBannerLeaveApplication Event" Url="html/bd8cfb99-2326-f6dc-0df7-3fdac986d2fa.htm" />
+        <HelpTOCNode Title="AdBannerPresentingScreen Event" Url="html/370bc96e-e7b4-a7a4-304f-00d24be153c8.htm" />
+        <HelpTOCNode Title="AdBannerReceived Event" Url="html/708a832b-42c2-1a01-6826-f93b504122f2.htm" />
+        <HelpTOCNode Title="AdBannerReceiveFailed Event" Url="html/05fac564-0db8-1d2e-c34d-ee271e98ad57.htm" />
+        <HelpTOCNode Title="AdBannerWillExpand Event" Url="html/c719326d-1a76-3f3e-69d2-993569e99adb.htm" />
+        <HelpTOCNode Title="AppWillResumeFromAd Event" Url="html/449fc8af-f086-48ba-aadf-6ee02f5004a5.htm" />
+        <HelpTOCNode Title="AppWillSuspendForAd Event" Url="html/18c5cfe0-302f-13be-7e59-dedbe189fc33.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="9b67f750-a129-4b6b-a29c-e8ac546c4af9" Title="SMAdEventCode Class" Url="html/1b48f984-2913-af7b-f485-c6924865e325.htm">
+      <HelpTOCNode Title="SMAdEventCode Members" Url="html/2edd2b35-7fab-754e-4573-39920cc2950b.htm" />
+      <HelpTOCNode Title="SMAdEventCode Constructor " Url="html/73dd4786-8ff8-085a-0669-89f323c7657b.htm" />
+      <HelpTOCNode Id="dbf4bc18-949e-42a2-975f-8b7f0ef7bf40" Title="SMAdEventCode Fields" Url="html/87dd5cd3-2655-9929-a19d-3f478f1d0c3e.htm">
+        <HelpTOCNode Title="AD_TOO_MUCH_ON_SCREEN Field" Url="html/ba46ab96-baa8-9153-2235-6610f7081432.htm" />
+        <HelpTOCNode Title="INTERNAL_ERROR Field" Url="html/3d0d702e-9979-3f6d-0867-3448bbbd03af.htm" />
+        <HelpTOCNode Title="INVALID_AREA_OR_BE_COVERD Field" Url="html/27a89339-a87a-226d-5012-a82e5063ed2f.htm" />
+        <HelpTOCNode Title="INVALID_ID Field" Url="html/673afd73-d701-f466-3398-2d145756e043.htm" />
+        <HelpTOCNode Title="INVALID_REQUEST Field" Url="html/b54ff97b-ae47-8459-c92d-c6c2898a316e.htm" />
+        <HelpTOCNode Title="NETWORK_ERROR Field" Url="html/32c87f79-dd85-97a9-d72a-b24b5cbed246.htm" />
+        <HelpTOCNode Title="NO_FILL Field" Url="html/d56794a3-2b4e-9241-893d-db04b35a7e6f.htm" />
+        <HelpTOCNode Title="OS_VERSION_TOO_LOW Field" Url="html/2c7c8ddf-9fbb-50bc-10d5-9a8afa6cd329.htm" />
+        <HelpTOCNode Title="PERMISSION_INCOMPLETE Field" Url="html/7220746e-e99d-955b-f7a0-cbb077a6eee7.htm" />
+        <HelpTOCNode Title="SUCCEED Field" Url="html/c63f96b6-dd19-f427-cef3-877869670b77.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="40d3eab7-32a1-4449-9c42-f093ec1643a8" Title="SMAdEventCode Properties" Url="html/1410b08b-e25f-f4e5-9d72-b5eb24abe078.htm">
+        <HelpTOCNode Title="EventCode Property " Url="html/e0a8bcb2-c4cf-5c88-6d3e-7402355358f5.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="3ec3e07c-80e8-4da7-8c8a-fc6bba7288b2" Title="SMAdInterstitial Class" Url="html/b3c45e59-12c0-1d94-9135-79836e33329f.htm">
+      <HelpTOCNode Title="SMAdInterstitial Members" Url="html/b0e33041-6c9b-c7c0-9c63-a19c85658bce.htm" />
+      <HelpTOCNode Id="cad7e5ea-ac26-4c6a-9136-d42521f9bf78" Title="SMAdInterstitial Constructor " Url="html/f3f57199-d8da-dd28-9070-5036be5457e1.htm">
+        <HelpTOCNode Title="SMAdInterstitial Constructor " Url="html/ec061f40-077e-1a5b-831f-5d5d4cd14a0c.htm" />
+        <HelpTOCNode Title="SMAdInterstitial Constructor (String)" Url="html/9888643d-eb8a-ec4b-8ef1-7aff9ef7933c.htm" />
+        <HelpTOCNode Title="SMAdInterstitial Constructor (String, SMAdInterstitialSizeType)" Url="html/8bdfcfb5-cd97-762b-28ed-437a337287a3.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="ed9ddfdd-567c-46d4-bc90-9f1528de9339" Title="SMAdInterstitial Methods" Url="html/f432499a-b2aa-cbe7-24b0-0b4c38a9a650.htm">
+        <HelpTOCNode Title="RequestAd Method " Url="html/66f7d878-754f-a50e-aa92-69503bdc9eee.htm" />
+        <HelpTOCNode Title="Show Method " Url="html/bc605075-1982-dec8-8243-18349cfceeb0.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="6e79756a-053f-480d-99f1-62008633280a" Title="SMAdInterstitial Properties" Url="html/8a393c8b-8a25-a85f-e8d9-be705252bb99.htm">
+        <HelpTOCNode Title="AdInterstitialAnimationType Property " Url="html/4ecab229-5df1-0a80-d060-e091e68e2228.htm" />
+        <HelpTOCNode Title="AdSize Property " Url="html/ff824d5a-d706-9c45-a847-12404193ca8c.htm" />
+        <HelpTOCNode Title="AdSpaceId Property " Url="html/9c17d079-0c3a-4596-6507-b5109ac244ec.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="35133869-57e4-4afc-afdf-60d8e17e2945" Title="SMAdInterstitial Events" Url="html/e6548485-d591-be3e-6766-f77dcb479aea.htm">
+        <HelpTOCNode Title="AdInterstitialClicked Event" Url="html/750678d9-c755-571f-c113-9f20f1026179.htm" />
+        <HelpTOCNode Title="AdInterstitialDismissScreen Event" Url="html/7e7d60c2-effc-95af-7eb2-da9d13594e07.htm" />
+        <HelpTOCNode Title="AdInterstitialLeaveApplication Event" Url="html/74960a5b-0a9f-74b7-c1e7-c27dc8d243db.htm" />
+        <HelpTOCNode Title="AdInterstitialPresentingScreen Event" Url="html/32837443-0050-0585-d853-3db93946d869.htm" />
+        <HelpTOCNode Title="AdInterstitialReceived Event" Url="html/6fbe77a8-e4d1-7d92-2161-1de7ea13ef79.htm" />
+        <HelpTOCNode Title="AdInterstitialReceiveFailed Event" Url="html/a39e7299-0906-5197-50e0-0e9f12cec9e4.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Title="SMAdInterstitialAnimationType Enumeration" Url="html/31d3c005-e942-dd04-88b7-db8e4d9b13a3.htm" />
+    <HelpTOCNode Title="SMAdInterstitialSizeType Enumeration" Url="html/43e3fe55-bbc7-64b7-f84e-8ecc8407a051.htm" />
+    <HelpTOCNode Id="4eeb21ba-de7f-49ea-b049-586496087848" Title="SMAdManager Class" Url="html/e7bb414f-82ca-5101-a4ea-5bbcb83b24f4.htm">
+      <HelpTOCNode Title="SMAdManager Members" Url="html/68b6b4a5-937a-c356-ab28-6ae242fae5ab.htm" />
+      <HelpTOCNode Title="SMAdManager Constructor " Url="html/f612f1cf-bda1-3e7b-10cf-8a87f1c1a240.htm" />
+      <HelpTOCNode Id="a89f8ed0-78b5-4889-afe4-942755d9f0a8" Title="SMAdManager Methods" Url="html/b9e27f9a-2934-bdef-abf2-7f0567fa7778.htm">
+        <HelpTOCNode Title="EnableAdPrecache Method " Url="html/490e791b-e098-2235-3f51-5ce45daa2c79.htm" />
+        <HelpTOCNode Title="SetAdRefreshInterval Method " Url="html/2a549417-43f6-bc4e-dd14-81a31734e5f5.htm" />
+        <HelpTOCNode Title="SetApplicationId Method " Url="html/c98d1dc0-e4fa-ccfc-d472-020fc055f842.htm" />
+        <HelpTOCNode Title="SetChannelId Method " Url="html/9faf6f2f-6744-8bfa-8c5a-b87c4a54ec44.htm" />
+        <HelpTOCNode Title="SetDebugMode Method " Url="html/9a6bf964-b7d3-64ab-2240-a15cb2d04e7a.htm" />
+        <HelpTOCNode Title="SetKeywords Method " Url="html/52ef254e-c0e8-b583-5137-c2d341268563.htm" />
+        <HelpTOCNode Title="SetUserInformation Method " Url="html/f1b10219-8eb4-74d1-3984-e9d58b382aab.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="ec3a82d4-9a73-4807-9027-6b1c732ce9a0" Title="SMAdManager Properties" Url="html/17f7cdc0-97b3-1f2f-d452-d8423ce26846.htm">
+        <HelpTOCNode Title="ApplicationId Property " Url="html/8536127f-6a7e-9557-9da6-34dba3a150d7.htm" />
+        <HelpTOCNode Title="ChannelId Property " Url="html/5597a154-1e9f-1062-115d-3721074e4a9c.htm" />
+        <HelpTOCNode Title="IsDebugMode Property " Url="html/f7e424d7-e99a-bf74-0654-7783bcfbb967.htm" />
+        <HelpTOCNode Title="KeyWord Property " Url="html/de605bc6-ed25-3187-3917-c2a48be7c4e2.htm" />
+        <HelpTOCNode Title="RefreshInterval Property " Url="html/08043647-2903-e562-d359-2b289277f7bc.htm" />
+        <HelpTOCNode Title="UserInformation Property " Url="html/b692bfe0-ef55-b4b7-df45-2d2184e5aade.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="9f37178e-b2f9-476f-a685-ab5c3cffb96b" Title="SMAdManager Events" Url="html/90b3ee6c-d066-b852-6bb2-8366da956040.htm">
+        <HelpTOCNode Title="AdPrecacheCompleted Event" Url="html/6685186f-d9b9-7fc7-c87a-ab7f5572c946.htm" />
+        <HelpTOCNode Title="AdPrecacheError Event" Url="html/d4c00fc2-ba9d-0650-6949-78157fccd0e0.htm" />
+        <HelpTOCNode Title="AdPrecacheStarted Event" Url="html/64cf1bd5-a752-ad49-89f9-8896e246e9a6.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Title="SMAdUnitType Enumeration" Url="html/a16b20c1-036e-0be2-2fc1-5b23cd436678.htm" />
+  </HelpTOCNode>
+</HelpTOC>

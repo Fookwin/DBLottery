@@ -1,0 +1,17 @@
+C:\WP20130117\AdChina.WindowsPhone.XAMLSample\obj\Release\ResolveAssemblyReference.cache
+C:\WP20130117\AdChina.WindowsPhone.XAMLSample\obj\Release\App.g.i.cs
+C:\WP20130117\AdChina.WindowsPhone.XAMLSample\obj\Release\MainPage.g.i.cs
+C:\WP20130117\AdChina.WindowsPhone.XAMLSample\obj\Release\AdChina.WindowsPhone.XAMLSample.g.resources
+C:\WP20130117\AdChina.WindowsPhone.XAMLSample\Bin\Release\ApplicationIcon.png
+C:\WP20130117\AdChina.WindowsPhone.XAMLSample\Bin\Release\Background.png
+C:\WP20130117\AdChina.WindowsPhone.XAMLSample\Bin\Release\AdChina.WindowsPhone.XAMLSample.dll
+C:\WP20130117\AdChina.WindowsPhone.XAMLSample\Bin\Release\AdChina.WindowsPhone.XAMLSample.pdb
+C:\WP20130117\AdChina.WindowsPhone.XAMLSample\Bin\Release\AppManifest.xaml
+C:\WP20130117\AdChina.WindowsPhone.XAMLSample\Bin\Release\AdChina.WindowsPhone.XAMLSample.xap
+C:\WP20130117\AdChina.WindowsPhone.XAMLSample\Bin\Release\AdChina.WindowsPhone.SDK.dll
+C:\WP20130117\AdChina.WindowsPhone.XAMLSample\Bin\Release\Coding4Fun.Phone.Controls.dll
+C:\WP20130117\AdChina.WindowsPhone.XAMLSample\Bin\Release\Microsoft.Phone.Controls.dll
+C:\WP20130117\AdChina.WindowsPhone.XAMLSample\Bin\Release\Microsoft.Phone.Controls.xml
+C:\WP20130117\AdChina.WindowsPhone.XAMLSample\obj\Release\AdChina.WindowsPhone.XAMLSample.dll
+C:\WP20130117\AdChina.WindowsPhone.XAMLSample\obj\Release\AdChina.WindowsPhone.XAMLSample.pdb
+C:\WP20130117\AdChina.WindowsPhone.XAMLSample\obj\Release\XapCacheFile.xml

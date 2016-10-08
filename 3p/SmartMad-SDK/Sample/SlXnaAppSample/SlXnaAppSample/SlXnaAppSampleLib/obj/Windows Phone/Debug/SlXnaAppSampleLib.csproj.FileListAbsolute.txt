@@ -1,0 +1,26 @@
+W:\WindowsPhone8\Tests\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\bin\Windows Phone\Debug\Content\blueRect.xnb
+W:\WindowsPhone8\Tests\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\bin\Windows Phone\Debug\Content\greenRect.xnb
+W:\WindowsPhone8\Tests\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\bin\Windows Phone\Debug\Content\redRect.xnb
+W:\WindowsPhone8\Tests\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\bin\Windows Phone\Debug\SlXnaAppSampleLib.dll
+W:\WindowsPhone8\Tests\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\bin\Windows Phone\Debug\SlXnaAppSampleLib.pdb
+W:\WindowsPhone8\Tests\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\obj\Windows Phone\Debug\SlXnaAppSampleLib.csprojResolveAssemblyReference.cache
+W:\WindowsPhone8\Tests\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\obj\Windows Phone\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+W:\WindowsPhone8\Tests\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\obj\Windows Phone\Debug\SlXnaAppSampleLib.dll
+W:\WindowsPhone8\Tests\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\obj\Windows Phone\Debug\SlXnaAppSampleLib.pdb
+F:\windows phone project\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\bin\Windows Phone\Debug\Content\blueRect.xnb
+F:\windows phone project\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\bin\Windows Phone\Debug\Content\greenRect.xnb
+F:\windows phone project\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\bin\Windows Phone\Debug\Content\redRect.xnb
+F:\windows phone project\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\bin\Windows Phone\Debug\SlXnaAppSampleLib.dll
+F:\windows phone project\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\bin\Windows Phone\Debug\SlXnaAppSampleLib.pdb
+F:\windows phone project\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\obj\Windows Phone\Debug\SlXnaAppSampleLib.csprojResolveAssemblyReference.cache
+F:\windows phone project\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\obj\Windows Phone\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+F:\windows phone project\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\obj\Windows Phone\Debug\SlXnaAppSampleLib.dll
+F:\windows phone project\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\obj\Windows Phone\Debug\SlXnaAppSampleLib.pdb
+F:\backup\SmartMad SDK 3.0.1 WindowsPhone\sample\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\bin\Windows Phone\Debug\Content\blueRect.xnb
+F:\backup\SmartMad SDK 3.0.1 WindowsPhone\sample\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\bin\Windows Phone\Debug\Content\greenRect.xnb
+F:\backup\SmartMad SDK 3.0.1 WindowsPhone\sample\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\bin\Windows Phone\Debug\Content\redRect.xnb
+F:\backup\SmartMad SDK 3.0.1 WindowsPhone\sample\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\bin\Windows Phone\Debug\SlXnaAppSampleLib.dll
+F:\backup\SmartMad SDK 3.0.1 WindowsPhone\sample\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\bin\Windows Phone\Debug\SlXnaAppSampleLib.pdb
+F:\backup\SmartMad SDK 3.0.1 WindowsPhone\sample\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\obj\Windows Phone\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+F:\backup\SmartMad SDK 3.0.1 WindowsPhone\sample\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\obj\Windows Phone\Debug\SlXnaAppSampleLib.dll
+F:\backup\SmartMad SDK 3.0.1 WindowsPhone\sample\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLib\obj\Windows Phone\Debug\SlXnaAppSampleLib.pdb

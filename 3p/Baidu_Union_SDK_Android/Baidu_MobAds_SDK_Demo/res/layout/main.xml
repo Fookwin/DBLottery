@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:baiduadsdk="http://schemas.android.com/apk/res/com.sdkdemo"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent" 
+	android:background="#fdfefa">
+	<ScrollView android:layout_width="fill_parent" android:layout_height="fill_parent"
+	    >
+<LinearLayout
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent" 
+	android:orientation="vertical"
+	android:layout_gravity="center"	
+	android:gravity="center">
+
+		<Button android:text="@string/simple_coding"
+			android:id="@+id/simple_coding"
+			android:layout_width="250dp"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"/>
+		<Button android:text="@string/simple_video"
+			android:id="@+id/simple_video"
+			android:layout_width="250dp"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"/>
+		<Button android:text="@string/simple_inters"
+			android:id="@+id/simple_inters"
+			android:layout_width="250dp"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp" />
+		<Button android:text="@string/simple_inters_for_video"
+			android:id="@+id/simple_inters_for_videoapp"
+			android:layout_width="250dp"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp" />
+		<Button android:text="@string/simple_icon"
+			android:id="@+id/simple_icon"
+			android:layout_width="250dp"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp" />
+		<Button android:text="@string/simple_recmad"
+			android:id="@+id/simple_recmad"
+			android:layout_width="250dp"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp" />
+	</LinearLayout>
+	</ScrollView>
+</RelativeLayout>

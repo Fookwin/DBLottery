@@ -1,6 +1,0 @@
-
-== 04-June-2013: INMobi Ad SDK [Windows Store Apps] (Build 2.0.1) released ==
-
-================================= deprecated =====================================
-TestMode property from IMAdrequest is removed 
-imAdRequest.IsInTestMode =  true; //Property is removed  
