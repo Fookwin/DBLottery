@@ -2,7 +2,7 @@ var app = angular.module('ng-index-app', ['ngRoute']);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
-        .when('/', {template: 'not supported'})
+        .when('/', {templateUrl: '/templates/home.html'})
         .when('/users', {templateUrl: '/templates/user-manage.html'})
         .when('/release', {templateUrl: '/templates/release-manage.html'})
         .otherwise({redirectTo:'/'});
@@ -16,10 +16,12 @@ app.directive("ngGeneralHeaderDirective", function () {
     };
 });
 
-app.controller('ng-index-header-ctrl', function ($scope, $interval) {
-   $scope.title = 'Lottery Data Management';
+app.controller('ng-index-header-ctrl', function ($scope, $rootScope, $interval) {
+   $rootScope.title = 'Lottery Data Management';
+   $rootScope.selectedNavIndex = -1;
+
    $interval(function(){
-       $scope.time = new Date().toLocaleString();   
+       $rootScope.time = new Date().toLocaleString();   
    }, 1000);
 
    $scope.navButtons = [
@@ -28,7 +30,6 @@ app.controller('ng-index-header-ctrl', function ($scope, $interval) {
         { title: 'PUBLISH', href: '#/release' },
    ];
 
-   $scope.selectedNavIndex = 0;
    $scope.navigateTo = function (index) {
        $scope.selectedNavIndex = index;
    };

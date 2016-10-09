@@ -1,4 +1,4 @@
-angular.module('ng-index-app').controller('ng-release-manage-ctrl', function ($scope, $timeout, $http) {       
+angular.module('ng-index-app').controller('ng-release-manage-ctrl', function ($scope, $rootScope, $timeout, $http) {       
 
     var originalVersion = {
         'LatestIssue': 2016117,
@@ -11,6 +11,7 @@ angular.module('ng-index-app').controller('ng-release-manage-ctrl', function ($s
         'Help':1
     };
 
+    $rootScope.selectedNavIndex = 2;
     $scope.IsVersionChanged = false;
     
     $scope.version = angular.copy(originalVersion);

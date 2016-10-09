@@ -12,35 +12,41 @@ UserList.prototype = {
     getUsers: function(req, res) {
         self = this;
         
-        var query;
-        
-        var urlParams = url.parse(req.originalUrl, true).query;
-        
-        var devid = urlParams.devid;
-        if (devid !== undefined) {
-            query = new azure.TableQuery().where('DevId eq ?', devid);
-        } else {
-            var platform = urlParams.platform;
-            if (platform === undefined) {
-                res.status(400).json("{err: 'invalid params!'}");
-                return;
-            }
-            
-            query = new azure.TableQuery().where('PartitionKey eq ?', platform).top(10);            
+        var query,
+            urlParams = url.parse(req.originalUrl, true).query,
+            platform = urlParams.platform,
+            scope = urlParams.scope ? urlParams.scope : 7;
+
+        if (platform === undefined) {            
+            return res.status(400).json("{err: 'invalid params!'}");
         }
+
+        var d = new Date();
+        d.setHours((d.getDay() - scope) * 24);
+        var laterThan = d; 
+        
+        query = new azure.TableQuery()
+                .where('PartitionKey eq ? && LastLogin >= ?', platform, laterThan)
+                .select('DeviceId', 'LastLogin', 'ClientVersion');
             
         self.table.find(query, function itemsFound(error, items) {
-           var userList = [];
-           items.forEach(function(item) {
-              userList.push({
-                  Platform: item.PlatForm._,
-                  DeviceId: item.DeviceId._,
-                  LastLogin: item.LastLogin._,
-                  ClientVersion: item.ClientVersion._
-               });      
-           }, this);
-           
-           res.status (200).json({error: error, data: userList}); 
+            if (error) {
+                console.error('ERR ' + 'Fail to get users registered on platform ' + platform + '. Error: ' + error);
+                return res.status (200).json({error: error, data: []}); 
+            }
+
+            var userList = [];
+            items.forEach(function(item) {
+                userList.push({
+                    DeviceId: item.DeviceId._,
+                    LastLogin: item.LastLogin._,
+                    ClientVersion: item.ClientVersion._
+                });      
+            }, this);
+
+            console.log('LOG ' + userList.length + ' users registered on platform ' + platform);
+            
+            res.status (200).json({error: error, data: userList}); 
         });
     }
 };

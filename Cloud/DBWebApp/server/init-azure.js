@@ -22,8 +22,7 @@ module.exports = function(app) {
     var _releaseMgr = new ReleaseManager();
     
     /** HTTP GET */
-    app.get('/users/:devid?', _list.getUsers.bind(_list));
-    app.get('/users/:platform?', _list.getUsers.bind(_list));
+    app.get('/users', _list.getUsers.bind(_list));
     app.get('/release/:issue?', _releaseMgr.getReleaseData.bind(_releaseMgr));
     app.get('/pre-release/:issue?', _releaseMgr.getDataFromWeb.bind(_releaseMgr));
 };
