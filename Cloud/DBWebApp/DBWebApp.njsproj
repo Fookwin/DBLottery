@@ -32,29 +32,61 @@
   <ItemGroup>
     <Compile Include="app.js" />
     <Compile Include="public\js\ng-index-app.js" />
+    <Compile Include="public\js\ng-release-manage-ctrl.js" />
+    <Compile Include="public\js\ng-user-manage-ctrl.js" />
+    <Compile Include="public\libs\angular.js\angular.min.js" />
+    <Compile Include="public\libs\bootstrap\js\bootstrap.js" />
+    <Compile Include="public\libs\bootstrap\js\bootstrap.min.js" />
+    <Compile Include="public\libs\jquery\jquery.min.js" />
     <Compile Include="routes\index.js" />
+    <Compile Include="server\api\releaseMgr.js" />
+    <Compile Include="server\api\userList.js" />
+    <Compile Include="server\config\config.js" />
+    <Compile Include="server\config\global.js" />
+    <Compile Include="server\init-azure.js" />
+    <Compile Include="server\modules\user-table.js" />
+    <Content Include="config.json" />
+    <Content Include="jsconfig.json" />
     <Content Include="package.json" />
+    <Content Include="public\libs\bootstrap\css\bootstrap-responsive.css" />
+    <Content Include="public\libs\bootstrap\css\bootstrap-responsive.min.css" />
+    <Content Include="public\libs\bootstrap\css\bootstrap.css" />
+    <Content Include="public\libs\bootstrap\css\bootstrap.min.css" />
+    <Content Include="public\libs\bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="public\libs\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="public\stylesheets\index.css" />
     <Content Include="public\stylesheets\style.styl" />
+    <Content Include="public\templates\footer.html" />
+    <Content Include="public\templates\header.html" />
+    <Content Include="public\templates\release-manage.html" />
+    <Content Include="public\templates\user-manage.html" />
     <Content Include="README.md" />
     <Content Include="views\index.html" />
     <Content Include="views\layout.html" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
     <Folder Include="public\js\" />
+    <Folder Include="public\libs\" />
+    <Folder Include="public\libs\angular.js\" />
+    <Folder Include="public\libs\bootstrap\" />
+    <Folder Include="public\libs\bootstrap\css\" />
+    <Folder Include="public\libs\bootstrap\img\" />
+    <Folder Include="public\libs\bootstrap\js\" />
+    <Folder Include="public\libs\jquery\" />
     <Folder Include="public\stylesheets\" />
+    <Folder Include="public\templates\" />
     <Folder Include="routes\" />
+    <Folder Include="server\" />
+    <Folder Include="server\api\" />
+    <Folder Include="server\config\" />
+    <Folder Include="server\modules\" />
     <Folder Include="views\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config" />
-    <Content Include="bin\ChangeConfig.ps1" />
-    <Content Include="bin\download.ps1" />
-    <Content Include="bin\setup_web.cmd" />
-    <Content Include="bin\node.cmd" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
