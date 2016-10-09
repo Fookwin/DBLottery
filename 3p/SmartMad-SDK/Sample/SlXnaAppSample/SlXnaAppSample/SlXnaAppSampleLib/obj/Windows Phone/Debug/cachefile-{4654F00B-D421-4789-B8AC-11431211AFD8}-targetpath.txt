@@ -1,3 +1,0 @@
-Content\blueRect.xnb
-Content\greenRect.xnb
-Content\redRect.xnb

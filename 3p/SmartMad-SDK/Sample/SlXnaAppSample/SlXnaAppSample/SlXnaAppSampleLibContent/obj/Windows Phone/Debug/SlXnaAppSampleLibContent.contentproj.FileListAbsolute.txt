@@ -1,2 +1,0 @@
-W:\WindowsPhone8\Tests\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLibContent\obj\Windows Phone\Debug\SlXnaAppSampleLibContent.contentprojResolveAssemblyReference.cache
-F:\windows phone project\SlXnaAppSample\SlXnaAppSample\SlXnaAppSampleLibContent\obj\Windows Phone\Debug\SlXnaAppSampleLibContent.contentprojResolveAssemblyReference.cache
