@@ -15,7 +15,6 @@ using Microsoft.WindowsAzure.Storage.Table;
 using Microsoft.WindowsAzure.Storage.Queue;
 using Microsoft.WindowsAzure.Storage.Blob;
 using LuckyBallsData.Management;
-using Microsoft.ServiceBus.Notifications;
 using Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling;
 
 namespace LuckyBallsData.Util
