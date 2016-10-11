@@ -4,16 +4,19 @@
         <span class="control-label span2">Platform</span>
         <select class="span4" ng-model="selectedPlatform" ng-options="platfrom.name for platfrom in platformList"></select>
         <span class="control-label span2">Scope</span>
-        <select class="span4" ng-model="selectedScope" ng-options="scope.name for scope in scopeList" "></select>        
+        <select class="span4" ng-model="selectedScope" ng-options="scope.name for scope in scopeList"></select>        
     </div> 
 
     <div class="controls controls-row">
-        <button ng-click="refreshTable()">Query</button>
-        <span ng-show="countOfResult">Result Count: {{countOfResult}}</span>
+        <button ng-click="refreshTable()">Query</button>        
+        <span ng-show="countOfResult != undefined">     Result Count: {{countOfResult}}</span>
+        <div class="progress progress-striped active" ng-show="inLoadingData">
+            <div class="bar" style="width: 100%;"></div>
+        </div>
     </div>
     
     <p>
-        <table class="table table-striped table-bordered">
+        <table id="table-user-list" class="table table-striped table-bordered">
             <thread>
                 <tr>
                     <td>No.</td>

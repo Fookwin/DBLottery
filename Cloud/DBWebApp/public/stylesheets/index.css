@@ -4,7 +4,7 @@
 
 input.ng-invalid {
     background-color: red;
-}*/
+}
 
 table, th , td {
   border: 1px solid grey;
@@ -18,4 +18,10 @@ table tr:nth-child(odd) {
 
 table tr:nth-child(even) {
   background-color: #ffffff;
+}*/
+
+#table-user-list {
+    display: block;
+    overflow-y: scroll;
+    max-height: 300px;
 }
