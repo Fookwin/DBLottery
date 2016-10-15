@@ -8,12 +8,15 @@
     </div> 
 
     <div class="controls controls-row">
-        <button ng-click="refreshTable()">Query</button>        
-        <span ng-show="countOfResult != undefined">     Result Count: {{countOfResult}}</span>
-        <div class="progress progress-striped active" ng-show="inLoadingData">
+        <button ng-click="refreshTable()" class="span2">Query</button>        
+        <span ng-show="countOfResult != undefined" class="span4">     Result Count: {{countOfResult}}</span>
+        <div class="progress progress-striped active span6" ng-show="inLoadingData">
             <div class="bar" style="width: 100%;"></div>
         </div>
+        <button ng-click="showNotificationView = true;" class="offset2 span2">Notify</button>  
     </div>
+
+    <ng-Notification-Directive ng-show="showNotificationView"></ng-Notification-Directive>
     
     <p>
         <table id="table-user-list" class="table table-striped table-bordered">

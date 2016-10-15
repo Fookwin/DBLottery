@@ -1,10 +1,10 @@
 <div ng-controller="ng-release-manage-ctrl">
-  <form >
+  <form>
     
     <legend>
-      <div class="controls controls-row">   
-        <span class="control-label span8">Release Date</span>     
-        <div class="control-group span4">
+      <div class="row">   
+        <span class="control-label col-xs-8">Release Data</span>     
+        <div class="control-group col-xs-4">
           <div class="controls">
             <button type="submit" href="#users" class="btn btn-primary" 
                     data-toggle="modal" data-target="#submitReleaseDataModal" 
@@ -15,11 +15,11 @@
       </div>
     </legend>  
 
-    <div class="controls controls-row">
-      <span class="control-label span1">期号</span>
-      <input class="span5" type="number" ng-model="releaseContent.issue" ng-change="onReleaseDataChanged()">
-      <span class="control-label span1">日期</span>
-      <input class="span5" type="date" ng-model="releaseContent.date" ng-change="onReleaseDataChanged()">
+    <div class="row">
+      <span class="control-label col-md-2">期号</span>
+      <input class="form-control col-md-4" type="number" ng-model="releaseContent.issue" ng-change="onReleaseDataChanged()">
+      <span class="control-label col-md-2">日期</span>
+      <input class="form-control col-md-4" type="date" ng-model="releaseContent.date" ng-change="onReleaseDataChanged()">
     </div>
 
     <div class="controls controls-row">
@@ -141,6 +141,8 @@
   <!-- Modal -->
   <div id="submitReleaseDataModal" class="modal hide fade" tabindex="-1" role="dialog" 
        aria-labelledby="myModalLabel" aria-hidden="true">
+       <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       <h4 id="myModalLabel">Submitting ...</h4>
@@ -154,6 +156,8 @@
       <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
       <button class="btn btn-primary" ng-click="saveReleaseData()">Submit</button>
     </div>
+    </div>
+       </div>
   </div>
 
   <div id="submitVersionModal" class="modal hide fade" tabindex="-1" role="dialog" 

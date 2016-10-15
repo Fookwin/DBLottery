@@ -25,3 +25,13 @@ table tr:nth-child(even) {
     overflow-y: scroll;
     max-height: 300px;
 }
+
+panel-manage-projects .ds-project .collaborator .user-info {
+    position: fixed;
+    width: 23rem;
+    background-color: #fff;
+    border: 1px solid #cdcdcd;
+    font-size: 0;
+    box-shadow: 0 2px 3px #ababab;
+    z-index: 2;
+}
