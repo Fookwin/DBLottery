@@ -29,16 +29,3 @@ angular.module('ng-index-app').controller('ng-user-manage-ctrl', function ($scop
         }
     }  
 });
-
-app.directive("ngNotificationDirective", function () {
-    return {
-        restrict : 'EAC',
-        controller: 'ng-notification-ctrl',
-        templateUrl: '/templates/notification-ctrl.html'
-    };
-});
-
-angular.module('ng-index-app').controller('ng-notification-ctrl', function ($scope, $rootScope, $timeout, $http) {
-    $rootScope.selectedNavIndex = 1;
-    $scope.inLoadingData = false; 
-});

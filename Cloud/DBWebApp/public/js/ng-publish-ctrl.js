@@ -1,4 +1,4 @@
-angular.module('ng-index-app').controller('ng-release-manage-ctrl', function ($scope, $rootScope, $timeout, $http) {       
+angular.module('ng-index-app').controller('ng-publish-ctrl', function ($scope, $rootScope, $timeout, $http) {       
 
     var originalVersion = {
         'LatestIssue': 2016117,

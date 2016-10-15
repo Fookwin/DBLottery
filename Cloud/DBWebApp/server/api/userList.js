@@ -15,15 +15,14 @@ UserList.prototype = {
         var query,
             urlParams = url.parse(req.originalUrl, true).query,
             platform = urlParams.platform,
-            scope = urlParams.scope ? urlParams.scope : 7;
+            scope = urlParams.scope || 7;
 
         if (platform === undefined) {            
             return res.status(400).json("{err: 'invalid params!'}");
         }
 
-        var d = new Date();
-        d.setHours((d.getDay() - scope) * 24);
-        var laterThan = d; 
+        var laterThan = new Date();
+        laterThan.setDate(d.getDate() - scope);
         
         query = new azure.TableQuery()
                 .where('PartitionKey eq ? && LastLogin >= ?', platform, laterThan)

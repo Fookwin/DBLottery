@@ -1,25 +1,17 @@
-<div ng-controller="ng-release-manage-ctrl">
-  <form>
+<div ng-controller="ng-publish-ctrl">
+  <form class="form-horizontal">
     
-    <legend>
-      <div class="row">   
-        <span class="control-label col-xs-8">Release Data</span>     
-        <div class="control-group col-xs-4">
-          <div class="controls">
-            <button type="submit" href="#users" class="btn btn-primary" 
-                    data-toggle="modal" data-target="#submitReleaseDataModal" 
-                    ng-show="isReleaseDataChanged">Save</button> 
-            <button type="button" class="btn" ng-show="isReleaseDataChanged" ng-click="resetReleaseData()">Reset</button> 
-          </div>
-        </div> 
-      </div>
-    </legend>  
+    <legend>Release Data</legend> 
 
     <div class="row">
-      <span class="control-label col-md-2">期号</span>
-      <input class="form-control col-md-4" type="number" ng-model="releaseContent.issue" ng-change="onReleaseDataChanged()">
-      <span class="control-label col-md-2">日期</span>
-      <input class="form-control col-md-4" type="date" ng-model="releaseContent.date" ng-change="onReleaseDataChanged()">
+      <span class="control-label col-xs-1">期号</span>
+      <div class="col-xs-5">
+        <input class="form-control" type="number" ng-model="releaseContent.issue" ng-change="onReleaseDataChanged()">
+      </div>
+      <span class="control-label col-xs-1">日期</span>
+      <div class="col-xs-5">
+        <input class="form-control" type="date" ng-model="releaseContent.date" ng-change="onReleaseDataChanged()">
+      </div>
     </div>
 
     <div class="controls controls-row">
@@ -110,71 +102,39 @@
 
   </form>
 
-  <form>
-      <fieldset>
+  <nav>
+    <ul class="pager">
+        <li class="controls">
+            <button type="submit" href="#users" class="btn btn-primary" 
+                    data-toggle="modal" data-target="#submitReleaseDataModal" 
+                    ng-show="isReleaseDataChanged">Save</button> 
+            <button type="button" class="btn" ng-show="isReleaseDataChanged" ng-click="resetReleaseData()">Reset</button> 
+        </li>
 
-        <legend>
-          <div class="controls controls-row">   
-            <span class="control-label span8">Data Version</span>     
-            <div class="control-group">
-              <div class="controls">
-                <button type="submit" class="btn btn-primary" 
-                        data-toggle="modal" data-target="#submitVersionModal"
-                        ng-show="isVersionChanged">Save</button> 
-                <button type="button" class="btn" ng-show="isVersionChanged" ng-click="resetVersion()">Reset</button> 
-              </div>
-            </div>  
-          </div>
-        </legend> 
-
-        <div ng-repeat="(label, number) in version track by label">
-          <div class="controls controls-row">
-            <span class="control-label span4">{{label}}</span>
-            <input type="number" class="span8" ng-model="version[label]" ng-change="onVersionChanged(label, number)">
-          </div>
-        </div>
-          
-      </fieldset>
-
-  </form>
+        <li class="next"><a href="#publish/version">Next <span aria-hidden="true">&rarr;</span></a></li>
+    </ul>
+  </nav>
 
   <!-- Modal -->
   <div id="submitReleaseDataModal" class="modal hide fade" tabindex="-1" role="dialog" 
        aria-labelledby="myModalLabel" aria-hidden="true">
        <div class="modal-dialog modal-sm" role="document">
-    <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h4 id="myModalLabel">Submitting ...</h4>
-    </div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 id="myModalLabel">Submitting ...</h4>
+                </div>
 
-    <div class="modal-body">
-      Do you make sure submit the changes on this release?
-    </div>
+                <div class="modal-body">
+                    Do you make sure submit the changes on this release?
+                </div>
 
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary" ng-click="saveReleaseData()">Submit</button>
-    </div>
-    </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                    <button class="btn btn-primary" ng-click="saveReleaseData()">Submit</button>
+                </div>
+            </div>
        </div>
-  </div>
-
-  <div id="submitVersionModal" class="modal hide fade" tabindex="-1" role="dialog" 
-       aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h4 id="myModalLabel">Submitting ...</h4>
-    </div>
-
-    <div class="modal-body">
-      Do you make sure submit the changes on the version?
-    </div>
-
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary" ng-click="saveVersion()">Submit</button>
-    </div>
   </div>
 
 </div>
