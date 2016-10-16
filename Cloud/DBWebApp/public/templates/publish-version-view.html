@@ -1,19 +1,15 @@
 <div ng-controller="ng-publish-ctrl">
 
   <form>
-      <fieldset>
+    <legend>Data Version</legend>
 
-        <legend>Data Version</legend>
-
-        <div ng-repeat="(label, number) in version track by label">
-          <div class="controls controls-row">
-            <span class="control-label span4">{{label}}</span>
-            <input type="number" class="span8" ng-model="version[label]" ng-change="onVersionChanged(label, number)">
-          </div>
-        </div>
-          
-      </fieldset>
-
+    <div ng-repeat="(label, number) in version track by label">
+      <div class="input-group">
+        <span class="input-group-addon">{{label}}</span>
+        <input type="number" class="form-control" ng-model="version[label]" ng-change="onVersionChanged(label, number)">
+      </div>
+      <br>
+    </div>
   </form>
 
   <nav>
@@ -21,33 +17,30 @@
         <li class="previous"><a href="#publish/release"><span aria-hidden="true">&larr;</span> Previous</a></li>
 
         <li class="controls">
-            <button type="submit" class="btn btn-primary" 
-                    data-toggle="modal" data-target="#submitVersionModal"
-                    ng-show="isVersionChanged">Save</button> 
             <button type="button" class="btn" ng-show="isVersionChanged" ng-click="resetVersion()">Reset</button> 
         </li>
 
-        <li class="next"><a href="#publish/notification">Next <span aria-hidden="true">&rarr;</span></a></li>
+        <li class="next"><a ng-click="leaveVersion()">Next <span aria-hidden="true">&rarr;</span></a></li>
     </ul>
   </nav>
 
   <!-- Modal -->
-
-  <div id="submitVersionModal" class="modal hide fade" tabindex="-1" role="dialog" 
-       aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h4 id="myModalLabel">Submitting ...</h4>
+  <div class="modal fade" id="submitVersionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Save Data Version</h4>
+                </div>
+                <div class="modal-body">
+                Do you make sure submit the changes on this release?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" ng-click="saveVersion()">Submit</button>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="modal-body">
-      Do you make sure submit the changes on the version?
-    </div>
-
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary" ng-click="saveVersion()">Submit</button>
-    </div>
-  </div>
 
 </div>

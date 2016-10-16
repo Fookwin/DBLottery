@@ -1,140 +1,225 @@
 <div ng-controller="ng-publish-ctrl">
-  <form class="form-horizontal">
+  <form >
     
     <legend>Release Data</legend> 
 
     <div class="row">
-      <span class="control-label col-xs-1">期号</span>
-      <div class="col-xs-5">
-        <input class="form-control" type="number" ng-model="releaseContent.issue" ng-change="onReleaseDataChanged()">
-      </div>
-      <span class="control-label col-xs-1">日期</span>
-      <div class="col-xs-5">
-        <input class="form-control" type="date" ng-model="releaseContent.date" ng-change="onReleaseDataChanged()">
-      </div>
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">期号</span>
+                <input class="form-control" type="number" ng-model="releaseContent.issue" ng-change="onReleaseDataChanged()">
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">日期</span>
+                <input class="form-control" type="date" ng-model="releaseContent.date" ng-change="onReleaseDataChanged()">
+            </div>
+        </div>
     </div>
-
-    <div class="controls controls-row">
-      <span class="control-label span1">奖号</span>
-      <input class="span11" type="text" ng-model="releaseContent.scheme" ng-change="onReleaseDataChanged()">
+    <br>
+    <div class="input-group">
+      <span class="input-group-addon">奖号</span>
+      <input class="form-control" type="text" ng-model="releaseContent.scheme" ng-change="onReleaseDataChanged()">
     </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">奖池</span>
+                <input class="form-control" type="number" ng-model="releaseContent.pool" ng-change="onReleaseDataChanged()">
+            </div>
+        </div>
 
-    <div class="controls controls-row">
-      <span class="control-label span1">奖池</span>
-      <input class="span5" type="number" ng-model="releaseContent.pool" ng-change="onReleaseDataChanged()">
-      <span class="control-label span1">销售</span>
-      <input class="span5" type="number" ng-model="releaseContent.sell" ng-change="onReleaseDataChanged()">
-    </div> 
-
-    <div class="controls controls-row">
-      <span class="span2">一等奖</span>
-      <span class="control-label span1">数量</span>
-      <input class="span4" type="number" ng-model="releaseContent.bonusCounts[0]" ng-change="onReleaseDataChanged()">
-      <span class="control-label span1">奖金</span>
-      <input class="span4" type="number" ng-model="releaseContent.bonusPrizes[0]" ng-change="onReleaseDataChanged()">
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">销售</span>
+                <input class="form-control" type="number" ng-model="releaseContent.sell" ng-change="onReleaseDataChanged()">
+            </div>
+        </div>
     </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">1 数量</span>
+                <input class="form-control" type="number" ng-model="releaseContent.bonusCounts[0]" ng-change="onReleaseDataChanged()">
+            </div>
+        </div>
 
-    <div class="controls controls-row">
-      <span class="span2">二等奖</span>
-      <span class="control-label span1">数量</span>
-      <input class="span4" type="number" ng-model="releaseContent.bonusCounts[1]" ng-change="onReleaseDataChanged()">
-      <span class="control-label span1">奖金</span>
-      <input class="span4" type="number" ng-model="releaseContent.bonusPrizes[1]" ng-change="onReleaseDataChanged()">
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">1 奖金</span>
+                <input class="form-control" type="number" ng-model="releaseContent.bonusPrizes[0]" ng-change="onReleaseDataChanged()">
+            </div>
+        </div>
     </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">2 数量</span>
+                <input class="form-control" type="number" ng-model="releaseContent.bonusCounts[1]" ng-change="onReleaseDataChanged()">
+            </div>
+        </div>
 
-    <div class="controls controls-row">
-      <span class="span2">三等奖</span>
-      <span class="control-label span1">数量</span>
-      <input class="span4" type="number" ng-model="releaseContent.bonusCounts[2]" ng-change="onReleaseDataChanged()">
-      <span class="control-label span1">奖金</span>
-      <input class="span4" type="number" ng-model="releaseContent.bonusPrizes[2]" ng-change="onReleaseDataChanged()">
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">2 奖金</span>
+                <input class="form-control" type="number" ng-model="releaseContent.bonusPrizes[1]" ng-change="onReleaseDataChanged()">
+            </div>
+        </div>
     </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">3 数量</span>
+                <input class="form-control" type="number" ng-model="releaseContent.bonusCounts[2]" ng-change="onReleaseDataChanged()">
+            </div>
+        </div>
 
-    <div class="controls controls-row">
-      <span class="span2">四等奖</span>
-      <span class="control-label span1">数量</span>
-      <input class="span4" type="number" ng-model="releaseContent.bonusCounts[3]" ng-change="onReleaseDataChanged()">
-      <span class="control-label span1">奖金</span>
-      <input class="span4" type="number" ng-model="releaseContent.bonusPrizes[3]" ng-change="onReleaseDataChanged()">
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">3 奖金</span>
+                <input class="form-control" type="number" ng-model="releaseContent.bonusPrizes[2]" ng-change="onReleaseDataChanged()">
+            </div>
+        </div>
     </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">4 数量</span>
+                <input class="form-control" type="number" ng-model="releaseContent.bonusCounts[3]" ng-change="onReleaseDataChanged()">
+            </div>
+        </div>
 
-    <div class="controls controls-row">
-      <span class="span2">五等奖</span>
-      <span class="control-label span1">数量</span>
-      <input class="span4" type="number" ng-model="releaseContent.bonusCounts[4]" ng-change="onReleaseDataChanged()">
-      <span class="control-label span1">奖金</span>
-      <input class="span4" type="number" ng-model="releaseContent.bonusPrizes[4]" ng-change="onReleaseDataChanged()">
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">4 奖金</span>
+                <input class="form-control" type="number" ng-model="releaseContent.bonusPrizes[3]" ng-change="onReleaseDataChanged()">
+            </div>
+        </div>
     </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">5 数量</span>
+                <input class="form-control" type="number" ng-model="releaseContent.bonusCounts[4]" ng-change="onReleaseDataChanged()">
+            </div>
+        </div>
 
-    <div class="controls controls-row">
-      <span class="span2">六等奖</span>
-      <span class="control-label span1">数量</span>
-      <input class="span4" type="number" ng-model="releaseContent.bonusCounts[5]" ng-change="onReleaseDataChanged()">
-      <span class="control-label span1">奖金</span>
-      <input class="span4" type="number" ng-model="releaseContent.bonusPrizes[5]" ng-change="onReleaseDataChanged()">
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">5 奖金</span>
+                <input class="form-control" type="number" ng-model="releaseContent.bonusPrizes[4]" ng-change="onReleaseDataChanged()">
+            </div>
+        </div>
     </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">6 数量</span>
+                <input class="form-control" type="number" ng-model="releaseContent.bonusCounts[5]" ng-change="onReleaseDataChanged()">
+            </div>
+        </div>
 
-    <div class="controls controls-row">
-      <span class="control-label span1">详情</span>
-      <textarea class="span11" rows="3" type="text" ng-model="releaseContent.details" ng-change="onReleaseDataChanged()"></textarea>
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">6 奖金</span>
+                <input class="form-control" type="number" ng-model="releaseContent.bonusPrizes[5]" ng-change="onReleaseDataChanged()">
+            </div>
+        </div>
     </div>
-
-    <div class="controls controls-row">
-      <span class="control-label span1">下期</span>
-      <input class="span5" type="number" ng-model="releaseContent.next.issue" ng-change="onReleaseDataChanged()">
-      <span class="control-label span1">日期</span>
-      <input class="span5" type="date" ng-model="releaseContent.next.date" ng-change="onReleaseDataChanged()">
+    <br>
+    <div class="input-group">
+      <span class="input-group-addon">详情</span>
+      <textarea class="form-control" rows="3" type="text" ng-model="releaseContent.details" ng-change="onReleaseDataChanged()"></textarea>
     </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">下期</span>
+                <input class="form-control" type="number" ng-model="releaseContent.next.issue" ng-change="onReleaseDataChanged()">
+            </div>
+        </div>
 
-    <div class="controls controls-row">
-      <span class="control-label span1">红胆</span>
-      <input class="span5" type="text" ng-model="releaseContent.forcast.includedReds" ng-change="onReleaseDataChanged()">
-      <span class="control-label span1">红杀</span>
-      <input class="span5" type="text" ng-model="releaseContent.forcast.excludedReds" ng-change="onReleaseDataChanged()">
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">日期</span>
+                <input class="form-control" type="date" ng-model="releaseContent.next.date" ng-change="onReleaseDataChanged()">
+            </div>
+        </div>
     </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">红胆</span>
+                <input class="form-control" type="text" ng-model="releaseContent.forcast.includedReds" ng-change="onReleaseDataChanged()">
+            </div>
+        </div>
 
-    <div class="controls controls-row">
-      <span class="control-label span1">蓝胆</span>
-      <input class="span5" type="text" ng-model="releaseContent.forcast.includedBlues" ng-change="onReleaseDataChanged()">
-      <span class="control-label span1">蓝杀</span>
-      <input class="span5" type="text" ng-model="releaseContent.forcast.excludedBlues" ng-change="onReleaseDataChanged()">
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">红杀</span>
+                <input class="form-control" type="text" ng-model="releaseContent.forcast.excludedReds" ng-change="onReleaseDataChanged()">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">蓝胆</span>
+                <input class="form-control" type="text" ng-model="releaseContent.forcast.includedBlues" ng-change="onReleaseDataChanged()">
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon">蓝杀</span>
+                <input class="form-control" type="text" ng-model="releaseContent.forcast.excludedBlues" ng-change="onReleaseDataChanged()">
+            </div>
+        </div>
     </div>
 
   </form>
 
   <nav>
     <ul class="pager">
-        <li class="controls">
-            <button type="submit" href="#users" class="btn btn-primary" 
-                    data-toggle="modal" data-target="#submitReleaseDataModal" 
-                    ng-show="isReleaseDataChanged">Save</button> 
+        <li>
             <button type="button" class="btn" ng-show="isReleaseDataChanged" ng-click="resetReleaseData()">Reset</button> 
         </li>
 
-        <li class="next"><a href="#publish/version">Next <span aria-hidden="true">&rarr;</span></a></li>
+        <li class="next">
+            <a ng-click="leaveReleaseData()">Next <span aria-hidden="true">&rarr;</span></a>
+        </li>
     </ul>
   </nav>
 
   <!-- Modal -->
-  <div id="submitReleaseDataModal" class="modal hide fade" tabindex="-1" role="dialog" 
-       aria-labelledby="myModalLabel" aria-hidden="true">
-       <div class="modal-dialog modal-sm" role="document">
+    <div class="modal fade" id="submitReleaseDataModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 id="myModalLabel">Submitting ...</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Save Release Data</h4>
                 </div>
-
                 <div class="modal-body">
-                    Do you make sure submit the changes on this release?
+                Do you make sure submit the changes on this release?
                 </div>
-
                 <div class="modal-footer">
-                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                    <button class="btn btn-primary" ng-click="saveReleaseData()">Submit</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" ng-click="saveReleaseData()">Submit</button>
                 </div>
             </div>
-       </div>
-  </div>
+        </div>
+    </div>
 
 </div>

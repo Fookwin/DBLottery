@@ -1,4 +1,4 @@
-angular.module('ng-index-app').controller('ng-publish-ctrl', function ($scope, $rootScope, $timeout, $http) {       
+angular.module('ng-index-app').controller('ng-publish-ctrl', function ($scope, $rootScope, $timeout, $http, $location) {       
 
     var originalVersion = {
         'LatestIssue': 2016117,
@@ -63,15 +63,37 @@ angular.module('ng-index-app').controller('ng-publish-ctrl', function ($scope, $
         $scope.isReleaseDataChanged = false;
     };
 
+    $scope.leaveVersion = function () {
+        if ($scope.isVersionChanged){
+            $('#submitVersionModal').modal('show') 
+        } else {
+            $location.url('/publish/notification');
+        }
+    }
+
     $scope.saveVersion = function () {
         alert('done');
         $scope.isVersionChanged = false;
-        $('#submitVersionModal').modal('hide')
+        $('#submitVersionModal').modal('hide');
+        $('#submitVersionModal').on('hidden.bs.modal', function (e) {
+            $location.url('/publish/notification');
+        });
     };
+
+    $scope.leaveReleaseData = function () {
+        if ($scope.isReleaseDataChanged){
+            $('#submitReleaseDataModal').modal('show') 
+        } else {
+            $location.url('/publish/version');
+        }
+    }
 
     $scope.saveReleaseData = function () {
         alert('done');
         $scope.isReleaseDataChanged = false;
-        $('#submitReleaseDataModal').modal('hide')
+        $('#submitReleaseDataModal').modal('hide');
+        $('#submitReleaseDataModal').on('hidden.bs.modal', function (e) {
+            $location.url('/publish/version');
+        });
     };
 });

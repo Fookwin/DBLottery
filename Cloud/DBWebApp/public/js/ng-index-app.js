@@ -3,7 +3,7 @@ var app = angular.module('ng-index-app', ['ngRoute']);
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
         .when('/', {templateUrl: '/templates/home.html'})
-        .when('/users', {templateUrl: '/templates/user-manage.html'})
+        .when('/users', {templateUrl: '/templates/user-picker-view.html'})
         .when('/publish', {redirectTo:'/publish/release'})
         .when('/publish/release', {templateUrl: '/templates/publish-release-data-view.html'})
         .when('/publish/version', {templateUrl: '/templates/publish-version-view.html'})
@@ -42,5 +42,13 @@ app.controller('ng-index-footer-ctrl', function ($scope, $http) {
     $http.get('/templates/footer.html').then(function(res) {
          $scope.footer = res.data;
     });
+});
+
+app.directive("ngUserPickerView", function () {
+    return {
+        restrict : 'EAC',
+        controller: 'ng-user-picker-ctrl',
+        templateUrl: '/templates/user-picker-view.html'
+    };
 });
 

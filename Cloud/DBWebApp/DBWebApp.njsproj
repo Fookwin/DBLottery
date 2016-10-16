@@ -33,7 +33,7 @@
     <Compile Include="app.js" />
     <Compile Include="public\js\ng-index-app.js" />
     <Compile Include="public\js\ng-publish-ctrl.js" />
-    <Compile Include="public\js\ng-user-manage-ctrl.js" />
+    <Compile Include="public\js\ng-use-picker-ctrl.js" />
     <Compile Include="public\libs\angular.js\angular.min.js" />
     <Compile Include="public\libs\bootstrap\js\bootstrap.js" />
     <Compile Include="public\libs\bootstrap\js\bootstrap.min.js" />

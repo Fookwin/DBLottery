@@ -22,7 +22,7 @@ UserList.prototype = {
         }
 
         var laterThan = new Date();
-        laterThan.setDate(d.getDate() - scope);
+        laterThan.setDate(laterThan.getDate() - scope);
         
         query = new azure.TableQuery()
                 .where('PartitionKey eq ? && LastLogin >= ?', platform, laterThan)
