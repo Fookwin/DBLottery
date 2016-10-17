@@ -3,8 +3,11 @@ var app = angular.module('ng-index-app', ['ngRoute']);
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
         .when('/', {templateUrl: '/templates/home.html'})
-        .when('/users', {templateUrl: '/templates/user-manage.html'})
-        .when('/release', {templateUrl: '/templates/release-manage.html'})
+        .when('/users', {templateUrl: '/templates/user-picker-view.html'})
+        .when('/publish', {redirectTo:'/publish/release'})
+        .when('/publish/release', {templateUrl: '/templates/publish-release-data-view.html'})
+        .when('/publish/version', {templateUrl: '/templates/publish-version-view.html'})
+        .when('/publish/notification', {templateUrl: '/templates/publish-notification-view.html'})
         .otherwise({redirectTo:'/'});
 }]);
 
@@ -27,7 +30,7 @@ app.controller('ng-index-header-ctrl', function ($scope, $rootScope, $interval) 
    $scope.navButtons = [
         { title: 'HOME', href: '#/' },
         { title: 'USERS', href: '#/users' },
-        { title: 'PUBLISH', href: '#/release' },
+        { title: 'PUBLISH', href: '#/publish' },
    ];
 
    $scope.navigateTo = function (index) {
@@ -35,21 +38,17 @@ app.controller('ng-index-header-ctrl', function ($scope, $rootScope, $interval) 
    };
 });
 
-// app.service('userNameExtractor', function() {
-//     this.extract = function(address) {
-//         return address.substring(0, address.indexOf("@"));
-//     }
-// });
-
-// app.filter('addressFilter', ['userNameExtractor', function (userNameExtractor) {
-//     return function(address) {
-//         return userNameExtractor.extract(address);
-//     };
-// }]);
-
 app.controller('ng-index-footer-ctrl', function ($scope, $http) {
     $http.get('/templates/footer.html').then(function(res) {
          $scope.footer = res.data;
     });
+});
+
+app.directive("ngUserPickerView", function () {
+    return {
+        restrict : 'EAC',
+        controller: 'ng-user-picker-ctrl',
+        templateUrl: '/templates/user-picker-view.html'
+    };
 });
 
