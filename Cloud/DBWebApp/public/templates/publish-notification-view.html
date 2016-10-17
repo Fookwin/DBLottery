@@ -6,7 +6,7 @@
         <div class="input-group">
             <span class="input-group-addon">模板</span>
             <select class="form-control" ng-model="selectedTemplate" ng-options="template.name for template in templateList" 
-                ng-selected="content = selectedTemplate.content"></select>
+                ng-change="content = selectedTemplate.content"></select>
         </div>
         <br>
         <div class="input-group">
@@ -31,7 +31,7 @@
     <nav>
         <ul class="pager">
             <li class="previous"><a href="#publish/version"><span aria-hidden="true">&larr;</span> Previous</a></li>
-            <li class="next"><a ng-click="leaveVersion()">Notify <span aria-hidden="true">&rarr;</span></a></li>
+            <li><button class="btn btn-primary" ng-click="notify()">Notify</button></li>
         </ul>
     </nav>
 </div>

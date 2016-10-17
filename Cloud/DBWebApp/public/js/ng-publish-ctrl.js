@@ -110,4 +110,9 @@ angular.module('ng-index-app').controller('ng-publish-notification-ctrl', functi
             ];
 
     $scope.selectedTemplate = $scope.templateList[0];
+    $scope.content = $scope.selectedTemplate.content;
+
+    $scope.notify = function () {
+        alert("notified!");
+    }
 });
