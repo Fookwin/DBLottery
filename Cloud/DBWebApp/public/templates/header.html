@@ -1,6 +1,9 @@
-<div class="page-header" ng-controller="ng-index-header-ctrl">
-
-    <h1>{{title}} <small>{{time}}</small></h1>
+<div ng-controller="ng-index-header-ctrl">
+    <div class="row-fluid">
+        <h2 class="span8"> {{title}} </h2> 
+        <br> 
+        <h5 class="text-right"> {{time}} </h5>
+    </div>    
 
     <ul class="nav nav-tabs">
         <li ng-class="{active: $index == selectedNavIndex }" ng-repeat="navBtn in navButtons" ng-click="navigateTo($index)">
