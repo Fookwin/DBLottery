@@ -20,7 +20,7 @@ namespace DBSQLService
                 // TODO: we will notify the users on the specficied devices.
             }
 
-            DBNotification.Instance().PushNotification((PlatformIndex)platform, message, new List<string>());
+            //DBNotification.Instance().PushNotification((PlatformIndex)platform, message, new List<string>());
         }
     }
 }

@@ -9,17 +9,28 @@ using DataModel;
 
 namespace DBSQLService
 {
+    [DataContract]
+    public class MessagePocket
+    {
+        [DataMember]
+        public string Message
+        {
+            get;
+            set;
+        }
+    };
+
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "RFxDBManageService" in both code and config file together.
     [ServiceContract]
     public interface IRFxDBManageService
     {
         [OperationContract]
         [WebInvoke(Method = "POST",
-            UriTemplate = "/PushNotification/?platform={platform}&message={message}&devices={devices}",
+            UriTemplate = "/PushNotification/?platform={platform}",
             BodyStyle = WebMessageBodyStyle.Bare,
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json)]
-        void PushNotification(int platform, string message, string devices);
+        string PushNotification(int platform, MessagePocket message);
 
         [OperationContract]
         [WebInvoke(Method = "GET",
