@@ -103,5 +103,11 @@ angular.module('ng-index-app').controller('ng-publish-version-ctrl', function ($
 });
 
 angular.module('ng-index-app').controller('ng-publish-notification-ctrl', function ($scope, $rootScope, $timeout, $http, $location) {       
+    $scope.templateList = [
+            {name: '开奖公告', content: '开奖公告'},
+            {name: '开奖详情', content: '开奖详情'},
+            {name: '下期推荐', content: '下期推荐'}
+            ];
 
+    $scope.selectedTemplate = $scope.templateList[0];
 });

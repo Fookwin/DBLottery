@@ -1,49 +1,47 @@
 <div ng-controller="ng-user-picker-ctrl">
-    <form >
-        <div class="row">
-            <div class="col-lg-5 col-md-5 col-xs-5">
-                <div class="input-group">
-                    <span class="input-group-addon">平台</span>
-                    <select class="form-control" ng-model="selectedPlatform" ng-options="platfrom.name for platfrom in platformList"></select>
-                </div>
+
+    <div class="row">
+        <div class="col-lg-5 col-md-5 col-xs-5">
+            <div class="input-group">
+                <span class="input-group-addon">平台</span>
+                <select class="form-control" ng-model="selectedPlatform" ng-options="platfrom.name for platfrom in platformList"></select>
             </div>
+        </div>
 
-            <div class="col-lg-5 col-md-5 col-xs-5">
-                <div class="input-group">
-                    <span class="input-group-addon">范围</span>
-                    <select class="form-control" ng-model="selectedScope" ng-options="scope.name for scope in scopeList"></select>        
-                </div>
+        <div class="col-lg-5 col-md-5 col-xs-5">
+            <div class="input-group">
+                <span class="input-group-addon">范围</span>
+                <select class="form-control" ng-model="selectedScope" ng-options="scope.name for scope in scopeList"></select>        
             </div>
-
-            <button type="submit" ng-click="refreshTable()" class="btn">
-                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-            </button>
-            
         </div>
-        <br>
-        <div class="offset1">
-            <span ng-show="!inLoadingData && countOfResult != undefined" >共有 {{countOfResult}} 用户</span>
-            <span ng-show="inLoadingData">加载中...</span>
-        </div>
-    </form>
-    
 
-        <table id="table-user-list" ng-show="!inLoadingData && countOfResult != undefined" class="table table-striped table-bordered">
-            <thread>
-                <tr>
-                    <td>No.</td>
-                    <td>Device</td>
-                    <td>Last Login Time</td>
-                    <td>Client Version</td>
-                </tr>
-            </thread>
-            <tbody>
-                <tr ng-repeat="user in userList | orderBy : '-LastLogin'">
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ user.DeviceId }}</td>
-                    <td>{{ user.LastLogin }}</td>
-                    <td>{{ user.ClientVersion }}</td>
-                </tr>
-            </tbody>
-        </table> 
+        <button type="submit" ng-click="refreshTable()" class="btn btn-primary">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </button>
+        
+    </div>
+    <br>
+    <div class="offset1">
+        <span ng-show="!inLoadingData && countOfResult != undefined" >共有 {{countOfResult}} 用户</span>
+        <span ng-show="inLoadingData">加载中...</span>
+    </div>
+
+    <table id="table-user-list" ng-show="!inLoadingData && countOfResult != undefined" class="table table-striped table-bordered">
+        <thread>
+            <tr>
+                <td>No.</td>
+                <td>Device</td>
+                <td>Last Login Time</td>
+                <td>Client Version</td>
+            </tr>
+        </thread>
+        <tbody>
+            <tr ng-repeat="user in userList | orderBy : '-LastLogin'">
+                <td>{{ $index + 1 }}</td>
+                <td>{{ user.DeviceId }}</td>
+                <td>{{ user.LastLogin }}</td>
+                <td>{{ user.ClientVersion }}</td>
+            </tr>
+        </tbody>
+    </table> 
 </div>
