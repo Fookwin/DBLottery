@@ -17,9 +17,9 @@ namespace DBSQLService
     // NOTE: In order to launch WCF Test Client for testing this service, please select DBManagement.svc or DBManagement.svc.cs at the Solution Explorer and start debugging.
     public class RFxDBManageService : IRFxDBManageService
     {
-        public string PushNotification(int platform, MessagePocket message)
+        public string PushNotification(MessagePocket message)
         {
-            return "Notified for platform " + platform.ToString() + "with message: "+ message.Message;
+            return "Notified for platform " + message.Platforms.Count().ToString() + "with message: "+ message.Message;
             //DBNotification.Instance().PushNotification((PlatformIndex)platform, message, new List<string>());
         }
 

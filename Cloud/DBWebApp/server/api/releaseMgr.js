@@ -58,30 +58,33 @@ releaseMgr.prototype = {
         self = this;     
 
         // get platform id
-        var urlParams = url.parse(req.originalUrl, true).query;
-        
-        var platform = urlParams.platform;
-        if (platform === undefined) {
-            res.status(400).json("{err: 'invalid params!'}");
-            return;
-        } 
+        var urlParams = url.parse(req.originalUrl, true).query;        
+
+        var body = {
+            Platforms: req.body.platforms,
+            Message: req.body.msg
+        };
 
         var options = {
-            'url': endPoint + '/GetNextReleaseInfo',
+            url: endPoint + '/PushNotification',
+            method: 'POST',
+            json: body
         };
             
-        request(options.url, function postResponse(err, response, body) {
+        request(options, function postResponse(err, response, body) {
         
             if (err) {
-                res.status(400).json("{err: err}");
+                console.error("ERROR:" + 'Failed call on postNotification for: ' + err);
+                res.status(400).json({error: err});
                 return;
             }
             
-            if (response && response.statusCode === 200) {
-                var result = JSON.parse(body);
-                
-                console.log("called " + result);
+            if (response && response.statusCode === 200) {                
+                console.log("SUCCESS: " + 'Successful call on postNotification with response: ' + body);
                 res.status (200).json({error: null, data: body});
+            } else {
+                console.error("ERROR:" + 'Failed call on postNotification for code ' + response.statusCode);
+                res.status(response.statusCode).json({error: body});
             }
         });
     }

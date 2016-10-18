@@ -13,6 +13,13 @@ namespace DBSQLService
     public class MessagePocket
     {
         [DataMember]
+        public int[] Platforms
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
         public string Message
         {
             get;
@@ -26,11 +33,11 @@ namespace DBSQLService
     {
         [OperationContract]
         [WebInvoke(Method = "POST",
-            UriTemplate = "/PushNotification/?platform={platform}",
+            UriTemplate = "/PushNotification",
             BodyStyle = WebMessageBodyStyle.Bare,
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json)]
-        string PushNotification(int platform, MessagePocket message);
+        string PushNotification(MessagePocket message);
 
         [OperationContract]
         [WebInvoke(Method = "GET",

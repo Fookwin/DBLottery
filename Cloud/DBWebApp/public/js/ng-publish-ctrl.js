@@ -113,6 +113,10 @@ angular.module('ng-index-app').controller('ng-publish-notification-ctrl', functi
     $scope.content = $scope.selectedTemplate.content;
 
     $scope.notify = function () {
-        alert("notified!");
+        $http.post('/notify', { platforms: [0,1,2], msg: $scope.content }).then(function SuccessCallback(res) {
+            alert(res.data.data);
+        }, function errCallback(res) {
+            alert(res.data.err);
+        });
     }
 });
