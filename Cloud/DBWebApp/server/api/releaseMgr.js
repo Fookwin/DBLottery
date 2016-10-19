@@ -14,14 +14,32 @@ releaseMgr.prototype = {
         self = this;
 
         // get issue
-        var urlParams = url.parse(req.originalUrl, true).query;
-        
+        var urlParams = url.parse(req.originalUrl, true).query; 
+
+        var options = {
+            'url': endPoint + '/GetLatestRelease',
+        };
+
         var issue = urlParams.issue;
         if (issue === undefined) {
-            res.status(400).json("{err: 'invalid params!'}");
-            return;
+
         }
+            
+        request(options.url, function postResponse(err, response, body) {
         
+            if (err) {
+                return res.status(400).json({error: err});
+            }
+            
+            if (response && response.statusCode === 200) {
+                var result = JSON.parse(body);
+                
+                console.log("SUCCESS: get latet release data" + body);
+                res.status (200).json({error: null, data: result});
+            } else {
+                res.status(400).json({error: 'failed to get the last release.'});
+            }
+        });
     },
     getDataFromWeb: function (req, res) {
         self = this;       
@@ -31,7 +49,7 @@ releaseMgr.prototype = {
         
         var issue = urlParams.issue;
         if (issue === undefined) {
-            res.status(400).json("{err: 'invalid params!'}");
+            res.status(400).json({err: 'invalid params!'});
             return;
         }   
         

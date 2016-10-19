@@ -9,64 +9,50 @@ namespace DataModel
     [DataContract]
     public class DBReleaseModel
     {
-        [DataMember]
+        [DataMember(Name = "issue")]
         public int Issue
         {
             get;
             set;
         }
 
-        [DataMember]
-        public List<int> Reds
+        [DataMember(Name = "scheme")]
+        public string Scheme
         {
             get;
             set;
         }
 
-        [DataMember]
-        public int Blue
+        [DataMember(Name = "date")]
+        public DateTime Date
         {
             get;
             set;
         }
 
-        [DataMember]
-        public DateTime ReleaseAt
-        {
-            get;
-            set;
-        }
-
-        [DataMember]
+        [DataMember(Name = "bonus")]
         public List<int> Bonus
         {
             get;
             set;
         }
 
-        [DataMember]
+        [DataMember(Name = "bet")]
         public int Bet
         {
             get;
             set;
         }
 
-        [DataMember]
+        [DataMember(Name = "pool")]
         public int Pool
         {
             get;
             set;
         }
 
-        [DataMember]
-        public string Order
-        {
-            get;
-            set;
-        }
-
-        [DataMember]
-        public string Info
+        [DataMember(Name = "details")]
+        public string Details
         {
             get;
             set;

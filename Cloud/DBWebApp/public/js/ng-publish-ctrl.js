@@ -5,12 +5,9 @@ angular.module('ng-index-app').controller('ng-publish-release-data-ctrl', functi
         date: new Date('2016/10/13'),
         scheme:'01 02 03 04 05 06+07',
         pool:5555555555,
-        sell:6666666666,
-        bonusCounts: [
-            2, 14, 566, 4886, 52148, 121212
-        ],
-        bonusPrizes: [
-            5000000, 140000, 3000, 200, 10, 5
+        bet:6666666666,
+        bonus: [
+            2, 5000000, 14, 140000, 566, 3000, 4886, 200, 52148, 10, 121212, 5
         ],
         details: '一等奖中降地：北京1注 内蒙古2注 上海2注 安徽1注 湖南1注 广东2注 重庆1注 贵州1注 新疆1注 。开奖顺序： 05 06 04 02 01 03',
         next: {
@@ -32,8 +29,11 @@ angular.module('ng-index-app').controller('ng-publish-release-data-ctrl', functi
     }
 
     $scope.releaseContent = angular.copy(testData);
-    $http.get('/pre-release/?issue=2016063').success(function (res) {
-        $scope.releaseContent = res.data; 
+    $http.get('/release').success(function (res) {
+        $scope.releaseContent = res.data;
+
+        var dateFmt = changeDateFormat(res.data.date);
+        $scope.releaseContent.date = new Date(dateFmt);
     });
 
     $scope.resetReleaseData = function () {
@@ -57,6 +57,22 @@ angular.module('ng-index-app').controller('ng-publish-release-data-ctrl', functi
             $location.url('/publish/version');
         });
     };
+
+    // Get a formated date string from "\/Date(1476720000000+0800)\/".
+    function changeDateFormat(jsondate) {     
+        jsondate = jsondate.replace("/Date(", "").replace(")/", "");     
+        if (jsondate.indexOf("+") > 0) {    
+            jsondate = jsondate.substring(0, jsondate.indexOf("+"));     
+        }     
+        else if (jsondate.indexOf("-") > 0) {    
+            jsondate = jsondate.substring(0, jsondate.indexOf("-"));     
+        }     
+        
+        var date = new Date(parseInt(jsondate, 10));   
+        var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;    
+        var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();    
+        return date.getFullYear() + "-" + month + "-" + currentDate;    
+    }  
 });
 
 angular.module('ng-index-app').controller('ng-publish-version-ctrl', function ($scope, $rootScope, $timeout, $http, $location) {       

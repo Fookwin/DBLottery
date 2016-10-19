@@ -23,7 +23,7 @@ module.exports = function(app) {
     
     /** HTTP GET */
     app.get('/users', _list.getUsers.bind(_list));
-    app.get('/release/:issue?', _releaseMgr.getReleaseData.bind(_releaseMgr));
+    app.get('/release', _releaseMgr.getReleaseData.bind(_releaseMgr));
     app.get('/pre-release/:issue?', _releaseMgr.getDataFromWeb.bind(_releaseMgr));
     app.post('/notify', _releaseMgr.postNotification.bind(_releaseMgr));
 };

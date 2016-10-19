@@ -41,6 +41,14 @@ namespace DBSQLService
 
         [OperationContract]
         [WebInvoke(Method = "GET",
+            UriTemplate = "/GetLatestRelease",
+            BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json)]
+        DBReleaseModel GetLatestRelease();
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
             UriTemplate = "/SearchReleaseFromWeb", 
             BodyStyle = WebMessageBodyStyle.Bare, 
             RequestFormat = WebMessageFormat.Json, 

@@ -23,6 +23,22 @@ namespace DBSQLService
             //DBNotification.Instance().PushNotification((PlatformIndex)platform, message, new List<string>());
         }
 
+        public DBReleaseModel GetLatestRelease()
+        {
+            Basic basic = null;
+            Detail detail = null;
+            Omission omission = null;
+            Attribute attribute = null;
+            if (!DBSQLClient.Instance().GetLastRecord(out basic, out detail, out omission, out attribute))
+                throw new Exception("Fail to obtain last record.");
+
+            DBReleaseModel lot = buildReleaseModel(basic, detail);
+            if (lot == null)
+                throw new Exception("Fail to obtain last record.");
+
+            return lot;
+        }
+
         public DBReleaseModel SearchReleaseFromWeb()
         {
             DBReleaseModel lot = new DBReleaseModel();
@@ -74,7 +90,7 @@ namespace DBSQLService
             DateTime nextSellOfftime = DateTime.Now, nextReleaseDate = DateTime.Now;
 
             // Get the information for next release.
-            _CalculateNextReleaseNumberAndTime(data.Issue, data.ReleaseAt, ref nextIssue, ref nextSellOfftime, ref nextReleaseDate);
+            _CalculateNextReleaseNumberAndTime(data.Issue, data.Date, ref nextIssue, ref nextSellOfftime, ref nextReleaseDate);
 
             // Get the detail
             Detail newDetail = ExtractDetail(data);
@@ -169,7 +185,7 @@ namespace DBSQLService
                 output = webData.Substring(currentIndex, readCount);
                 searchIndex = currentIndex + readCount;
 
-                lot.ReleaseAt = DateTime.Parse(output);
+                lot.Date = DateTime.Parse(output);
 
                 // red numbers.
                 token = "蓝色球";
@@ -178,7 +194,7 @@ namespace DBSQLService
                     return false;
                 searchIndex = currentIndex;
 
-                lot.Reds = new List<int>();
+                lot.Scheme = "";
                 for (int i = 0; i < 6; ++i)
                 {
                     token = "<font color=red>";
@@ -190,7 +206,10 @@ namespace DBSQLService
                     output = webData.Substring(currentIndex, readCount);
                     searchIndex = currentIndex + readCount;
 
-                    lot.Reds.Add(Convert.ToInt32(output.TrimStart('0')));
+                    if (i > 0)
+                        lot.Scheme += " ";
+
+                    lot.Scheme += (Convert.ToInt32(output.TrimStart('0'))).ToString().PadLeft(2, '0');
                 }
 
                 // Blue
@@ -203,7 +222,7 @@ namespace DBSQLService
                 output = webData.Substring(currentIndex, readCount);
                 searchIndex = currentIndex + readCount;
 
-                lot.Blue = Convert.ToInt32(output.TrimStart('0'));
+                lot.Scheme += "+" + (Convert.ToInt32(output.TrimStart('0'))).ToString().PadLeft(2, '0');
 
                 // bonus
                 lot.Bonus = new List<int>();
@@ -297,7 +316,7 @@ namespace DBSQLService
                             winDetails = winDetails.Replace("注", "注 ");
                             winDetails.Trim(new char[] { ' ', '。' });
 
-                            lot.Info = winDetails;
+                            lot.Details = winDetails;
 
                             string orderDetails = comments.Substring(ind2 + 5).Trim(new char[] { ' ', '。' });
 
@@ -320,12 +339,11 @@ namespace DBSQLService
                                 }
                             }
 
-                            lot.Order = orderDetails;
+                            lot.Details += orderDetails;
                         }
                         else
                         {
-                            lot.Info = comments;
-                            lot.Order = "";
+                            lot.Details = comments;
                         }
                     }
                 }
@@ -345,7 +363,7 @@ namespace DBSQLService
 
         private Scheme ExtractScheme(DBReleaseModel lot)
         {
-            return new Scheme(lot.Reds[0], lot.Reds[1], lot.Reds[2], lot.Reds[3], lot.Reds[4], lot.Reds[5], lot.Blue);
+            return new Scheme(lot.Scheme);
         }
 
         private Detail ExtractDetail(DBReleaseModel release)
@@ -353,8 +371,8 @@ namespace DBSQLService
             return new Detail()
             {
                 Issue = release.Issue,
-                More = release.Info,
-                Date = release.ReleaseAt, 
+                More = release.Details,
+                Date = release.Date, 
                 PoolAmount = release.Pool, 
                 BetAmount = release.Bet,
                 Prize1Count = release.Bonus[0],
@@ -603,6 +621,42 @@ namespace DBSQLService
             }
 
             return status;
+        }
+
+        private DBReleaseModel buildReleaseModel(Basic basic, Detail detail)
+        {
+            DBReleaseModel lot = new DBReleaseModel();
+            lot.Issue = basic.Issue;
+            lot.Scheme = basic.Red1.ToString().PadLeft(2, '0');
+            lot.Scheme += " " + basic.Red2.ToString().PadLeft(2, '0');
+            lot.Scheme += " " + basic.Red3.ToString().PadLeft(2, '0');
+            lot.Scheme += " " + basic.Red4.ToString().PadLeft(2, '0');
+            lot.Scheme += " " + basic.Red5.ToString().PadLeft(2, '0');
+            lot.Scheme += " " + basic.Red6.ToString().PadLeft(2, '0');
+            lot.Scheme += "+" + basic.Blue.ToString().PadLeft(2, '0');
+
+            lot.Bet = detail.BetAmount;
+            lot.Pool = detail.PoolAmount;
+            lot.Details = detail.More;
+            lot.Date = detail.Date;
+
+            lot.Bonus = new List<int>
+            {
+                detail.Prize1Count,
+                Convert.ToInt32(detail.Prize1Bonus),
+                detail.Prize2Count,
+                Convert.ToInt32(detail.Prize2Bonus),
+                3000,
+                detail.Prize3Count,
+                200,
+                detail.Prize4Count,
+                10,
+                detail.Prize5Count,
+                5,
+                detail.Prize6Count
+            };
+
+            return lot;
         }
 
         private static string sqlQuery_addBasic = "INSERT INTO [dbo].[Basic] ([Issue], [Red1], [Red2], [Red3], [Red4], [Red5], [Red6], [Blue]) VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})";
