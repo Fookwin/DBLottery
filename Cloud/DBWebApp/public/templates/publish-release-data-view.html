@@ -1,7 +1,11 @@
 <div ng-controller="ng-publish-release-data-ctrl">
   <form >
     
-    <legend>Release Data</legend> 
+    <legend>
+        Release Data 
+        <span class="process-ring" ng-class="{ active: isRefreshing }" data-anim="rotating" ng-click="refresh()">
+        </span> 
+    </legend> 
 
     <div class="row">
         <div class="col-lg-6 col-md-6 col-xs-6">

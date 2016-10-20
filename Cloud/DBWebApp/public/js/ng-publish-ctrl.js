@@ -1,43 +1,26 @@
 angular.module('ng-index-app').controller('ng-publish-release-data-ctrl', function ($scope, $rootScope, $timeout, $http, $location) {       
 
-    var testData = {
-        issue: 2016117,
-        date: new Date('2016/10/13'),
-        scheme:'01 02 03 04 05 06+07',
-        pool:5555555555,
-        bet:6666666666,
-        bonus: [
-            2, 5000000, 14, 140000, 566, 3000, 4886, 200, 52148, 10, 121212, 5
-        ],
-        details: '一等奖中降地：北京1注 内蒙古2注 上海2注 安徽1注 湖南1注 广东2注 重庆1注 贵州1注 新疆1注 。开奖顺序： 05 06 04 02 01 03',
-        next: {
-            issue : 2006118,
-            date: new Date('2016/10/16')
-        },
-        forcast: {
-            includedReds: '02 03 05',
-            excludedReds: '08 09',
-            includedBlues: '02 03 05',
-            excludedBlues: '08 09'
-        }
-    }
-
     $rootScope.selectedNavIndex = 2;
     
     $scope.onReleaseDataChanged = function () {
         $scope.isReleaseDataChanged = true;
     }
 
-    $scope.releaseContent = angular.copy(testData);
-    $http.get('/release').success(function (res) {
-        $scope.releaseContent = res.data;
+    $scope.refresh = function() {
+        $scope.isRefreshing = true;
 
-        var dateFmt = changeDateFormat(res.data.date);
-        $scope.releaseContent.date = new Date(dateFmt);
-    });
+        $http.get('/release').success(function (res) {
+            $scope.originalReleaseContent = res.data;
+            var dateFmt = changeDateFormat(res.data.date);
+            $scope.originalReleaseContent.date = new Date(dateFmt);
+
+            $scope.releaseContent = angular.copy($scope.originalReleaseContent);
+            $scope.isRefreshing = false;
+        });
+    }
 
     $scope.resetReleaseData = function () {
-        $scope.releaseContent = angular.copy(testData);
+        $scope.releaseContent = angular.copy($scope.originalReleaseContent);
         $scope.isReleaseDataChanged = false;
     };
 
