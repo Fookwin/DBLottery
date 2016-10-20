@@ -1,37 +1,29 @@
-/*input.ng-dirty {
-    background-color: orange
+
+/* Set the sizes of the elements that make up the progress bar */
+.process-ring {
+  width: 80px;
+  height: 80px;
+  border: 10px solid green;
+  border-radius: 50px;
+  position: absolute;
+  clip: rect(0px, 50px, 100px, 0px);
+}
+/* Using the data attributes for the animation selectors. */
+/* Base settings for all animated elements */
+.process-ring[data-anim=rotating] {
+  animation-iteration-count: infinite;  /* Only run once */
+  animation-fill-mode: forwards; /* Hold the last keyframe */
+  animation-timing-function:linear; /* Linear animation */
+  animation-duration: 2s; /* Full animation time */
+  animation-name: anim-rotating;
 }
 
-input.ng-invalid {
-    background-color: red;
-}
-
-table, th , td {
-  border: 1px solid grey;
-  border-collapse: collapse;
-  padding: 5px;
-}
-
-table tr:nth-child(odd) {
-  background-color: #f1f1f1;
-}
-
-table tr:nth-child(even) {
-  background-color: #ffffff;
-}*/
-
-#table-user-list {
-    display: block;
-    overflow-y: scroll;
-    max-height: 300px;
-}
-
-panel-manage-projects .ds-project .collaborator .user-info {
-    position: fixed;
-    width: 23rem;
-    background-color: #fff;
-    border: 1px solid #cdcdcd;
-    font-size: 0;
-    box-shadow: 0 2px 3px #ababab;
-    z-index: 2;
+/* Rotate the left side of the progress bar from 0 to 360 degrees */
+@keyframes anim-rotating {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
 }
