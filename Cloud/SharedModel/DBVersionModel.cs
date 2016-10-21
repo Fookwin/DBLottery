@@ -7,38 +7,59 @@ using System.Runtime.Serialization;
 namespace DataModel
 {
     [DataContract]
-    class DBVersionModel
+    public class DBVersionModel
     {
-        [DataMember]
-        public int CurrentIssue
+        [DataMember(Name = "latestIssue")]
+        public int LatestIssue
         {
             get;
             set;
         }
 
-        [DataMember]
-        public int NextIssue
+        [DataMember(Name = "historyDataVersion")]
+        public int HistoryDataVersion
         {
             get;
             set;
         }
 
-        [DataMember]
-        public DateTime NextReleaseTime
+        [DataMember(Name = "attributeDataVersion")]
+        public int AttributeDataVersion
         {
             get;
             set;
         }
 
-        [DataMember]
-        public DateTime SellOffTime
+        [DataMember(Name = "attributeTemplateVersion")]
+        public int AttributeTemplateVersion
         {
             get;
             set;
         }
 
-        [DataMember]
-        public Dictionary<string, int> DataVersion
+        [DataMember(Name = "releaseDataVersion")]
+        public int ReleaseDataVersion
+        {
+            get;
+            set;
+        }
+
+        [DataMember(Name = "latestLotteryVersion")]
+        public int LatestLotteryVersion
+        {
+            get;
+            set;
+        }
+
+        [DataMember(Name = "matrixDataVersion")]
+        public int MatrixDataVersion
+        {
+            get;
+            set;
+        }
+
+        [DataMember(Name = "helpContentVersion")]
+        public int HelpContentVersion
         {
             get;
             set;

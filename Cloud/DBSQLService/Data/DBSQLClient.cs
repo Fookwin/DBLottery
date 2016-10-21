@@ -50,6 +50,16 @@ namespace DBSQLService.Data
             return true;
         }
 
+        public bool GetRecordBasic(int issue, out Basic basic, out Detail detail)
+        {
+            basic = context.Basics.Find(issue);
+            detail = context.Details.Find(issue);
+            if (basic == null || detail == null)
+                return false;
+
+            return true;
+        }
+
         public bool GetLastRecord(out Basic basic, out Detail detail, out Omission omission, out Attribute attribute)
         {
             basic = context.Basics.AsEnumerable().Last();

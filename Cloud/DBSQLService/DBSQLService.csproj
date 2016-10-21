@@ -178,6 +178,12 @@
     <Compile Include="..\SharedModel\DBLoginTableItem.cs">
       <Link>Data\DBLoginTableItem.cs</Link>
     </Compile>
+    <Compile Include="..\SharedModel\DBLotteryModel.cs">
+      <Link>Data\Models\DBLotteryModel.cs</Link>
+    </Compile>
+    <Compile Include="..\SharedModel\DBRecommendationModel.cs">
+      <Link>Data\Models\DBRecommendationModel.cs</Link>
+    </Compile>
     <Compile Include="..\SharedModel\DBReleaseModel.cs">
       <Link>Data\Models\DBReleaseModel.cs</Link>
     </Compile>

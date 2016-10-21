@@ -9,50 +9,50 @@ namespace DataModel
     [DataContract]
     public class DBReleaseModel
     {
-        [DataMember(Name = "issue")]
-        public int Issue
+        [DataMember(Name = "currentIssue")]
+        public int CurrentIssue
         {
             get;
             set;
         }
 
-        [DataMember(Name = "scheme")]
-        public string Scheme
+        [DataMember(Name = "nextIssue")]
+        public int NextIssue
         {
             get;
             set;
         }
 
-        [DataMember(Name = "date")]
-        public DateTime Date
+        [DataMember(Name = "nextReleaseTime")]
+        public DateTime NextReleaseTime
         {
             get;
             set;
         }
 
-        [DataMember(Name = "bonus")]
-        public List<int> Bonus
+        [DataMember(Name = "sellOffTime")]
+        public DateTime SellOffTime
         {
             get;
             set;
         }
 
-        [DataMember(Name = "bet")]
-        public int Bet
+        [DataMember(Name = "lottery")]
+        public DBLotteryModel Lottery
         {
             get;
             set;
         }
 
-        [DataMember(Name = "pool")]
-        public int Pool
+        [DataMember(Name = "recommendation")]
+        public DBRecommendationModel Recommendation
         {
             get;
             set;
         }
 
-        [DataMember(Name = "details")]
-        public string Details
+        [DataMember(Name = "dateVersion")]
+        public DBVersionModel DataVersion
         {
             get;
             set;

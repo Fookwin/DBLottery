@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
+using System.IO;
 using System.ServiceModel;
 using System.Text;
 using System.Net;
@@ -10,6 +10,7 @@ using LuckyBallsData.Statistics;
 using LuckyBallsData.Selection;
 using LuckyBallsData.Util;
 using DataModel;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace DBSQLService
 {
@@ -25,29 +26,94 @@ namespace DBSQLService
 
         public DBReleaseModel GetLatestRelease()
         {
+            DBReleaseModel release = new DBReleaseModel();
+
+            // get the last release information
+            {
+                CloudBlockBlob blob = DBCloudStorageClient.Instance().GetBlockBlob("dblotterydata", "ReleaseInformation.xml");
+
+                string text;
+                using (var memoryStream = new MemoryStream())
+                {
+                    blob.DownloadToStream(memoryStream);
+                    text = System.Text.Encoding.UTF8.GetString(memoryStream.ToArray());
+                }
+
+                // parse to a temp object for comparing.
+                LuckyBallsData.ReleaseInfo lastRelease = new LuckyBallsData.ReleaseInfo();
+
+                DBXmlDocument xml = new DBXmlDocument();
+                xml.Load(text);
+                lastRelease.Read(xml.Root());
+
+                release.CurrentIssue = lastRelease.CurrentIssue;
+                release.NextIssue = lastRelease.NextIssue;
+                release.NextReleaseTime = lastRelease.NextReleaseTime;
+                release.SellOffTime = lastRelease.SellOffTime;
+
+                // recommendation
+                release.Recommendation = new DBRecommendationModel()
+                {
+                    RedExcludes = new List<int>(lastRelease.ExcludedReds.Numbers),
+                    RedIncludes = new List<int>(lastRelease.IncludedReds.Numbers),
+                    BlueExcludes = new List<int>(lastRelease.ExcludedBlues.Numbers),
+                    BlueIncludes = new List<int>(lastRelease.IncludedBlues.Numbers),
+                };
+            }
+
+            // get the version information in the last update.
+            {
+                CloudBlockBlob mBlobDataVersion = mBlobDataVersion = DBCloudStorageClient.Instance().GetBlockBlob("dblotterydata", "Version.xml");
+
+                // read the data from the version file.
+                string dataVersion;
+                using (var memoryStream = new MemoryStream())
+                {
+                    mBlobDataVersion.DownloadToStream(memoryStream);
+                    dataVersion = System.Text.Encoding.ASCII.GetString(memoryStream.ToArray());
+                }
+
+                // parse to a temp object for comparing.
+                LuckyBallsData.DataVersion latestVersion = new LuckyBallsData.DataVersion();
+
+                DBXmlDocument xml = new DBXmlDocument();
+                xml.Load(dataVersion);
+                latestVersion.ReadFromXml(xml.Root());
+
+                release.DataVersion = new DBVersionModel()
+                {
+                    LatestIssue = latestVersion.LatestIssue,
+                    HistoryDataVersion = latestVersion.HistoryDataVersion,
+                    ReleaseDataVersion = latestVersion.ReleaseDataVersion,
+                    AttributeTemplateVersion = latestVersion.AttributeTemplateVersion,
+                    LatestLotteryVersion = latestVersion.LatestLotteryVersion,
+                    MatrixDataVersion = latestVersion.MatrixDataVersion,
+                    HelpContentVersion = latestVersion.HelpContentVersion
+                };
+            }
+
+            // get the relase
             Basic basic = null;
             Detail detail = null;
-            Omission omission = null;
-            Attribute attribute = null;
-            if (!DBSQLClient.Instance().GetLastRecord(out basic, out detail, out omission, out attribute))
+            if (!DBSQLClient.Instance().GetRecordBasic(release.CurrentIssue, out basic, out detail))
                 throw new Exception("Fail to obtain last record.");
 
-            DBReleaseModel lot = buildReleaseModel(basic, detail);
-            if (lot == null)
+            release.Lottery = buildLotteryModel(basic, detail);
+            if (release.Lottery == null)
                 throw new Exception("Fail to obtain last record.");
 
-            return lot;
+            return release;
         }
 
         public DBReleaseModel SearchReleaseFromWeb()
         {
-            DBReleaseModel lot = new DBReleaseModel();
-            lot.Issue = DBSQLClient.Instance().GetLastIssue();
+            //DBReleaseModel lot = new DBReleaseModel();
+            //lot.Issue = DBSQLClient.Instance().GetLastIssue();
 
-            if (_ReadLotteryDataFromWeb(lot.Issue, ref lot))
-            {
-                return lot;
-            }
+            //if (_ReadLotteryDataFromWeb(lot.Issue, ref lot))
+            //{
+            //    return lot;
+            //}
 
             return null;
         }
@@ -75,7 +141,7 @@ namespace DBSQLService
                 return false;
 
             // get scheme
-            Scheme newScheme = ExtractScheme(data);
+            Scheme newScheme = ExtractScheme(data.Lottery);
 
             // calculate the status for new release.
             Status newStatus = CalculateStatusForNewIssue(newScheme);
@@ -90,13 +156,13 @@ namespace DBSQLService
             DateTime nextSellOfftime = DateTime.Now, nextReleaseDate = DateTime.Now;
 
             // Get the information for next release.
-            _CalculateNextReleaseNumberAndTime(data.Issue, data.Date, ref nextIssue, ref nextSellOfftime, ref nextReleaseDate);
+            _CalculateNextReleaseNumberAndTime(data.Lottery.Issue, data.Lottery.Date, ref nextIssue, ref nextSellOfftime, ref nextReleaseDate);
 
             // Get the detail
-            Detail newDetail = ExtractDetail(data);
+            Detail newDetail = ExtractDetail(data.Lottery);
 
             // generate the SQL command lines file
-            string sql = GenerateSQLQueryForNewRelease(data.Issue, newScheme, newDetail, newStatus);
+            string sql = GenerateSQLQueryForNewRelease(data.Lottery.Issue, newScheme, newDetail, newStatus);
             if (string.IsNullOrEmpty(sql))
                 return false;
 
@@ -124,7 +190,7 @@ namespace DBSQLService
         public bool UpdateReleaseDetail(DBReleaseModel data)
         {
             // Get the detail
-            Detail newDetail = ExtractDetail(data);
+            Detail newDetail = ExtractDetail(data.Lottery);
 
             // save the data into files
             //
@@ -158,7 +224,7 @@ namespace DBSQLService
             nextReleaseDate = sellOfftime.AddHours(1.5);
         }
 
-        private bool _ReadLotteryDataFromWeb(int issue, ref DBReleaseModel lot)
+        private bool _ReadLotteryDataFromWeb(int issue, ref DBLotteryModel lot)
         {
             try
             {
@@ -361,12 +427,12 @@ namespace DBSQLService
             return new Scheme(basic.Red1, basic.Red2, basic.Red3, basic.Red4, basic.Red5, basic.Red6, basic.Blue);
         }
 
-        private Scheme ExtractScheme(DBReleaseModel lot)
+        private Scheme ExtractScheme(DBLotteryModel lot)
         {
             return new Scheme(lot.Scheme);
         }
 
-        private Detail ExtractDetail(DBReleaseModel release)
+        private Detail ExtractDetail(DBLotteryModel release)
         {
             return new Detail()
             {
@@ -623,9 +689,9 @@ namespace DBSQLService
             return status;
         }
 
-        private DBReleaseModel buildReleaseModel(Basic basic, Detail detail)
+        private DBLotteryModel buildLotteryModel(Basic basic, Detail detail)
         {
-            DBReleaseModel lot = new DBReleaseModel();
+            DBLotteryModel lot = new DBLotteryModel();
             lot.Issue = basic.Issue;
             lot.Scheme = basic.Red1.ToString().PadLeft(2, '0');
             lot.Scheme += " " + basic.Red2.ToString().PadLeft(2, '0');
