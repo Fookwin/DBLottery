@@ -41,7 +41,7 @@ releaseMgr.prototype = {
             }
         });
     },
-    getDataFromWeb: function (req, res) {
+    getOfficalLotteryData: function (req, res) {
         self = this;       
         
         // get issue
@@ -54,21 +54,23 @@ releaseMgr.prototype = {
         }   
         
         var options = {
-            'url': endPoint + '/GetNextReleaseInfo',
+            'url': endPoint + '/SyncLotteryToOffical/?issue=' + issue,
         };
             
         request(options.url, function postResponse(err, response, body) {
         
             if (err) {
-                res.status(400).json("{err: err}");
+                res.status(400).json({error: err});
                 return;
             }
             
             if (response && response.statusCode === 200) {
-                var result = JSON.parse(body);
+                var result = body ? JSON.parse(body) : undefined;
                 
-                console.log("called " + result);
-                res.status (200).json({error: null, data: body});
+                console.log("SUCCESS: get offical lottery data" + body);
+                res.status (200).json({error: null, data: result});
+            } else {
+                res.status(400).json({error: 'failed to get the offical lottery data.'});
             }
         });
     },

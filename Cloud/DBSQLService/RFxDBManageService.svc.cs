@@ -105,15 +105,13 @@ namespace DBSQLService
             return release;
         }
 
-        public DBReleaseModel SearchReleaseFromWeb()
+        public DBLotteryModel SyncLotteryToOffical(int issue)
         {
-            //DBReleaseModel lot = new DBReleaseModel();
-            //lot.Issue = DBSQLClient.Instance().GetLastIssue();
-
-            //if (_ReadLotteryDataFromWeb(lot.Issue, ref lot))
-            //{
-            //    return lot;
-            //}
+            DBLotteryModel lot = new DBLotteryModel() { Issue = issue };
+            if (_ReadLotteryDataFromWeb(issue, ref lot))
+            {
+                return lot;
+            }
 
             return null;
         }
@@ -382,7 +380,7 @@ namespace DBSQLService
                             winDetails = winDetails.Replace("注", "注 ");
                             winDetails.Trim(new char[] { ' ', '。' });
 
-                            lot.Details = winDetails;
+                            lot.Details = "一等奖中奖地:" + winDetails;
 
                             string orderDetails = comments.Substring(ind2 + 5).Trim(new char[] { ' ', '。' });
 
@@ -405,7 +403,7 @@ namespace DBSQLService
                                 }
                             }
 
-                            lot.Details += orderDetails;
+                            lot.Details += "出球顺序:" + orderDetails;
                         }
                         else
                         {

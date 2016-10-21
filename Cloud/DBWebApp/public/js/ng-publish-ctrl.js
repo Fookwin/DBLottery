@@ -2,24 +2,37 @@ angular.module('ng-index-app').controller('ng-publish-release-data-ctrl', functi
 
     // data for root scope
     $rootScope.selectedNavIndex = 2;
+
+    if (!$rootScope.originalReleaseContent) {
+        // initialize the original data from cloud.
+        _syncToCloud();
+    }
     
     $scope.onReleaseDataChanged = function () {
         $scope.isReleaseDataChanged = true;
     }
 
-    $scope.refresh = function() {
-        $scope.isRefreshing = true;
+    $scope.syncToCloud = function() {
+        _syncToCloud();
+    }
 
-        $http.get('/release').success(function (res) {
-            $rootScope.originalReleaseContent = res.data;
+    $scope.syncToOffical = function() {
+        if ($scope.isSyncingToOffical)
+            return;
 
-            // correct the data format
-            $rootScope.originalReleaseContent.nextReleaseTime = new Date(changeDateFormat(res.data.nextReleaseTime));
-            $rootScope.originalReleaseContent.sellOffTime = new Date(changeDateFormat(res.data.sellOffTime));
-            $rootScope.originalReleaseContent.lottery.date = new Date(changeDateFormat(res.data.lottery.date));
+        $scope.isSyncingToOffical = true;
 
-            $rootScope.releaseContent = angular.copy($rootScope.originalReleaseContent);
-            $scope.isRefreshing = false;
+        $http.get('/offical/?issue=' + $rootScope.originalReleaseContent.currentIssue).success(function (res) {
+            
+            if (res.data) {
+                $rootScope.releaseContent.lottery = res.data;
+
+                // correct the data format
+                $rootScope.releaseContent.lottery.date = new Date(changeDateFormat(res.data.date));
+                $scope.isReleaseDataChanged = true;
+            }
+
+            $scope.isSyncingToOffical = false;
         });
     }
 
@@ -44,6 +57,25 @@ angular.module('ng-index-app').controller('ng-publish-release-data-ctrl', functi
             $location.url('/publish/notification');
         });
     };
+
+    function _syncToCloud() {
+        if ($scope.isSyncingToCloud)
+            return;
+            
+        $scope.isSyncingToCloud = true;
+
+        $http.get('/release').success(function (res) {
+            $rootScope.originalReleaseContent = res.data;
+
+            // correct the data format
+            $rootScope.originalReleaseContent.nextReleaseTime = new Date(changeDateFormat(res.data.nextReleaseTime));
+            $rootScope.originalReleaseContent.sellOffTime = new Date(changeDateFormat(res.data.sellOffTime));
+            $rootScope.originalReleaseContent.lottery.date = new Date(changeDateFormat(res.data.lottery.date));
+
+            $rootScope.releaseContent = angular.copy($rootScope.originalReleaseContent);
+            $scope.isSyncingToCloud = false;
+        });
+    }
 
     // Get a formated date string from "\/Date(1476720000000+0800)\/".
     function changeDateFormat(jsondate) {     

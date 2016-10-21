@@ -49,11 +49,11 @@ namespace DBSQLService
 
         [OperationContract]
         [WebInvoke(Method = "GET",
-            UriTemplate = "/SearchReleaseFromWeb", 
+            UriTemplate = "/SyncLotteryToOffical/?issue={issue}", 
             BodyStyle = WebMessageBodyStyle.Bare, 
             RequestFormat = WebMessageFormat.Json, 
             ResponseFormat = WebMessageFormat.Json)]
-        DBReleaseModel SearchReleaseFromWeb();
+        DBLotteryModel SyncLotteryToOffical(int issue);
 
         [OperationContract]
         [WebInvoke(Method = "GET",
