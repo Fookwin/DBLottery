@@ -2,60 +2,50 @@
   <form >
     
     <legend>
-        Release Data 
-        <span class="process-ring" ng-class="{ active: isRefreshing }" data-anim="rotating" ng-click="refresh()">
-        </span> 
+        Current Release 
+        <button type="button" class="refresh-btn btn-xs" ng-click="refresh()">
+            <span class="process-ring glyphicon glyphicon-refresh" aria-hidden="true" ng-class="{ active: isRefreshing }" data-anim="rotating">
+            </span> Sync
+        </button> 
     </legend> 
 
-    <div class="row">
-        <div class="col-lg-6 col-md-6 col-xs-6">
-            <div class="input-group">
-                <span class="input-group-addon">期号</span>
-                <input class="form-control" type="number" ng-model="releaseContent.issue" ng-change="onReleaseDataChanged()">
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-md-6 col-xs-6">
-            <div class="input-group">
-                <span class="input-group-addon">日期</span>
-                <input class="form-control" type="date" ng-model="releaseContent.date" ng-change="onReleaseDataChanged()">
-            </div>
-        </div>
+    <div class="input-group">
+        <span class="input-group-addon">期号</span>
+        <input class="form-control" type="number" ng-model="releaseContent.lottery.issue" ng-change="onReleaseDataChanged()">
+    </div>
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon">日期</span>
+        <input class="form-control" type="date" ng-model="releaseContent.lottery.date" ng-change="onReleaseDataChanged()">
     </div>
     <br>
     <div class="input-group">
       <span class="input-group-addon">奖号</span>
-      <input class="form-control" type="text" ng-model="releaseContent.scheme" ng-change="onReleaseDataChanged()">
+      <input class="form-control" type="text" ng-model="releaseContent.lottery.scheme" ng-change="onReleaseDataChanged()">
     </div>
     <br>
-    <div class="row">
-        <div class="col-lg-6 col-md-6 col-xs-6">
-            <div class="input-group">
-                <span class="input-group-addon">奖池</span>
-                <input class="form-control" type="number" ng-model="releaseContent.pool" ng-change="onReleaseDataChanged()">
-            </div>
-        </div>
-
-        <div class="col-lg-6 col-md-6 col-xs-6">
-            <div class="input-group">
-                <span class="input-group-addon">销售</span>
-                <input class="form-control" type="number" ng-model="releaseContent.bet" ng-change="onReleaseDataChanged()">
-            </div>
-        </div>
+    <div class="input-group">
+        <span class="input-group-addon">奖池</span>
+        <input class="form-control" type="number" ng-model="releaseContent.lottery.pool" ng-change="onReleaseDataChanged()">
+    </div>
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon">销售</span>
+        <input class="form-control" type="number" ng-model="releaseContent.lottery.bet" ng-change="onReleaseDataChanged()">
     </div>
     <br>
     <div class="row">
         <div class="col-lg-6 col-md-6 col-xs-6">
             <div class="input-group">
                 <span class="input-group-addon">1 数量</span>
-                <input class="form-control" type="number" ng-model="releaseContent.bonus[0]" ng-change="onReleaseDataChanged()">
+                <input class="form-control" type="number" ng-model="releaseContent.lottery.bonus[0]" ng-change="onReleaseDataChanged()">
             </div>
         </div>
 
         <div class="col-lg-6 col-md-6 col-xs-6">
             <div class="input-group">
                 <span class="input-group-addon">1 奖金</span>
-                <input class="form-control" type="number" ng-model="releaseContent.bonus[1]" ng-change="onReleaseDataChanged()">
+                <input class="form-control" type="number" ng-model="releaseContent.lottery.bonus[1]" ng-change="onReleaseDataChanged()">
             </div>
         </div>
     </div>
@@ -64,14 +54,14 @@
         <div class="col-lg-6 col-md-6 col-xs-6">
             <div class="input-group">
                 <span class="input-group-addon">2 数量</span>
-                <input class="form-control" type="number" ng-model="releaseContent.bonus[2]" ng-change="onReleaseDataChanged()">
+                <input class="form-control" type="number" ng-model="releaseContent.lottery.bonus[2]" ng-change="onReleaseDataChanged()">
             </div>
         </div>
 
         <div class="col-lg-6 col-md-6 col-xs-6">
             <div class="input-group">
                 <span class="input-group-addon">2 奖金</span>
-                <input class="form-control" type="number" ng-model="releaseContent.bonus[3]" ng-change="onReleaseDataChanged()">
+                <input class="form-control" type="number" ng-model="releaseContent.lottery.bonus[3]" ng-change="onReleaseDataChanged()">
             </div>
         </div>
     </div>
@@ -80,14 +70,14 @@
         <div class="col-lg-6 col-md-6 col-xs-6">
             <div class="input-group">
                 <span class="input-group-addon">3 数量</span>
-                <input class="form-control" type="number" ng-model="releaseContent.bonus[4]" ng-change="onReleaseDataChanged()">
+                <input class="form-control" type="number" ng-model="releaseContent.lottery.bonus[4]" ng-change="onReleaseDataChanged()">
             </div>
         </div>
 
         <div class="col-lg-6 col-md-6 col-xs-6">
             <div class="input-group">
                 <span class="input-group-addon">3 奖金</span>
-                <input class="form-control" type="number" ng-model="releaseContent.bonus[5]" ng-change="onReleaseDataChanged()">
+                <input class="form-control" type="number" ng-model="releaseContent.lottery.bonus[5]" ng-change="onReleaseDataChanged()">
             </div>
         </div>
     </div>
@@ -96,14 +86,14 @@
         <div class="col-lg-6 col-md-6 col-xs-6">
             <div class="input-group">
                 <span class="input-group-addon">4 数量</span>
-                <input class="form-control" type="number" ng-model="releaseContent.bonus[6]" ng-change="onReleaseDataChanged()">
+                <input class="form-control" type="number" ng-model="releaseContent.lottery.bonus[6]" ng-change="onReleaseDataChanged()">
             </div>
         </div>
 
         <div class="col-lg-6 col-md-6 col-xs-6">
             <div class="input-group">
                 <span class="input-group-addon">4 奖金</span>
-                <input class="form-control" type="number" ng-model="releaseContent.bonus[7]" ng-change="onReleaseDataChanged()">
+                <input class="form-control" type="number" ng-model="releaseContent.lottery.bonus[7]" ng-change="onReleaseDataChanged()">
             </div>
         </div>
     </div>
@@ -112,14 +102,14 @@
         <div class="col-lg-6 col-md-6 col-xs-6">
             <div class="input-group">
                 <span class="input-group-addon">5 数量</span>
-                <input class="form-control" type="number" ng-model="releaseContent.bonus[8]" ng-change="onReleaseDataChanged()">
+                <input class="form-control" type="number" ng-model="releaseContent.lottery.bonus[8]" ng-change="onReleaseDataChanged()">
             </div>
         </div>
 
         <div class="col-lg-6 col-md-6 col-xs-6">
             <div class="input-group">
                 <span class="input-group-addon">5 奖金</span>
-                <input class="form-control" type="number" ng-model="releaseContent.bonus[9]" ng-change="onReleaseDataChanged()">
+                <input class="form-control" type="number" ng-model="releaseContent.lottery.bonus[9]" ng-change="onReleaseDataChanged()">
             </div>
         </div>
     </div>
@@ -128,69 +118,82 @@
         <div class="col-lg-6 col-md-6 col-xs-6">
             <div class="input-group">
                 <span class="input-group-addon">6 数量</span>
-                <input class="form-control" type="number" ng-model="releaseContent.bonus[10]" ng-change="onReleaseDataChanged()">
+                <input class="form-control" type="number" ng-model="releaseContent.lottery.bonus[10]" ng-change="onReleaseDataChanged()">
             </div>
         </div>
 
         <div class="col-lg-6 col-md-6 col-xs-6">
             <div class="input-group">
                 <span class="input-group-addon">6 奖金</span>
-                <input class="form-control" type="number" ng-model="releaseContent.bonus[11]" ng-change="onReleaseDataChanged()">
+                <input class="form-control" type="number" ng-model="releaseContent.lottery.bonus[11]" ng-change="onReleaseDataChanged()">
             </div>
         </div>
     </div>
     <br>
     <div class="input-group">
       <span class="input-group-addon">详情</span>
-      <textarea class="form-control" rows="3" type="text" ng-model="releaseContent.details" ng-change="onReleaseDataChanged()"></textarea>
+      <textarea class="form-control" rows="5" type="text" ng-model="releaseContent.lottery.details" ng-change="onReleaseDataChanged()"></textarea>
+    </div>
+    <br>
+
+    <legend>Next Release</legend>
+
+
+    <div class="input-group">
+        <span class="input-group-addon">下期</span>
+        <input class="form-control" type="number" ng-model="releaseContent.nextIssue" ng-change="onReleaseDataChanged()">
+    </div>
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon">日期</span>
+        <input class="form-control" type="date" ng-model="releaseContent.nextReleaseTime" ng-change="onReleaseDataChanged()">
     </div>
     <br>
     <div class="row">
         <div class="col-lg-6 col-md-6 col-xs-6">
             <div class="input-group">
-                <span class="input-group-addon">下期</span>
-                <input class="form-control" type="number" ng-model="releaseContent.next.issue" ng-change="onReleaseDataChanged()">
+                <span class="input-group-addon">截止</span>
+                <input class="form-control" type="time" ng-model="releaseContent.sellOffTime" ng-change="onReleaseDataChanged()">
             </div>
         </div>
-
         <div class="col-lg-6 col-md-6 col-xs-6">
             <div class="input-group">
-                <span class="input-group-addon">日期</span>
-                <input class="form-control" type="date" ng-model="releaseContent.next.date" ng-change="onReleaseDataChanged()">
+                <span class="input-group-addon">开奖</span>
+                <input class="form-control" type="time" ng-model="releaseContent.sellOffTime" ng-change="onReleaseDataChanged()">
             </div>
         </div>
     </div>
     <br>
-    <div class="row">
-        <div class="col-lg-6 col-md-6 col-xs-6">
-            <div class="input-group">
-                <span class="input-group-addon">红胆</span>
-                <input class="form-control" type="text" ng-model="releaseContent.forcast.includedReds" ng-change="onReleaseDataChanged()">
-            </div>
-        </div>
 
-        <div class="col-lg-6 col-md-6 col-xs-6">
-            <div class="input-group">
-                <span class="input-group-addon">红杀</span>
-                <input class="form-control" type="text" ng-model="releaseContent.forcast.excludedReds" ng-change="onReleaseDataChanged()">
-            </div>
-        </div>
+    <div class="input-group">
+        <span class="input-group-addon">红胆</span>
+        <input class="form-control" type="text" ng-model="releaseContent.recommendation.redIncludes" ng-change="onReleaseDataChanged()">
     </div>
     <br>
-    <div class="row">
-        <div class="col-lg-6 col-md-6 col-xs-6">
-            <div class="input-group">
-                <span class="input-group-addon">蓝胆</span>
-                <input class="form-control" type="text" ng-model="releaseContent.forcast.includedBlues" ng-change="onReleaseDataChanged()">
-            </div>
-        </div>
+    <div class="input-group">
+        <span class="input-group-addon">红杀</span>
+        <input class="form-control" type="text" ng-model="releaseContent.recommendation.redExcludes" ng-change="onReleaseDataChanged()">
+    </div>
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon">蓝胆</span>
+        <input class="form-control" type="text" ng-model="releaseContent.recommendation.blueIncludes" ng-change="onReleaseDataChanged()">
+    </div>
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon">蓝杀</span>
+        <input class="form-control" type="text" ng-model="releaseContent.recommendation.blueExcludes" ng-change="onReleaseDataChanged()">
+    </div>
+    <br>
 
-        <div class="col-lg-6 col-md-6 col-xs-6">
-            <div class="input-group">
-                <span class="input-group-addon">蓝杀</span>
-                <input class="form-control" type="text" ng-model="releaseContent.forcast.excludedBlues" ng-change="onReleaseDataChanged()">
-            </div>
+    <legend>Data Version</legend>
+
+    <div ng-repeat="(label, number) in releaseContent.dateVersion track by label">
+        <div class="input-group">
+            <span class="input-group-addon">{{label}}</span>
+            <input type="number" class="form-control" ng-model="releaseContent.dateVersion[label]" ng-change="onReleaseDataChanged()">
         </div>
+        <br>
     </div>
 
   </form>

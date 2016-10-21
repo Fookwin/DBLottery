@@ -6,7 +6,6 @@ app.config(['$routeProvider', function($routeProvider) {
         .when('/users', {templateUrl: '/templates/user-picker-view.html'})
         .when('/publish', {redirectTo:'/publish/release'})
         .when('/publish/release', {templateUrl: '/templates/publish-release-data-view.html'})
-        .when('/publish/version', {templateUrl: '/templates/publish-version-view.html'})
         .when('/publish/notification', {templateUrl: '/templates/publish-notification-view.html'})
         .otherwise({redirectTo:'/'});
 }]);

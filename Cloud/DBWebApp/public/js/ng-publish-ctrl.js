@@ -1,5 +1,6 @@
 angular.module('ng-index-app').controller('ng-publish-release-data-ctrl', function ($scope, $rootScope, $timeout, $http, $location) {       
 
+    // data for root scope
     $rootScope.selectedNavIndex = 2;
     
     $scope.onReleaseDataChanged = function () {
@@ -10,17 +11,20 @@ angular.module('ng-index-app').controller('ng-publish-release-data-ctrl', functi
         $scope.isRefreshing = true;
 
         $http.get('/release').success(function (res) {
-            $scope.originalReleaseContent = res.data;
-            var dateFmt = changeDateFormat(res.data.date);
-            $scope.originalReleaseContent.date = new Date(dateFmt);
+            $rootScope.originalReleaseContent = res.data;
 
-            $scope.releaseContent = angular.copy($scope.originalReleaseContent);
+            // correct the data format
+            $rootScope.originalReleaseContent.nextReleaseTime = new Date(changeDateFormat(res.data.nextReleaseTime));
+            $rootScope.originalReleaseContent.sellOffTime = new Date(changeDateFormat(res.data.sellOffTime));
+            $rootScope.originalReleaseContent.lottery.date = new Date(changeDateFormat(res.data.lottery.date));
+
+            $rootScope.releaseContent = angular.copy($rootScope.originalReleaseContent);
             $scope.isRefreshing = false;
         });
     }
 
     $scope.resetReleaseData = function () {
-        $scope.releaseContent = angular.copy($scope.originalReleaseContent);
+        $rootScope.releaseContent = angular.copy($rootScope.originalReleaseContent);
         $scope.isReleaseDataChanged = false;
     };
 
@@ -28,7 +32,7 @@ angular.module('ng-index-app').controller('ng-publish-release-data-ctrl', functi
         if ($scope.isReleaseDataChanged){
             $('#submitReleaseDataModal').modal('show') 
         } else {
-            $location.url('/publish/version');
+            $location.url('/publish/notification');
         }
     }
 
@@ -37,7 +41,7 @@ angular.module('ng-index-app').controller('ng-publish-release-data-ctrl', functi
         $scope.isReleaseDataChanged = false;
         $('#submitReleaseDataModal').modal('hide');
         $('#submitReleaseDataModal').on('hidden.bs.modal', function (e) {
-            $location.url('/publish/version');
+            $location.url('/publish/notification');
         });
     };
 
@@ -56,49 +60,6 @@ angular.module('ng-index-app').controller('ng-publish-release-data-ctrl', functi
         var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();    
         return date.getFullYear() + "-" + month + "-" + currentDate;    
     }  
-});
-
-angular.module('ng-index-app').controller('ng-publish-version-ctrl', function ($scope, $rootScope, $timeout, $http, $location) {       
-    var originalVersion = {
-        'LatestIssue': 2016117,
-        'History':4,
-        'Release':1,
-        'Attributes':1,
-        'AttributeTemplate':2,
-        'LatestLottery':2,
-        'Matrix':2,
-        'Help':1
-    };
-
-    $rootScope.selectedNavIndex = 2;
-    
-    $scope.version = angular.copy(originalVersion);
-
-    $scope.onVersionChanged = function (label, number) {
-        $scope.isVersionChanged = true;
-    };
-
-    $scope.resetVersion = function () {
-        $scope.version = angular.copy(originalVersion);
-        $scope.isVersionChanged = false;
-    };
-
-    $scope.leaveVersion = function () {
-        if ($scope.isVersionChanged){
-            $('#submitVersionModal').modal('show') 
-        } else {
-            $location.url('/publish/notification');
-        }
-    }
-
-    $scope.saveVersion = function () {
-        alert('done');
-        $scope.isVersionChanged = false;
-        $('#submitVersionModal').modal('hide');
-        $('#submitVersionModal').on('hidden.bs.modal', function (e) {
-            $location.url('/publish/notification');
-        });
-    };
 });
 
 angular.module('ng-index-app').controller('ng-publish-notification-ctrl', function ($scope, $rootScope, $timeout, $http, $location) {       

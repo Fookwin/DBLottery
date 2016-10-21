@@ -1,17 +1,5 @@
 
 /* Set the sizes of the elements that make up the progress bar */
-.process-ring {
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    right: 10px;
-    background-image: url(../imgs/circle_arrow_24px.png);
-    background-position-x: 0px;
-}
-
-.process-ring:hover {
-    background-position-x: 24px;
-}
 
 /* Using the data attributes for the animation selectors. */
 /* Base settings for all animated elements */
