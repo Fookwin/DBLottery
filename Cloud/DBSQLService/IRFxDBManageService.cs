@@ -57,11 +57,11 @@ namespace DBSQLService
 
         [OperationContract]
         [WebInvoke(Method = "GET",
-            UriTemplate = "/GetNextReleaseInfo",
+            UriTemplate = "/CalcualateNextReleaseInfo/?currentIssue={currentIssue}&currentDate={currentDate}",
             BodyStyle = WebMessageBodyStyle.Bare,
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json)]
-        string GetNextReleaseInfo();
+        DBReleaseInfoModel CalcualateNextReleaseInfo(int currentIssue, DateTime currentDate);
 
         [OperationContract]
         [WebInvoke(Method = "POST",

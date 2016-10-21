@@ -7,31 +7,31 @@ using System.Runtime.Serialization;
 namespace DataModel
 {
     [DataContract]
-    public class DBReleaseModel
+    public class DBReleaseInfoModel
     {
-        [DataMember(Name = "next")]
-        public DBReleaseInfoModel NextRelease
+        [DataMember(Name = "issue")]
+        public int Issue
         {
             get;
             set;
         }
 
-        [DataMember(Name = "lottery")]
-        public DBLotteryModel Lottery
+        [DataMember(Name = "date")]
+        public DateTime Date
         {
             get;
             set;
         }
 
-        [DataMember(Name = "recommendation")]
-        public DBRecommendationModel Recommendation
+        [DataMember(Name = "cutOffTime")]
+        public DateTime CutOffTime
         {
             get;
             set;
         }
 
-        [DataMember(Name = "dataVersion")]
-        public DBVersionModel DataVersion
+        [DataMember(Name = "lotteryTime")]
+        public DateTime LotteryTime
         {
             get;
             set;

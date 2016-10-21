@@ -184,6 +184,9 @@
     <Compile Include="..\SharedModel\DBRecommendationModel.cs">
       <Link>Data\Models\DBRecommendationModel.cs</Link>
     </Compile>
+    <Compile Include="..\SharedModel\DBReleaseInfoModel.cs">
+      <Link>Data\Models\DBReleaseInfoModel.cs</Link>
+    </Compile>
     <Compile Include="..\SharedModel\DBReleaseModel.cs">
       <Link>Data\Models\DBReleaseModel.cs</Link>
     </Compile>

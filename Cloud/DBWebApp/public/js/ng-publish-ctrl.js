@@ -22,7 +22,7 @@ angular.module('ng-index-app').controller('ng-publish-release-data-ctrl', functi
 
         $scope.isSyncingToOffical = true;
 
-        $http.get('/offical/?issue=' + $rootScope.originalReleaseContent.currentIssue).success(function (res) {
+        $http.get('/offical/?issue=' + $rootScope.originalReleaseContent.lottery.issue).success(function (res) {
             
             if (res.data) {
                 $rootScope.releaseContent.lottery = res.data;
@@ -34,6 +34,53 @@ angular.module('ng-index-app').controller('ng-publish-release-data-ctrl', functi
 
             $scope.isSyncingToOffical = false;
         });
+    }
+
+    $scope.addNewRelease = function () {
+        if ($scope.isAddingNew)
+            return;
+
+        $scope.isAddingNew = true;
+
+        $rootScope.releaseContent = {
+            lottery: {
+                issue: $rootScope.originalReleaseContent.next.issue,
+                date: $rootScope.originalReleaseContent.next.date,
+                scheme:'xx xx xx xx xx xx+xx',
+                pool:0,
+                bet:0,
+                bonus: [
+                    0, 0, 0, 0, 0, 3000, 0, 200, 0, 10, 0, 5
+                ],
+                details: '',
+            },
+            next: {},
+            recommendation: {
+                redExcludes: [],
+                redIncludes: [],
+                blueIncludes: [],
+                blueExcludes: []
+            },
+            dataVersion: angular.copy($rootScope.originalReleaseContent.dataVersion)
+        }
+
+        // apply radom recommendation
+        $scope.RandomReds();
+        $scope.RandomBlues();
+
+        $http.get('/offical/?issue=' + $rootScope.originalReleaseContent.lottery.issue).success(function (res) {
+            
+            if (res.data) {
+                $rootScope.releaseContent.lottery = res.data;
+
+                // correct the data format
+                $rootScope.releaseContent.lottery.date = new Date(changeDateFormat(res.data.date));
+            }
+
+            $scope.isAddingNew = false;
+        });
+
+        $scope.isReleaseDataChanged = true;
     }
 
     $scope.resetReleaseData = function () {
@@ -58,6 +105,42 @@ angular.module('ng-index-app').controller('ng-publish-release-data-ctrl', functi
         });
     };
 
+    $scope.RandomReds = function() {
+        
+        var nums = [],
+            count = 8;
+        while (nums.length < count) {
+            var rN = random(33);
+            if (!nums.find(function (num) { return num === rN } )) {
+                nums.push(rN);
+            }
+        }
+
+        $rootScope.releaseContent.recommendation.redIncludes = nums.slice(0, 2).sort(function (a, b) { return a > b; });
+        $rootScope.releaseContent.recommendation.redExcludes = nums.slice(2).sort(function (a, b) { return a > b; });
+        $scope.isReleaseDataChanged = true;
+    }
+
+    $scope.RandomBlues = function() {
+        
+        var nums = [],
+            count = 4;
+        while (nums.length < count) {
+            var rN = random(16);
+            if (!nums.find(function (num) { return num === rN } )) {
+                nums.push(rN);
+            }
+        }
+
+        $rootScope.releaseContent.recommendation.blueIncludes = nums.slice(0, 1).sort(function (a, b) { return a > b; });
+        $rootScope.releaseContent.recommendation.blueExcludes = nums.slice(1).sort(function (a, b) { return a > b; });
+        $scope.isReleaseDataChanged = true;
+    }
+
+    function random(max) {
+        return Math.ceil(Math.ceil(Math.random() * max * 100) / 100);
+    }
+
     function _syncToCloud() {
         if ($scope.isSyncingToCloud)
             return;
@@ -68,8 +151,9 @@ angular.module('ng-index-app').controller('ng-publish-release-data-ctrl', functi
             $rootScope.originalReleaseContent = res.data;
 
             // correct the data format
-            $rootScope.originalReleaseContent.nextReleaseTime = new Date(changeDateFormat(res.data.nextReleaseTime));
-            $rootScope.originalReleaseContent.sellOffTime = new Date(changeDateFormat(res.data.sellOffTime));
+            $rootScope.originalReleaseContent.next.date = new Date(changeDateFormat(res.data.next.cutOffTime));
+            $rootScope.originalReleaseContent.next.cutOffTime = new Date(changeDateFormat(res.data.next.cutOffTime));
+            $rootScope.originalReleaseContent.next.lotteryTime = new Date(changeDateFormat(res.data.next.lotteryTime));
             $rootScope.originalReleaseContent.lottery.date = new Date(changeDateFormat(res.data.lottery.date));
 
             $rootScope.releaseContent = angular.copy($rootScope.originalReleaseContent);

@@ -28,6 +28,7 @@ namespace DBSQLService
         {
             DBReleaseModel release = new DBReleaseModel();
 
+            int currentIssue = -1;
             // get the last release information
             {
                 CloudBlockBlob blob = DBCloudStorageClient.Instance().GetBlockBlob("dblotterydata", "ReleaseInformation.xml");
@@ -46,10 +47,14 @@ namespace DBSQLService
                 xml.Load(text);
                 lastRelease.Read(xml.Root());
 
-                release.CurrentIssue = lastRelease.CurrentIssue;
-                release.NextIssue = lastRelease.NextIssue;
-                release.NextReleaseTime = lastRelease.NextReleaseTime;
-                release.SellOffTime = lastRelease.SellOffTime;
+                currentIssue = lastRelease.CurrentIssue;
+                release.NextRelease = new DBReleaseInfoModel()
+                {
+                    Issue = lastRelease.NextIssue,
+                    CutOffTime = lastRelease.SellOffTime,
+                    Date = lastRelease.NextReleaseTime,
+                    LotteryTime = lastRelease.NextReleaseTime
+                };
 
                 // recommendation
                 release.Recommendation = new DBRecommendationModel()
@@ -85,6 +90,7 @@ namespace DBSQLService
                     LatestIssue = latestVersion.LatestIssue,
                     HistoryDataVersion = latestVersion.HistoryDataVersion,
                     ReleaseDataVersion = latestVersion.ReleaseDataVersion,
+                    AttributeDataVersion = latestVersion.AttributeDataVersion,
                     AttributeTemplateVersion = latestVersion.AttributeTemplateVersion,
                     LatestLotteryVersion = latestVersion.LatestLotteryVersion,
                     MatrixDataVersion = latestVersion.MatrixDataVersion,
@@ -95,7 +101,7 @@ namespace DBSQLService
             // get the relase
             Basic basic = null;
             Detail detail = null;
-            if (!DBSQLClient.Instance().GetRecordBasic(release.CurrentIssue, out basic, out detail))
+            if (!DBSQLClient.Instance().GetRecordBasic(currentIssue, out basic, out detail))
                 throw new Exception("Fail to obtain last record.");
 
             release.Lottery = buildLotteryModel(basic, detail);
@@ -116,21 +122,22 @@ namespace DBSQLService
             return null;
         }
 
-        public string GetNextReleaseInfo()
+        public DBReleaseInfoModel CalcualateNextReleaseInfo(int currentIssue, DateTime currentDate)
         {
-            int lastIssue = DBSQLClient.Instance().GetLastIssue();
+            return null;
+            //int lastIssue = DBSQLClient.Instance().GetLastIssue();
 
-            DateTime releaseTimeObj = DBSQLClient.Instance().GetLastReleaseTime();
-            if (releaseTimeObj == null)
-                return null;           
+            //DateTime releaseTimeObj = DBSQLClient.Instance().GetLastReleaseTime();
+            //if (releaseTimeObj == null)
+            //    return null;           
 
-            int nextIssue = 0;
-            DateTime sellOfftime = DateTime.Now, nextReleaseDate = DateTime.Now;
+            //int nextIssue = 0;
+            //DateTime sellOfftime = DateTime.Now, nextReleaseDate = DateTime.Now;
 
-            _CalculateNextReleaseNumberAndTime(lastIssue, releaseTimeObj, ref nextIssue, ref sellOfftime, ref nextReleaseDate);
+            //_CalculateNextReleaseNumberAndTime(lastIssue, releaseTimeObj, ref nextIssue, ref sellOfftime, ref nextReleaseDate);
 
-            string output = string.Format("index: {0}, time: {1}", new object[] { nextIssue.ToString(), nextReleaseDate.ToString() });
-            return "{" + output + "}";
+            //string output = string.Format("index: {0}, time: {1}", new object[] { nextIssue.ToString(), nextReleaseDate.ToString() });
+            //return "{" + output + "}";
         }
 
         public bool NorminateNewRelease(DBReleaseModel data)
@@ -378,9 +385,9 @@ namespace DBSQLService
                         {
                             string winDetails = comments.Substring(ind0 + 7, ind2 - ind0 - 7);
                             winDetails = winDetails.Replace("注", "注 ");
-                            winDetails.Trim(new char[] { ' ', '。' });
+                            winDetails = winDetails.Trim(new char[] { ' ', '。' });
 
-                            lot.Details = "一等奖中奖地:" + winDetails;
+                            lot.Details = "一等奖中奖地:" + winDetails + "。";
 
                             string orderDetails = comments.Substring(ind2 + 5).Trim(new char[] { ' ', '。' });
 
@@ -403,7 +410,7 @@ namespace DBSQLService
                                 }
                             }
 
-                            lot.Details += "出球顺序:" + orderDetails;
+                            lot.Details += "出球顺序:" + orderDetails.TrimEnd();
                         }
                         else
                         {
@@ -412,9 +419,9 @@ namespace DBSQLService
                     }
                 }
             }
-            catch
+            catch (Exception e)
             {
-                return false;
+                throw e;
             }
 
             return true;
@@ -709,15 +716,15 @@ namespace DBSQLService
                 detail.Prize1Count,
                 Convert.ToInt32(detail.Prize1Bonus),
                 detail.Prize2Count,
-                Convert.ToInt32(detail.Prize2Bonus),
-                3000,
+                Convert.ToInt32(detail.Prize2Bonus),                
                 detail.Prize3Count,
-                200,
+                3000,
                 detail.Prize4Count,
-                10,
+                200,
                 detail.Prize5Count,
+                10,
+                detail.Prize6Count,
                 5,
-                detail.Prize6Count
             };
 
             return lot;
