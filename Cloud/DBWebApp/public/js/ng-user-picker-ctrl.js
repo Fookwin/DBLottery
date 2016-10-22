@@ -1,5 +1,5 @@
 angular.module('ng-index-app').controller('ng-user-picker-ctrl', function ($scope, $rootScope, $timeout, $http) {
-    $rootScope.selectedNavIndex = 1;
+
     $scope.inLoadingData = false;
     $scope.platformList = [
         {name: 'Windows Store', index: '1'},

@@ -6,12 +6,17 @@
         <div class="input-group">
             <span class="input-group-addon">模板</span>
             <select class="form-control" ng-model="selectedTemplate" ng-options="template.name for template in templateList" 
-                ng-change="content = selectedTemplate.content"></select>
+                ng-change="notification = selectedTemplate.notification"></select>
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">标题</span>
+            <textarea class="form-control" rows="3" type="text" ng-model="notification.title"></textarea>
         </div>
         <br>
         <div class="input-group">
             <span class="input-group-addon">内容</span>
-            <textarea class="form-control" rows="3" type="text" ng-model="content"></textarea>
+            <textarea class="form-control" rows="3" type="text" ng-model="notification.message"></textarea>
         </div>
 
         <div class="checkbox">
