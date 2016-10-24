@@ -52,8 +52,7 @@ namespace DBSQLService
                 {
                     Issue = lastRelease.NextIssue,
                     CutOffTime = lastRelease.SellOffTime,
-                    Date = lastRelease.NextReleaseTime,
-                    LotteryTime = lastRelease.NextReleaseTime
+                    Date = lastRelease.NextReleaseTime
                 };
 
                 // recommendation
@@ -124,20 +123,12 @@ namespace DBSQLService
 
         public DBReleaseInfoModel CalcualateNextReleaseInfo(int currentIssue, DateTime currentDate)
         {
-            return null;
-            //int lastIssue = DBSQLClient.Instance().GetLastIssue();
+            int nextIssue = 0;
+            DateTime sellOfftime = DateTime.Now, nextReleaseDate = DateTime.Now;
 
-            //DateTime releaseTimeObj = DBSQLClient.Instance().GetLastReleaseTime();
-            //if (releaseTimeObj == null)
-            //    return null;           
+            _CalculateNextReleaseNumberAndTime(currentIssue, currentDate, ref nextIssue, ref sellOfftime, ref nextReleaseDate);
 
-            //int nextIssue = 0;
-            //DateTime sellOfftime = DateTime.Now, nextReleaseDate = DateTime.Now;
-
-            //_CalculateNextReleaseNumberAndTime(lastIssue, releaseTimeObj, ref nextIssue, ref sellOfftime, ref nextReleaseDate);
-
-            //string output = string.Format("index: {0}, time: {1}", new object[] { nextIssue.ToString(), nextReleaseDate.ToString() });
-            //return "{" + output + "}";
+            return new DBReleaseInfoModel() { Issue = nextIssue, Date = nextReleaseDate, CutOffTime = sellOfftime };
         }
 
         public bool NorminateNewRelease(DBReleaseModel data)
@@ -214,7 +205,7 @@ namespace DBSQLService
         }
 
         ////////////////////////////////////////////////////////////-Private-//////////////////////////////////////////////////////////////////        
-        private void _CalculateNextReleaseNumberAndTime(int currentIssue, DateTime releaseDate, ref int nextIssue, ref DateTime sellOfftime, ref DateTime nextReleaseDate)
+        private void _CalculateNextReleaseNumberAndTime(int currentIssue, DateTime releaseDate, ref int nextIssue, ref DateTime cutOfftime, ref DateTime nextReleaseDate)
         {
             int lastIssue = currentIssue;
 
@@ -225,8 +216,8 @@ namespace DBSQLService
             }
 
             DateTime nextDate = new DateTime(releaseDate.Year, releaseDate.Month, releaseDate.Day);
-            sellOfftime = nextDate.AddDays(nextDate.DayOfWeek == DayOfWeek.Thursday ? 3 : 2).AddHours(19.75);
-            nextReleaseDate = sellOfftime.AddHours(1.5);
+            cutOfftime = nextDate.AddDays(nextDate.DayOfWeek == DayOfWeek.Thursday ? 3 : 2).AddHours(20);
+            nextReleaseDate = cutOfftime.AddHours(1.25);
         }
 
         private bool _ReadLotteryDataFromWeb(int issue, ref DBLotteryModel lot)

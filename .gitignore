@@ -54,3 +54,5 @@ WP/LuckyBallData/Bin/
 WP/UpgradeLog.htm
 Cloud/DBWebApp/bin/
 Cloud/UpgradeLog.htm
+Cloud/DBCloudService.VC.opendb
+Cloud/DBCloudService.sdf

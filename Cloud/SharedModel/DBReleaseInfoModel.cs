@@ -29,12 +29,5 @@ namespace DataModel
             get;
             set;
         }
-
-        [DataMember(Name = "lotteryTime")]
-        public DateTime LotteryTime
-        {
-            get;
-            set;
-        }
     }
 }

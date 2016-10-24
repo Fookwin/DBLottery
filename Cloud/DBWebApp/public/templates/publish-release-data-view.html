@@ -34,7 +34,7 @@
         <br>
         <div class="input-group input-group-sm">
         <span class="input-group-addon">奖号</span>
-        <input class="form-control" type="text" ng-model="releaseContent.lottery.scheme" ng-change="onReleaseDataChanged()">
+        <input class="form-control" type="text" placeholder="Format: 00 00 00 00 00 00+00" ng-model="releaseContent.lottery.scheme" ng-change="onReleaseDataChanged()">
         </div>
         <br>
         <div class="input-group input-group-sm">
@@ -172,7 +172,7 @@
             <div class="col-lg-6 col-md-6 col-xs-6">
                 <div class="input-group input-group-sm">
                     <span class="input-group-addon">开奖</span>
-                    <input class="form-control" type="time" ng-model="releaseContent.next.lotteryTime" ng-change="onReleaseDataChanged()">
+                    <input class="form-control" type="time" ng-model="releaseContent.next.date" ng-change="onReleaseDataChanged()">
                 </div>
             </div>
         </div>
