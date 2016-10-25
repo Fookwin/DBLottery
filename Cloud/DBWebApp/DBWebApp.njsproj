@@ -5,6 +5,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <Name>DBWebApp</Name>
     <RootNamespace>DBWebApp</RootNamespace>
+    <NameOfLastUsedPublishProfile>DBWebApp</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -31,12 +32,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="public\js\ng-home-ctrl.js" />
     <Compile Include="public\js\ng-index-app.js" />
     <Compile Include="public\js\ng-publish-ctrl.js" />
-    <Compile Include="public\js\ng-use-picker-ctrl.js" />
+    <Compile Include="public\js\ng-user-picker-ctrl.js" />
+    <Compile Include="public\js\ng-util-service.js" />
+    <Compile Include="public\libs\angular-route\angular-route.js" />
+    <Compile Include="public\libs\angular-route\angular-route.min.js" />
+    <Compile Include="public\libs\angular-route\index.js" />
     <Compile Include="public\libs\angular.js\angular.min.js" />
-    <Compile Include="public\libs\bootstrap\js\bootstrap.js" />
-    <Compile Include="public\libs\bootstrap\js\bootstrap.min.js" />
+    <Compile Include="public\libs\bootstrap\bootstrap-3.3.7\js\bootstrap.js" />
+    <Compile Include="public\libs\bootstrap\bootstrap-3.3.7\js\bootstrap.min.js" />
+    <Compile Include="public\libs\bootstrap\bootstrap-3.3.7\js\npm.js" />
     <Compile Include="public\libs\jquery\jquery.min.js" />
     <Compile Include="routes\index.js" />
     <Compile Include="server\api\releaseMgr.js" />
@@ -46,34 +53,53 @@
     <Compile Include="server\init-azure.js" />
     <Compile Include="server\modules\user-table.js" />
     <Content Include="config.json" />
+    <None Include="DBWebApp.pubxml" />
+    <None Include="DBWebApp %282%29.pubxml" />
     <Content Include="jsconfig.json" />
     <Content Include="package.json" />
-    <Content Include="public\libs\bootstrap\css\bootstrap-responsive.css" />
-    <Content Include="public\libs\bootstrap\css\bootstrap-responsive.min.css" />
-    <Content Include="public\libs\bootstrap\css\bootstrap.css" />
-    <Content Include="public\libs\bootstrap\css\bootstrap.min.css" />
-    <Content Include="public\libs\bootstrap\img\glyphicons-halflings-white.png" />
-    <Content Include="public\libs\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="public\imgs\circle_arrow_24px.png" />
+    <Content Include="public\libs\angular-route\angular-route.min.js.map" />
+    <Content Include="public\libs\angular-route\bower.json" />
+    <Content Include="public\libs\angular-route\LICENSE.md" />
+    <Content Include="public\libs\angular-route\package.json" />
+    <Content Include="public\libs\angular-route\README.md" />
+    <Content Include="public\libs\bootstrap\bootstrap-3.3.7\css\bootstrap-theme.css" />
+    <Content Include="public\libs\bootstrap\bootstrap-3.3.7\css\bootstrap-theme.css.map" />
+    <Content Include="public\libs\bootstrap\bootstrap-3.3.7\css\bootstrap-theme.min.css" />
+    <Content Include="public\libs\bootstrap\bootstrap-3.3.7\css\bootstrap-theme.min.css.map" />
+    <Content Include="public\libs\bootstrap\bootstrap-3.3.7\css\bootstrap.css" />
+    <Content Include="public\libs\bootstrap\bootstrap-3.3.7\css\bootstrap.css.map" />
+    <Content Include="public\libs\bootstrap\bootstrap-3.3.7\css\bootstrap.min.css" />
+    <Content Include="public\libs\bootstrap\bootstrap-3.3.7\css\bootstrap.min.css.map" />
+    <Content Include="public\libs\bootstrap\bootstrap-3.3.7\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="public\libs\bootstrap\bootstrap-3.3.7\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="public\libs\bootstrap\bootstrap-3.3.7\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="public\libs\bootstrap\bootstrap-3.3.7\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="public\libs\bootstrap\bootstrap-3.3.7\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="public\stylesheets\index.css" />
+    <Content Include="public\stylesheets\process-ring.css" />
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="public\templates\footer.html" />
     <Content Include="public\templates\header.html" />
-    <Content Include="public\templates\release-manage.html" />
-    <Content Include="public\templates\user-manage.html" />
+    <Content Include="public\templates\home.html" />
+    <Content Include="public\templates\publish-notification-view.html" />
+    <Content Include="public\templates\publish-release-data-view.html" />
+    <Content Include="public\templates\user-picker-view.html" />
     <Content Include="README.md" />
     <Content Include="views\index.html" />
-    <Content Include="views\layout.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\" />
-    <Folder Include="public\images\" />
+    <Folder Include="public\imgs\" />
     <Folder Include="public\js\" />
     <Folder Include="public\libs\" />
+    <Folder Include="public\libs\angular-route\" />
     <Folder Include="public\libs\angular.js\" />
     <Folder Include="public\libs\bootstrap\" />
-    <Folder Include="public\libs\bootstrap\css\" />
-    <Folder Include="public\libs\bootstrap\img\" />
-    <Folder Include="public\libs\bootstrap\js\" />
+    <Folder Include="public\libs\bootstrap\bootstrap-3.3.7\" />
+    <Folder Include="public\libs\bootstrap\bootstrap-3.3.7\css\" />
+    <Folder Include="public\libs\bootstrap\bootstrap-3.3.7\fonts\" />
+    <Folder Include="public\libs\bootstrap\bootstrap-3.3.7\js\" />
     <Folder Include="public\libs\jquery\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="public\templates\" />

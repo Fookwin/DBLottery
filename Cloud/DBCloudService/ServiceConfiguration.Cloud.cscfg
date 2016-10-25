@@ -10,7 +10,7 @@
   <Role name="DBWebApp">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=dbdatastorage;AccountKey=WLTFKIKa/7hEOEpmd92AuvJBEU6qbcjEAdQ1y3DrskQMpW3PhGgWa1Oq7BIOyebPtrR380atICJweBWf4uYTrg==" />
     </ConfigurationSettings>
   </Role>
 </ServiceConfiguration>
