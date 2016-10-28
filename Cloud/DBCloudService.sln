@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "DBCloudService", "DBCloudService\DBCloudService.ccproj", "{4B4D60AF-AA3A-473B-9F0E-AB27739EE3BF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBSQLService", "DBSQLService\DBSQLService.csproj", "{54CD868F-CB7E-46AB-B73B-FA71EAB12010}"
-EndProject
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "DBWebApp", "DBWebApp\DBWebApp.njsproj", "{AB12B447-DB30-4A52-A2C2-24B334815A29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		{54CD868F-CB7E-46AB-B73B-FA71EAB12010}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54CD868F-CB7E-46AB-B73B-FA71EAB12010}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54CD868F-CB7E-46AB-B73B-FA71EAB12010}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AB12B447-DB30-4A52-A2C2-24B334815A29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB12B447-DB30-4A52-A2C2-24B334815A29}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AB12B447-DB30-4A52-A2C2-24B334815A29}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB12B447-DB30-4A52-A2C2-24B334815A29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

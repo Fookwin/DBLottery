@@ -47,14 +47,6 @@
       <RoleName>DBSQLService</RoleName>
       <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
     </ProjectReference>
-    <ProjectReference Include="..\DBWebApp\DBWebApp.njsproj">
-      <Name>DBWebApp</Name>
-      <Project>{ab12b447-db30-4a52-a2c2-24b334815a29}</Project>
-      <Private>True</Private>
-      <RoleType>Web</RoleType>
-      <RoleName>DBWebApp</RoleName>
-      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DBSQLServiceContent\" />

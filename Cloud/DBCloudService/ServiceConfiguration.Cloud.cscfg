@@ -7,10 +7,4 @@
       <Setting name="APPINSIGHTS_INSTRUMENTATIONKEY" value="25e839c6-21c6-48b6-9bc9-41fc5c2fcdaf" />
     </ConfigurationSettings>
   </Role>
-  <Role name="DBWebApp">
-    <Instances count="1" />
-    <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=dbdatastorage;AccountKey=WLTFKIKa/7hEOEpmd92AuvJBEU6qbcjEAdQ1y3DrskQMpW3PhGgWa1Oq7BIOyebPtrR380atICJweBWf4uYTrg==" />
-    </ConfigurationSettings>
-  </Role>
 </ServiceConfiguration>
