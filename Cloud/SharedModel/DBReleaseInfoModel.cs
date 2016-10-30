@@ -17,14 +17,14 @@ namespace DataModel
         }
 
         [DataMember(Name = "date")]
-        public DateTime Date
+        public DBDateTime Date
         {
             get;
             set;
         }
 
         [DataMember(Name = "cutOffTime")]
-        public DateTime CutOffTime
+        public DBDateTime CutOffTime
         {
             get;
             set;

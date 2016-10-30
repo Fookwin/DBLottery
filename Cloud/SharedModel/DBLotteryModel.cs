@@ -24,7 +24,7 @@ namespace DataModel
         }
 
         [DataMember(Name = "date")]
-        public DateTime Date
+        public DBDateTime Date
         {
             get;
             set;

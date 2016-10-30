@@ -65,19 +65,11 @@ namespace DBSQLService
 
         [OperationContract]
         [WebInvoke(Method = "POST",
-            UriTemplate = "/NorminateNewRelease",
+            UriTemplate = "/CommitRelease",
             BodyStyle = WebMessageBodyStyle.Bare,
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json)]
-        bool NorminateNewRelease(DBReleaseModel data);
-
-        [OperationContract]
-        [WebInvoke(Method = "POST",
-            UriTemplate = "/UpdateReleaseDetail",
-            BodyStyle = WebMessageBodyStyle.Bare,
-            RequestFormat = WebMessageFormat.Json,
-            ResponseFormat = WebMessageFormat.Json)]
-        bool UpdateReleaseDetail(DBReleaseModel data);
+        string CommitRelease(DBReleaseModel releaseData);
 
         //[OperationContract]
         //bool UpdateLotteryData(int issue, string data);
