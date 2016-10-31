@@ -172,9 +172,6 @@
     <Compile Include="..\..\Common\Util\SelectUtil.cs">
       <Link>Common\Util\SelectUtil.cs</Link>
     </Compile>
-    <Compile Include="..\SharedModel\DBDateTime.cs">
-      <Link>Data\Models\DBDateTime.cs</Link>
-    </Compile>
     <Compile Include="..\SharedModel\DBLoginModel.cs">
       <Link>Data\Models\DBLoginModel.cs</Link>
     </Compile>

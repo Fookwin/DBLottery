@@ -27,6 +27,38 @@ namespace DBSQLService
         }
     };
 
+    [DataContract]
+    public class CommitReleaseResultPocket
+    {
+        [DataMember]
+        public int ReturnCode
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public string ErrorMessage
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public string Container
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public List<string> Files
+        {
+            get;
+            set;
+        }
+    };
+
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "RFxDBManageService" in both code and config file together.
     [ServiceContract]
     public interface IRFxDBManageService
@@ -69,7 +101,7 @@ namespace DBSQLService
             BodyStyle = WebMessageBodyStyle.Bare,
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json)]
-        string CommitRelease(DBReleaseModel releaseData);
+        CommitReleaseResultPocket CommitRelease(DBReleaseModel releaseData);
 
         //[OperationContract]
         //bool UpdateLotteryData(int issue, string data);

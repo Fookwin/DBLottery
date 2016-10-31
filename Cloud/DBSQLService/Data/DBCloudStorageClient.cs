@@ -119,12 +119,15 @@ namespace DBSQLService.Data
             }
         }
 
-        public bool WriteTextAsBlob(string blobName, string fileName, string text)
+        public bool WriteTextAsBlob(string blobName, string fileName, string text, bool async = true)
         {
             try
             {
                 CloudBlockBlob blob = DBCloudStorageClient.Instance().GetBlockBlob(blobName, fileName);
-                blob.UploadText(text);
+                if (async)
+                    blob.UploadTextAsync(text);
+                else
+                    blob.UploadText(text);
 
                 return true;
             }

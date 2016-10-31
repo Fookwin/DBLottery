@@ -20,8 +20,12 @@ namespace DBSQLService
     {
         public string PushNotification(MessagePocket message)
         {
-            return "Notified for platform " + message.Platforms.Count().ToString() + "with message: "+ message.Message;
-            //DBNotification.Instance().PushNotification((PlatformIndex)platform, message, new List<string>());
+            foreach (int platform in message.Platforms)
+            {
+                DBNotification.Instance().PushNotification((PlatformIndex)platform, message.Message, new List<string>());
+            }
+
+            return "Notified for platform " + message.Platforms.Count().ToString() + " with message: "+ message.Message;
         }
 
         public DBReleaseModel GetLatestRelease()
@@ -67,7 +71,7 @@ namespace DBSQLService
 
             // get the version information in the last update.
             {
-                CloudBlockBlob mBlobDataVersion = mBlobDataVersion = DBCloudStorageClient.Instance().GetBlockBlob("dblotterydata", "Version.xml");
+                CloudBlockBlob mBlobDataVersion = DBCloudStorageClient.Instance().GetBlockBlob("dblotterydata", "Version.xml");
 
                 // read the data from the version file.
                 string dataVersion;
@@ -131,24 +135,24 @@ namespace DBSQLService
             return new DBReleaseInfoModel() { Issue = nextIssue, Date = nextReleaseDate, CutOffTime = sellOfftime };
         }
 
-        public string CommitRelease(DBReleaseModel releaseData)
+        public CommitReleaseResultPocket CommitRelease(DBReleaseModel releaseData)
         {
             // Get latest release info
             DBReleaseModel latest = GetLatestRelease();
-            if (releaseData.Lottery.Issue == releaseData.Lottery.Issue)
+            if (latest.Lottery.Issue == releaseData.Lottery.Issue)
             {
                 // update existing
-                return _UpdateLatestRelease(releaseData) ? "success" : "error";
+                return _UpdateLatestRelease(releaseData);
             }
-            else if (releaseData.NextRelease.Issue == releaseData.Lottery.Issue)
+            else if (latest.NextRelease.Issue == releaseData.Lottery.Issue)
             {
-                // add new release
-                return _NorminateNewRelease(releaseData) ? "success" : "error";
+                //add new release
+                return _NorminateNewRelease(releaseData);
             }
             else
             {
                 // not allow add/update others
-                return "Not allow to modify this release.";
+                return new CommitReleaseResultPocket() { ErrorMessage = "Not allow to modify this release.", ReturnCode = 405 };
             }
         }
 
@@ -158,10 +162,9 @@ namespace DBSQLService
         }
 
         ////////////////////////////////////////////////////////////-Private-//////////////////////////////////////////////////////////////////        
-        private bool _NorminateNewRelease(DBReleaseModel data)
+        private CommitReleaseResultPocket _NorminateNewRelease(DBReleaseModel data)
         {
-            if (data == null)
-                return false;
+            List<string> pendingFiles = new List<string>();
 
             // get scheme
             Scheme newScheme = ExtractScheme(data.Lottery);
@@ -172,7 +175,7 @@ namespace DBSQLService
             // calculate the attributes set
             SchemeAttributes attirSet = CalculateAttributesForNewIssue(newStatus);
             if (attirSet == null)
-                return false;
+                return new CommitReleaseResultPocket() { ErrorMessage = "Fail to calcuate the attributes.", ReturnCode = 500 };
 
             // calculate the release information.
             int nextIssue = 0;
@@ -187,10 +190,13 @@ namespace DBSQLService
             // generate the SQL command lines file
             string sql = GenerateSQLQueryForNewRelease(data.Lottery.Issue, newScheme, newDetail, newStatus);
             if (string.IsNullOrEmpty(sql))
-                return false;
+                return new CommitReleaseResultPocket() { ErrorMessage = "Fail to generate SQL for updating detail.", ReturnCode = 500 };
 
             // save sql to file
-            DBCloudStorageClient.Instance().WriteTextAsBlob("data-release-pending", "SQL.sql", sql);
+            {
+                DBCloudStorageClient.Instance().WriteTextAsBlob("data-release-pending", "Lottery.sql", sql);
+                pendingFiles.Add("Lottery.sql");
+            }
 
             // save attributes
             {
@@ -199,28 +205,113 @@ namespace DBSQLService
 
                 attirSet.SaveValueToXml(ref root);
 
-                DBCloudStorageClient.Instance().WriteTextAsBlob("data-release-pending", "Attributes.sql", xml.InnerXml());
+                DBCloudStorageClient.Instance().WriteTextAsBlob("data-release-pending", "LatestAttributes.xml", xml.InnerXml());
+                pendingFiles.Add("LatestAttributes.xml");
+            }
+
+            // updating version
+            {
+                // parse to a temp object for comparing.
+                LuckyBallsData.DataVersion latestVersion = new LuckyBallsData.DataVersion()
+                {
+                    LatestIssue = data.DataVersion.LatestIssue,
+                    HistoryDataVersion = data.DataVersion.HistoryDataVersion,
+                    ReleaseDataVersion = data.DataVersion.ReleaseDataVersion,
+                    AttributeDataVersion = data.DataVersion.AttributeDataVersion,
+                    AttributeTemplateVersion = data.DataVersion.AttributeTemplateVersion,
+                    LatestLotteryVersion = data.DataVersion.LatestLotteryVersion,
+                    MatrixDataVersion = data.DataVersion.MatrixDataVersion,
+                    HelpContentVersion = data.DataVersion.HelpContentVersion
+                };
+
+                DBXmlDocument xml = new DBXmlDocument();
+                DBXmlNode root = xml.AddRoot("Version");
+                latestVersion.SaveToXml(ref root);
+
+                DBCloudStorageClient.Instance().WriteTextAsBlob("data-release-pending", "Version.xml", xml.InnerXml());
+                pendingFiles.Add("Version.xml");
             }
 
             // save release information
+            {
+                // parse to a temp object for comparing.
+                LuckyBallsData.ReleaseInfo lastRelease = new LuckyBallsData.ReleaseInfo()
+                {
+                    NextIssue = data.NextRelease.Issue,
+                    SellOffTime = data.NextRelease.CutOffTime,
+                    NextReleaseTime = data.NextRelease.Date
+                };
 
+                lastRelease.ExcludedReds.Reset(data.Recommendation.RedExcludes.ToArray());
+                lastRelease.IncludedReds.Reset(data.Recommendation.RedIncludes.ToArray());
+                lastRelease.ExcludedBlues.Reset(data.Recommendation.BlueExcludes.ToArray());
+                lastRelease.IncludedBlues.Reset(data.Recommendation.BlueIncludes.ToArray());
 
+                DBXmlDocument xml = new DBXmlDocument();
+                DBXmlNode root = xml.AddRoot("Version");
+                lastRelease.Save(ref root);
 
-            // generate attribute set file
-            return true;
+                DBCloudStorageClient.Instance().WriteTextAsBlob("data-release-pending", "ReleaseInformation.xml", xml.InnerXml());
+                pendingFiles.Add("ReleaseInformation.xml");
+            }
+
+            return new CommitReleaseResultPocket()
+            {
+                ErrorMessage = "",
+                ReturnCode = 200,
+                Container = "data-release-pending",
+                Files = pendingFiles
+            };
         }
 
-        private bool _UpdateLatestRelease(DBReleaseModel data)
+        private CommitReleaseResultPocket _UpdateLatestRelease(DBReleaseModel data)
         {
+            List<string> pendingFiles = new List<string>();
+
             // Only details can be changed so far.
             Detail newDetail = ExtractDetail(data.Lottery);
 
-            // generate the SQL command lines file
-            string sql = GenerateSQLQueryForDetail(newDetail, true);
-            if (string.IsNullOrEmpty(sql))
-                return false;
+            // update sql
+            {
+                // generate the SQL command lines file
+                string sql = GenerateSQLQueryForDetail(newDetail, true);
+                if (string.IsNullOrEmpty(sql))
+                    return new CommitReleaseResultPocket() { ErrorMessage = "Fail to generate SQL for updating detail.", ReturnCode = 500 };
 
-            return true;
+                DBCloudStorageClient.Instance().WriteTextAsBlob("data-release-pending", "Lottery.sql", sql);
+                pendingFiles.Add("Lottery.sql");
+            }
+
+            // updating version
+            {
+                // parse to a temp object for comparing.
+                LuckyBallsData.DataVersion latestVersion = new LuckyBallsData.DataVersion()
+                {
+                    LatestIssue = data.DataVersion.LatestIssue,
+                    HistoryDataVersion = data.DataVersion.HistoryDataVersion,
+                    ReleaseDataVersion = data.DataVersion.ReleaseDataVersion,
+                    AttributeDataVersion = data.DataVersion.AttributeDataVersion,
+                    AttributeTemplateVersion = data.DataVersion.AttributeTemplateVersion,
+                    LatestLotteryVersion = data.DataVersion.LatestLotteryVersion,
+                    MatrixDataVersion = data.DataVersion.MatrixDataVersion,
+                    HelpContentVersion = data.DataVersion.HelpContentVersion
+                };
+
+                DBXmlDocument xml = new DBXmlDocument();
+                DBXmlNode root = xml.AddRoot("Version");
+                latestVersion.SaveToXml(ref root);
+
+                DBCloudStorageClient.Instance().WriteTextAsBlob("data-release-pending", "Version.xml", xml.InnerXml());
+                pendingFiles.Add("Version.xml");
+            }
+
+            return new CommitReleaseResultPocket()
+            {
+                ErrorMessage = "",
+                ReturnCode = 200,
+                Container = "data-release-pending",
+                Files = pendingFiles
+            };
         }
 
         private void _CalculateNextReleaseNumberAndTime(int currentIssue, DateTime releaseDate, ref int nextIssue, ref DateTime cutOfftime, ref DateTime nextReleaseDate)
@@ -459,10 +550,10 @@ namespace DBSQLService
                 Prize1Bonus = release.Bonus[1],
                 Prize2Count = release.Bonus[2],
                 Prize2Bonus = release.Bonus[3],
-                Prize3Count = release.Bonus[5],
-                Prize4Count = release.Bonus[7],
-                Prize5Count = release.Bonus[9],
-                Prize6Count = release.Bonus[11]
+                Prize3Count = release.Bonus[4],
+                Prize4Count = release.Bonus[6],
+                Prize5Count = release.Bonus[8],
+                Prize6Count = release.Bonus[10]
             };       
         }
 
@@ -739,6 +830,10 @@ namespace DBSQLService
             return lot;
         }
 
+
+        // SQL ...
+        //
+
         private static string sqlQuery_addBasic = "INSERT INTO [dbo].[Basic] ([Issue], [Red1], [Red2], [Red3], [Red4], [Red5], [Red6], [Blue]) VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})";
         private static string sqlQuery_addDetail = "INSERT INTO [dbo].[Detail] ([Issue], [Date], [Prize1Bonus], [Prize2Bonus], [Prize1Count], [Prize2Count], [Prize3Count], [Prize4Count], [Prize5Count], [Prize6Count], [BetAmount], [PoolAmount], [More]) VALUES ({0}, N'{1}', CAST({2} AS Money), CAST({3} AS Money), {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, N'{12}')";
         private static string sqlQuery_addOmission = "";
@@ -897,7 +992,7 @@ namespace DBSQLService
                 detail.PoolAmount,
                 detail.More
             };
-            query += string.Format(sqlQuery_addDetail, detail_values) + "\n";
+            query += string.Format(sqlQuery_addDetail, detail_values);
 
             return query;
         }
