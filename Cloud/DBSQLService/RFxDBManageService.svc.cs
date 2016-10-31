@@ -51,8 +51,8 @@ namespace DBSQLService
                 release.NextRelease = new DBReleaseInfoModel()
                 {
                     Issue = lastRelease.NextIssue,
-                    CutOffTime = new DBDateTime(lastRelease.SellOffTime),
-                    Date = new DBDateTime(lastRelease.NextReleaseTime)
+                    CutOffTime = lastRelease.SellOffTime,
+                    Date = lastRelease.NextReleaseTime
                 };
 
                 // recommendation
@@ -128,7 +128,7 @@ namespace DBSQLService
 
             _CalculateNextReleaseNumberAndTime(currentIssue, currentDate, ref nextIssue, ref sellOfftime, ref nextReleaseDate);
 
-            return new DBReleaseInfoModel() { Issue = nextIssue, Date = new DBDateTime(nextReleaseDate), CutOffTime = new DBDateTime(sellOfftime) };
+            return new DBReleaseInfoModel() { Issue = nextIssue, Date = nextReleaseDate, CutOffTime = sellOfftime };
         }
 
         public string CommitRelease(DBReleaseModel releaseData)
@@ -179,7 +179,7 @@ namespace DBSQLService
             DateTime nextSellOfftime = DateTime.Now, nextReleaseDate = DateTime.Now;
 
             // Get the information for next release.
-            _CalculateNextReleaseNumberAndTime(data.Lottery.Issue, data.Lottery.Date.DateTime, ref nextIssue, ref nextSellOfftime, ref nextReleaseDate);
+            _CalculateNextReleaseNumberAndTime(data.Lottery.Issue, data.Lottery.Date, ref nextIssue, ref nextSellOfftime, ref nextReleaseDate);
 
             // Get the detail
             Detail newDetail = ExtractDetail(data.Lottery);
@@ -265,7 +265,7 @@ namespace DBSQLService
                 output = webData.Substring(currentIndex, readCount);
                 searchIndex = currentIndex + readCount;
 
-                lot.Date = new DBDateTime(DateTime.Parse(output));
+                lot.Date = DateTime.Parse(output);
 
                 // red numbers.
                 token = "蓝色球";
@@ -452,7 +452,7 @@ namespace DBSQLService
             {
                 Issue = release.Issue,
                 More = release.Details,
-                Date = release.Date.DateTime, 
+                Date = release.Date, 
                 PoolAmount = release.Pool, 
                 BetAmount = release.Bet,
                 Prize1Count = release.Bonus[0],
@@ -718,7 +718,7 @@ namespace DBSQLService
             lot.Bet = detail.BetAmount;
             lot.Pool = detail.PoolAmount;
             lot.Details = detail.More;
-            lot.Date = new DBDateTime(detail.Date);
+            lot.Date = detail.Date;
 
             lot.Bonus = new List<int>
             {
