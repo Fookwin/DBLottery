@@ -135,7 +135,7 @@ namespace DBSQLService
             return new DBReleaseInfoModel() { Issue = nextIssue, Date = nextReleaseDate, CutOffTime = sellOfftime };
         }
 
-        public CommitReleaseResultPocket CommitRelease(DBReleaseModel releaseData)
+        public CommitReleaseResultPocket PrecommitRelease(DBReleaseModel releaseData)
         {
             // Get latest release info
             DBReleaseModel latest = GetLatestRelease();
@@ -156,9 +156,58 @@ namespace DBSQLService
             }
         }
 
-        public bool CommitPendingChanges()
+        public CommitReleaseResultPocket GetPendingActions()
         {
-            return false;
+            CloudBlobContainer container = DBCloudStorageClient.Instance().GetBlobContainer("data-release-pending");
+            if (container == null)
+                return new CommitReleaseResultPocket() { ErrorMessage = "No pending container.", ReturnCode = 500 };
+
+            List<string> pendingFiles = new List<string>();
+            IEnumerable<IListBlobItem> blobs = container.ListBlobs();
+            if (blobs != null)
+            {
+                foreach (IListBlobItem item in blobs)
+                {
+                    CloudBlockBlob blob = item as CloudBlockBlob;
+                    pendingFiles.Add(blob.Name);
+                }
+            }
+
+            return new CommitReleaseResultPocket()
+            {
+                ErrorMessage = "",
+                ReturnCode = 200,
+                Container = "data-release-pending",
+                Files = pendingFiles
+            };
+        }
+
+        public CommitReleaseResultPocket ExecutePendingActions()
+        {
+            CommitReleaseResultPocket actionsRes = GetPendingActions();
+            if (actionsRes.Files == null || actionsRes.Files.Count == 0)
+                return actionsRes;
+
+            // execute Actions
+            List<string> errFiles = new List<string>();
+
+            bool anyError = false;
+            foreach (string fileName in actionsRes.Files)
+            {
+                if (!ExecuteAction(actionsRes.Container, fileName))
+                {
+                    errFiles.Add(fileName);
+                    anyError = true;
+                }
+            }
+
+            return new CommitReleaseResultPocket()
+            {
+                ErrorMessage = anyError ? "Some action failed to execute." : "",
+                ReturnCode = anyError ? 500 : 200,
+                Container = "data-release-pending",
+                Files = errFiles
+            };
         }
 
         ////////////////////////////////////////////////////////////-Private-//////////////////////////////////////////////////////////////////        
@@ -830,6 +879,42 @@ namespace DBSQLService
             return lot;
         }
 
+        private bool ExecuteAction(string container, string actionFileName)
+        {
+            if (actionFileName.Substring(actionFileName.Length - 4) == ".xml")
+            {
+                // copy the file to release folder
+                CloudBlockBlob srcBlob = DBCloudStorageClient.Instance().GetBlockBlob(container, actionFileName);
+                CloudBlockBlob targetBlob = DBCloudStorageClient.Instance().GetBlockBlob("dblotterydata", actionFileName);
+
+                string result = targetBlob.StartCopyFromBlob(srcBlob);
+
+                // delete the source file.
+                srcBlob.Delete();
+
+                return true;
+            }
+            else if (actionFileName.Substring(actionFileName.Length - 4) == ".sql")
+            {
+                // execute the sql
+                string sqlLines = DBCloudStorageClient.Instance().ReadBlobAsString(container, actionFileName);
+                if (!string.IsNullOrEmpty(sqlLines))
+                {
+                    string res = DBSQLClient.Instance().ExecuteSqlQueries(sqlLines);
+                    if (res == "Success")
+                    {
+                        // delete the source file.
+                        CloudBlockBlob blob = DBCloudStorageClient.Instance().GetBlockBlob(container, actionFileName);
+                        blob.Delete();
+
+                        return true;
+                    }
+                }
+
+            }
+
+            return false;
+        }
 
         // SQL ...
         //

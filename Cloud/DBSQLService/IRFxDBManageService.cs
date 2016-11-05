@@ -97,16 +97,29 @@ namespace DBSQLService
 
         [OperationContract]
         [WebInvoke(Method = "POST",
-            UriTemplate = "/CommitRelease",
+            UriTemplate = "/PrecommitRelease",
             BodyStyle = WebMessageBodyStyle.Bare,
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json)]
-        CommitReleaseResultPocket CommitRelease(DBReleaseModel releaseData);
+        CommitReleaseResultPocket PrecommitRelease(DBReleaseModel releaseData);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            UriTemplate = "/GetPendingActions",
+            BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json)]
+        CommitReleaseResultPocket GetPendingActions();
 
         //[OperationContract]
         //bool UpdateLotteryData(int issue, string data);
 
-        //[OperationContract]
-        //bool CommitPendingChanges();
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+            UriTemplate = "/ExecutePendingActions",
+            BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json)]
+        CommitReleaseResultPocket ExecutePendingActions();
     }
 }
