@@ -77,8 +77,8 @@ namespace DBSQLService
         public int Red_Repeat_Previous_8 { get; set; }
         public int Red_Repeat_Previous_9 { get; set; }
         public int Red_Sum { get; set; }
-        public int Red_Sum_Mantissa_ { get; set; }
-        public int Red_Odd_Sum_ { get; set; }
+        public int Red_Sum_Mantissa { get; set; }
+        public int Red_Odd_Sum { get; set; }
         public int Red_Odd_Sum_Mantissa { get; set; }
         public int Red_Even_Sum { get; set; }
         public int Red_Even_Sum_Mantissa { get; set; }

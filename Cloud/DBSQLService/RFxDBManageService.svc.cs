@@ -617,13 +617,13 @@ namespace DBSQLService
             List<Detail> detailList = null;
             List<Omission> omissionList = null;
             List<Attribute> attributeList = null;
-            DBSQLClient.Instance().GetRecordList(out basicList, out detailList, out omissionList, out attributeList);
+            DBSQLClient.Instance().GetRecordsFromEnd(10, out basicList, out detailList, out omissionList, out attributeList);
 
             // latest status
-            Status lastStatus = ExtractStatus(omissionList[currentCount - 1], attributeList[currentCount - 1]);
+            Status lastStatus = ExtractStatus(omissionList[9], attributeList[9]);
 
             // get the status for the 9th issue before latest
-            Status refStatus = ExtractStatus(omissionList[currentCount - 10], attributeList[currentCount - 10]);
+            Status refStatus = ExtractStatus(omissionList[0], attributeList[0]);
 
             // Red numbers...
             for (int i = 1; i <= 33; i++)
@@ -672,25 +672,25 @@ namespace DBSQLService
                 {
                     int step = Convert.ToInt32(state.Key.Substring(state.Key.Length - 1, 1));
 
-                    Scheme compareTo = ExtractScheme(basicList[currentCount - step - 1]);
+                    Scheme compareTo = ExtractScheme(basicList[9 - step]);
                     state.Value.Value = compareTo.Similarity(lotScheme);
                 }
                 else if (state.Key == "Blue_Amplitude")
                 {
-                    Scheme compareTo = ExtractScheme(basicList[currentCount - 1]);
+                    Scheme compareTo = ExtractScheme(basicList[9]);
                     state.Value.Value = Math.Abs(lotScheme.Blue - compareTo.Blue);
                 }
                 else if (state.Key.Contains("Blue_Mantissa_Repeat_Previous_"))
                 {
                     int step = Convert.ToInt32(state.Key.Substring(state.Key.Length - 1, 1));
 
-                    Scheme compareTo = ExtractScheme(basicList[currentCount - step - 1]);
+                    Scheme compareTo = ExtractScheme(basicList[9 - step]);
                     state.Value.Value = compareTo.Blue % 10 == lotScheme.Blue % 10 ? 1 : 0;
                 }
                 else if (state.Key == "Red_FuGeZhong")
                 {
-                    Scheme compareTo1 = ExtractScheme(basicList[currentCount - 1]);
-                    Scheme compareTo2 = ExtractScheme(basicList[currentCount - 2]);
+                    Scheme compareTo1 = ExtractScheme(basicList[9]);
+                    Scheme compareTo2 = ExtractScheme(basicList[8]);
 
                     int countIn0 = 0, countIn1 = 0, countIn2 = 0;
                     int[] reds = lotScheme.GetRedNums();
@@ -781,9 +781,6 @@ namespace DBSQLService
             Status status = new Status();
 
             // omission.
-            string[] reds_hitList = new string[33], reds_omissionList = new string[33], reds_tempList = new string[33];
-            string[] blues_hitList = new string[16], blues_omissionList = new string[16], blues_tempList = new string[16];
-
             Type numStateType = typeof(Omission);
             System.Reflection.PropertyInfo[] properties = numStateType.GetProperties();
             foreach (System.Reflection.PropertyInfo property in properties)
@@ -793,6 +790,10 @@ namespace DBSQLService
                 if (name.Contains("Red_"))
                 {
                     int num = Convert.ToInt32(name.Substring(4, 2));
+                    if (status.RedNumStates[num - 1] == null)
+                    {
+                        status.RedNumStates[num - 1] = new NumberState();
+                    }
 
                     if (name.Contains("_Hit"))
                     {
@@ -811,6 +812,11 @@ namespace DBSQLService
                 {
                     int num = Convert.ToInt32(name.Substring(5, 2));
 
+                    if (status.BlueNumStates[num - 1] == null)
+                    {
+                        status.BlueNumStates[num - 1] = new NumberState();
+                    }
+
                     if (name.Contains("_Hit"))
                     {
                         status.BlueNumStates[num - 1].HitCount = Convert.ToInt32(property.GetValue(omssion).ToString());
@@ -827,20 +833,54 @@ namespace DBSQLService
             }
 
             // attributes
+
+            // make sure attirubte template has been initilaized.
+            InitAttributeTemplate();
+
             Type attributeType = typeof(Attribute);
             System.Reflection.PropertyInfo[] properties1 = attributeType.GetProperties();
             foreach (System.Reflection.PropertyInfo property in properties1)
             {
                 if (property.Name != "Issue")
                 {
-                    status.AttributeStates.Add(property.Name, new AttributeState() {
-                        Key = property.Name,
-                        Value = Convert.ToInt32(property.GetValue(attribute).ToString())
-                    });
+                    if (status.AttributeStates.ContainsKey(property.Name))
+                    {
+                        status.AttributeStates[property.Name].Value = Convert.ToInt32(property.GetValue(attribute).ToString());
+                    }
+                    else
+                    {
+                        Console.WriteLine("not value " + property.Name);
+                    }
                 }
             }
 
             return status;
+        }
+
+        private void InitAttributeTemplate()
+        {
+            if (AttributeUtil.GetAttributesTemplate() == null)
+            {
+                CloudBlockBlob blob = DBCloudStorageClient.Instance().GetBlockBlob("dblotterydata", "AttributesTemplate.xml");
+
+                string text;
+                using (var memoryStream = new MemoryStream())
+                {
+                    blob.DownloadToStream(memoryStream);
+                    text = System.Text.Encoding.UTF8.GetString(memoryStream.ToArray());
+                }
+
+                // parse to a temp object for comparing.
+                SchemeAttributes _template = new SchemeAttributes();
+
+                DBXmlDocument xml = new DBXmlDocument();
+                xml.Load(text);
+
+                DBXmlNode root = xml.Root();
+                _template.ReadFromTemplate(root);
+
+                AttributeUtil.SetAttributesTemplate(_template);
+            }
         }
 
         private DBLotteryModel buildLotteryModel(Basic basic, Detail detail)

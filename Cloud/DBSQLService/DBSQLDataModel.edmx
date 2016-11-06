@@ -4,13 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DBHistoryModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="DBHistoryModelStoreContainer">
-          <EntitySet Name="Attributes" EntityType="DBHistoryModel.Store.Attributes" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Basic" EntityType="DBHistoryModel.Store.Basic" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Detail" EntityType="DBHistoryModel.Store.Detail" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Omission" EntityType="DBHistoryModel.Store.Omission" store:Type="Tables" Schema="dbo" />
-        </EntityContainer>
+    <Schema Namespace="DBHistoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Attributes">
           <Key>
             <PropertyRef Name="Issue" />
@@ -447,8 +441,13 @@
           <Property Name="Blue_15_Temperature" Type="int" Nullable="false" />
           <Property Name="Blue_16_Temperature" Type="int" Nullable="false" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+        <EntityContainer Name="DBHistoryModelStoreContainer">
+          <EntitySet Name="Attributes" EntityType="Self.Attributes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Basic" EntityType="Self.Basic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detail" EntityType="Self.Detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Omission" EntityType="Self.Omission" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBHistoryModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -525,8 +524,8 @@
           <Property Name="Red_Repeat_Previous_8" Type="Int32" Nullable="false" />
           <Property Name="Red_Repeat_Previous_9" Type="Int32" Nullable="false" />
           <Property Name="Red_Sum" Type="Int32" Nullable="false" />
-          <Property Name="Red_Sum_Mantissa_" Type="Int32" Nullable="false" />
-          <Property Name="Red_Odd_Sum_" Type="Int32" Nullable="false" />
+          <Property Name="Red_Sum_Mantissa" Type="Int32" Nullable="false" />
+          <Property Name="Red_Odd_Sum" Type="Int32" Nullable="false" />
           <Property Name="Red_Odd_Sum_Mantissa" Type="Int32" Nullable="false" />
           <Property Name="Red_Even_Sum" Type="Int32" Nullable="false" />
           <Property Name="Red_Even_Sum_Mantissa" Type="Int32" Nullable="false" />
@@ -966,8 +965,8 @@
                 <ScalarProperty Name="Red_Repeat_Previous_8" ColumnName="Red_Repeat_Previous_8" />
                 <ScalarProperty Name="Red_Repeat_Previous_9" ColumnName="Red_Repeat_Previous_9" />
                 <ScalarProperty Name="Red_Sum" ColumnName="Red_Sum" />
-                <ScalarProperty Name="Red_Sum_Mantissa_" ColumnName="Red_Sum_Mantissa " />
-                <ScalarProperty Name="Red_Odd_Sum_" ColumnName="Red_Odd_Sum " />
+                <ScalarProperty Name="Red_Sum_Mantissa" ColumnName="Red_Sum_Mantissa " />
+                <ScalarProperty Name="Red_Odd_Sum" ColumnName="Red_Odd_Sum " />
                 <ScalarProperty Name="Red_Odd_Sum_Mantissa" ColumnName="Red_Odd_Sum_Mantissa" />
                 <ScalarProperty Name="Red_Even_Sum" ColumnName="Red_Even_Sum" />
                 <ScalarProperty Name="Red_Even_Sum_Mantissa" ColumnName="Red_Even_Sum_Mantissa" />
@@ -1357,6 +1356,7 @@
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

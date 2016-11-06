@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,7 @@ namespace DBSQLService.Data
     {
         private static DBSQLClient _instance = null;
 
+        private SqlConnectionStringBuilder builder = null;
         private DBHistoryEntity context = new DBHistoryEntity();
 
         public static DBSQLClient Instance()
@@ -37,7 +39,32 @@ namespace DBSQLService.Data
             detailList = context.Details.ToList();
             omissionList = context.Omissions.ToList();
             attributeList = context.Attributes.ToList();
-        } 
+        }
+
+        public void GetRecordsFromEnd(int count, out List<Basic> basicList, out List<Detail> detailList,
+            out List<Omission> omissionList, out List<Attribute> attributeList)
+        {
+            try
+            {
+                string sql = "Select Top " + count.ToString() + " * FROM ";
+                basicList = context.Basics.SqlQuery(sql + "Basic Order BY Issue DESC").ToList();
+                basicList.Reverse();
+                detailList = context.Details.SqlQuery(sql + "Detail Order BY Issue DESC").ToList();
+                detailList.Reverse();
+                omissionList = context.Omissions.SqlQuery(sql + "Omission Order BY Issue DESC").ToList();
+                omissionList.Reverse();
+                attributeList = context.Attributes.SqlQuery(sql + "Attributes Order BY Issue DESC").ToList();
+                attributeList.Reverse();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                basicList = null;
+                detailList = null;
+                omissionList = null;
+                attributeList = null;
+            }
+        }
 
         public bool GetRecord(int issue, out Basic basic, out Detail detail,
             out Omission omission, out Attribute attribute)
@@ -46,6 +73,19 @@ namespace DBSQLService.Data
             detail = context.Details.Find(issue);
             omission = context.Omissions.Find(issue);
             attribute = context.Attributes.Find(issue);
+            if (basic == null || detail == null || omission == null || attribute == null)
+                return false;
+
+            return true;
+        }
+
+        public bool GetRecordByIndex(int index, out Basic basic, out Detail detail,
+            out Omission omission, out Attribute attribute)
+        {
+            basic = context.Basics.ElementAt<Basic>(index);
+            detail = context.Details.ElementAt<Detail>(index);
+            omission = context.Omissions.ElementAt<Omission>(index);
+            attribute = context.Attributes.ElementAt<Attribute>(index);
             if (basic == null || detail == null || omission == null || attribute == null)
                 return false;
 
@@ -90,41 +130,44 @@ namespace DBSQLService.Data
         {
             try
             {
-                System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder();
-                builder["Server"] = "ppuvjzarol.database.windows.net";
-                builder["User ID"] = "pi3011314@ppuvjzarol.database.windows.net";
-                builder["Password"] = "zzx&jjj1314";
-
-                builder["Database"] = "dbhistory";
-                builder["Trusted_Connection"] = false;
-                builder["Integrated Security"] = false;
-                builder["Encrypt"] = true;
-
-                //1. Define an Exponential Backoff retry strategy for Azure SQL Database throttling (ExponentialBackoff Class). An exponential back-off strategy will gracefully back off the load on the service.
-                int retryCount = 4;
-                int minBackoffDelayMilliseconds = 2000;
-                int maxBackoffDelayMilliseconds = 8000;
-                int deltaBackoffMilliseconds = 2000;
-
-                ExponentialBackoff exponentialBackoffStrategy =
-                  new ExponentialBackoff("exponentialBackoffStrategy",
-                      retryCount,
-                      TimeSpan.FromMilliseconds(minBackoffDelayMilliseconds),
-                      TimeSpan.FromMilliseconds(maxBackoffDelayMilliseconds),
-                      TimeSpan.FromMilliseconds(deltaBackoffMilliseconds));
-
-                //2. Set a default strategy to Exponential Backoff.
-                RetryManager manager = new RetryManager(new List<RetryStrategy>
+                if (builder == null)
                 {
-                    exponentialBackoffStrategy
-                }, "exponentialBackoffStrategy");
+                    builder = new SqlConnectionStringBuilder();
+                    builder["Server"] = "ppuvjzarol.database.windows.net";
+                    builder["User ID"] = "pi3011314@ppuvjzarol.database.windows.net";
+                    builder["Password"] = "zzx&jjj1314";
 
-                //3. Set a default Retry Manager. A RetryManager provides retry functionality, or if you are using declarative configuration, you can invoke the RetryPolicyFactory.CreateDefault
-                RetryManager.SetDefault(manager);
+                    builder["Database"] = "dbhistory";
+                    builder["Trusted_Connection"] = false;
+                    builder["Integrated Security"] = false;
+                    builder["Encrypt"] = true;
+
+                    //1. Define an Exponential Backoff retry strategy for Azure SQL Database throttling (ExponentialBackoff Class). An exponential back-off strategy will gracefully back off the load on the service.
+                    int retryCount = 4;
+                    int minBackoffDelayMilliseconds = 2000;
+                    int maxBackoffDelayMilliseconds = 8000;
+                    int deltaBackoffMilliseconds = 2000;
+
+                    ExponentialBackoff exponentialBackoffStrategy = new ExponentialBackoff("exponentialBackoffStrategy",
+                                                                          retryCount,
+                                                                          TimeSpan.FromMilliseconds(minBackoffDelayMilliseconds),
+                                                                          TimeSpan.FromMilliseconds(maxBackoffDelayMilliseconds),
+                                                                          TimeSpan.FromMilliseconds(deltaBackoffMilliseconds));
+
+                    //2. Set a default strategy to Exponential Backoff.
+                    RetryManager manager = new RetryManager(new List<RetryStrategy>
+                    {
+                        exponentialBackoffStrategy
+                    }, "exponentialBackoffStrategy");
+
+                    //3. Set a default Retry Manager. A RetryManager provides retry functionality, or if you are using declarative configuration, you can invoke the RetryPolicyFactory.CreateDefault
+                    RetryManager.SetDefault(manager);
+                }
 
                 //4. Define a default SQL Connection retry policy and SQL Command retry policy. A policy provides a retry mechanism for unreliable actions and transient conditions.
-                RetryPolicy retryConnectionPolicy = manager.GetDefaultSqlConnectionRetryPolicy();
-                RetryPolicy retryCommandPolicy = manager.GetDefaultSqlCommandRetryPolicy();
+                RetryManager retryManager = RetryManager.Instance;
+                RetryPolicy retryConnectionPolicy = retryManager.GetDefaultSqlConnectionRetryPolicy();
+                RetryPolicy retryCommandPolicy = retryManager.GetDefaultSqlCommandRetryPolicy();
 
                 //5. Create a function that will retry the connection using a ReliableSqlConnection.
                 retryConnectionPolicy.ExecuteAction(() =>
