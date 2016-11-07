@@ -354,6 +354,9 @@ namespace DBSQLService
                 pendingFiles.Add("Version.xml");
             }
 
+            // reload the latest issue.
+            DBSQLClient.Instance().RefreshRecord(data.Lottery.Issue);
+
             return new CommitReleaseResultPocket()
             {
                 ErrorMessage = "",
@@ -927,7 +930,7 @@ namespace DBSQLService
                 CloudBlockBlob srcBlob = DBCloudStorageClient.Instance().GetBlockBlob(container, actionFileName);
                 CloudBlockBlob targetBlob = DBCloudStorageClient.Instance().GetBlockBlob("dblotterydata", actionFileName);
 
-                string result = targetBlob.StartCopyFromBlob(srcBlob);
+                string result = targetBlob.StartCopy(srcBlob);
 
                 // delete the source file.
                 srcBlob.Delete();

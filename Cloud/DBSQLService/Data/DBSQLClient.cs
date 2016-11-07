@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
@@ -79,36 +80,11 @@ namespace DBSQLService.Data
             return true;
         }
 
-        public bool GetRecordByIndex(int index, out Basic basic, out Detail detail,
-            out Omission omission, out Attribute attribute)
-        {
-            basic = context.Basics.ElementAt<Basic>(index);
-            detail = context.Details.ElementAt<Detail>(index);
-            omission = context.Omissions.ElementAt<Omission>(index);
-            attribute = context.Attributes.ElementAt<Attribute>(index);
-            if (basic == null || detail == null || omission == null || attribute == null)
-                return false;
-
-            return true;
-        }
-
         public bool GetRecordBasic(int issue, out Basic basic, out Detail detail)
         {
             basic = context.Basics.Find(issue);
             detail = context.Details.Find(issue);
             if (basic == null || detail == null)
-                return false;
-
-            return true;
-        }
-
-        public bool GetLastRecord(out Basic basic, out Detail detail, out Omission omission, out Attribute attribute)
-        {
-            basic = context.Basics.AsEnumerable().Last();
-            detail = context.Details.AsEnumerable().Last();
-            omission = context.Omissions.AsEnumerable().Last();
-            attribute = context.Attributes.AsEnumerable().Last();
-            if (basic == null || detail == null || omission == null || attribute == null)
                 return false;
 
             return true;
@@ -120,10 +96,13 @@ namespace DBSQLService.Data
             return basic.Issue;
         }
 
-        public DateTime GetLastReleaseTime()
+        public void RefreshRecord(int issue)
         {
-            Detail detail = context.Details.AsEnumerable().Last();
-            return detail.Date;
+            IObjectContextAdapter objCtxAdepter = context as IObjectContextAdapter;
+            objCtxAdepter.ObjectContext.Detach(context.Basics.Find(issue));
+            objCtxAdepter.ObjectContext.Detach(context.Details.Find(issue));
+            objCtxAdepter.ObjectContext.Detach(context.Omissions.Find(issue));
+            objCtxAdepter.ObjectContext.Detach(context.Attributes.Find(issue));
         }
 
         public string ExecuteSqlQueries(string sqlLines)
