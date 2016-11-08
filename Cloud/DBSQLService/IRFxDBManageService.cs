@@ -13,6 +13,24 @@ namespace DBSQLService
     public class MessagePocket
     {
         [DataMember]
+        public string Title
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
+        public string Content
+        {
+            get;
+            set;
+        }
+    };
+
+    [DataContract]
+    public class NotificationPocket
+    {
+        [DataMember]
         public int[] Platforms
         {
             get;
@@ -20,7 +38,7 @@ namespace DBSQLService
         }
 
         [DataMember]
-        public string Message
+        public MessagePocket Message
         {
             get;
             set;
@@ -69,7 +87,15 @@ namespace DBSQLService
             BodyStyle = WebMessageBodyStyle.Bare,
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json)]
-        string PushNotification(MessagePocket message);
+        string PushNotification(NotificationPocket notification);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            UriTemplate = "/GetNotificationTemplates",
+            BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json)]
+        Dictionary<string, MessagePocket> GetNotificationTemplates();
 
         [OperationContract]
         [WebInvoke(Method = "GET",
@@ -110,9 +136,6 @@ namespace DBSQLService
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json)]
         CommitReleaseResultPocket GetPendingActions();
-
-        //[OperationContract]
-        //bool UpdateLotteryData(int issue, string data);
 
         [OperationContract]
         [WebInvoke(Method = "POST",

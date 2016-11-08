@@ -18,14 +18,155 @@ namespace DBSQLService
     // NOTE: In order to launch WCF Test Client for testing this service, please select DBManagement.svc or DBManagement.svc.cs at the Solution Explorer and start debugging.
     public class RFxDBManageService : IRFxDBManageService
     {
-        public string PushNotification(MessagePocket message)
+        public string PushNotification(NotificationPocket notification)
         {
-            foreach (int platform in message.Platforms)
+            foreach (int platform in notification.Platforms)
             {
-                DBNotification.Instance().PushNotification((PlatformIndex)platform, message.Message, new List<string>());
+                string notifyContent = FormatNotification(platform, notification.Message.Title, notification.Message.Content);
+
+                DBNotification.Instance().PushNotification((PlatformIndex)platform, notifyContent, new List<string>());
             }
 
-            return "Notified for platform " + message.Platforms.Count().ToString() + " with message: "+ message.Message;
+            return "success";
+        }
+
+        public Dictionary<string, MessagePocket> GetNotificationTemplates()
+        {
+            // get the last release information
+            CloudBlockBlob blob = DBCloudStorageClient.Instance().GetBlockBlob("dblotterydata", "ReleaseInformation.xml");
+
+            string text;
+            using (var memoryStream = new MemoryStream())
+            {
+                blob.DownloadToStream(memoryStream);
+                text = System.Text.Encoding.UTF8.GetString(memoryStream.ToArray());
+            }
+
+            // parse to a temp object for comparing.
+            LuckyBallsData.ReleaseInfo lastRelease = new LuckyBallsData.ReleaseInfo();
+
+            DBXmlDocument xml = new DBXmlDocument();
+            xml.Load(text);
+            lastRelease.Read(xml.Root());
+
+            int issue = lastRelease.CurrentIssue;
+
+            // get the data
+            Basic basic = null;
+            Detail detail = null;
+            Omission omission = null;
+            Attribute attribute = null;
+            if (!DBSQLClient.Instance().GetRecord(issue, out basic, out detail, out omission, out attribute))
+                return null;
+
+            Status lastStatus = ExtractStatus(omission, attribute);
+
+            Dictionary<string, MessagePocket> templates = new Dictionary<string, MessagePocket>();
+
+            string title = "", content = "";
+
+            //case "release":
+            {
+                title = "第" + issue.ToString() + "期" + " 开奖啦！";
+                content = "红: " + basic.Red1.ToString().PadLeft(2, '0') + " " +
+                            basic.Red2.ToString().PadLeft(2, '0') + " " +
+                            basic.Red3.ToString().PadLeft(2, '0') + " " +
+                            basic.Red4.ToString().PadLeft(2, '0') + " " +
+                            basic.Red5.ToString().PadLeft(2, '0') + " " +
+                            basic.Red6.ToString().PadLeft(2, '0') + " " +
+                            " 蓝: " + basic.Blue.ToString().PadLeft(2, '0');
+
+                templates.Add("NEW RELEASE", new MessagePocket() { Title = title, Content = content });                        
+            }
+
+            //    case "detail":
+            {
+                int firstPZCount = detail.Prize1Count;
+                int pool = detail.PoolAmount;
+                if (pool > 0)
+                {
+                    int expectFPZCount = pool / 5000000;
+
+                    title = "一等奖中出 " + firstPZCount.ToString() + " 注 " + Lottery.FormatMoney((int)detail.Prize1Bonus);
+                    content = "奖池 " + Lottery.FormatMoney((int)detail.PoolAmount) + ", 够开出 " + expectFPZCount.ToString() + " 个五百万！";
+
+                    templates.Add("RELEASE DETAIL", new MessagePocket() { Title = title, Content = content });
+                }
+            }
+
+            //    case "recommendation-red":
+            {
+                // top missed red.
+                int r_top = 0, r_mis = 0;
+                for (int i = 1; i <= 33; ++i)
+                {
+                    int redOmission = lastStatus.RedNumStates[i - 1].Omission;
+
+                    if (r_top == 0 || redOmission > r_mis)
+                    {
+                        r_top = i;
+                        r_mis = redOmission;
+                    }
+                }
+
+                title = "第" + lastRelease.NextIssue.ToString() + "期 今晚开奖！";
+                content = "参考：" + "红球 " + r_top.ToString().PadLeft(2, '0') + " 已连续 " + r_mis.ToString() + " 期未开出！";
+
+                templates.Add("RECOMMENDED RED", new MessagePocket() { Title = title, Content = content });
+            }
+
+            //    case "recommendation-blue":
+            {
+                // top missed blue.
+                int b_top = 0, b_mis = 0;
+                for (int i = 1; i <= 16; ++i)
+                {
+                    int blueOmission = lastStatus.BlueNumStates[i - 1].Omission;
+
+                    if (b_top == 0 || blueOmission > b_mis)
+                    {
+                        b_top = i;
+                        b_mis = blueOmission;
+                    }
+                }
+
+                title = "第" + lastRelease.NextIssue.ToString() + "期 今晚开奖！";
+                content = "参考：" + "蓝球 " + b_top.ToString().PadLeft(2, '0') + " 已连续 " + b_mis.ToString() + " 期未开出！";
+
+                templates.Add("RECOMMENDED BLUE", new MessagePocket() { Title = title, Content = content });
+            }
+
+            //    case "recommendation-attribute":
+            {
+                // top missed attribute
+                SchemeAttributeValueStatus state1 = null;
+                double prop1 = 0.0;
+                SchemeAttributes attriSets = ReadAttributes(issue);
+                foreach (KeyValuePair<string, SchemeAttributeCategory> cat in attriSets.Categories)
+                {
+                    foreach (KeyValuePair<string, SchemeAttribute> attri in cat.Value.Attributes)
+                    {
+                        foreach (SchemeAttributeValueStatus state in attri.Value.ValueStates)
+                        {
+                            if (state.AverageOmission < 1.0 || state.HitProbability < 5)
+                                continue; // skip the attribute happens too frequently.
+
+                            if (state1 == null || prop1 < state.ProtentialEnergy)
+                            {
+                                state1 = state;
+                                prop1 = state.ProtentialEnergy;
+                            }
+                        }
+                    }
+                }
+
+                title = "第" + lastRelease.NextIssue.ToString() + "期 今晚开奖！";
+                content = "参考：" + "属性 " + state1.DisplayName + " 偏离指数已达到 " + prop1.ToString() + " 倍！";
+
+                templates.Add("RECOMMENDED ATTRIBUTE", new MessagePocket() { Title = title, Content = content });
+            }
+
+            return templates;
         }
 
         public DBReleaseModel GetLatestRelease()
@@ -211,6 +352,71 @@ namespace DBSQLService
         }
 
         ////////////////////////////////////////////////////////////-Private-//////////////////////////////////////////////////////////////////        
+        private string FormatNotification(int platform, string title, string content)
+        {
+            if (title == "" || content == "")
+                return "";
+
+            if (platform == 1)
+            {
+                //<toast>
+                //    <visual>
+                //        <binding template="ToastImageAndText02">
+                //            <image id="1" src="https://dbdatastorage.blob.core.windows.net/dbnotification/Logo.png"/>
+                //            <text id="1">Title</text>
+                //            <text id="2">Content</text>
+                //        </binding>
+                //    </visual>
+                //</toast>
+                DBXmlDocument xml = new DBXmlDocument();
+                DBXmlNode toastNode = xml.AddRoot("toast");
+                DBXmlNode visualNode = toastNode.AddChild("visual");
+                DBXmlNode bindingNode = visualNode.AddChild("binding");
+
+                bindingNode.SetAttribute("template", "ToastImageAndText02");
+
+                DBXmlNode imageNode = bindingNode.AddChild("image");
+                imageNode.SetAttribute("id", "1");
+                imageNode.SetAttribute("src", "https://dbdatastorage.blob.core.windows.net/dbnotification/Logo.png");
+
+                DBXmlNode text1Node = bindingNode.AddChild("text");
+                text1Node.SetAttribute("id", "1");
+                text1Node.SetValue(title);
+
+                DBXmlNode text2Node = bindingNode.AddChild("text");
+                text2Node.SetAttribute("id", "2");
+                text2Node.SetValue(content);
+
+                // Save to file.
+                return xml.OuterXml();
+            }
+            else if (platform == 2)
+            {
+                //<?xml version=\"1.0\" encoding=\"utf-8\"?>
+                //<wp:Notification xmlns:wp=\"WPNotification\">
+                //    <wp:Toast>
+                //        <wp:Text1>Title</wp:Text1>
+                //        <wp:Text2>Content</wp:Text2>
+                //    </wp:Toast>
+                //</wp:Notification>
+
+                return "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
+                                "<wp:Notification xmlns:wp=\"WPNotification\">" +
+                                "<wp:Toast>" +
+                                "<wp:Text1>" + title + " " + "</wp:Text1>" +
+                                "<wp:Text2>" + content + "</wp:Text2>" +
+                                "</wp:Toast>" +
+                                "</wp:Notification>";
+            }
+            else if (platform == 3)
+            {
+                //"{\"title\":\"\",\"description\":\"test\"}"
+                return "{\"title\":\"" + title + "\",\"description\":\"" + content + "\"}";
+            }
+
+            return "";
+        }
+
         private CommitReleaseResultPocket _NorminateNewRelease(DBReleaseModel data)
         {
             List<string> pendingFiles = new List<string>();
@@ -605,9 +811,6 @@ namespace DBSQLService
 
         private Status CalculateStatusForNewIssue(Scheme lotScheme)
         {
-            // make sure attirubte template has been initilaized.
-            InitAttributeTemplate();
-
             Status curStatus = new Status();
 
             int currentCount = DBSQLClient.Instance().GetRecordCount();
@@ -853,7 +1056,7 @@ namespace DBSQLService
             return status;
         }
 
-        private void InitAttributeTemplate()
+        private SchemeAttributes NewAttributes()
         {
             if (AttributeUtil.GetAttributesTemplate() == null)
             {
@@ -877,6 +1080,8 @@ namespace DBSQLService
 
                 AttributeUtil.SetAttributesTemplate(_template);
             }
+
+            return AttributeUtil.GetAttributesTemplate().Clone();
         }
 
         private SchemeAttributes ReadAttributes(int issue)
@@ -889,7 +1094,7 @@ namespace DBSQLService
             DBXmlDocument xml = new DBXmlDocument();
             xml.Load(attriString);
 
-            SchemeAttributes attriSet = AttributeUtil.GetAttributesTemplate().Clone();
+            SchemeAttributes attriSet = NewAttributes();
             attriSet.ReadValueFromXml(xml.Root());
 
             return attriSet;
