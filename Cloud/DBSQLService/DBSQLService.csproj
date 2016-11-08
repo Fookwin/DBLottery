@@ -217,7 +217,6 @@
     </Compile>
     <Compile Include="Common\Util\XmlUtil.cs" />
     <Compile Include="Data\DBCloudStorageClient.cs" />
-    <Compile Include="Data\DBDataManager.cs" />
     <Compile Include="Data\DBDevice.cs" />
     <Compile Include="Data\DBNotification.cs" />
     <Compile Include="Data\DBSQLClient.cs" />

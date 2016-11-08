@@ -226,13 +226,6 @@ namespace DBSQLService
             if (attirSet == null)
                 return new CommitReleaseResultPocket() { ErrorMessage = "Fail to calcuate the attributes.", ReturnCode = 500 };
 
-            // calculate the release information.
-            int nextIssue = 0;
-            DateTime nextSellOfftime = DateTime.Now, nextReleaseDate = DateTime.Now;
-
-            // Get the information for next release.
-            _CalculateNextReleaseNumberAndTime(data.Lottery.Issue, data.Lottery.Date, ref nextIssue, ref nextSellOfftime, ref nextReleaseDate);
-
             // Get the detail
             Detail newDetail = ExtractDetail(data.Lottery);
 
@@ -286,6 +279,7 @@ namespace DBSQLService
                 // parse to a temp object for comparing.
                 LuckyBallsData.ReleaseInfo lastRelease = new LuckyBallsData.ReleaseInfo()
                 {
+                    CurrentIssue = data.Lottery.Issue,
                     NextIssue = data.NextRelease.Issue,
                     SellOffTime = data.NextRelease.CutOffTime,
                     NextReleaseTime = data.NextRelease.Date
@@ -297,7 +291,7 @@ namespace DBSQLService
                 lastRelease.IncludedBlues.Reset(data.Recommendation.BlueIncludes.ToArray());
 
                 DBXmlDocument xml = new DBXmlDocument();
-                DBXmlNode root = xml.AddRoot("Version");
+                DBXmlNode root = xml.AddRoot("Info");
                 lastRelease.Save(ref root);
 
                 DBCloudStorageClient.Instance().WriteTextAsBlob("data-release-pending", "ReleaseInformation.xml", xml.InnerXml());
@@ -611,6 +605,9 @@ namespace DBSQLService
 
         private Status CalculateStatusForNewIssue(Scheme lotScheme)
         {
+            // make sure attirubte template has been initilaized.
+            InitAttributeTemplate();
+
             Status curStatus = new Status();
 
             int currentCount = DBSQLClient.Instance().GetRecordCount();
@@ -730,7 +727,7 @@ namespace DBSQLService
             int currentCount = DBSQLClient.Instance().GetRecordCount();
 
             // Get the previous.
-            SchemeAttributes currentAttris = DBDataManager.Instance().ReadAttributes(currentIssue);
+            SchemeAttributes currentAttris = ReadAttributes(currentIssue);
             if (currentAttris == null)
                 return null;
 
@@ -836,10 +833,6 @@ namespace DBSQLService
             }
 
             // attributes
-
-            // make sure attirubte template has been initilaized.
-            InitAttributeTemplate();
-
             Type attributeType = typeof(Attribute);
             System.Reflection.PropertyInfo[] properties1 = attributeType.GetProperties();
             foreach (System.Reflection.PropertyInfo property in properties1)
@@ -884,6 +877,22 @@ namespace DBSQLService
 
                 AttributeUtil.SetAttributesTemplate(_template);
             }
+        }
+
+        private SchemeAttributes ReadAttributes(int issue)
+        {
+            // get the attributes file for this issue.
+            string attriString = DBCloudStorageClient.Instance().ReadBlobAsString("data-attributes", issue.ToString() + ".xml");
+            if (string.IsNullOrEmpty(attriString))
+                return null;
+
+            DBXmlDocument xml = new DBXmlDocument();
+            xml.Load(attriString);
+
+            SchemeAttributes attriSet = AttributeUtil.GetAttributesTemplate().Clone();
+            attriSet.ReadValueFromXml(xml.Root());
+
+            return attriSet;
         }
 
         private DBLotteryModel buildLotteryModel(Basic basic, Detail detail)
