@@ -283,7 +283,7 @@ namespace DBSQLService
             if (latest.Lottery.Issue == releaseData.Lottery.Issue)
             {
                 // update existing
-                return _UpdateLatestRelease(releaseData);
+                return _UpdateLatestRelease(releaseData, latest);
             }
             else if (latest.NextRelease.Issue == releaseData.Lottery.Issue)
             {
@@ -453,8 +453,9 @@ namespace DBSQLService
 
                 attirSet.SaveValueToXml(ref root);
 
-                DBCloudStorageClient.Instance().WriteTextAsBlob("data-release-pending", "LatestAttributes.xml", xml.InnerXml());
-                pendingFiles.Add("LatestAttributes.xml");
+                string attriFileName = "LatestAttributes." + data.Lottery.Issue.ToString() + ".xml";
+                DBCloudStorageClient.Instance().WriteTextAsBlob("data-release-pending", attriFileName, xml.InnerXml());
+                pendingFiles.Add(attriFileName);
             }
 
             // updating version
@@ -504,6 +505,9 @@ namespace DBSQLService
                 pendingFiles.Add("ReleaseInformation.xml");
             }
 
+            // update windows notifications
+            UpdateWindowsTileNotification(data.Lottery.Issue, newScheme, newDetail, newStatus, attirSet, ref pendingFiles);
+
             return new CommitReleaseResultPocket()
             {
                 ErrorMessage = "",
@@ -513,14 +517,515 @@ namespace DBSQLService
             };
         }
 
-        private CommitReleaseResultPocket _UpdateLatestRelease(DBReleaseModel data)
+        private void UpdateWindowsTileNotification(int issue, Scheme scheme, Detail detail, Status status, SchemeAttributes attributes,  ref List<string> pendingFiles)
+        {
+            string strIssue = "第" + issue.ToString() + "期";
+            string strScheme = scheme.ToString();
+            string betAmount = detail.BetAmount > 0 ? Lottery.FormatMoney(detail.BetAmount) : "统计中...";
+            string poolAmount = detail.PoolAmount > 0 ? Lottery.FormatMoney(detail.PoolAmount) : "统计中...";
+
+            int r_top1 = 0, r_top2 = 0, r_mis1 = 0, r_mis2 = 0;
+            for (int i = 1; i <= 33; ++i)
+            {
+                int omission = status.RedNumStates[i - 1].Omission;
+
+                if (r_top1 == 0 || omission > r_mis1)
+                {
+                    int pre = r_top1, preOmission = r_mis1;
+
+                    r_top1 = i;
+                    r_mis1 = omission;
+
+                    if (pre > 0)
+                    {
+                        r_top2 = pre;
+                        r_mis2 = preOmission;
+                    }
+                }
+                else if (r_top2 == 0 || omission > r_mis1)
+                {
+                    r_top2 = i;
+                    r_mis2 = omission;
+                }
+            }
+
+            int b_top = 0, b_mis = 0;
+            for (int i = 1; i <= 16; ++i)
+            {
+                int omission = status.BlueNumStates[i - 1].Omission;
+
+                if (b_top == 0 || omission > b_mis)
+                {
+                    b_top = i;
+                    b_mis = omission;
+                }
+            }
+
+            SchemeAttributeValueStatus state1 = null, state2 = null, state3 = null;
+            double prop1 = 0.0, prop2 = 0.0, prop3 = 0.0;
+            SchemeAttributes last = attributes;
+            foreach (KeyValuePair<string, SchemeAttributeCategory> cat in last.Categories)
+            {
+                foreach (KeyValuePair<string, SchemeAttribute> attri in cat.Value.Attributes)
+                {
+                    foreach (SchemeAttributeValueStatus state in attri.Value.ValueStates)
+                    {
+                        if (state.AverageOmission < 1.0)
+                            continue; // skip the attribute happens too frequently.
+
+                        if (state1 == null || prop1 < state.ProtentialEnergy)
+                        {
+                            if (state2 != null)
+                            {
+                                state3 = state2;
+                                prop3 = prop2;
+                            }
+
+                            if (state1 != null)
+                            {
+                                state2 = state1;
+                                prop2 = prop1;
+                            }
+
+                            state1 = state;
+                            prop1 = state.ProtentialEnergy;
+                        }
+                        else if (state2 == null || prop2 < state.ProtentialEnergy)
+                        {
+                            if (state2 != null)
+                            {
+                                state3 = state2;
+                                prop3 = prop2;
+                            }
+
+                            state2 = state;
+                            prop2 = state.ProtentialEnergy;
+                        }
+                        else if (state3 == null || prop3 < state.ProtentialEnergy)
+                        {
+                            state3 = state;
+                            prop3 = state.ProtentialEnergy;
+                        }
+                    }
+                }
+            }
+
+            #region Build Tiles - windows
+            // Generate Windows tile notification - default tile
+            {
+                //<tile>
+                //  <visual>
+                //    <binding template="TileWideImageAndText02">
+                //      <image id="1" src="https://dbdatastorage.blob.core.windows.net/dbnotification/WideLogo.png" alt="alt text"/>
+                //      <text id="1">最新开奖 第2013110期</text>
+                //      <text id="2">红:15 17 18 21 29 32 蓝:13</text>
+                //    </binding>  
+                //    <binding template="TileSquareImage">
+                //      <image id="1" src="https://dbdatastorage.blob.core.windows.net/dbnotification/Logo.png" alt="alt text"/>
+                //    </binding>
+                //  </visual>
+                //</tile>
+                DBXmlDocument xml = new DBXmlDocument();
+                DBXmlNode toastNode = xml.AddRoot("tile");
+                DBXmlNode visualNode = toastNode.AddChild("visual");
+
+                {
+                    DBXmlNode bindingNode = visualNode.AddChild("binding");
+
+                    bindingNode.SetAttribute("template", "TileWideImageAndText02");
+
+                    DBXmlNode imageNode = bindingNode.AddChild("image");
+                    imageNode.SetAttribute("id", "1");
+                    imageNode.SetAttribute("src", "https://dbdatastorage.blob.core.windows.net/dbnotification/WideLogo.png");
+                    imageNode.SetAttribute("alt", "alt text");
+
+                    DBXmlNode text1Node = bindingNode.AddChild("text");
+                    text1Node.SetAttribute("id", "1");
+                    text1Node.SetValue("最新开奖 " + strIssue);
+
+                    DBXmlNode text2Node = bindingNode.AddChild("text");
+                    text2Node.SetAttribute("id", "2");
+                    text2Node.SetValue("红:" + scheme.RedsExp + " 蓝:" + scheme.BlueExp);
+                }
+
+                {
+                    DBXmlNode bindingNode = visualNode.AddChild("binding");
+
+                    bindingNode.SetAttribute("template", "TileSquareImage");
+
+                    DBXmlNode imageNode = bindingNode.AddChild("image");
+                    imageNode.SetAttribute("id", "1");
+                    imageNode.SetAttribute("src", "https://dbdatastorage.blob.core.windows.net/dbnotification/Logo.png");
+                    imageNode.SetAttribute("alt", "alt text");
+                }
+
+                // Save to file.
+                DBCloudStorageClient.Instance().WriteTextAsBlob("data-release-pending", "Tile_Default.xml", xml.InnerXml());
+                pendingFiles.Add("Tile_Default.xml");
+            }
+
+            // 3. Generate windows tile notification - detail tile
+            {
+                //<tile>
+                //  <visual>
+                //    <binding template="TileWideSmallImageAndText02">
+                //      <image id="1" src="https://dbdatastorage.blob.core.windows.net/dbnotification/Draw.png" alt="alt text"/>
+                //      <text id="1">第2013110期</text>
+                //      <text id="2">15 17 18 21 29 32+13</text>
+                //      <text id="3">[销售]3亿4186万7256元</text>
+                //      <text id="4">[奖池]2亿7166万6100元</text>
+                //    </binding>  
+                //    <binding template="TileSquareText01">
+                //      <text id="1">第2013110期</text>
+                //      <text id="2">15 17 18</text>
+                //      <text id="3">21 29 32</text>
+                //      <text id="4">+13</text>
+                //    </binding> 
+                //  </visual>
+                //</tile>
+                DBXmlDocument xml = new DBXmlDocument();
+                DBXmlNode toastNode = xml.AddRoot("tile");
+                DBXmlNode visualNode = toastNode.AddChild("visual");
+
+                {
+                    DBXmlNode bindingNode = visualNode.AddChild("binding");
+
+                    bindingNode.SetAttribute("template", "TileWideSmallImageAndText02");
+
+                    DBXmlNode imageNode = bindingNode.AddChild("image");
+                    imageNode.SetAttribute("id", "1");
+                    imageNode.SetAttribute("src", "https://dbdatastorage.blob.core.windows.net/dbnotification/Draw.png");
+                    imageNode.SetAttribute("alt", "alt text");
+
+                    DBXmlNode text1Node = bindingNode.AddChild("text");
+                    text1Node.SetAttribute("id", "1");
+                    text1Node.SetValue(strIssue);
+
+                    DBXmlNode text2Node = bindingNode.AddChild("text");
+                    text2Node.SetAttribute("id", "2");
+                    text2Node.SetValue(strScheme);
+
+                    DBXmlNode text3Node = bindingNode.AddChild("text");
+                    text3Node.SetAttribute("id", "3");
+                    text3Node.SetValue("[销售] " + betAmount);
+
+                    DBXmlNode text4Node = bindingNode.AddChild("text");
+                    text4Node.SetAttribute("id", "4");
+                    text4Node.SetValue("[奖池] " + poolAmount);
+                }
+
+                {
+                    DBXmlNode bindingNode = visualNode.AddChild("binding");
+
+                    bindingNode.SetAttribute("template", "TileSquareText01");
+
+                    DBXmlNode text1Node = bindingNode.AddChild("text");
+                    text1Node.SetAttribute("id", "1");
+                    text1Node.SetValue(strIssue);
+
+                    DBXmlNode text2Node = bindingNode.AddChild("text");
+                    text2Node.SetAttribute("id", "2");
+                    text2Node.SetValue(scheme.RedsExp.Substring(0, 8));
+
+                    DBXmlNode text3Node = bindingNode.AddChild("text");
+                    text3Node.SetAttribute("id", "3");
+                    text3Node.SetValue(scheme.RedsExp.Substring(9, 8));
+
+                    DBXmlNode text4Node = bindingNode.AddChild("text");
+                    text4Node.SetAttribute("id", "4");
+                    text4Node.SetValue("+" + scheme.BlueExp);
+                }
+
+                // Save to file.
+                DBCloudStorageClient.Instance().WriteTextAsBlob("data-release-pending", "Tile_issue_details.xml", xml.InnerXml());
+                pendingFiles.Add("Tile_issue_details.xml");
+            }
+
+            // 4. Generate windows tile notification - attribute tile
+            {
+                //<tile>
+                //  <visual>
+                //    <binding template="TileWideSmallImageAndText02">
+                //      <image id="1" src="https://dbdatastorage.blob.core.windows.net/dbnotification/Attribute_Analysis.png" alt="alt text"/>
+                //      <text id="1">异常属性</text>
+                //      <text id="2">[8.2] 红球03 [出现]</text>
+                //      <text id="3">[7.5] 红球二六位和 [36~38]</text>
+                //      <text id="4">[7.1] 红球12位012对比 [0-1]</text>
+                //    </binding>  
+                //    <binding template="TileSquareText01">
+                //      <text id="1">异常属性</text>
+                //      <text id="2">红球03 [出现]</text>
+                //      <text id="3">红球二六位和 [36~38]</text>
+                //      <text id="4">红球12位012对比 [0-1]</text>
+                //    </binding> 
+                //  </visual>
+                //</tile>
+                DBXmlDocument xml = new DBXmlDocument();
+                DBXmlNode toastNode = xml.AddRoot("tile");
+                DBXmlNode visualNode = toastNode.AddChild("visual");
+
+                {
+                    DBXmlNode bindingNode = visualNode.AddChild("binding");
+
+                    bindingNode.SetAttribute("template", "TileWideSmallImageAndText02");
+
+                    DBXmlNode imageNode = bindingNode.AddChild("image");
+                    imageNode.SetAttribute("id", "1");
+                    imageNode.SetAttribute("src", "https://dbdatastorage.blob.core.windows.net/dbnotification/Attribute_Analysis.png");
+                    imageNode.SetAttribute("alt", "alt text");
+
+                    DBXmlNode text1Node = bindingNode.AddChild("text");
+                    text1Node.SetAttribute("id", "1");
+                    text1Node.SetValue("异常属性");
+
+                    DBXmlNode text2Node = bindingNode.AddChild("text");
+                    text2Node.SetAttribute("id", "2");
+                    text2Node.SetValue("[" + prop1.ToString("f2") + "] " + state1.DisplayName);
+
+                    DBXmlNode text3Node = bindingNode.AddChild("text");
+                    text3Node.SetAttribute("id", "3");
+                    text3Node.SetValue("[" + prop2.ToString("f2") + "] " + state2.DisplayName);
+
+                    DBXmlNode text4Node = bindingNode.AddChild("text");
+                    text4Node.SetAttribute("id", "4");
+                    text4Node.SetValue("[" + prop3.ToString("f2") + "] " + state3.DisplayName);
+                }
+
+                {
+                    DBXmlNode bindingNode = visualNode.AddChild("binding");
+
+                    bindingNode.SetAttribute("template", "TileSquareText01");
+
+                    DBXmlNode text1Node = bindingNode.AddChild("text");
+                    text1Node.SetAttribute("id", "1");
+                    text1Node.SetValue("异常属性");
+
+                    DBXmlNode text2Node = bindingNode.AddChild("text");
+                    text2Node.SetAttribute("id", "2");
+                    text2Node.SetValue(state1.DisplayName);
+
+                    DBXmlNode text3Node = bindingNode.AddChild("text");
+                    text3Node.SetAttribute("id", "3");
+                    text3Node.SetValue(state2.DisplayName);
+
+                    DBXmlNode text4Node = bindingNode.AddChild("text");
+                    text4Node.SetAttribute("id", "4");
+                    text4Node.SetValue(state3.DisplayName);
+                }
+
+                // Save to file.
+                DBCloudStorageClient.Instance().WriteTextAsBlob("data-release-pending", "Tile_attribute_analysis.xml", xml.InnerXml());
+                pendingFiles.Add("Tile_attribute_analysis.xml");
+            }
+
+            // 5. Generate windows tile notification - num analysis tile
+            {
+                //<tile>
+                //  <visual>
+                //    <binding template="TileWideSmallImageAndText02">
+                //      <image id="1" src="https://dbdatastorage.blob.core.windows.net/dbnotification/Number_Analysis.png" alt="alt text"/>
+                //      <text id="1">遗漏号码</text>
+                //      <text id="2">[红33] 连续[35]期未开出</text>
+                //      <text id="3">[红03] 连续[32]期未开出</text>
+                //      <text id="4">[蓝04] 连续[62]期未开出</text>
+                //    </binding>  
+                //    <binding template="TileSquareText01">
+                //      <text id="1">遗漏号码</text>
+                //      <text id="2">[红33] 遗漏35期</text>
+                //      <text id="3">[红03] 遗漏32期</text>
+                //      <text id="4">[蓝04] 遗漏62期</text>
+                //    </binding> 
+                //  </visual>
+                //</tile>
+                DBXmlDocument xml = new DBXmlDocument();
+                DBXmlNode toastNode = xml.AddRoot("tile");
+                DBXmlNode visualNode = toastNode.AddChild("visual");
+
+                {
+                    DBXmlNode bindingNode = visualNode.AddChild("binding");
+
+                    bindingNode.SetAttribute("template", "TileWideSmallImageAndText02");
+
+                    DBXmlNode imageNode = bindingNode.AddChild("image");
+                    imageNode.SetAttribute("id", "1");
+                    imageNode.SetAttribute("src", "https://dbdatastorage.blob.core.windows.net/dbnotification/Number_Analysis.png");
+                    imageNode.SetAttribute("alt", "alt text");
+
+                    DBXmlNode text1Node = bindingNode.AddChild("text");
+                    text1Node.SetAttribute("id", "1");
+                    text1Node.SetValue("遗漏号码");
+
+                    DBXmlNode text2Node = bindingNode.AddChild("text");
+                    text2Node.SetAttribute("id", "2");
+                    text2Node.SetValue("[红球" + r_top1.ToString().PadLeft(2, '0') + "] 连续[" + r_mis1.ToString() + "]期未开出");
+
+                    DBXmlNode text3Node = bindingNode.AddChild("text");
+                    text3Node.SetAttribute("id", "3");
+                    text3Node.SetValue("[红球" + r_top2.ToString().PadLeft(2, '0') + "] 连续[" + r_mis2.ToString() + "]期未开出");
+
+                    DBXmlNode text4Node = bindingNode.AddChild("text");
+                    text4Node.SetAttribute("id", "4");
+                    text4Node.SetValue("[蓝球" + b_top.ToString().PadLeft(2, '0') + "] 连续[" + b_mis.ToString() + "]期未开出");
+                }
+
+                {
+                    DBXmlNode bindingNode = visualNode.AddChild("binding");
+
+                    bindingNode.SetAttribute("template", "TileSquareText01");
+
+                    DBXmlNode text1Node = bindingNode.AddChild("text");
+                    text1Node.SetAttribute("id", "1");
+                    text1Node.SetValue("遗漏号码");
+
+                    DBXmlNode text2Node = bindingNode.AddChild("text");
+                    text2Node.SetAttribute("id", "2");
+                    text2Node.SetValue("[红球" + r_top1.ToString().PadLeft(2, '0') + "] 遗漏" + r_mis1.ToString() + "期");
+
+                    DBXmlNode text3Node = bindingNode.AddChild("text");
+                    text3Node.SetAttribute("id", "3");
+                    text3Node.SetValue("[红球" + r_top2.ToString().PadLeft(2, '0') + "] 遗漏" + r_mis2.ToString() + "期");
+
+                    DBXmlNode text4Node = bindingNode.AddChild("text");
+                    text4Node.SetAttribute("id", "4");
+                    text4Node.SetValue("[蓝球" + b_top.ToString().PadLeft(2, '0') + "] 遗漏" + b_mis.ToString() + "期");
+                }
+
+                // Save to file.
+                DBCloudStorageClient.Instance().WriteTextAsBlob("data-release-pending", "Tile_num_analysis.xml", xml.InnerXml());
+                pendingFiles.Add("Tile_num_analysis.xml");
+            }
+
+            #endregion
+        }
+
+        private void UpdateWindowsTileNotificationForDetail(int issue, Scheme scheme, Detail detail, ref List<string> pendingFiles)
+        {
+            string strIssue = "第" + issue.ToString() + "期";
+            string strScheme = scheme.ToString();
+            string betAmount = detail.BetAmount > 0 ? Lottery.FormatMoney(detail.BetAmount) : "统计中...";
+            string poolAmount = detail.PoolAmount > 0 ? Lottery.FormatMoney(detail.PoolAmount) : "统计中...";            
+
+            #region Build Tiles - windows            
+
+            // 3. Generate windows tile notification - detail tile
+            {
+                //<tile>
+                //  <visual>
+                //    <binding template="TileWideSmallImageAndText02">
+                //      <image id="1" src="https://dbdatastorage.blob.core.windows.net/dbnotification/Draw.png" alt="alt text"/>
+                //      <text id="1">第2013110期</text>
+                //      <text id="2">15 17 18 21 29 32+13</text>
+                //      <text id="3">[销售]3亿4186万7256元</text>
+                //      <text id="4">[奖池]2亿7166万6100元</text>
+                //    </binding>  
+                //    <binding template="TileSquareText01">
+                //      <text id="1">第2013110期</text>
+                //      <text id="2">15 17 18</text>
+                //      <text id="3">21 29 32</text>
+                //      <text id="4">+13</text>
+                //    </binding> 
+                //  </visual>
+                //</tile>
+                DBXmlDocument xml = new DBXmlDocument();
+                DBXmlNode toastNode = xml.AddRoot("tile");
+                DBXmlNode visualNode = toastNode.AddChild("visual");
+
+                {
+                    DBXmlNode bindingNode = visualNode.AddChild("binding");
+
+                    bindingNode.SetAttribute("template", "TileWideSmallImageAndText02");
+
+                    DBXmlNode imageNode = bindingNode.AddChild("image");
+                    imageNode.SetAttribute("id", "1");
+                    imageNode.SetAttribute("src", "https://dbdatastorage.blob.core.windows.net/dbnotification/Draw.png");
+                    imageNode.SetAttribute("alt", "alt text");
+
+                    DBXmlNode text1Node = bindingNode.AddChild("text");
+                    text1Node.SetAttribute("id", "1");
+                    text1Node.SetValue(strIssue);
+
+                    DBXmlNode text2Node = bindingNode.AddChild("text");
+                    text2Node.SetAttribute("id", "2");
+                    text2Node.SetValue(strScheme);
+
+                    DBXmlNode text3Node = bindingNode.AddChild("text");
+                    text3Node.SetAttribute("id", "3");
+                    text3Node.SetValue("[销售] " + betAmount);
+
+                    DBXmlNode text4Node = bindingNode.AddChild("text");
+                    text4Node.SetAttribute("id", "4");
+                    text4Node.SetValue("[奖池] " + poolAmount);
+                }
+
+                {
+                    DBXmlNode bindingNode = visualNode.AddChild("binding");
+
+                    bindingNode.SetAttribute("template", "TileSquareText01");
+
+                    DBXmlNode text1Node = bindingNode.AddChild("text");
+                    text1Node.SetAttribute("id", "1");
+                    text1Node.SetValue(strIssue);
+
+                    DBXmlNode text2Node = bindingNode.AddChild("text");
+                    text2Node.SetAttribute("id", "2");
+                    text2Node.SetValue(scheme.RedsExp.Substring(0, 8));
+
+                    DBXmlNode text3Node = bindingNode.AddChild("text");
+                    text3Node.SetAttribute("id", "3");
+                    text3Node.SetValue(scheme.RedsExp.Substring(9, 8));
+
+                    DBXmlNode text4Node = bindingNode.AddChild("text");
+                    text4Node.SetAttribute("id", "4");
+                    text4Node.SetValue("+" + scheme.BlueExp);
+                }
+
+                // Save to file.
+                DBCloudStorageClient.Instance().WriteTextAsBlob("data-release-pending", "Tile_issue_details.xml", xml.InnerXml());
+                pendingFiles.Add("Tile_issue_details.xml");
+            }
+
+            #endregion
+        }
+
+        private bool Equals(Detail first, Detail second)
+        {
+            return  first.More == second.More &&
+                    first.BetAmount == second.BetAmount &&
+                    first.PoolAmount == second.PoolAmount &&
+                    first.Prize1Bonus == second.Prize1Bonus &&
+                    first.Prize1Count == second.Prize1Count &&
+                    first.Prize2Bonus == second.Prize2Bonus &&
+                    first.Prize2Count == second.Prize2Count &&
+                    first.Prize3Count == second.Prize3Count &&
+                    first.Prize4Count == second.Prize4Count &&
+                    first.Prize5Count == second.Prize5Count &&
+                    first.Prize6Count == second.Prize6Count &&
+                    first.Date == second.Date &&
+                    first.Issue == second.Issue;
+        }
+
+        private bool Equals(DBVersionModel first, DBVersionModel second)
+        {
+            return first.LatestLotteryVersion == second.LatestLotteryVersion &&
+                    first.LatestIssue == second.LatestIssue &&
+                    first.HelpContentVersion == second.HelpContentVersion &&
+                    first.AttributeTemplateVersion == second.AttributeTemplateVersion &&
+                    first.AttributeDataVersion == second.AttributeDataVersion &&
+                    first.HistoryDataVersion == second.HistoryDataVersion &&
+                    first.MatrixDataVersion == second.MatrixDataVersion &&
+                    first.ReleaseDataVersion == second.ReleaseDataVersion;
+        }
+
+        private CommitReleaseResultPocket _UpdateLatestRelease(DBReleaseModel newData, DBReleaseModel curData)
         {
             List<string> pendingFiles = new List<string>();
 
             // Only details can be changed so far.
-            Detail newDetail = ExtractDetail(data.Lottery);
+            Detail newDetail = ExtractDetail(newData.Lottery);
+            Detail curDetail = ExtractDetail(curData.Lottery);
 
             // update sql
+            if (!Equals(newDetail, curDetail))
             {
                 // generate the SQL command lines file
                 string sql = GenerateSQLQueryForDetail(newDetail, true);
@@ -529,21 +1034,25 @@ namespace DBSQLService
 
                 DBCloudStorageClient.Instance().WriteTextAsBlob("data-release-pending", "Lottery.sql", sql);
                 pendingFiles.Add("Lottery.sql");
+
+                // update windows notifications
+                UpdateWindowsTileNotificationForDetail(newData.Lottery.Issue, ExtractScheme(newData.Lottery), newDetail, ref pendingFiles);
             }
 
             // updating version
+            if (!Equals(newData.DataVersion, curData.DataVersion))
             {
                 // parse to a temp object for comparing.
                 LuckyBallsData.DataVersion latestVersion = new LuckyBallsData.DataVersion()
                 {
-                    LatestIssue = data.DataVersion.LatestIssue,
-                    HistoryDataVersion = data.DataVersion.HistoryDataVersion,
-                    ReleaseDataVersion = data.DataVersion.ReleaseDataVersion,
-                    AttributeDataVersion = data.DataVersion.AttributeDataVersion,
-                    AttributeTemplateVersion = data.DataVersion.AttributeTemplateVersion,
-                    LatestLotteryVersion = data.DataVersion.LatestLotteryVersion,
-                    MatrixDataVersion = data.DataVersion.MatrixDataVersion,
-                    HelpContentVersion = data.DataVersion.HelpContentVersion
+                    LatestIssue = newData.DataVersion.LatestIssue,
+                    HistoryDataVersion = newData.DataVersion.HistoryDataVersion,
+                    ReleaseDataVersion = newData.DataVersion.ReleaseDataVersion,
+                    AttributeDataVersion = newData.DataVersion.AttributeDataVersion,
+                    AttributeTemplateVersion = newData.DataVersion.AttributeTemplateVersion,
+                    LatestLotteryVersion = newData.DataVersion.LatestLotteryVersion,
+                    MatrixDataVersion = newData.DataVersion.MatrixDataVersion,
+                    HelpContentVersion = newData.DataVersion.HelpContentVersion
                 };
 
                 DBXmlDocument xml = new DBXmlDocument();
@@ -553,9 +1062,6 @@ namespace DBSQLService
                 DBCloudStorageClient.Instance().WriteTextAsBlob("data-release-pending", "Version.xml", xml.InnerXml());
                 pendingFiles.Add("Version.xml");
             }
-
-            // reload the latest issue.
-            DBSQLClient.Instance().RefreshRecord(data.Lottery.Issue);
 
             return new CommitReleaseResultPocket()
             {
@@ -1140,11 +1646,31 @@ namespace DBSQLService
         {
             if (actionFileName.Substring(actionFileName.Length - 4) == ".xml")
             {
+                string targetContainer = "dblotterydata";
+                if (actionFileName.StartsWith("Tile_"))
+                {
+                    targetContainer = "dbnotification";
+                }
+
+                string targetFileName = actionFileName;
+                if (actionFileName.StartsWith("LatestAttributes"))
+                {
+                    targetFileName = "LatestAttributes.xml";
+                }
+
                 // copy the file to release folder
                 CloudBlockBlob srcBlob = DBCloudStorageClient.Instance().GetBlockBlob(container, actionFileName);
-                CloudBlockBlob targetBlob = DBCloudStorageClient.Instance().GetBlockBlob("dblotterydata", actionFileName);
+                CloudBlockBlob targetBlob = DBCloudStorageClient.Instance().GetBlockBlob(targetContainer, actionFileName);
 
                 string result = targetBlob.StartCopy(srcBlob);
+
+                if (targetFileName == "LatestAttributes.xml")
+                {
+                    // need copy this file to attributes container as well, and name it as issut nubmer.
+                    string issue = actionFileName.Split('.')[1];
+                    CloudBlockBlob attriBlob = DBCloudStorageClient.Instance().GetBlockBlob("data-attributes", issue + ".xml");
+                    result = attriBlob.StartCopy(srcBlob);
+                }
 
                 // delete the source file.
                 srcBlob.Delete();
@@ -1163,6 +1689,9 @@ namespace DBSQLService
                         // delete the source file.
                         CloudBlockBlob blob = DBCloudStorageClient.Instance().GetBlockBlob(container, actionFileName);
                         blob.Delete();
+
+                        // refresh the latest issue.
+                        DBSQLClient.Instance().RefreshRecord(DBSQLClient.Instance().GetLastIssue());
 
                         return true;
                     }
