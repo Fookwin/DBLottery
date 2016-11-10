@@ -1000,7 +1000,7 @@ namespace DBSQLService
                     first.Prize4Count == second.Prize4Count &&
                     first.Prize5Count == second.Prize5Count &&
                     first.Prize6Count == second.Prize6Count &&
-                    first.Date == second.Date &&
+                    first.Date.Equals(second.Date) &&
                     first.Issue == second.Issue;
         }
 
@@ -1014,6 +1014,25 @@ namespace DBSQLService
                     first.HistoryDataVersion == second.HistoryDataVersion &&
                     first.MatrixDataVersion == second.MatrixDataVersion &&
                     first.ReleaseDataVersion == second.ReleaseDataVersion;
+        }
+
+        private bool Equals(DBReleaseInfoModel first, DBReleaseInfoModel second)
+        {
+            return first.Issue == second.Issue &&
+                    first.Date.Equals(second.Date) &&
+                    first.CutOffTime.Equals(second.CutOffTime);
+        }
+
+        private bool Equals(DBRecommendationModel first, DBRecommendationModel second)
+        {
+            return first.RedIncludes.Count == second.RedIncludes.Count &&
+                    !first.RedIncludes.Except(second.RedIncludes).Any() &&
+                    first.RedExcludes.Count == second.RedExcludes.Count &&
+                    !first.RedExcludes.Except(second.RedExcludes).Any() &&
+                    first.BlueIncludes.Count == second.BlueIncludes.Count &&
+                    !first.BlueIncludes.Except(second.BlueIncludes).Any() &&
+                    first.BlueExcludes.Count == second.BlueExcludes.Count &&
+                    !first.BlueExcludes.Except(second.BlueExcludes).Any();
         }
 
         private CommitReleaseResultPocket _UpdateLatestRelease(DBReleaseModel newData, DBReleaseModel curData)
@@ -1037,6 +1056,31 @@ namespace DBSQLService
 
                 // update windows notifications
                 UpdateWindowsTileNotificationForDetail(newData.Lottery.Issue, ExtractScheme(newData.Lottery), newDetail, ref pendingFiles);
+            }
+
+            // update release information
+            if (!Equals(newData.NextRelease, curData.NextRelease) || !Equals(newData.Recommendation, curData.Recommendation))
+            {
+                // parse to a temp object for comparing.
+                LuckyBallsData.ReleaseInfo lastRelease = new LuckyBallsData.ReleaseInfo()
+                {
+                    CurrentIssue = newData.Lottery.Issue,
+                    NextIssue = newData.NextRelease.Issue,
+                    SellOffTime = newData.NextRelease.CutOffTime,
+                    NextReleaseTime = newData.NextRelease.Date
+                };
+
+                lastRelease.ExcludedReds.Reset(newData.Recommendation.RedExcludes.ToArray());
+                lastRelease.IncludedReds.Reset(newData.Recommendation.RedIncludes.ToArray());
+                lastRelease.ExcludedBlues.Reset(newData.Recommendation.BlueExcludes.ToArray());
+                lastRelease.IncludedBlues.Reset(newData.Recommendation.BlueIncludes.ToArray());
+
+                DBXmlDocument xml = new DBXmlDocument();
+                DBXmlNode root = xml.AddRoot("Info");
+                lastRelease.Save(ref root);
+
+                DBCloudStorageClient.Instance().WriteTextAsBlob("data-release-pending", "ReleaseInformation.xml", xml.InnerXml());
+                pendingFiles.Add("ReleaseInformation.xml");
             }
 
             // updating version
@@ -1673,7 +1717,7 @@ namespace DBSQLService
 
                 // copy the file to release folder
                 CloudBlockBlob srcBlob = DBCloudStorageClient.Instance().GetBlockBlob(container, actionFileName);
-                CloudBlockBlob targetBlob = DBCloudStorageClient.Instance().GetBlockBlob(targetContainer, actionFileName);
+                CloudBlockBlob targetBlob = DBCloudStorageClient.Instance().GetBlockBlob(targetContainer, targetFileName);
 
                 string result = targetBlob.StartCopy(srcBlob);
 
