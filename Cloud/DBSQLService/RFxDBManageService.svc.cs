@@ -1317,7 +1317,7 @@ namespace DBSQLService
 
         private Status CalculateStatusForNewIssue(Scheme lotScheme)
         {
-            Status curStatus = new Status();
+            Status curStatus = NewStatus();
 
             int currentCount = DBSQLClient.Instance().GetRecordCount();
 
@@ -1487,7 +1487,7 @@ namespace DBSQLService
 
         private Status ExtractStatus(Omission omssion, Attribute attribute)
         {
-            Status status = new Status();
+            Status status = NewStatus();
 
             // omission.
             Type numStateType = typeof(Omission);
@@ -1562,7 +1562,7 @@ namespace DBSQLService
             return status;
         }
 
-        private SchemeAttributes NewAttributes()
+        private SchemeAttributes InitAttributeTemplate()
         {
             if (AttributeUtil.GetAttributesTemplate() == null)
             {
@@ -1587,7 +1587,20 @@ namespace DBSQLService
                 AttributeUtil.SetAttributesTemplate(_template);
             }
 
-            return AttributeUtil.GetAttributesTemplate().Clone();
+            return AttributeUtil.GetAttributesTemplate();
+        }
+
+        private Status NewStatus()
+        {
+            // need make sure attribute template initialized.
+            InitAttributeTemplate();
+
+            return new Status();
+        }
+
+        private SchemeAttributes NewAttributes()
+        {
+            return InitAttributeTemplate().Clone();
         }
 
         private SchemeAttributes ReadAttributes(int issue)
