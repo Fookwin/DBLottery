@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    android:orientation="horizontal" >
+
+    <RadioGroup
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:text="红球间隔符："
+            android:textColor="@color/darkred" />
+
+        <RadioButton
+            android:id="@+id/RB_Red_Comma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="[,] 逗号"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <RadioButton
+            android:id="@+id/RB_Red_Dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false"
+            android:text="[.] 圆点"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <RadioButton
+            android:id="@+id/RB_Red_Strigula"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false"
+            android:text="[-] 横线"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <RadioButton
+            android:id="@+id/RB_Red_Colon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false"
+            android:text="[:] 冒号"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <RadioButton
+            android:id="@+id/RB_Red_Plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false"
+            android:text="[+] 加号"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <RadioButton
+            android:id="@+id/RB_Red_Space"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false"
+            android:text="[ ] 空格"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:text="蓝球间隔符："
+            android:textColor="@color/darkblue" />
+
+        <RadioButton
+            android:id="@+id/RB_Blue_Comma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="[,] 逗号" />
+
+        <RadioButton
+            android:id="@+id/RB_Blue_Dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false"
+            android:text="[.] 圆点" />
+
+        <RadioButton
+            android:id="@+id/RB_Blue_Strigula"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false"
+            android:text="[-] 横线" />
+
+        <RadioButton
+            android:id="@+id/RB_Blue_Colon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false"
+            android:text="[:] 冒号" />
+
+        <RadioButton
+            android:id="@+id/RB_Blue_Plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false"
+            android:text="[+] 加号" />
+
+        <RadioButton
+            android:id="@+id/RB_Blue_Space"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false"
+            android:text="[ ] 空格" />
+    </RadioGroup>
+
+</LinearLayout>

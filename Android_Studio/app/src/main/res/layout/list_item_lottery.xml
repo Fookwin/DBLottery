@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/translucent"
+    android:descendantFocusability="blocksDescendants"
+    android:gravity="top|center"
+    android:orientation="horizontal"
+    android:padding="5dip" >
+
+    <TextView
+        android:id="@+id/tip_text"
+        android:layout_width="22dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="top|center"
+        android:background="@color/lightgrey"
+        android:padding="5dp"
+        android:text="隔0期"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:gravity="center" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/issuenum_prefix"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/issue_number_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/issuenum_postfix"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:text="@string/release_time"
+                android:textColor="@color/grey" />
+
+            <TextView
+                android:id="@+id/release_time_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:enabled="false"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/Red_Btn_1"
+                android:layout_width="30dip"
+                android:layout_height="30dip"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_num_button_red"
+                android:enabled="false"
+                android:gravity="center"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/Red_Btn_2"
+                android:layout_width="30dip"
+                android:layout_height="30dip"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_num_button_red"
+                android:enabled="false"
+                android:gravity="center"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/Red_Btn_3"
+                android:layout_width="30dip"
+                android:layout_height="30dip"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_num_button_red"
+                android:enabled="false"
+                android:gravity="center"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/Red_Btn_4"
+                android:layout_width="30dip"
+                android:layout_height="30dip"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_num_button_red"
+                android:enabled="false"
+                android:gravity="center"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/Red_Btn_5"
+                android:layout_width="30dip"
+                android:layout_height="30dip"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_num_button_red"
+                android:enabled="false"
+                android:gravity="center"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/Red_Btn_6"
+                android:layout_width="30dip"
+                android:layout_height="30dip"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_num_button_red"
+                android:enabled="false"
+                android:gravity="center"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/Blue_Btn"
+                android:layout_width="30dip"
+                android:layout_height="30dip"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_num_button_blue"
+                android:enabled="false"
+                android:gravity="center"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </LinearLayout>
+    
+    <ImageView
+       android:layout_width="20dp"
+       android:layout_height="20dp"
+       android:layout_gravity="center"
+       android:src="@drawable/icon_goto" />
+
+</LinearLayout>

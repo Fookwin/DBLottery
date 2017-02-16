@@ -56,3 +56,7 @@ Cloud/DBWebApp/bin/
 Cloud/UpgradeLog.htm
 Cloud/DBCloudService.VC.opendb
 Cloud/DBCloudService.sdf
+Android_Studio/.gradle/
+Android_Studio/app/build/
+Android_Studio/.idea/
+Android_Studio/build/

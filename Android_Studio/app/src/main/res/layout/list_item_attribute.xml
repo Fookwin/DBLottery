@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/translucent"
+    android:orientation="horizontal"
+    android:paddingTop="10dip"
+    android:paddingBottom="10dip"
+    android:paddingLeft="5dip"
+    android:paddingRight="5dip" >
+
+    <FrameLayout
+        android:id="@+id/selected_marker"
+        android:layout_width="5dp"
+        android:layout_height="match_parent"
+        android:background="@color/darkcyan"
+        android:visibility="invisible" >
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/state_name"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/hit_count_text"
+        android:layout_width="40dip"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/hit_prob_text"
+        android:layout_width="40dip"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/average_obmission"
+        android:layout_width="40dip"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/max_obmission"
+        android:layout_width="40dip"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/current_obmission"
+        android:layout_width="40dip"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/protential_prob"
+        android:layout_width="40dip"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/darkgreen"
+        android:layout_gravity="center" 
+        android:gravity="center"/>
+
+</LinearLayout>

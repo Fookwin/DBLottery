@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="0dip"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical" >
+
+    <Button   
+        android:id="@+id/number_button"     
+        android:layout_width="30dip"
+        android:layout_height="30dip"
+        android:focusable="false"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:background="@drawable/background_num_button_red"><!-- set red background as default, will modify in code -->
+    </Button>
+
+    <TextView
+        android:id="@+id/number_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dip"
+        android:layout_gravity="center"
+        android:textColor="@color/grey"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:visibility="gone"
+        android:gravity="center"/>
+
+</LinearLayout>

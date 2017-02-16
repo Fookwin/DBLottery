@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:layout_gravity="fill" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingLeft="10dip"
+                android:text="红球号码"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/red" />
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:paddingLeft="10dip" >
+
+               <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="已选"
+                    android:textColor="@color/grey" />
+
+                <TextView
+                    android:id="@+id/candidate_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/red" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/unit_ge"
+                    android:textColor="@color/grey" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/red_select_pan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:layout_gravity="fill" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:text="出现个数"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/red" />
+
+            <LinearLayout
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:paddingLeft="10dip" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="出现"
+                    android:textColor="@color/grey" />
+
+                <TextView
+                    android:id="@+id/hit_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/red" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/unit_ge"
+                    android:textColor="@color/grey" />
+            </LinearLayout>
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp" >
+                
+                <Button
+                    android:id="@+id/hit_count_0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="2dip"
+                    android:background="@drawable/background_button_light"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/dimgrey"
+                    android:text="都不出" />
+
+                <Button
+                    android:id="@+id/hit_count_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="2dip"
+                    android:background="@drawable/background_button_light"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/dimgrey"
+                    android:text="出1个" />
+
+                <Button
+                    android:id="@+id/hit_count_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="2dip"
+                    android:background="@drawable/background_button_light"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/dimgrey"
+                    android:text="出2个" />
+
+                <Button
+                    android:id="@+id/hit_count_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="2dip"
+                    android:background="@drawable/background_button_light"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/dimgrey"
+                    android:text="出3个" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp" >
+                
+                <Button
+                    android:id="@+id/hit_count_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="2dip"
+                    android:background="@drawable/background_button_light"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/dimgrey"
+                    android:text="出4个" />
+
+                <Button
+                    android:id="@+id/hit_count_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="2dip"
+                    android:background="@drawable/background_button_light"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/dimgrey"
+                    android:text="出5个" />
+
+                <Button
+                    android:id="@+id/hit_count_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="2dip"
+                    android:background="@drawable/background_button_light"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/dimgrey"
+                    android:text="出6个" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

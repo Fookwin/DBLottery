@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="fill"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:id="@+id/content_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/view_navigate_tab_container"
+        android:layout_alignParentTop="true" >
+
+    </FrameLayout>
+
+    <!-- view navigate tab, invisible as default until the above progress done -->
+
+    <LinearLayout
+        android:id="@+id/view_navigate_tab_container"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/background_panel_bottom"
+        android:orientation="horizontal"
+        android:paddingTop="1dp" >
+        
+        <com.fookwin.lotteryspirit.view.NavigateButton
+            android:id="@+id/gohome_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+        </com.fookwin.lotteryspirit.view.NavigateButton>
+
+        <com.fookwin.lotteryspirit.view.NavigateButton
+            android:id="@+id/gostatistics_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" 
+            android:layout_weight="1">
+        </com.fookwin.lotteryspirit.view.NavigateButton>
+
+        <com.fookwin.lotteryspirit.view.NavigateButton
+            android:id="@+id/gopurchase_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" 
+            android:layout_weight="1">
+        </com.fookwin.lotteryspirit.view.NavigateButton>
+    </LinearLayout>
+
+</RelativeLayout>

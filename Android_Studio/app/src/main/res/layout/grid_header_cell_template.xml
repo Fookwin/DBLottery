@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"       
+        android:gravity="center"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        android:background="@drawable/background_grid_header_cell">    
+
+</TextView>

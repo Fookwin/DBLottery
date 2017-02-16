@@ -1,0 +1,59 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/num_info"
+        android:showAsAction="always|withText"
+        android:title="号码信息 (不显示)">
+        <menu>
+            <item
+                android:id="@+id/none_info"
+                android:title="@string/menu_display_none">
+            </item>
+            <item
+                android:id="@+id/omission_info"
+                android:title="@string/menu_display_omission">
+            </item>
+            <item
+                android:id="@+id/temperature_info"
+                android:title="@string/menu_display_temperature">
+            </item>
+            <item
+                android:id="@+id/dansha_info"
+                android:title="@string/menu_display_dansha">
+            </item>
+            <item
+                android:id="@+id/mark_info"
+                android:title="@string/menu_display_markup">
+            </item>
+        </menu>
+    </item>
+    
+    <item
+        android:id="@+id/assistants"
+        android:showAsAction="always|withText"
+        android:title="助手">
+        <menu>
+            <item
+                android:id="@+id/ref_history"
+                android:icon="@drawable/icon_lottery_history_white"
+                android:title="历史开奖">
+            </item>
+            <item
+                android:id="@+id/ref_chart"
+                android:icon="@drawable/icon_trend_chart_white"
+                android:title="号码走势">
+            </item>
+            <item
+                android:id="@+id/ref_attributes"
+                android:icon="@drawable/icon_attribute_analysis_white"
+                android:title="属性分析">
+            </item>
+			<item
+                android:id="@+id/filllist_helper"
+                android:icon="@drawable/icon_fill_form_white"
+                android:title="辅助填单">
+            </item>
+        </menu>
+    </item>
+
+</menu>

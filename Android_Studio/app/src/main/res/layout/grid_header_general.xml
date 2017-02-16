@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.fookwin.lotteryspirit"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:columnCount="3"
+    app:rowCount="2" >
+
+    <TextView
+		android:layout_width="75dp"
+        android:layout_height="50dp"
+        app:layout_column="0"
+        app:layout_gravity="center"
+        android:gravity="center"
+        app:layout_row="0"
+        app:layout_rowSpan="2"
+        android:text="@string/issue_text"
+        android:textColor="@color/white" 
+        android:textSize="12dp"
+        android:background="@drawable/background_grid_header_cell"/>
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        app:layout_column="1"
+        app:layout_columnSpan="2"
+        app:layout_gravity="center"
+        android:gravity="center"
+        app:layout_row="0"
+        android:text="@string/grid_lottery"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        android:background="@drawable/background_grid_header_cell" />
+
+    <TextView
+        android:layout_width="125dp"
+        android:layout_height="25dp"
+        app:layout_column="1"
+        app:layout_gravity="center"
+        android:gravity="center"
+        app:layout_row="1"
+        android:text="@string/grid_reds"
+        android:textColor="@color/white" 
+        android:textSize="12dp"
+        android:background="@drawable/background_grid_header_cell"/>
+
+    <TextView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        app:layout_column="2"
+        app:layout_gravity="center"
+        android:gravity="center"
+        app:layout_row="1"
+        android:text="@string/grid_blue"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        android:background="@drawable/background_grid_header_cell" />
+
+</android.support.v7.widget.GridLayout>
