@@ -1,4 +1,4 @@
-﻿package com.fookwin.lotterydata.util;
+package com.fookwin.lotterydata.util;
 
 import com.fookwin.lotterydata.data.SchemeAttribute;
 import com.fookwin.lotterydata.data.SchemeAttributeCategory;

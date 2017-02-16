@@ -1,4 +1,4 @@
-﻿package com.fookwin.lotterydata.data;
+package com.fookwin.lotterydata.data;
 
 //C# TO JAVA CONVERTER WARNING: Java does not allow user-defined value types. The behavior of this class will differ from the original:
 //ORIGINAL LINE: public struct NumState

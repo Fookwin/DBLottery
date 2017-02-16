@@ -1,4 +1,4 @@
-﻿package com.fookwin.lotteryspirit.data;
+package com.fookwin.lotteryspirit.data;
 
 import com.fookwin.lotterydata.data.SchemeAttribute;
 import com.fookwin.lotterydata.data.SchemeAttributeValueStatus;

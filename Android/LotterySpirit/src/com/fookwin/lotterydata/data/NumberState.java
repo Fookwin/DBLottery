@@ -1,4 +1,4 @@
-﻿package com.fookwin.lotterydata.data;
+package com.fookwin.lotterydata.data;
 
 import org.json.JSONException;
 import org.json.JSONObject;

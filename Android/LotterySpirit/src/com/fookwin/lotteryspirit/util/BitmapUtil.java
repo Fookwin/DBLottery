@@ -1,4 +1,4 @@
-﻿package com.fookwin.lotteryspirit.util;
+package com.fookwin.lotteryspirit.util;
 
 import android.graphics.Bitmap;
 import android.graphics.Matrix;

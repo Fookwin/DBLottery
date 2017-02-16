@@ -1,4 +1,4 @@
-﻿package com.fookwin.lotterydata.util;
+package com.fookwin.lotterydata.util;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

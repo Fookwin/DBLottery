@@ -1,4 +1,4 @@
-﻿package com.fookwin.lotteryspirit.view;
+package com.fookwin.lotteryspirit.view;
 
 import java.util.Date;
 import java.util.Timer;

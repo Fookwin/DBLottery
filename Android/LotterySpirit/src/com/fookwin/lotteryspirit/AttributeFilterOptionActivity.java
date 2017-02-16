@@ -1,4 +1,4 @@
-﻿package com.fookwin.lotteryspirit;
+package com.fookwin.lotteryspirit;
 
 import com.fookwin.lotterydata.util.DataUtil;
 import com.fookwin.lotteryspirit.data.FilterOption;

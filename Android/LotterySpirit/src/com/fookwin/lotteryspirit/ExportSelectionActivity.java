@@ -1,4 +1,4 @@
-﻿package com.fookwin.lotteryspirit;
+package com.fookwin.lotteryspirit;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;

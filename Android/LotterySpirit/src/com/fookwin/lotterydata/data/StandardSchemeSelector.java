@@ -1,4 +1,4 @@
-﻿package com.fookwin.lotterydata.data;
+package com.fookwin.lotterydata.data;
 
 import java.util.ArrayList;
 import java.util.HashMap;

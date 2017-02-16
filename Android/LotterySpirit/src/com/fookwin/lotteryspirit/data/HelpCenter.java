@@ -1,4 +1,4 @@
-﻿package com.fookwin.lotteryspirit.data;
+package com.fookwin.lotteryspirit.data;
 
 import android.content.ContentValues;
 import android.content.Context;

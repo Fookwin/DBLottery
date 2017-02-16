@@ -1,4 +1,4 @@
-﻿package com.fookwin.lotterydata.util;
+package com.fookwin.lotterydata.util;
 
 import java.util.ArrayList;
 

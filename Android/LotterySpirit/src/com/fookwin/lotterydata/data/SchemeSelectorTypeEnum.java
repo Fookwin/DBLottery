@@ -1,4 +1,4 @@
-﻿package com.fookwin.lotterydata.data;
+package com.fookwin.lotterydata.data;
 
 import android.annotation.SuppressLint;
 import java.util.HashMap;
