@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit;
+ï»¿package com.fookwin.lotteryspirit;
 
 import java.text.ParseException;
 
@@ -31,7 +31,7 @@ public class LotteryDetailActivity extends Activity
 		this.getActionBar().setDisplayHomeAsUpEnabled(true);
 		this.getActionBar().setDisplayOptions(0, ActionBar.DISPLAY_SHOW_HOME);
 		
-		getActionBar().setTitle("¿ª½±ÏêÇé");
+		getActionBar().setTitle("å¼€å¥–è¯¦æƒ…");
 		
 		detail_container = (LinearLayout) findViewById(R.id.detail_container);
 		
@@ -42,7 +42,7 @@ public class LotteryDetailActivity extends Activity
 		if (lot != null)
 		{	
 	        final ProgressDialog dialog = new ProgressDialog(this);
-	        dialog.setMessage("¼ÓÔØÀúÊ·ÏêÇé...");
+	        dialog.setMessage("åŠ è½½å†å²è¯¦æƒ…...");
 	        dialog.setIndeterminate(true);
 	        dialog.setCancelable(false);
 	        dialog.show();

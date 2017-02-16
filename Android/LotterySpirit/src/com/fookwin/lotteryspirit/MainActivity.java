@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit;
+ï»¿package com.fookwin.lotteryspirit;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -75,8 +75,8 @@ public class MainActivity extends Activity
 				
 				if (softVer.currentVersion < softVer.latestVersion)
 				{
-					NotificationUtil.ShowDialog(MainActivity.this, "¼ì²éµ½ÐÂ°æ±¾", softVer.releaseNotes, 
-							"Á¢¼´¸üÐÂ", "ÏÂ´ÎÔÙËµ", !softVer.schemeChanged,
+					NotificationUtil.ShowDialog(MainActivity.this, "æ£€æŸ¥åˆ°æ–°ç‰ˆæœ¬", softVer.releaseNotes, 
+							"ç«‹å³æ›´æ–°", "ä¸‹æ¬¡å†è¯´", !softVer.schemeChanged,
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog, int which) 
 								{
@@ -100,15 +100,15 @@ public class MainActivity extends Activity
 		gostatistics_btn = (NavigateButton) findViewById(R.id.gostatistics_btn);
 		goselection_btn = (NavigateButton) findViewById(R.id.gopurchase_btn);
 		
-		gohome_btn.setText("×îÐÂ");
+		gohome_btn.setText("æœ€æ–°");
 		gohome_btn.setImage(R.drawable.icon_news_red, R.drawable.icon_news_grey);
 		gohome_btn.setTextColor(res.getColor(R.color.darkred), res.getColor(R.color.grey));
 		
-		gostatistics_btn.setText("·ÖÎö");
+		gostatistics_btn.setText("åˆ†æž");
 		gostatistics_btn.setImage(R.drawable.icon_analysis_red, R.drawable.icon_analysis_grey);
 		gostatistics_btn.setTextColor(res.getColor(R.color.darkred), res.getColor(R.color.grey));
 		
-		goselection_btn.setText("Ñ¡ºÅ");
+		goselection_btn.setText("é€‰å·");
 		goselection_btn.setImage(R.drawable.icon_selection_red, R.drawable.icon_selection_grey);
 		goselection_btn.setTextColor(res.getColor(R.color.darkred), res.getColor(R.color.grey));
 		
@@ -238,14 +238,14 @@ public class MainActivity extends Activity
 	
 	private void showMessgeDialog() {
 		Builder builder = new AlertDialog.Builder(MainActivity.this);
-		builder.setTitle("ÍË³ö");
-		builder.setMessage("ÄúÈ·ÈÏÒªÍË³ö¸£Ó¯Ë«É«ÇòÂð£¿");
-		builder.setPositiveButton("È·¶¨", new DialogInterface.OnClickListener() {
+		builder.setTitle("é€€å‡º");
+		builder.setMessage("æ‚¨ç¡®è®¤è¦é€€å‡ºç¦ç›ˆåŒè‰²çƒå—ï¼Ÿ");
+		builder.setPositiveButton("ç¡®å®š", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
 				System.exit(0);
 			}
 		});
-		builder.setNegativeButton("²»", null);
+		builder.setNegativeButton("ä¸", null);
 		builder.create().show();
 	}
 }

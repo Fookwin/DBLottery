@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit;
+ï»¿package com.fookwin.lotteryspirit;
 
 import com.fookwin.lotterydata.data.History;
 import com.fookwin.lotterydata.data.Lottery;
@@ -61,13 +61,13 @@ public class PurchaseDetailActivity extends Activity
 			issue_text.setText(String.valueOf(info.Issue));
 			
 			TextView result_text = (TextView)findViewById(R.id.result_text);
-			result_text.setText(targetLot != null ? targetLot.getScheme().toString() : "µÈ´ý¿ª½±");
+			result_text.setText(targetLot != null ? targetLot.getScheme().toString() : "ç­‰å¾…å¼€å¥–");
 			
 			TextView cost_text = (TextView)findViewById(R.id.cost_text);
-			cost_text.setText(String.valueOf(info.Buy * 2) + "Ôª");
+			cost_text.setText(String.valueOf(info.Buy * 2) + "å…ƒ");
 			
 			TextView earning_text = (TextView)findViewById(R.id.earning_text);
-			earning_text.setText(info.Win < 0 ? (info.Win == -1 ? "¼ÆËã½±½ð" : "µÈ´ý¿ª½±") : (info.Win == 0 ? "Î´ÖÐ½±" : String.valueOf(info.Win) + "Ôª"));
+			earning_text.setText(info.Win < 0 ? (info.Win == -1 ? "è®¡ç®—å¥–é‡‘" : "ç­‰å¾…å¼€å¥–") : (info.Win == 0 ? "æœªä¸­å¥–" : String.valueOf(info.Win) + "å…ƒ"));
 
 			// selectors
 			ListView selector_list = (ListView) findViewById(R.id.selector_list);
@@ -88,7 +88,7 @@ public class PurchaseDetailActivity extends Activity
 						summary_frame.setVisibility(View.GONE);
 						fillter_frame.setVisibility(View.GONE);
 						scheme_frame.setVisibility(View.GONE);
-						btn.setText("v ÊÕÆð");
+						btn.setText("v æ”¶èµ·");
 					}
 					else
 					{
@@ -98,7 +98,7 @@ public class PurchaseDetailActivity extends Activity
 						if (bHasFilters)
 							fillter_frame.setVisibility(View.VISIBLE);
 						
-						btn.setText("^ Õ¹¿ª");
+						btn.setText("^ å±•å¼€");
 					}
 					
 					_showAll = !_showAll;
@@ -128,14 +128,14 @@ public class PurchaseDetailActivity extends Activity
 							summary_frame.setVisibility(View.GONE);
 							selector_frame.setVisibility(View.GONE);
 							scheme_frame.setVisibility(View.GONE);
-							btn.setText("v ÊÕÆð");
+							btn.setText("v æ”¶èµ·");
 						}
 						else
 						{
 							summary_frame.setVisibility(View.VISIBLE);
 							selector_frame.setVisibility(View.VISIBLE);
 							scheme_frame.setVisibility(View.VISIBLE);
-							btn.setText("^ Õ¹¿ª");
+							btn.setText("^ å±•å¼€");
 						}
 						
 						_showAll = !_showAll;
@@ -168,7 +168,7 @@ public class PurchaseDetailActivity extends Activity
 						summary_frame.setVisibility(View.GONE);
 						selector_frame.setVisibility(View.GONE);
 						fillter_frame.setVisibility(View.GONE);
-						btn.setText("v ÊÕÆð");
+						btn.setText("v æ”¶èµ·");
 					}
 					else
 					{
@@ -177,7 +177,7 @@ public class PurchaseDetailActivity extends Activity
 						if (bHasFilters)
 							fillter_frame.setVisibility(View.VISIBLE);
 						
-						btn.setText("^ Õ¹¿ª");
+						btn.setText("^ å±•å¼€");
 					}
 					
 					_showAll = !_showAll;
@@ -192,15 +192,15 @@ public class PurchaseDetailActivity extends Activity
 				public void onClick(View v) {
 					
 					Builder builder = new AlertDialog.Builder(PurchaseDetailActivity.this);
-					builder.setTitle("É¾³ý·½°¸");
-					builder.setMessage("È·ÈÏÒªÉ¾³ýµ±Ç°Ñ¡ºÅ·½°¸Âð£¿");
-					builder.setPositiveButton("È·¶¨", new DialogInterface.OnClickListener() {
+					builder.setTitle("åˆ é™¤æ–¹æ¡ˆ");
+					builder.setMessage("ç¡®è®¤è¦åˆ é™¤å½“å‰é€‰å·æ–¹æ¡ˆå—ï¼Ÿ");
+					builder.setPositiveButton("ç¡®å®š", new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
 							LBDataManager.GetInstance().getPurchaseManager().remove(id);
 							finish();
 						}
 					});
-					builder.setNegativeButton("²»", null);
+					builder.setNegativeButton("ä¸", null);
 					builder.create().show();
 				}
 			});

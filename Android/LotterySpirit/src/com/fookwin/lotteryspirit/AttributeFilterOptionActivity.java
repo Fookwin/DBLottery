@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit;
+ï»¿package com.fookwin.lotteryspirit;
 
 import com.fookwin.lotterydata.util.DataUtil;
 import com.fookwin.lotteryspirit.data.FilterOption;
@@ -44,7 +44,7 @@ public class AttributeFilterOptionActivity extends Activity
 		this.getActionBar().setDisplayOptions(0, ActionBar.DISPLAY_SHOW_HOME);
 		
 		happen_prop_editor = (NumberEditor) this.findViewById(R.id.happen_prop_editor);
-		happen_prop_editor.setTitle("³öÏÖ¸ÅÂÊ´óÓÚ£º");
+		happen_prop_editor.setTitle("å‡ºç°æ¦‚ç‡å¤§äºï¼š");
 		happen_prop_editor.setRegion(0, NumberEditor.MAXVALUE);
 		happen_prop_editor.setOnValueChangedHandler(new Handler()
 		{
@@ -57,7 +57,7 @@ public class AttributeFilterOptionActivity extends Activity
 		});
 		
 		current_omission_editor = (NumberEditor) this.findViewById(R.id.current_omission_editor);
-		current_omission_editor.setTitle("µ±Ç°ÒÅÂ©´óÓÚ£º");
+		current_omission_editor.setTitle("å½“å‰é—æ¼å¤§äºï¼š");
 		current_omission_editor.setRegion(0, NumberEditor.MAXVALUE);
 		current_omission_editor.setOnValueChangedHandler(new Handler()
 		{
@@ -70,7 +70,7 @@ public class AttributeFilterOptionActivity extends Activity
 		});
 		
 		prop_energy_editor = (NumberEditor) this.findViewById(R.id.prop_energy_editor);
-		prop_energy_editor.setTitle("Æ«ÀëÖ¸Êı´óÓÚ£º");
+		prop_energy_editor.setTitle("åç¦»æŒ‡æ•°å¤§äºï¼š");
 		prop_energy_editor.setRegion(0, NumberEditor.MAXVALUE);
 		prop_energy_editor.setOnValueChangedHandler(new Handler()
 		{
@@ -83,7 +83,7 @@ public class AttributeFilterOptionActivity extends Activity
 		});
 		
 		max_prop_energy_editor = (NumberEditor) this.findViewById(R.id.max_prop_energy_editor);
-		max_prop_energy_editor.setTitle("×î´óÆ«Àë´óÓÚ£º");
+		max_prop_energy_editor.setTitle("æœ€å¤§åç¦»å¤§äºï¼š");
 		max_prop_energy_editor.setRegion(0, NumberEditor.MAXVALUE);
 		max_prop_energy_editor.setOnValueChangedHandler(new Handler()
 		{
@@ -96,7 +96,7 @@ public class AttributeFilterOptionActivity extends Activity
 		});
 		
 		recommend_threshold_editor = (NumberEditor) this.findViewById(R.id.recommend_threshold_editor);
-		recommend_threshold_editor.setTitle("±ê¼ÇÆ«Àë´óÓÚ£º");
+		recommend_threshold_editor.setTitle("æ ‡è®°åç¦»å¤§äºï¼š");
 		recommend_threshold_editor.setRegion(1, 10);
 		recommend_threshold_editor.setOnValueChangedHandler(new Handler()
 		{
@@ -115,7 +115,7 @@ public class AttributeFilterOptionActivity extends Activity
 			public void onClick(View v) {
 				DataUtil.cleanLocalFiles();
 				
-				NotificationUtil.ShowMessage(AttributeFilterOptionActivity.this, "±¾µØÊı¾İÒÑÇå³ı£¬ ÏÂ´ÎÆô¶¯»á½«ÖØĞÂ¼ÓÔØ×îĞÂÊı¾İ¡£");
+				NotificationUtil.ShowMessage(AttributeFilterOptionActivity.this, "æœ¬åœ°æ•°æ®å·²æ¸…é™¤ï¼Œ ä¸‹æ¬¡å¯åŠ¨ä¼šå°†é‡æ–°åŠ è½½æœ€æ–°æ•°æ®ã€‚");
 			}
 		});
 		
@@ -126,7 +126,7 @@ public class AttributeFilterOptionActivity extends Activity
 			public void onClick(View v) {
 				LBDataManager.GetInstance().SaveAttributeFilterOption();
 				
-				NotificationUtil.ShowMessage(AttributeFilterOptionActivity.this, "ÉèÖÃÒÑ±£´æ£¬ÏÂ´ÎÆô¶¯»áÊ¹ÓÃµ±Ç°ÉèÖÃ");
+				NotificationUtil.ShowMessage(AttributeFilterOptionActivity.this, "è®¾ç½®å·²ä¿å­˜ï¼Œä¸‹æ¬¡å¯åŠ¨ä¼šä½¿ç”¨å½“å‰è®¾ç½®");
 			}
 		});
 		

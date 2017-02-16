@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit;
+ï»¿package com.fookwin.lotteryspirit;
 
 import com.fookwin.lotterydata.data.Purchase;
 import com.fookwin.lotteryspirit.data.LBDataManager;
@@ -160,7 +160,7 @@ public class SchemesActivity extends Activity {
 		}
 		
         final ProgressDialog dialog = new ProgressDialog(this);
-        dialog.setMessage("¼ÓÔØ×ßÊÆÍ¼Êı¾İ...");
+        dialog.setMessage("åŠ è½½èµ°åŠ¿å›¾æ•°æ®...");
         dialog.setIndeterminate(true);
         dialog.setCancelable(false);
         dialog.show();
@@ -193,9 +193,9 @@ public class SchemesActivity extends Activity {
 		int filteredCount = _editingPurchase.getFilteredCount();
 		int removedCount = _editingPurchase.getRemovedCount();
 		
-		String status = Integer.toString(count) + " ×¢  ";
-		String subStatus = "¹ıÂË " + Integer.toString(filteredCount) + " ×¢ ";
-		subStatus += "É¾³ı " + Integer.toString(removedCount) + " ×¢";
+		String status = Integer.toString(count) + " æ³¨  ";
+		String subStatus = "è¿‡æ»¤ " + Integer.toString(filteredCount) + " æ³¨ ";
+		subStatus += "åˆ é™¤ " + Integer.toString(removedCount) + " æ³¨";
 		
 		status_text.setText(status);			
 		substatus_text.setText(subStatus);

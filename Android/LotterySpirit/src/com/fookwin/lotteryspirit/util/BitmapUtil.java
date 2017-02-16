@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit.util;
+ï»¿package com.fookwin.lotteryspirit.util;
 
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
@@ -7,15 +7,15 @@ public class BitmapUtil
 {
    public static Bitmap GetNewBitmap(Bitmap oldBitmap,float screenWidth,float screenHeight,float newWidth,float newHeight)
    {
-	   //»ñÈ¡Í¼Æ¬Ô­Ê¼´óĞ¡
+	   //è·å–å›¾ç‰‡åŸå§‹å¤§å°
 	    int width = oldBitmap.getWidth();
 	    int height = oldBitmap.getHeight();
-	   //»ñÈ¡ÆÁÄ»´óĞ¡		 
+	   //è·å–å±å¹•å¤§å°		 
         float scaleWidth  = newWidth  / width;
         float scaleHeight = newHeight / height;
-        //µÃµ½ĞÂÍ¼Æ¬
+        //å¾—åˆ°æ–°å›¾ç‰‡
         Matrix matrix = new Matrix(); 
-        matrix.postScale(scaleWidth,scaleHeight); //³¤ºÍ¿í·Å´óËõĞ¡µÄ±ÈÀı
+        matrix.postScale(scaleWidth,scaleHeight); //é•¿å’Œå®½æ”¾å¤§ç¼©å°çš„æ¯”ä¾‹
         Bitmap newBitmap = Bitmap.createBitmap(oldBitmap,0,0,width,height,matrix,true);
 	    return newBitmap;
    }

@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit;
+ï»¿package com.fookwin.lotteryspirit;
 
 import com.fookwin.lotterydata.data.DantuoSchemeSelector;
 import com.fookwin.lotterydata.data.Purchase;
@@ -159,15 +159,15 @@ public class SelectorEditorActivity extends Activity
 		{
 			// if this page is the entry page of selection, confirm with users.
 			Builder builder = new AlertDialog.Builder(SelectorEditorActivity.this);
-			builder.setTitle("ÍË³öÑ¡ºÅ±à¼­");
-			builder.setMessage("·µ»Øºó½«Çå¿Õµ±Ç°Ñ¡ºÅ£¬È·ÈÏÒªÍË³öÑ¡ºÅÂğ£¿");
-			builder.setPositiveButton("È·¶¨", new DialogInterface.OnClickListener() {
+			builder.setTitle("é€€å‡ºé€‰å·ç¼–è¾‘");
+			builder.setMessage("è¿”å›åå°†æ¸…ç©ºå½“å‰é€‰å·ï¼Œç¡®è®¤è¦é€€å‡ºé€‰å·å—ï¼Ÿ");
+			builder.setPositiveButton("ç¡®å®š", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
 					LBDataManager.GetInstance().resetPendingPurchase();
 					finish();
 				}
 			});
-			builder.setNegativeButton("²»", null);
+			builder.setNegativeButton("ä¸", null);
 			builder.create().show();
 		}
 		else
@@ -210,7 +210,7 @@ public class SelectorEditorActivity extends Activity
 		}
 		else
 		{
-			status_text.setText("¹²" + Integer.toString(count) + "×¢");
+			status_text.setText("å…±" + Integer.toString(count) + "æ³¨");
 			status_text.setTextColor(clr_normal_text);
 			
 			confirm_button.setEnabled(true);
@@ -299,7 +299,7 @@ public class SelectorEditorActivity extends Activity
 		{
 			num_info_state = newState;
 			notifyNumInfoTypeChanged(newState);
-			number_info_menu_item.setTitle("ºÅÂëĞÅÏ¢ (" + item.getTitle() + ")");
+			number_info_menu_item.setTitle("å·ç ä¿¡æ¯ (" + item.getTitle() + ")");
 		}
 		
 		return super.onOptionsItemSelected(item);
@@ -355,7 +355,7 @@ public class SelectorEditorActivity extends Activity
 			
 			helpID = 32;		
 			standard_mode.updateNumbInfo(num_info_state);
-			actionBar.setTitle("±ê×¼Ñ¡ºÅ");
+			actionBar.setTitle("æ ‡å‡†é€‰å·");
 			
 			break;
 		}
@@ -379,7 +379,7 @@ public class SelectorEditorActivity extends Activity
 			
 			helpID = 33;
 			dantuo_mode.updateNumbInfo(num_info_state);
-			actionBar.setTitle("µ¨ÍÏÑ¡ºÅ");
+			actionBar.setTitle("èƒ†æ‹–é€‰å·");
 			break;
 		}
 		case RandomSelectorType:
@@ -402,7 +402,7 @@ public class SelectorEditorActivity extends Activity
 			
 			helpID = 34;
 			random_mode.updateNumbInfo(num_info_state);
-			actionBar.setTitle("ÖÇÄÜËæ»ú");
+			actionBar.setTitle("æ™ºèƒ½éšæœº");
 			break;
 		}
 		default:

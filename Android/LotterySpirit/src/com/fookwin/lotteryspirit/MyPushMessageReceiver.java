@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit;
+ï»¿package com.fookwin.lotteryspirit;
 
 import java.util.List;
 import android.content.Context;
@@ -12,11 +12,11 @@ import com.baidu.android.pushservice.PushMessageReceiver;
 import com.fookwin.lotterydata.util.DataUtil;
 
 /*
- * PushÏûÏ¢´¦Àíreceiver¡£Çë±àĞ´ÄúĞèÒªµÄ»Øµ÷º¯Êı£¬ Ò»°ãÀ´Ëµ£º onBindÊÇ±ØĞëµÄ£¬ÓÃÀ´´¦ÀístartWork·µ»ØÖµ£»
- *onMessageÓÃÀ´½ÓÊÕÍ¸´«ÏûÏ¢£» onSetTags¡¢onDelTags¡¢onListTagsÊÇtagÏà¹Ø²Ù×÷µÄ»Øµ÷£»
- *onNotificationClickedÔÚÍ¨Öª±»µã»÷Ê±»Øµ÷£» onUnbindÊÇstopWork½Ó¿ÚµÄ·µ»ØÖµ»Øµ÷
+ * Pushæ¶ˆæ¯å¤„ç†receiverã€‚è¯·ç¼–å†™æ‚¨éœ€è¦çš„å›è°ƒå‡½æ•°ï¼Œ ä¸€èˆ¬æ¥è¯´ï¼š onBindæ˜¯å¿…é¡»çš„ï¼Œç”¨æ¥å¤„ç†startWorkè¿”å›å€¼ï¼›
+ *onMessageç”¨æ¥æ¥æ”¶é€ä¼ æ¶ˆæ¯ï¼› onSetTagsã€onDelTagsã€onListTagsæ˜¯tagç›¸å…³æ“ä½œçš„å›è°ƒï¼›
+ *onNotificationClickedåœ¨é€šçŸ¥è¢«ç‚¹å‡»æ—¶å›è°ƒï¼› onUnbindæ˜¯stopWorkæ¥å£çš„è¿”å›å€¼å›è°ƒ
 
- * ·µ»ØÖµÖĞµÄerrorCode£¬½âÊÍÈçÏÂ£º
+ * è¿”å›å€¼ä¸­çš„errorCodeï¼Œè§£é‡Šå¦‚ä¸‹ï¼š
  *0 - Success
  *10001 - Network Problem
  *10101  Integrate Check Error
@@ -31,7 +31,7 @@ import com.fookwin.lotterydata.util.DataUtil;
  *30608 - Bind Relation Not Found
  *30609 - Bind Number Too Many
 
- * µ±ÄúÓöµ½ÒÔÉÏ·µ»Ø´íÎóÊ±£¬Èç¹û½âÊÍ²»ÁËÄúµÄÎÊÌâ£¬ÇëÓÃÍ¬Ò»ÇëÇóµÄ·µ»ØÖµrequestIdºÍerrorCodeÁªÏµÎÒÃÇ×·²éÎÊÌâ¡£
+ * å½“æ‚¨é‡åˆ°ä»¥ä¸Šè¿”å›é”™è¯¯æ—¶ï¼Œå¦‚æœè§£é‡Šä¸äº†æ‚¨çš„é—®é¢˜ï¼Œè¯·ç”¨åŒä¸€è¯·æ±‚çš„è¿”å›å€¼requestIdå’ŒerrorCodeè”ç³»æˆ‘ä»¬è¿½æŸ¥é—®é¢˜ã€‚
  *
  */
 
@@ -41,22 +41,22 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
     public static final String TAG = PushMessageReceiver.class.getSimpleName();
 
     /**
-     * µ÷ÓÃPushManager.startWorkºó£¬sdk½«¶Ôpush
-     * server·¢Æğ°ó¶¨ÇëÇó£¬Õâ¸ö¹ı³ÌÊÇÒì²½µÄ¡£°ó¶¨ÇëÇóµÄ½á¹ûÍ¨¹ıonBind·µ»Ø¡£ Èç¹ûÄúĞèÒªÓÃµ¥²¥ÍÆËÍ£¬ĞèÒª°ÑÕâÀï»ñÈ¡µÄchannel
-     * idºÍuser idÉÏ´«µ½Ó¦ÓÃserverÖĞ£¬ÔÙµ÷ÓÃserver½Ó¿ÚÓÃchannel idºÍuser id¸øµ¥¸öÊÖ»ú»òÕßÓÃ»§ÍÆËÍ¡£
+     * è°ƒç”¨PushManager.startWorkåï¼Œsdkå°†å¯¹push
+     * serverå‘èµ·ç»‘å®šè¯·æ±‚ï¼Œè¿™ä¸ªè¿‡ç¨‹æ˜¯å¼‚æ­¥çš„ã€‚ç»‘å®šè¯·æ±‚çš„ç»“æœé€šè¿‡onBindè¿”å›ã€‚ å¦‚æœæ‚¨éœ€è¦ç”¨å•æ’­æ¨é€ï¼Œéœ€è¦æŠŠè¿™é‡Œè·å–çš„channel
+     * idå’Œuser idä¸Šä¼ åˆ°åº”ç”¨serverä¸­ï¼Œå†è°ƒç”¨serveræ¥å£ç”¨channel idå’Œuser idç»™å•ä¸ªæ‰‹æœºæˆ–è€…ç”¨æˆ·æ¨é€ã€‚
      *
      * @param context
-     *            BroadcastReceiverµÄÖ´ĞĞContext
+     *            BroadcastReceiverçš„æ‰§è¡ŒContext
      * @param errorCode
-     *            °ó¶¨½Ó¿Ú·µ»ØÖµ£¬0 - ³É¹¦
+     *            ç»‘å®šæ¥å£è¿”å›å€¼ï¼Œ0 - æˆåŠŸ
      * @param appid
-     *            Ó¦ÓÃid¡£errorCode·Ç0Ê±Îªnull
+     *            åº”ç”¨idã€‚errorCodeé0æ—¶ä¸ºnull
      * @param userId
-     *            Ó¦ÓÃuser id¡£errorCode·Ç0Ê±Îªnull
+     *            åº”ç”¨user idã€‚errorCodeé0æ—¶ä¸ºnull
      * @param channelId
-     *            Ó¦ÓÃchannel id¡£errorCode·Ç0Ê±Îªnull
+     *            åº”ç”¨channel idã€‚errorCodeé0æ—¶ä¸ºnull
      * @param requestId
-     *            Ïò·şÎñ¶Ë·¢ÆğµÄÇëÇóid¡£ÔÚ×·²éÎÊÌâÊ±ÓĞÓÃ£»
+     *            å‘æœåŠ¡ç«¯å‘èµ·çš„è¯·æ±‚idã€‚åœ¨è¿½æŸ¥é—®é¢˜æ—¶æœ‰ç”¨ï¼›
      * @return none
      */
     @Override
@@ -96,39 +96,39 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
     }
 
     /**
-     * ½ÓÊÕÍ¸´«ÏûÏ¢µÄº¯Êı¡£
+     * æ¥æ”¶é€ä¼ æ¶ˆæ¯çš„å‡½æ•°ã€‚
      *
      * @param context
-     *            ÉÏÏÂÎÄ
+     *            ä¸Šä¸‹æ–‡
      * @param message
-     *            ÍÆËÍµÄÏûÏ¢
+     *            æ¨é€çš„æ¶ˆæ¯
      * @param customContentString
-     *            ×Ô¶¨ÒåÄÚÈİ,Îª¿Õ»òÕßjson×Ö·û´®
+     *            è‡ªå®šä¹‰å†…å®¹,ä¸ºç©ºæˆ–è€…jsonå­—ç¬¦ä¸²
      */
     @Override
     public void onMessage(Context context, String message,
             String customContentString) {
-    	String messageString = "Í¸´«ÏûÏ¢ message=\"" + message
+    	String messageString = "é€ä¼ æ¶ˆæ¯ message=\"" + message
 				+ "\" customContentString=" + customContentString;
 		Log.d(TAG, messageString);
     }
 
     /**
-     * ½ÓÊÕÍ¨Öªµã»÷µÄº¯Êı¡£
+     * æ¥æ”¶é€šçŸ¥ç‚¹å‡»çš„å‡½æ•°ã€‚
      *
      * @param context
-     *            ÉÏÏÂÎÄ
+     *            ä¸Šä¸‹æ–‡
      * @param title
-     *            ÍÆËÍµÄÍ¨ÖªµÄ±êÌâ
+     *            æ¨é€çš„é€šçŸ¥çš„æ ‡é¢˜
      * @param description
-     *            ÍÆËÍµÄÍ¨ÖªµÄÃèÊö
+     *            æ¨é€çš„é€šçŸ¥çš„æè¿°
      * @param customContentString
-     *            ×Ô¶¨ÒåÄÚÈİ£¬Îª¿Õ»òÕßjson×Ö·û´®
+     *            è‡ªå®šä¹‰å†…å®¹ï¼Œä¸ºç©ºæˆ–è€…jsonå­—ç¬¦ä¸²
      */
     @Override
     public void onNotificationClicked(Context context, String title,
             String description, String customContentString) {
-        String notifyString = "Í¨Öªµã»÷ title=\"" + title + "\" description=\""
+        String notifyString = "é€šçŸ¥ç‚¹å‡» title=\"" + title + "\" description=\""
                 + description + "\" customContent=" + customContentString;
         Log.d(TAG, notifyString);
         
@@ -139,16 +139,16 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
     }
 
     /**
-     * ½ÓÊÕÍ¨Öªµ½´ïµÄº¯Êı¡£
+     * æ¥æ”¶é€šçŸ¥åˆ°è¾¾çš„å‡½æ•°ã€‚
      *
      * @param context
-     *            ÉÏÏÂÎÄ
+     *            ä¸Šä¸‹æ–‡
      * @param title
-     *            ÍÆËÍµÄÍ¨ÖªµÄ±êÌâ
+     *            æ¨é€çš„é€šçŸ¥çš„æ ‡é¢˜
      * @param description
-     *            ÍÆËÍµÄÍ¨ÖªµÄÃèÊö
+     *            æ¨é€çš„é€šçŸ¥çš„æè¿°
      * @param customContentString
-     *            ×Ô¶¨ÒåÄÚÈİ£¬Îª¿Õ»òÕßjson×Ö·û´®
+     *            è‡ªå®šä¹‰å†…å®¹ï¼Œä¸ºç©ºæˆ–è€…jsonå­—ç¬¦ä¸²
      */
 
     @Override
@@ -162,18 +162,18 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
     }
 
     /**
-     * setTags() µÄ»Øµ÷º¯Êı¡£
+     * setTags() çš„å›è°ƒå‡½æ•°ã€‚
      *
      * @param context
-     *            ÉÏÏÂÎÄ
+     *            ä¸Šä¸‹æ–‡
      * @param errorCode
-     *            ´íÎóÂë¡£0±íÊ¾Ä³Ğ©tagÒÑ¾­ÉèÖÃ³É¹¦£»·Ç0±íÊ¾ËùÓĞtagµÄÉèÖÃ¾ùÊ§°Ü¡£
+     *            é”™è¯¯ç ã€‚0è¡¨ç¤ºæŸäº›tagå·²ç»è®¾ç½®æˆåŠŸï¼›é0è¡¨ç¤ºæ‰€æœ‰tagçš„è®¾ç½®å‡å¤±è´¥ã€‚
      * @param successTags
-     *            ÉèÖÃ³É¹¦µÄtag
+     *            è®¾ç½®æˆåŠŸçš„tag
      * @param failTags
-     *            ÉèÖÃÊ§°ÜµÄtag
+     *            è®¾ç½®å¤±è´¥çš„tag
      * @param requestId
-     *            ·ÖÅä¸ø¶ÔÔÆÍÆËÍµÄÇëÇóµÄid
+     *            åˆ†é…ç»™å¯¹äº‘æ¨é€çš„è¯·æ±‚çš„id
      */
     @Override
     public void onSetTags(Context context, int errorCode,
@@ -185,18 +185,18 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
     }
 
     /**
-     * delTags() µÄ»Øµ÷º¯Êı¡£
+     * delTags() çš„å›è°ƒå‡½æ•°ã€‚
      *
      * @param context
-     *            ÉÏÏÂÎÄ
+     *            ä¸Šä¸‹æ–‡
      * @param errorCode
-     *            ´íÎóÂë¡£0±íÊ¾Ä³Ğ©tagÒÑ¾­É¾³ı³É¹¦£»·Ç0±íÊ¾ËùÓĞtag¾ùÉ¾³ıÊ§°Ü¡£
+     *            é”™è¯¯ç ã€‚0è¡¨ç¤ºæŸäº›tagå·²ç»åˆ é™¤æˆåŠŸï¼›é0è¡¨ç¤ºæ‰€æœ‰tagå‡åˆ é™¤å¤±è´¥ã€‚
      * @param successTags
-     *            ³É¹¦É¾³ıµÄtag
+     *            æˆåŠŸåˆ é™¤çš„tag
      * @param failTags
-     *            É¾³ıÊ§°ÜµÄtag
+     *            åˆ é™¤å¤±è´¥çš„tag
      * @param requestId
-     *            ·ÖÅä¸ø¶ÔÔÆÍÆËÍµÄÇëÇóµÄid
+     *            åˆ†é…ç»™å¯¹äº‘æ¨é€çš„è¯·æ±‚çš„id
      */
     @Override
     public void onDelTags(Context context, int errorCode,
@@ -208,16 +208,16 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
     }
 
     /**
-     * listTags() µÄ»Øµ÷º¯Êı¡£
+     * listTags() çš„å›è°ƒå‡½æ•°ã€‚
      *
      * @param context
-     *            ÉÏÏÂÎÄ
+     *            ä¸Šä¸‹æ–‡
      * @param errorCode
-     *            ´íÎóÂë¡£0±íÊ¾ÁĞ¾Ùtag³É¹¦£»·Ç0±íÊ¾Ê§°Ü¡£
+     *            é”™è¯¯ç ã€‚0è¡¨ç¤ºåˆ—ä¸¾tagæˆåŠŸï¼›é0è¡¨ç¤ºå¤±è´¥ã€‚
      * @param tags
-     *            µ±Ç°Ó¦ÓÃÉèÖÃµÄËùÓĞtag¡£
+     *            å½“å‰åº”ç”¨è®¾ç½®çš„æ‰€æœ‰tagã€‚
      * @param requestId
-     *            ·ÖÅä¸ø¶ÔÔÆÍÆËÍµÄÇëÇóµÄid
+     *            åˆ†é…ç»™å¯¹äº‘æ¨é€çš„è¯·æ±‚çš„id
      */
     @Override
     public void onListTags(Context context, int errorCode, List<String> tags,
@@ -228,14 +228,14 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
     }
 
     /**
-     * PushManager.stopWork() µÄ»Øµ÷º¯Êı¡£
+     * PushManager.stopWork() çš„å›è°ƒå‡½æ•°ã€‚
      *
      * @param context
-     *            ÉÏÏÂÎÄ
+     *            ä¸Šä¸‹æ–‡
      * @param errorCode
-     *            ´íÎóÂë¡£0±íÊ¾´ÓÔÆÍÆËÍ½â°ó¶¨³É¹¦£»·Ç0±íÊ¾Ê§°Ü¡£
+     *            é”™è¯¯ç ã€‚0è¡¨ç¤ºä»äº‘æ¨é€è§£ç»‘å®šæˆåŠŸï¼›é0è¡¨ç¤ºå¤±è´¥ã€‚
      * @param requestId
-     *            ·ÖÅä¸ø¶ÔÔÆÍÆËÍµÄÇëÇóµÄid
+     *            åˆ†é…ç»™å¯¹äº‘æ¨é€çš„è¯·æ±‚çš„id
      */
     @Override
     public void onUnbind(Context context, int errorCode, String requestId) {
@@ -244,7 +244,7 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
         Log.d(TAG, responseString);
 
         if (errorCode == 0) {
-            // ½â°ó¶¨³É¹¦
+            // è§£ç»‘å®šæˆåŠŸ
         }
     }
 

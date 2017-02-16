@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit.view;
+ï»¿package com.fookwin.lotteryspirit.view;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -129,7 +129,7 @@ public class ConstraintListView
 				double maxEnergy = attri.getMaxProtentialEnergy();
 				boolean isRecommended = filterOption.recommend(maxEnergy);
 				tempItem.filter_text.setText(attri.getDisplayName());
-				tempItem.engry_score.setText("×î´óÆ«ÀëÖµ " + Double.toString(maxEnergy));				
+				tempItem.engry_score.setText("æœ€å¤§åç¦»å€¼ " + Double.toString(maxEnergy));				
 				tempItem.recommend_icon.setVisibility(isRecommended ? View.VISIBLE : View.INVISIBLE);
 			}
 			
@@ -203,7 +203,7 @@ public class ConstraintListView
 				double maxEnergy = attri.getMaxProtentialEnergy();
 				boolean isRecommended = filterOption.recommend(maxEnergy) && filterOption.passed(attri);
 				tempItem.filter_text.setText(attri.getDisplayName());
-				tempItem.engry_score.setText("×î´óÆ«ÀëÖµ " + Double.toString(maxEnergy));				
+				tempItem.engry_score.setText("æœ€å¤§åç¦»å€¼ " + Double.toString(maxEnergy));				
 				tempItem.recommend_icon.setVisibility(isRecommended ? View.VISIBLE : View.INVISIBLE);
 			}
 			

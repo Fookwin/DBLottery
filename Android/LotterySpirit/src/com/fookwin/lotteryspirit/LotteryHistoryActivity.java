@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit;
+锘縫ackage com.fookwin.lotteryspirit;
 
 import com.fookwin.LotterySpirit;
 import com.fookwin.lotterydata.data.History;
@@ -112,7 +112,7 @@ public class LotteryHistoryActivity extends Activity
 			{    
 				if (position < 10)
 				{
-					tempItem.tip_text.setText("隔" + Integer.toString(position) + "期");
+					tempItem.tip_text.setText("赂么" + Integer.toString(position) + "脝脷");
 					tempItem.tip_text.setVisibility(View.VISIBLE);
 				}
 				else
@@ -165,7 +165,7 @@ public class LotteryHistoryActivity extends Activity
 						else
 						{
 							btnLoadMore.setEnabled(false);
-							btnLoadMore.setText("没有了");
+							btnLoadMore.setText("脙禄脫脨脕脣");
 						}
 					}
 				});

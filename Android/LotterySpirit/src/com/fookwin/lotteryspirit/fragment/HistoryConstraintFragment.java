@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit.fragment;
+﻿package com.fookwin.lotteryspirit.fragment;
 
 import com.fookwin.lotterydata.data.HistoryDuplicateConstraint;
 import com.fookwin.lotteryspirit.R;

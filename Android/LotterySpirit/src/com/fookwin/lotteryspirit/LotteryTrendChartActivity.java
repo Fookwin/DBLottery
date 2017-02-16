@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit;
+ï»¿package com.fookwin.lotteryspirit;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -110,7 +110,7 @@ public class LotteryTrendChartActivity extends Activity
 		header_view.addToContainer(diagram_header);
 		
         final ProgressDialog dialog = new ProgressDialog(this);
-        dialog.setMessage("¼ÓÔØ×ßÊÆÍ¼Êı¾İ...");
+        dialog.setMessage("åŠ è½½èµ°åŠ¿å›¾æ•°æ®...");
         dialog.setIndeterminate(true);
         dialog.setCancelable(false);
         dialog.show();

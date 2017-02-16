@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit;
+ï»¿package com.fookwin.lotteryspirit;
 
 import com.fookwin.lotterydata.data.SchemeAttribute;
 import com.fookwin.lotterydata.data.SchemeAttributeValueStatus;
@@ -148,7 +148,7 @@ public class AttributeDetailActivity extends Activity
 			
 			getActionBar().setDisplayHomeAsUpEnabled(true);
 			getActionBar().setDisplayOptions(0, ActionBar.DISPLAY_SHOW_HOME);
-			getActionBar().setTitle("Ñ¡ÔñÊôÐÔÖµ");
+			getActionBar().setTitle("é€‰æ‹©å±žæ€§å€¼");
 			
 			// don't show ad view for attribute constraint editor.
 			adsMogoView.setVisibility(View.GONE);
@@ -159,7 +159,7 @@ public class AttributeDetailActivity extends Activity
 			
 			getActionBar().setDisplayHomeAsUpEnabled(true);
 			getActionBar().setDisplayOptions(0, ActionBar.DISPLAY_SHOW_HOME);
-			getActionBar().setTitle("ÊôÐÔÏêÇé");
+			getActionBar().setTitle("å±žæ€§è¯¦æƒ…");
 			
 			adsMogoView.setVisibility(View.VISIBLE);
 		}

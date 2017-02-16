@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit.fragment;
+锘縫ackage com.fookwin.lotteryspirit.fragment;
 
 import com.fookwin.lotteryspirit.LotteryAttributeActivity;
 import com.fookwin.lotteryspirit.LotteryHistoryActivity;
@@ -66,7 +66,7 @@ public class StatisticsFragment extends Fragment
 	{
 		ActionBar actionBar = getActivity().getActionBar();  
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-		actionBar.setTitle("数据分析");
+		actionBar.setTitle("脢媒戮脻路脰脦枚");
 		actionBar.setIcon(R.drawable.icon_analysis_grey);
 	}
 }

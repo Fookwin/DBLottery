@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit.view;
+ï»¿package com.fookwin.lotteryspirit.view;
 
 import java.util.Date;
 import java.util.Timer;
@@ -40,19 +40,19 @@ public class ReleaseTimeDownView
 				int days = (int)_totalSecond / 86400;
 				
 				String display = "";
-				display += StringFormater.padLeft(Integer.toString(days), 2, '0') + "Ìì ";
-				display += StringFormater.padLeft(Integer.toString(hours), 2, '0') + "Ê±";
-				display += StringFormater.padLeft(Integer.toString(minutes), 2, '0') + "·Ö ";
-				display += StringFormater.padLeft(Integer.toString(seconds), 2, '0') + "Ãë ";
+				display += StringFormater.padLeft(Integer.toString(days), 2, '0') + "å¤© ";
+				display += StringFormater.padLeft(Integer.toString(hours), 2, '0') + "æ—¶";
+				display += StringFormater.padLeft(Integer.toString(minutes), 2, '0') + "åˆ† ";
+				display += StringFormater.padLeft(Integer.toString(seconds), 2, '0') + "ç§’ ";
 				
                 next_issue_timespan.setText(display);
 
-                next_issue_state.setText(_totalSecond > _cutoffSecond ? "ÕýÔÚÈÈÏúÖÐ" : "ÏúÊÛÒÑ½ØÖ¹");
+                next_issue_state.setText(_totalSecond > _cutoffSecond ? "æ­£åœ¨çƒ­é”€ä¸­" : "é”€å”®å·²æˆªæ­¢");
             }
             else
             {
                 _timer.cancel();
-                next_issue_state.setText("¿ª½±Í³¼ÆÖÐ");
+                next_issue_state.setText("å¼€å¥–ç»Ÿè®¡ä¸­");
             }
         }
     };
@@ -105,9 +105,9 @@ public class ReleaseTimeDownView
         {
         	_totalSecond = 0;
 
-            String display = "00Ìì 00Ê± 00·Ö 00Ãë";
+            String display = "00å¤© 00æ—¶ 00åˆ† 00ç§’";
             next_issue_timespan.setText(display);
-            next_issue_state.setText("¿ª½±Í³¼ÆÖÐ");
+            next_issue_state.setText("å¼€å¥–ç»Ÿè®¡ä¸­");
         }
 
         String nextRelease = Integer.toString(LBDataManager.GetInstance().getReleaseInfo().getNextIssue());

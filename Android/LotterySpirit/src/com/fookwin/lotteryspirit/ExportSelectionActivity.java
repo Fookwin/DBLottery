@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit;
+ï»¿package com.fookwin.lotteryspirit;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
@@ -46,7 +46,7 @@ public class ExportSelectionActivity extends Activity
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
 			
-			NotificationUtil.ShowMessage(getApplicationContext(), "µ±Ç°Ñ¡ºÅÒÑ±£´æ");
+			NotificationUtil.ShowMessage(getApplicationContext(), "å½“å‰é€‰å·å·²ä¿å­˜");
 		}
 	};
 
@@ -124,7 +124,7 @@ public class ExportSelectionActivity extends Activity
 			}			
 		});
 		
-		easenet_format_example.setText("Êä³ö¸ñÊ½£º" + sampleScheme.toString(outputFormatForNetease));
+		easenet_format_example.setText("è¾“å‡ºæ ¼å¼ï¼š" + sampleScheme.toString(outputFormatForNetease));
 		
 		updateFormatSample();
 		
@@ -168,7 +168,7 @@ public class ExportSelectionActivity extends Activity
 	    Intent neteaseIntent = manager.getLaunchIntentForPackage("com.netease.caipiao");
 	    if (neteaseIntent == null)
 	    {
-	    	NotificationUtil.ShowDialog(this, "ÎŞ·¨µ¼³ö", "Ã»ÓĞÕÒµ½ÍøÒ×²ÊÆ±¿Í»§¶Ë", "ÖªµÀÁË", "", false, null, null);
+	    	NotificationUtil.ShowDialog(this, "æ— æ³•å¯¼å‡º", "æ²¡æœ‰æ‰¾åˆ°ç½‘æ˜“å½©ç¥¨å®¢æˆ·ç«¯", "çŸ¥é“äº†", "", false, null, null);
 	    	return;
 	    }
 		    	
@@ -216,9 +216,9 @@ public class ExportSelectionActivity extends Activity
 	private void exportToClipBoard()
 	{
 		ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-		clipboard.setPrimaryClip(ClipData.newPlainText("¸£Ó¯Ñ¡ºÅ", GetOutput()));
+		clipboard.setPrimaryClip(ClipData.newPlainText("ç¦ç›ˆé€‰å·", GetOutput()));
 
-		NotificationUtil.ShowMessage(ExportSelectionActivity.this, "Ñ¡ºÅÒÑ¾­¸´ÖÆµ½¼ôÌù°å");
+		NotificationUtil.ShowMessage(ExportSelectionActivity.this, "é€‰å·å·²ç»å¤åˆ¶åˆ°å‰ªè´´æ¿");
 	}
 	
     private String GetOutputForNetease()
@@ -245,6 +245,6 @@ public class ExportSelectionActivity extends Activity
 	
 	private void updateFormatSample()
 	{
-		clipboard_format_example.setText("Êä³ö¸ñÊ½£º" + sampleScheme.toString(outputFormat));
+		clipboard_format_example.setText("è¾“å‡ºæ ¼å¼ï¼š" + sampleScheme.toString(outputFormat));
 	}
 }

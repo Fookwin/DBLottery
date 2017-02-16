@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit.fragment;
+ï»¿package com.fookwin.lotteryspirit.fragment;
 
 import com.fookwin.lotterydata.data.SchemeAttribute;
 import com.fookwin.lotterydata.data.SchemeAttributeConstraint;
@@ -110,7 +110,7 @@ public class AttributeConstraintFragment extends Fragment
         String expression = constraint.getDisplayExpression();
         if (expression.isEmpty())
         {
-        	expression = "ÇëÑ¡ÔñÒ»¸öÊôĞÔ¹ıÂËÌõ¼ş";
+        	expression = "è¯·é€‰æ‹©ä¸€ä¸ªå±æ€§è¿‡æ»¤æ¡ä»¶";
         	goto_detail_icon.setVisibility(View.GONE);
         }
         
@@ -217,14 +217,14 @@ public class AttributeConstraintFragment extends Fragment
 				switchConstraintView(true);			
 				filter_option_menu.setVisible(true);
 				bShowAllAttributes = false;
-				constraint_filter_menu.setTitle("ÏÔÊ¾ËùÓĞ");
+				constraint_filter_menu.setTitle("æ˜¾ç¤ºæ‰€æœ‰");
 			}
 			else
 			{
 				switchConstraintView(false);
 				filter_option_menu.setVisible(false);
 				bShowAllAttributes = true;
-				constraint_filter_menu.setTitle("ÏÔÊ¾ÍÆ¼ö");
+				constraint_filter_menu.setTitle("æ˜¾ç¤ºæ¨è");
 			}
 			break;
 		}

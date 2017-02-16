@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit.view;
+﻿package com.fookwin.lotteryspirit.view;
 
 import java.util.List;
 
@@ -274,7 +274,7 @@ public class SelectionListView
 								else
 								{
 									btnLoadMoreScheme.setEnabled(false);
-									btnLoadMoreScheme.setText("û����");
+									btnLoadMoreScheme.setText("Ã»ÓÐÁË");
 								}
 							}
 						});

@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit.view;
+ï»¿package com.fookwin.lotteryspirit.view;
 
 import java.util.ArrayList;
 
@@ -119,13 +119,13 @@ public class PurchasesView {
 			{
 				tempItem.issue_text.setText(String.valueOf(itemData.Issue));
 				tempItem.releaseAt_text.setText(itemData.ReleaseAt);
-				tempItem.cost_text.setText(String.valueOf(itemData.Buy * 2) + "Ôª");
+				tempItem.cost_text.setText(String.valueOf(itemData.Buy * 2) + "å…ƒ");
 				
 				int imgID = R.drawable.icon_purchase_normal;
 				if (itemData.Win < 0)
 				{
 					imgID = R.drawable.icon_purchase_pending;
-					tempItem.earning_text.setText(itemData.Win == -1 ? "¼ÆËã½±½ð" : "µÈ´ý¿ª½±");
+					tempItem.earning_text.setText(itemData.Win == -1 ? "è®¡ç®—å¥–é‡‘" : "ç­‰å¾…å¼€å¥–");
 					tempItem.earning_text.setTextAppearance(_context, android.R.style.TextAppearance_Small);
 					if (itemData.Win == -1)
 						tempItem.earning_text.setTextColor(_winColor);
@@ -133,13 +133,13 @@ public class PurchasesView {
 				else if (itemData.Win > 0)
 				{
 					imgID = R.drawable.icon_purchase_win;
-					tempItem.earning_text.setText(String.valueOf(itemData.Win) + "Ôª");
+					tempItem.earning_text.setText(String.valueOf(itemData.Win) + "å…ƒ");
 					tempItem.earning_text.setTextAppearance(_context, android.R.style.TextAppearance_Medium);
 					tempItem.earning_text.setTextColor(_winColor);
 				}
 				else
 				{
-					tempItem.earning_text.setText("Ã»ÓÐÖÐ½±");
+					tempItem.earning_text.setText("æ²¡æœ‰ä¸­å¥–");
 					tempItem.earning_text.setTextAppearance(_context, android.R.style.TextAppearance_Small);
 				}
 					
@@ -194,7 +194,7 @@ public class PurchasesView {
 							else
 							{
 								btnLoadMore.setEnabled(false);
-								btnLoadMore.setText("Ã»ÓÐÁË");
+								btnLoadMore.setText("æ²¡æœ‰äº†");
 							}
 						}
 					});

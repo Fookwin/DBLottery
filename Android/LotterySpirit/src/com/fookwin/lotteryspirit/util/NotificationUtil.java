@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit.util;
+﻿package com.fookwin.lotteryspirit.util;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

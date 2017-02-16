@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit.fragment;
+﻿package com.fookwin.lotteryspirit.fragment;
 
 import com.fookwin.lotterydata.data.SchemeSelectorTypeEnum;
 import com.fookwin.lotteryspirit.R;
@@ -93,7 +93,7 @@ public class SelectionFragment extends Fragment
 	{
 		ActionBar actionBar = getActivity().getActionBar();  
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-		actionBar.setTitle("ѡ�Ź���");
+		actionBar.setTitle("Ñ¡ºÅ¹ýÂË");
 		actionBar.setIcon(R.drawable.icon_selection_grey);
 	}
 }

@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit.view;
+ï»¿package com.fookwin.lotteryspirit.view;
 
 import java.util.ArrayList;
 
@@ -290,12 +290,12 @@ public class NumberSelectorView implements OnClickListener
 			String info = "";
 			if (item.info.getIncluded())
 			{
-				info = "µ¨";
+				info = "ÂµÂ¨";
 				color = clr_red;
 			}
 			else if (item.info.getExcluded())
 			{
-				info = "É±";
+				info = "Ã‰Â±";
 				color = clr_grey;
 			}
 				
@@ -317,12 +317,12 @@ public class NumberSelectorView implements OnClickListener
 			
 			if ((bBlue && temp >= 2) || (!bBlue && temp >= 4)) 
 			{
-				info = "ÈÈ";
+				info = "ÃˆÃˆ";
 				color = clr_red;
 			}
 			else if (temp == 0)
 			{
-				info = "Àä";
+				info = "Ã€Ã¤";
 			}
 			
 			item.numInfoText.setText(info);
@@ -351,7 +351,7 @@ public class NumberSelectorView implements OnClickListener
 			boolean bBlue = forBlue();
 			boolean bIncluded = bBlue ? markedBluesInclude.Contains(item.number) : markedRedsInclude.Contains(item.number);
 			boolean bExcluded = bBlue ? markedBluesExclude.Contains(item.number) : markedRedsExclude.Contains(item.number);
-			String markText = bIncluded || bExcluded ? "±ê" : "";
+			String markText = bIncluded || bExcluded ? "Â±Ãª" : "";
 			int color = bIncluded ? clr_red : clr_grey;
 			
 			item.numInfoText.setText(markText);

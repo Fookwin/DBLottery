@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit.view;
+ï»¿package com.fookwin.lotteryspirit.view;
 
 
 import android.content.res.Resources;
@@ -85,7 +85,7 @@ public class DiagramHeaderView
 			{
 				for (int i = 1; i <= 11; ++ i)
 				{
-					String divName = Integer.toString(i) + "·ÖÇø";
+					String divName = Integer.toString(i) + "åˆ†åŒº";
 					addHeaderCell(header_specific, divName, row, 1, (i - 1) * 3, 3);
 				}
 				break;
@@ -94,7 +94,7 @@ public class DiagramHeaderView
 		{
 			for (int i = 1; i <= 3; ++ i)
 			{
-				String divName = Integer.toString(i) + "·ÖÇø";
+				String divName = Integer.toString(i) + "åˆ†åŒº";
 				addHeaderCell(header_specific, divName, row, 1, (i - 1) * 11, 11);
 			}
 			break;
@@ -103,12 +103,12 @@ public class DiagramHeaderView
 		{
 			for (int i = 1; i <= 4; ++ i)
 			{
-				String divName = Integer.toString(i) + "·ÖÇø";
+				String divName = Integer.toString(i) + "åˆ†åŒº";
 				int start = i > 2 ? ((i - 1) * 8 + 1) : (i - 1) * 8;
 				addHeaderCell(header_specific, divName, row, 1, start, 8);
 			}
 			
-			addHeaderCell(header_specific, "ÖÐ", row, 1, 16, 1);
+			addHeaderCell(header_specific, "ä¸­", row, 1, 16, 1);
 			
 			break;
 		}
@@ -116,7 +116,7 @@ public class DiagramHeaderView
 		{
 			for (int i = 1; i <= 7; ++ i)
 			{
-				String divName = Integer.toString(i) + "·ÖÇø";
+				String divName = Integer.toString(i) + "åˆ†åŒº";
 				int width = i == 7 ? 3 : 5;
 				addHeaderCell(header_specific, divName, row, 1, (i - 1) * 5, width);
 			}
@@ -140,18 +140,18 @@ public class DiagramHeaderView
 		int row = 0;
 		
 		// add row of general block.
-		addHeaderCell(header_specific, "ºÍÖµ", row, 2, 0, 2);
-		addHeaderCell(header_specific, "Á¬ºÅ", row, 2, 2, 1);
-		addHeaderCell(header_specific, "ÆæÅ¼", row, 1, 3, 2);
-		addHeaderCell(header_specific, "´óÐ¡", row, 1, 5, 2);
-		addHeaderCell(header_specific, "ÖÊºÏ", row, 1, 7, 2);
-		addHeaderCell(header_specific, "³ý3ÓàÊý", row, 1, 9, 3);
-		addHeaderCell(header_specific, "Èý·ÖÇø", row, 1, 12, 3);
+		addHeaderCell(header_specific, "å’Œå€¼", row, 2, 0, 2);
+		addHeaderCell(header_specific, "è¿žå·", row, 2, 2, 1);
+		addHeaderCell(header_specific, "å¥‡å¶", row, 1, 3, 2);
+		addHeaderCell(header_specific, "å¤§å°", row, 1, 5, 2);
+		addHeaderCell(header_specific, "è´¨åˆ", row, 1, 7, 2);
+		addHeaderCell(header_specific, "é™¤3ä½™æ•°", row, 1, 9, 3);
+		addHeaderCell(header_specific, "ä¸‰åˆ†åŒº", row, 1, 12, 3);
 		
 		// add third row of general block
 		row = 1;
 		int startCol = 3;
-		String[] cols = new String[]{"Ææ","Å¼","´ó","Ð¡","ÖÊ","ºÏ","1","2","3","Ð¡","ÖÐ","´ó"};
+		String[] cols = new String[]{"å¥‡","å¶","å¤§","å°","è´¨","åˆ","1","2","3","å°","ä¸­","å¤§"};
 		for (String col : cols)
 		{
 			addHeaderCell(header_specific, col, row, 1, startCol++, 1);
@@ -164,61 +164,61 @@ public class DiagramHeaderView
 		case RedDiv1Detail:
 		{
 			if (title == null)
-				title = "3·ÖÇø1Çø¸öÊý·Ö²¼";
+				title = "3åˆ†åŒº1åŒºä¸ªæ•°åˆ†å¸ƒ";
 		}
 		case RedDiv2Detail:
 		{
 			if (title == null)
-				title = "3·ÖÇø2Çø¸öÊý·Ö²¼";
+				title = "3åˆ†åŒº2åŒºä¸ªæ•°åˆ†å¸ƒ";
 		}
 		case RedDiv3Detail:
 		{
 			if (title == null)
-				title = "3·ÖÇø3Çø¸öÊý·Ö²¼";
+				title = "3åˆ†åŒº3åŒºä¸ªæ•°åˆ†å¸ƒ";
 		}
 		case RedRemain0Detail:
 		{
 			if (title == null)
-				title = "³ý3Óà0¸öÊý·Ö²¼";
+				title = "é™¤3ä½™0ä¸ªæ•°åˆ†å¸ƒ";
 		}
 		case RedRemain1Detail:
 		{
 			if (title == null)
-				title = "³ý3Óà1¸öÊý·Ö²¼";
+				title = "é™¤3ä½™1ä¸ªæ•°åˆ†å¸ƒ";
 		}
 		case RedRemain2Detail:
 		{
 			if (title == null)
-				title = "³ý3Óà2¸öÊý·Ö²¼";
+				title = "é™¤3ä½™2ä¸ªæ•°åˆ†å¸ƒ";
 			
 			// first row
 			addHeaderCell(header_specific, title, 0, 1, 15, 14);
 			
 			// second row
-			addHeaderCell(header_specific, "0¸ö", 1, 1, 15, 2);
-			addHeaderCell(header_specific, "1¸ö", 1, 1, 17, 2);
-			addHeaderCell(header_specific, "2¸ö", 1, 1, 19, 2);
-			addHeaderCell(header_specific, "3¸ö", 1, 1, 21, 2);
-			addHeaderCell(header_specific, "4¸ö", 1, 1, 23, 2);
-			addHeaderCell(header_specific, "5¸ö", 1, 1, 25, 2);
-			addHeaderCell(header_specific, "6¸ö", 1, 1, 27, 2);
+			addHeaderCell(header_specific, "0ä¸ª", 1, 1, 15, 2);
+			addHeaderCell(header_specific, "1ä¸ª", 1, 1, 17, 2);
+			addHeaderCell(header_specific, "2ä¸ª", 1, 1, 19, 2);
+			addHeaderCell(header_specific, "3ä¸ª", 1, 1, 21, 2);
+			addHeaderCell(header_specific, "4ä¸ª", 1, 1, 23, 2);
+			addHeaderCell(header_specific, "5ä¸ª", 1, 1, 25, 2);
+			addHeaderCell(header_specific, "6ä¸ª", 1, 1, 27, 2);
 			
 			break;
 		}
 		case RedEvenOddDetail:
 		{
 			if (title == null)
-				title = "ÆæÅ¼Êý·Ö²¼(Ææ-Å¼)";
+				title = "å¥‡å¶æ•°åˆ†å¸ƒ(å¥‡-å¶)";
 		}
 		case RedBigSmallDetail:
 		{
 			if (title == null)
-				title = "´óÐ¡Êý·Ö²¼(´ó-Ð¡)";
+				title = "å¤§å°æ•°åˆ†å¸ƒ(å¤§-å°)";
 		}	
 		case RedPrimaryCompositeDetail:
 		{
 			if (title == null)
-				title = "ÖÊºÏÊý·Ö²¼(ÖÊ-ºÏ)";
+				title = "è´¨åˆæ•°åˆ†å¸ƒ(è´¨-åˆ)";
 			
 			// first row
 			addHeaderCell(header_specific, title, 0, 1, 15, 14);
@@ -236,10 +236,10 @@ public class DiagramHeaderView
 		case RedSumDetail:
 		{
 			// first row
-			addHeaderCell(header_specific, "ºÍÖµ·Ö²¼", 0, 1, 15, 18);
+			addHeaderCell(header_specific, "å’Œå€¼åˆ†å¸ƒ", 0, 1, 15, 18);
 			
 			// second row
-			addHeaderCell(header_specific, "Ð¡ÓÚ71", 1, 1, 15, 2);
+			addHeaderCell(header_specific, "å°äºŽ71", 1, 1, 15, 2);
 			addHeaderCell(header_specific, "71~80", 1, 1, 17, 2);
 			addHeaderCell(header_specific, "81~90", 1, 1, 19, 2);
 			addHeaderCell(header_specific, "91~100", 1, 1, 21, 2);
@@ -247,22 +247,22 @@ public class DiagramHeaderView
 			addHeaderCell(header_specific, "111~120", 1, 1, 25, 2);
 			addHeaderCell(header_specific, "121~130", 1, 1, 27, 2);
 			addHeaderCell(header_specific, "131~140", 1, 1, 29, 2);
-			addHeaderCell(header_specific, "´óÓÚ140", 1, 1, 31, 2);
+			addHeaderCell(header_specific, "å¤§äºŽ140", 1, 1, 31, 2);
 			
 			break;
 		}
 		case RedContinuityDetail:
 		{
 			// first row
-			addHeaderCell(header_specific, "Á¬ºÅ¸öÊý·Ö²¼", 0, 1, 15, 12);
+			addHeaderCell(header_specific, "è¿žå·ä¸ªæ•°åˆ†å¸ƒ", 0, 1, 15, 12);
 			
 			// second row
-			addHeaderCell(header_specific, "0¸ö", 1, 1, 15, 2);
-			addHeaderCell(header_specific, "1¸ö", 1, 1, 17, 2);
-			addHeaderCell(header_specific, "2¸ö", 1, 1, 19, 2);
-			addHeaderCell(header_specific, "3¸ö", 1, 1, 21, 2);
-			addHeaderCell(header_specific, "4¸ö", 1, 1, 23, 2);
-			addHeaderCell(header_specific, "5¸ö", 1, 1, 25, 2);
+			addHeaderCell(header_specific, "0ä¸ª", 1, 1, 15, 2);
+			addHeaderCell(header_specific, "1ä¸ª", 1, 1, 17, 2);
+			addHeaderCell(header_specific, "2ä¸ª", 1, 1, 19, 2);
+			addHeaderCell(header_specific, "3ä¸ª", 1, 1, 21, 2);
+			addHeaderCell(header_specific, "4ä¸ª", 1, 1, 23, 2);
+			addHeaderCell(header_specific, "5ä¸ª", 1, 1, 25, 2);
 			
 			break;
 		}
@@ -275,7 +275,7 @@ public class DiagramHeaderView
 	{
 		// add the first row.
 		int row = 0;
-		addHeaderCell(header_specific, "ºìÇò¶¨Î»", row, 1, 0, 18);
+		addHeaderCell(header_specific, "çº¢çƒå®šä½", row, 1, 0, 18);
 
 		// add numbers row.
 		row = 1;
@@ -333,15 +333,15 @@ public class DiagramHeaderView
 		
 		// add attribute columns.
 		row = 0;
-		addHeaderCell(header_specific, "ÆæÅ¼", row, 1, 18, 2);
-		addHeaderCell(header_specific, "ÖÊºÏ", row, 1, 20, 2);
-		addHeaderCell(header_specific, "³ý3ÓàÊý", row, 1, 22, 3);
-		addHeaderCell(header_specific, "ÎåÐÐ", row, 1, 25, 5);
+		addHeaderCell(header_specific, "å¥‡å¶", row, 1, 18, 2);
+		addHeaderCell(header_specific, "è´¨åˆ", row, 1, 20, 2);
+		addHeaderCell(header_specific, "é™¤3ä½™æ•°", row, 1, 22, 3);
+		addHeaderCell(header_specific, "äº”è¡Œ", row, 1, 25, 5);
 		
 		// add third row of general block
 		row = 1;
 		int startCol = 18;
-		String[] cols = new String[]{"Ææ","Å¼","ÖÊ","ºÏ","0", "1","2","½ð","Ä¾","Ë®","»ð","ÍÁ"};
+		String[] cols = new String[]{"å¥‡","å¶","è´¨","åˆ","0", "1","2","é‡‘","æœ¨","æ°´","ç«","åœŸ"};
 		for (String col : cols)
 		{
 			addHeaderCell(header_specific, col, row, 1, startCol++, 1);
@@ -355,7 +355,7 @@ public class DiagramHeaderView
 		// add division row.
 		for (int i = 1; i <= 4; ++ i)
 		{
-			String divName = Integer.toString(i) + "·ÖÇø";
+			String divName = Integer.toString(i) + "åˆ†åŒº";
 			addHeaderCell(header_specific, divName, row, 1, (i - 1) * 4, 4);
 		}
 		
@@ -369,16 +369,16 @@ public class DiagramHeaderView
 
 		// add attribute columns.
 		row = 0;
-		addHeaderCell(header_specific, "ÆæÅ¼", row, 1, 16, 2);
-		addHeaderCell(header_specific, "´óÐ¡", row, 1, 18, 2);
-		addHeaderCell(header_specific, "ÖÊºÏ", row, 1, 20, 2);
-		addHeaderCell(header_specific, "³ý3ÓàÊý", row, 1, 22, 3);
-		addHeaderCell(header_specific, "ÎåÐÐ", row, 1, 25, 5);
+		addHeaderCell(header_specific, "å¥‡å¶", row, 1, 16, 2);
+		addHeaderCell(header_specific, "å¤§å°", row, 1, 18, 2);
+		addHeaderCell(header_specific, "è´¨åˆ", row, 1, 20, 2);
+		addHeaderCell(header_specific, "é™¤3ä½™æ•°", row, 1, 22, 3);
+		addHeaderCell(header_specific, "äº”è¡Œ", row, 1, 25, 5);
 		
 		// add third row of general block
 		row = 1;
 		int startCol = 16;
-		String[] cols = new String[]{"Ææ","Å¼","´ó","Ð¡","ÖÊ","ºÏ","0", "1","2","½ð","Ä¾","Ë®","»ð","ÍÁ"};
+		String[] cols = new String[]{"å¥‡","å¶","å¤§","å°","è´¨","åˆ","0", "1","2","é‡‘","æœ¨","æ°´","ç«","åœŸ"};
 		for (String col : cols)
 		{
 			addHeaderCell(header_specific, col, row, 1, startCol++, 1);
@@ -390,7 +390,7 @@ public class DiagramHeaderView
 		int row = 0;
 
 		// add division row.
-		addHeaderCell(header_specific, "¿ç¶È·Ö²¼", row, 1, 0, 16);
+		addHeaderCell(header_specific, "è·¨åº¦åˆ†å¸ƒ", row, 1, 0, 16);
 				
 		// add numbers row.
 		row = 1;
@@ -402,16 +402,16 @@ public class DiagramHeaderView
 
 		// add attribute columns.
 		row = 0;
-		addHeaderCell(header_specific, "ÆæÅ¼", row, 1, 16, 2);
-		addHeaderCell(header_specific, "´óÐ¡", row, 1, 18, 2);
-		addHeaderCell(header_specific, "ÖÊºÏ", row, 1, 20, 2);
-		addHeaderCell(header_specific, "³ý3ÓàÊý", row, 1, 22, 3);
-		addHeaderCell(header_specific, "ÎåÐÐ", row, 1, 25, 5);
+		addHeaderCell(header_specific, "å¥‡å¶", row, 1, 16, 2);
+		addHeaderCell(header_specific, "å¤§å°", row, 1, 18, 2);
+		addHeaderCell(header_specific, "è´¨åˆ", row, 1, 20, 2);
+		addHeaderCell(header_specific, "é™¤3ä½™æ•°", row, 1, 22, 3);
+		addHeaderCell(header_specific, "äº”è¡Œ", row, 1, 25, 5);
 		
 		// add third row of general block
 		row = 1;
 		int startCol = 16;
-		String[] cols = new String[]{"Ææ","Å¼","´ó","Ð¡","ÖÊ","ºÏ","0", "1","2","½ð","Ä¾","Ë®","»ð","ÍÁ"};
+		String[] cols = new String[]{"å¥‡","å¶","å¤§","å°","è´¨","åˆ","0", "1","2","é‡‘","æœ¨","æ°´","ç«","åœŸ"};
 		for (String col : cols)
 		{
 			addHeaderCell(header_specific, col, row, 1, startCol++, 1);

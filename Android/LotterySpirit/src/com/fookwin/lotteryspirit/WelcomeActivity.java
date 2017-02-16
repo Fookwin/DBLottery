@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit;
+﻿package com.fookwin.lotteryspirit;
 
 import com.adsmogo.splash.AdsMogoSplash;
 import com.adsmogo.splash.AdsMogoSplashListener;

@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit;
+ï»¿package com.fookwin.lotteryspirit;
 
 import com.fookwin.lotterydata.data.Purchase;
 import com.fookwin.lotterydata.data.SchemeSelector;
@@ -196,9 +196,9 @@ public class SelectorsActivity extends Activity {
 
 	private void exit() {
 		Builder builder = new AlertDialog.Builder(SelectorsActivity.this);
-		builder.setTitle("ÍË³öÑ¡ºÅ±à¼­");
-		builder.setMessage("·µ»Øºó½«Çå¿Õµ±Ç°Ñ¡ºÅ£¬È·ÈÏÒªÍË³öÑ¡ºÅÂğ£¿");
-		builder.setPositiveButton("È·¶¨", new DialogInterface.OnClickListener() {
+		builder.setTitle("é€€å‡ºé€‰å·ç¼–è¾‘");
+		builder.setMessage("è¿”å›åå°†æ¸…ç©ºå½“å‰é€‰å·ï¼Œç¡®è®¤è¦é€€å‡ºé€‰å·å—ï¼Ÿ");
+		builder.setPositiveButton("ç¡®å®š", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) 
 			{				
 				// make a new pending purchase and go to home page.
@@ -208,7 +208,7 @@ public class SelectorsActivity extends Activity {
 				startActivity(intent);
 			}
 		});
-		builder.setNegativeButton("²»", null);
+		builder.setNegativeButton("ä¸", null);
 		builder.create().show();
 	}
 	
@@ -222,7 +222,7 @@ public class SelectorsActivity extends Activity {
 		}
 		
         final ProgressDialog dialog = new ProgressDialog(this);
-        dialog.setMessage("¼ÓÔØ×ßÊÆÍ¼Êı¾İ...");
+        dialog.setMessage("åŠ è½½èµ°åŠ¿å›¾æ•°æ®...");
         dialog.setIndeterminate(true);
         dialog.setCancelable(false);
         dialog.show();
@@ -255,9 +255,9 @@ public class SelectorsActivity extends Activity {
 		int filteredCount = _editingPurchase.getFilteredCount();
 		int removedCount = _editingPurchase.getRemovedCount();
 		
-		String status = Integer.toString(count) + " ×¢  ";
-		String subStatus = "¹ıÂË " + Integer.toString(filteredCount) + " ×¢ ";
-		subStatus += "É¾³ı " + Integer.toString(removedCount) + " ×¢";
+		String status = Integer.toString(count) + " æ³¨  ";
+		String subStatus = "è¿‡æ»¤ " + Integer.toString(filteredCount) + " æ³¨ ";
+		subStatus += "åˆ é™¤ " + Integer.toString(removedCount) + " æ³¨";
 		
 		status_text.setText(status);			
 		substatus_text.setText(subStatus);

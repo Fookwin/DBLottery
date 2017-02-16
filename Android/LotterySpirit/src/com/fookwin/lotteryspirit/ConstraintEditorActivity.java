@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit;
+ï»¿package com.fookwin.lotteryspirit;
 
 import com.fookwin.lotterydata.data.Constraint;
 import com.fookwin.lotterydata.data.ConstraintTypeEnum;
@@ -206,7 +206,7 @@ public class ConstraintEditorActivity extends Activity
 			}
 			
 			helpID = 35;
-			actionBar.setTitle("ÊôĞÔ¹ıÂË");
+			actionBar.setTitle("å±æ€§è¿‡æ»¤");
 			break;
 		}
 		case RedNumSetConstraintType:
@@ -228,7 +228,7 @@ public class ConstraintEditorActivity extends Activity
 			}
 			
 			helpID = 36;
-			actionBar.setTitle("ºÅÂë×é¹ıÂË");
+			actionBar.setTitle("å·ç ç»„è¿‡æ»¤");
 			break;
 		}
 		case HistoryDuplicateConstraintType:
@@ -250,7 +250,7 @@ public class ConstraintEditorActivity extends Activity
 			}
 			
 			helpID = 37;
-			actionBar.setTitle("ÀúÊ·¹ıÂË");
+			actionBar.setTitle("å†å²è¿‡æ»¤");
 			break;
 		}
 		}

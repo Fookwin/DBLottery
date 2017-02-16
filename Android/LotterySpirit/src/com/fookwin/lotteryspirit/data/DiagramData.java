@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit.data;
+﻿package com.fookwin.lotteryspirit.data;
 
 import java.text.ParseException;
 import java.util.List;

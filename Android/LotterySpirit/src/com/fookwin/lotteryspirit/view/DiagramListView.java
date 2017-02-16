@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit.view;
+ï»¿package com.fookwin.lotteryspirit.view;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -286,29 +286,29 @@ public class DiagramListView
 			}
 
 			// add attribute columns
-			refreshCell(item.grid_cells.get(colInx), data % 2 == 0 ? "" : "Ææ",
+			refreshCell(item.grid_cells.get(colInx), data % 2 == 0 ? "" : "å¥‡",
 					colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
 			++colInx;
 
-			refreshCell(item.grid_cells.get(colInx), data % 2 == 1 ? "" : "Å¼",
+			refreshCell(item.grid_cells.get(colInx), data % 2 == 1 ? "" : "å¶",
 					colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
 			++colInx;
 
-			refreshCell(item.grid_cells.get(colInx), data > 7 ? "´ó" : "",
+			refreshCell(item.grid_cells.get(colInx), data > 7 ? "å¤§" : "",
 					colInx, 1, CellStateEnum.NORMAL, NumStateEnum.TEXT_GREY);
 			++colInx;
 
-			refreshCell(item.grid_cells.get(colInx), data < 8 ? "Ð¡" : "",
+			refreshCell(item.grid_cells.get(colInx), data < 8 ? "å°" : "",
 					colInx, 1, CellStateEnum.NORMAL, NumStateEnum.TEXT_GREY);
 			++colInx;
 
 			refreshCell(item.grid_cells.get(colInx),
-					AttributeUtil.IsPrime(data) ? "ÖÊ" : "", colInx, 1,
+					AttributeUtil.IsPrime(data) ? "è´¨" : "", colInx, 1,
 					CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
 			++colInx;
 
 			refreshCell(item.grid_cells.get(colInx),
-					AttributeUtil.IsPrime(data) ? "" : "ºÏ", colInx, 1,
+					AttributeUtil.IsPrime(data) ? "" : "åˆ", colInx, 1,
 					CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
 			++colInx;
 
@@ -325,27 +325,27 @@ public class DiagramListView
 			++colInx;
 
 			refreshCell(item.grid_cells.get(colInx),
-					AttributeUtil.IndexOf5Xing(data) == 1 ? "½ð" : "", colInx,
+					AttributeUtil.IndexOf5Xing(data) == 1 ? "é‡‘" : "", colInx,
 					1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
 			++colInx;
 
 			refreshCell(item.grid_cells.get(colInx),
-					AttributeUtil.IndexOf5Xing(data) == 2 ? "Ä¾" : "", colInx,
+					AttributeUtil.IndexOf5Xing(data) == 2 ? "æœ¨" : "", colInx,
 					1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
 			++colInx;
 
 			refreshCell(item.grid_cells.get(colInx),
-					AttributeUtil.IndexOf5Xing(data) == 3 ? "Ë®" : "", colInx,
+					AttributeUtil.IndexOf5Xing(data) == 3 ? "æ°´" : "", colInx,
 					1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
 			++colInx;
 
 			refreshCell(item.grid_cells.get(colInx),
-					AttributeUtil.IndexOf5Xing(data) == 4 ? "»ð" : "", colInx,
+					AttributeUtil.IndexOf5Xing(data) == 4 ? "ç«" : "", colInx,
 					1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
 			++colInx;
 
 			refreshCell(item.grid_cells.get(colInx),
-					AttributeUtil.IndexOf5Xing(data) == 5 ? "ÍÁ" : "", colInx,
+					AttributeUtil.IndexOf5Xing(data) == 5 ? "åœŸ" : "", colInx,
 					1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
 			
 			// draw line graph.
@@ -380,22 +380,22 @@ public class DiagramListView
 			}
 			
 			// add attribute columns			
-			refreshCell(item.grid_cells.get(colInx), data % 2 == 0 ? "" : "Ææ", colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
+			refreshCell(item.grid_cells.get(colInx), data % 2 == 0 ? "" : "å¥‡", colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
 			++ colInx;
 			
-			refreshCell(item.grid_cells.get(colInx), data % 2 == 1 ? "" : "Å¼", colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
+			refreshCell(item.grid_cells.get(colInx), data % 2 == 1 ? "" : "å¶", colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
 			++ colInx;
 			
-			refreshCell(item.grid_cells.get(colInx), data > 8 ? "´ó" : "", colInx, 1, CellStateEnum.NORMAL, NumStateEnum.TEXT_GREY);
+			refreshCell(item.grid_cells.get(colInx), data > 8 ? "å¤§" : "", colInx, 1, CellStateEnum.NORMAL, NumStateEnum.TEXT_GREY);
 			++ colInx;
 			
-			refreshCell(item.grid_cells.get(colInx), data < 9 ? "Ð¡" : "", colInx, 1, CellStateEnum.NORMAL, NumStateEnum.TEXT_GREY);
+			refreshCell(item.grid_cells.get(colInx), data < 9 ? "å°" : "", colInx, 1, CellStateEnum.NORMAL, NumStateEnum.TEXT_GREY);
 			++ colInx;
 			
-			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IsPrime(data) ? "ÖÊ" : "", colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
+			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IsPrime(data) ? "è´¨" : "", colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
 			++ colInx;
 			
-			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IsPrime(data) ? "" : "ºÏ", colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
+			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IsPrime(data) ? "" : "åˆ", colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
 			++ colInx;
 			
 			refreshCell(item.grid_cells.get(colInx), data % 3 == 0 ? "0" : "", colInx, 1, CellStateEnum.NORMAL, NumStateEnum.TEXT_GREY);
@@ -407,19 +407,19 @@ public class DiagramListView
 			refreshCell(item.grid_cells.get(colInx), data % 3 == 2 ? "2" : "", colInx, 1, CellStateEnum.NORMAL, NumStateEnum.TEXT_GREY);
 			++ colInx;
 			
-			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IndexOf5Xing(data) == 1 ? "½ð" : "", colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
+			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IndexOf5Xing(data) == 1 ? "é‡‘" : "", colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
 			++ colInx;
 			
-			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IndexOf5Xing(data) == 2 ? "Ä¾" : "", colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
+			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IndexOf5Xing(data) == 2 ? "æœ¨" : "", colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
 			++ colInx;
 			
-			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IndexOf5Xing(data) == 3 ? "Ë®" : "", colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
+			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IndexOf5Xing(data) == 3 ? "æ°´" : "", colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
 			++ colInx;
 			
-			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IndexOf5Xing(data) == 4 ? "»ð" : "", colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
+			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IndexOf5Xing(data) == 4 ? "ç«" : "", colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
 			++ colInx;
 			
-			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IndexOf5Xing(data) == 5 ? "ÍÁ" : "", colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
+			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IndexOf5Xing(data) == 5 ? "åœŸ" : "", colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
 			
 			// draw line graph.
 			int pre_pos = lot.getPrevious() != null ? lot.getPrevious().getSource().getScheme().getBlue() : 0;
@@ -450,16 +450,16 @@ public class DiagramListView
 			}
 			
 			// add attribute columns			
-			refreshCell(item.grid_cells.get(colInx), data[0] % 2 == 0 ? "" : "Ææ", colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
+			refreshCell(item.grid_cells.get(colInx), data[0] % 2 == 0 ? "" : "å¥‡", colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
 			++ colInx;
 			
-			refreshCell(item.grid_cells.get(colInx), data[0] % 2 == 1 ? "" : "Å¼", colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
+			refreshCell(item.grid_cells.get(colInx), data[0] % 2 == 1 ? "" : "å¶", colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
 			++ colInx;
 			
-			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IsPrime(data[0]) ? "ÖÊ" : "", colInx, 1, CellStateEnum.NORMAL, NumStateEnum.TEXT_GREY);
+			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IsPrime(data[0]) ? "è´¨" : "", colInx, 1, CellStateEnum.NORMAL, NumStateEnum.TEXT_GREY);
 			++ colInx;
 			
-			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IsPrime(data[0]) ? "" : "ºÏ", colInx, 1, CellStateEnum.NORMAL, NumStateEnum.TEXT_GREY);
+			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IsPrime(data[0]) ? "" : "åˆ", colInx, 1, CellStateEnum.NORMAL, NumStateEnum.TEXT_GREY);
 			++ colInx;
 			
 			refreshCell(item.grid_cells.get(colInx), data[0] % 3 == 0 ? "0" : "", colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
@@ -471,19 +471,19 @@ public class DiagramListView
 			refreshCell(item.grid_cells.get(colInx), data[0] % 3 == 2 ? "2" : "", colInx, 1, CellStateEnum.ALTERNATE2, NumStateEnum.TEXT_GREY);
 			++ colInx;
 			
-			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IndexOf5Xing(data[0]) == 1 ? "½ð" : "", colInx, 1, CellStateEnum.NORMAL, NumStateEnum.TEXT_GREY);
+			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IndexOf5Xing(data[0]) == 1 ? "é‡‘" : "", colInx, 1, CellStateEnum.NORMAL, NumStateEnum.TEXT_GREY);
 			++ colInx;
 			
-			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IndexOf5Xing(data[0]) == 2 ? "Ä¾" : "", colInx, 1, CellStateEnum.NORMAL, NumStateEnum.TEXT_GREY);
+			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IndexOf5Xing(data[0]) == 2 ? "æœ¨" : "", colInx, 1, CellStateEnum.NORMAL, NumStateEnum.TEXT_GREY);
 			++ colInx;
 			
-			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IndexOf5Xing(data[0]) == 3 ? "Ë®" : "", colInx, 1, CellStateEnum.NORMAL, NumStateEnum.TEXT_GREY);
+			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IndexOf5Xing(data[0]) == 3 ? "æ°´" : "", colInx, 1, CellStateEnum.NORMAL, NumStateEnum.TEXT_GREY);
 			++ colInx;
 			
-			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IndexOf5Xing(data[0]) == 4 ? "»ð" : "", colInx, 1, CellStateEnum.NORMAL, NumStateEnum.TEXT_GREY);
+			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IndexOf5Xing(data[0]) == 4 ? "ç«" : "", colInx, 1, CellStateEnum.NORMAL, NumStateEnum.TEXT_GREY);
 			++ colInx;
 			
-			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IndexOf5Xing(data[0]) == 5 ? "ÍÁ" : "", colInx, 1, CellStateEnum.NORMAL, NumStateEnum.TEXT_GREY);
+			refreshCell(item.grid_cells.get(colInx), AttributeUtil.IndexOf5Xing(data[0]) == 5 ? "åœŸ" : "", colInx, 1, CellStateEnum.NORMAL, NumStateEnum.TEXT_GREY);
 			
 			// draw line graph.
 			int pre_pos = lot.getPrevious() != null ? getRedPositionData(lot.getPrevious().getSource())[1] : 0;

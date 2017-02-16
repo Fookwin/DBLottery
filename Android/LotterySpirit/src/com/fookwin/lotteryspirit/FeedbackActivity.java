@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit;
+ï»¿package com.fookwin.lotteryspirit;
 
 import com.fookwin.lotteryspirit.data.LBDataManager;
 import com.fookwin.lotteryspirit.util.NotificationUtil;
@@ -42,7 +42,7 @@ public class FeedbackActivity extends Activity {
 				final String name = name_edit.getText().toString();
 				if (name == null || name.isEmpty())
 				{
-					NotificationUtil.ShowMessage(FeedbackActivity.this, "ÈçºÎ³ÆºôÄú£¿");
+					NotificationUtil.ShowMessage(FeedbackActivity.this, "å¦‚ä½•ç§°å‘¼æ‚¨ï¼Ÿ");
 					name_edit.requestFocus();
 					return;
 				}
@@ -50,7 +50,7 @@ public class FeedbackActivity extends Activity {
 				final String email = email_edit.getText().toString();
 				if (email == null || email.isEmpty())
 				{
-					NotificationUtil.ShowMessage(FeedbackActivity.this, "ÈçºÎÁªÏµÄú£¿");
+					NotificationUtil.ShowMessage(FeedbackActivity.this, "å¦‚ä½•è”ç³»æ‚¨ï¼Ÿ");
 					email_edit.requestFocus();
 					return;
 				}
@@ -60,7 +60,7 @@ public class FeedbackActivity extends Activity {
 				final String content = feedback_edit.getText().toString();
 				if (content == null || content.isEmpty())
 				{
-					NotificationUtil.ShowMessage(FeedbackActivity.this, "ÄúµÄÎÊÌâÊÇ£¿");
+					NotificationUtil.ShowMessage(FeedbackActivity.this, "æ‚¨çš„é—®é¢˜æ˜¯ï¼Ÿ");
 					feedback_edit.requestFocus();
 					return;
 				}
@@ -78,7 +78,7 @@ public class FeedbackActivity extends Activity {
 					}
 				}).start();
 				
-				NotificationUtil.ShowMessage(FeedbackActivity.this, "¸ĞĞ»ÄúµÄÖ§³Ö£¬ÎÒÃÇ»áÈÏÕæ¿¼ÂÇÄúµÄ±¦¹óÒâ¼û£¡");
+				NotificationUtil.ShowMessage(FeedbackActivity.this, "æ„Ÿè°¢æ‚¨çš„æ”¯æŒï¼Œæˆ‘ä»¬ä¼šè®¤çœŸè€ƒè™‘æ‚¨çš„å®è´µæ„è§ï¼");
 			}
 		});
 	}

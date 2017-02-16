@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit.fragment;
+﻿package com.fookwin.lotteryspirit.fragment;
 
 import com.fookwin.lotterydata.data.RandomSchemeSelector;
 import com.fookwin.lotteryspirit.R;
@@ -130,8 +130,8 @@ public class RandomSelectorFragment extends Fragment
 		
 		random_count_editor = (NumberEditor) contentLayout.findViewById(R.id.random_count_editor);
 		random_count_editor.setRegion(1, 100);
-		random_count_editor.setTitle("�����һ��");
-		random_count_editor.setUnit("ע");
+		random_count_editor.setTitle("µã»÷»»Ò»×é");
+		random_count_editor.setUnit("×¢");
 		random_count_editor.setValue(selector.getSelectedCount());
 		random_count_editor.setOnValueChangedHandler(randomCountChangedhandler);
 		random_count_editor.setOnValueNameClickedHandler(randomButtonClickedHandler);

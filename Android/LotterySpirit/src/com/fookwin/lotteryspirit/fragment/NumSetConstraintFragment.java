@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit.fragment;
+ï»¿package com.fookwin.lotteryspirit.fragment;
 
 import com.fookwin.lotterydata.data.RedNumSetConstraint;
 import com.fookwin.lotteryspirit.LotteryAttributeActivity;
@@ -195,7 +195,7 @@ public class NumSetConstraintFragment extends Fragment implements OnClickListene
 		{
 			num_info_state = newState;
 			updateNumbInfo(newState);
-			number_info_menu_item.setTitle("ºÅÂëĞÅÏ¢ (" + item.getTitle() + ")");
+			number_info_menu_item.setTitle("ÂºÃ…Ã‚Ã«ÃÃ…ÃÂ¢ (" + item.getTitle() + ")");
 		}
 		
 		return super.onOptionsItemSelected(item);

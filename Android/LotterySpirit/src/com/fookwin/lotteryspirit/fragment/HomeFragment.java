@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit.fragment;
+ï»¿package com.fookwin.lotteryspirit.fragment;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -251,7 +251,7 @@ public class HomeFragment extends Fragment
 	{
 		ActionBar actionBar = getActivity().getActionBar();  
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-		actionBar.setTitle("×îĞÂ¿ª½±");
+		actionBar.setTitle("Ã—Ã®ÃÃ‚Â¿ÂªÂ½Â±");
 		actionBar.setIcon(R.drawable.icon_news_grey);
 	}
 	

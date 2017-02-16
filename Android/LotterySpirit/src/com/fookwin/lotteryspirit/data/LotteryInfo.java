@@ -1,4 +1,4 @@
-package com.fookwin.lotteryspirit.data;
+﻿package com.fookwin.lotteryspirit.data;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -49,9 +49,9 @@ public class LotteryInfo
         for (int i = 1; i <= 6; ++i)
         {
             BonusInfo item = new BonusInfo();
-            item.Name = Integer.toString(i) + "�Ƚ�";
+            item.Name = Integer.toString(i) + "µÈ½±";
             item.Bonus = FormatMoney(lot.BonusMoney(i));
-            item.Count = Integer.toString(lot.BonusAmount(i)) + "ע";
+            item.Count = Integer.toString(lot.BonusAmount(i)) + "×¢";
 
             info.Winners.add(item);
         }            
@@ -64,13 +64,13 @@ public class LotteryInfo
     	String output = "";
         int yi = money / 100000000;
         if (yi > 0)
-            output += Integer.toString(yi) + "��";
+            output += Integer.toString(yi) + "ÒÚ";
 
         int wan = (money % 100000000) / 10000;
         if (wan > 0)
-            output += Integer.toString(wan) + "��";
+            output += Integer.toString(wan) + "Íò";
 
-        output += Integer.toString((money % 10000)) + "Ԫ";
+        output += Integer.toString((money % 10000)) + "Ôª";
 
         return output;
     }
