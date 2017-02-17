@@ -15,6 +15,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
+        debug {
+            debuggable true
+        }
     }
 }
 
@@ -22,11 +25,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:19.1.0'
     compile 'com.android.support:support-v4:19.1.0'
     compile 'com.android.support:gridlayout-v7:19.1.0'
-    compile files('libs/AdsMOGO_Android_SDK_1.6.1.jar')
-    compile files('libs/baidu_appx_android_2.0.0.jar')
-    compile files('libs/baidu_cuid.jar')
-    compile files('libs/Baidu_MobAds_SDK.jar')
-    compile files('libs/pushservice-4.5.1.8.jar')
-    compile files('libs/SmartMad-SDK-Android_v3.0.4.jar')
+    compile files('libs/pushservice-5.5.0.50.jar')
+    compile 'com.baidu.mobstat:mtj-sdk:latest.integration'
     compile files('libs/ksoap2.jar')
+    compile 'com.google.android.gms:play-services-appindexing:8.4.0'
 }

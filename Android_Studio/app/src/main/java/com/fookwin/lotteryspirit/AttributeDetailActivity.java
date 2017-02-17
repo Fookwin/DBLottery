@@ -137,7 +137,6 @@ public class AttributeDetailActivity extends Activity
 		setContentView(R.layout.activity_attribute_detail);	
 		
 		status_list = (ListView) findViewById(R.id.status_list);
-		View adsMogoView = (View)findViewById(R.id.adsMogoView);
 		
 		// get the data transfered from parent.   
 		String key = getIntent().getStringExtra("key");
@@ -149,9 +148,6 @@ public class AttributeDetailActivity extends Activity
 			getActionBar().setDisplayHomeAsUpEnabled(true);
 			getActionBar().setDisplayOptions(0, ActionBar.DISPLAY_SHOW_HOME);
 			getActionBar().setTitle("选择属性值");
-			
-			// don't show ad view for attribute constraint editor.
-			adsMogoView.setVisibility(View.GONE);
 		}
 		else
 		{
@@ -160,8 +156,6 @@ public class AttributeDetailActivity extends Activity
 			getActionBar().setDisplayHomeAsUpEnabled(true);
 			getActionBar().setDisplayOptions(0, ActionBar.DISPLAY_SHOW_HOME);
 			getActionBar().setTitle("属性详情");
-			
-			adsMogoView.setVisibility(View.VISIBLE);
 		}
 
 		attribute = LBDataManager.GetInstance().getLastAttributes().Attribute(key);

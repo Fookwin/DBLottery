@@ -39,14 +39,6 @@
             android:text="----------赞助商广告--------"
             android:textColor="@color/lightgrey"
             android:textSize="12sp" />
-
-        <com.adsmogo.adview.AdsMogoLayout
-            android:id="@+id/adsMogoView"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            adsmogo:appid="d8c9d9b2ee8c4aa0bc2f861fc7d484a1"
-            adsmogo:express_mode="false" >
-        </com.adsmogo.adview.AdsMogoLayout>
     </LinearLayout>
 
 </LinearLayout>

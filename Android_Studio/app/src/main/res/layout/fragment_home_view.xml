@@ -12,14 +12,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <com.adsmogo.adview.AdsMogoLayout
-            android:id="@+id/adsMogoView"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            adsmogo:appid="d8c9d9b2ee8c4aa0bc2f861fc7d484a1"
-            adsmogo:express_mode="false" >
-        </com.adsmogo.adview.AdsMogoLayout>
-
         <TextView
             android:id="@+id/titleText"
             android:layout_width="wrap_content"

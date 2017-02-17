@@ -61,3 +61,4 @@ Android_Studio/app/build/
 Android_Studio/.idea/
 Android_Studio/build/
 Android_Studio/gradle/
+Android_Studio/local.properties
