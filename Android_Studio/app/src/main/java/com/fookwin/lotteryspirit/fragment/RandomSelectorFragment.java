@@ -130,8 +130,8 @@ public class RandomSelectorFragment extends Fragment
 		
 		random_count_editor = (NumberEditor) contentLayout.findViewById(R.id.random_count_editor);
 		random_count_editor.setRegion(1, 100);
-		random_count_editor.setTitle("µã»÷»»Ò»×é");
-		random_count_editor.setUnit("×¢");
+		random_count_editor.setTitle("点击换一组");
+		random_count_editor.setUnit("注");
 		random_count_editor.setValue(selector.getSelectedCount());
 		random_count_editor.setOnValueChangedHandler(randomCountChangedhandler);
 		random_count_editor.setOnValueNameClickedHandler(randomButtonClickedHandler);

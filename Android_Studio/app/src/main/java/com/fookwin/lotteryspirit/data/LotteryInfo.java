@@ -49,9 +49,9 @@ public class LotteryInfo
         for (int i = 1; i <= 6; ++i)
         {
             BonusInfo item = new BonusInfo();
-            item.Name = Integer.toString(i) + "µÈ½±";
+            item.Name = Integer.toString(i) + "等奖";
             item.Bonus = FormatMoney(lot.BonusMoney(i));
-            item.Count = Integer.toString(lot.BonusAmount(i)) + "×¢";
+            item.Count = Integer.toString(lot.BonusAmount(i)) + "注";
 
             info.Winners.add(item);
         }            
@@ -64,13 +64,13 @@ public class LotteryInfo
     	String output = "";
         int yi = money / 100000000;
         if (yi > 0)
-            output += Integer.toString(yi) + "ÒÚ";
+            output += Integer.toString(yi) + "亿";
 
         int wan = (money % 100000000) / 10000;
         if (wan > 0)
-            output += Integer.toString(wan) + "Íò";
+            output += Integer.toString(wan) + "万";
 
-        output += Integer.toString((money % 10000)) + "Ôª";
+        output += Integer.toString((money % 10000)) + "元";
 
         return output;
     }

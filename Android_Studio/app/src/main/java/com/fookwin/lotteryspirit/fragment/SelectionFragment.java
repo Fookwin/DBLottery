@@ -93,7 +93,7 @@ public class SelectionFragment extends Fragment
 	{
 		ActionBar actionBar = getActivity().getActionBar();  
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-		actionBar.setTitle("Ñ¡ºÅ¹ýÂË");
+		actionBar.setTitle("选号");
 		actionBar.setIcon(R.drawable.icon_selection_grey);
 	}
 }

@@ -112,7 +112,7 @@ public class LotteryHistoryActivity extends Activity
 			{    
 				if (position < 10)
 				{
-					tempItem.tip_text.setText("¸ô" + Integer.toString(position) + "ÆÚ");
+					tempItem.tip_text.setText("隔" + Integer.toString(position) + "期");
 					tempItem.tip_text.setVisibility(View.VISIBLE);
 				}
 				else
@@ -165,7 +165,7 @@ public class LotteryHistoryActivity extends Activity
 						else
 						{
 							btnLoadMore.setEnabled(false);
-							btnLoadMore.setText("Ã»ÓÐÁË");
+							btnLoadMore.setText("--- 到底了---");
 						}
 					}
 				});

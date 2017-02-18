@@ -290,12 +290,12 @@ public class NumberSelectorView implements OnClickListener
 			String info = "";
 			if (item.info.getIncluded())
 			{
-				info = "µ¨";
+				info = "胆";
 				color = clr_red;
 			}
 			else if (item.info.getExcluded())
 			{
-				info = "É±";
+				info = "杀";
 				color = clr_grey;
 			}
 				
@@ -317,12 +317,12 @@ public class NumberSelectorView implements OnClickListener
 			
 			if ((bBlue && temp >= 2) || (!bBlue && temp >= 4)) 
 			{
-				info = "ÈÈ";
+				info = "热";
 				color = clr_red;
 			}
 			else if (temp == 0)
 			{
-				info = "Àä";
+				info = "冷";
 			}
 			
 			item.numInfoText.setText(info);
@@ -351,7 +351,7 @@ public class NumberSelectorView implements OnClickListener
 			boolean bBlue = forBlue();
 			boolean bIncluded = bBlue ? markedBluesInclude.Contains(item.number) : markedRedsInclude.Contains(item.number);
 			boolean bExcluded = bBlue ? markedBluesExclude.Contains(item.number) : markedRedsExclude.Contains(item.number);
-			String markText = bIncluded || bExcluded ? "±ê" : "";
+			String markText = bIncluded || bExcluded ? "标" : "";
 			int color = bIncluded ? clr_red : clr_grey;
 			
 			item.numInfoText.setText(markText);

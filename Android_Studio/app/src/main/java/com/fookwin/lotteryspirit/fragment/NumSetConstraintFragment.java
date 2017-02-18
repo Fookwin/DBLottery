@@ -195,7 +195,7 @@ public class NumSetConstraintFragment extends Fragment implements OnClickListene
 		{
 			num_info_state = newState;
 			updateNumbInfo(newState);
-			number_info_menu_item.setTitle("ºÅÂëÐÅÏ¢ (" + item.getTitle() + ")");
+			number_info_menu_item.setTitle("号码信息 (" + item.getTitle() + ")");
 		}
 		
 		return super.onOptionsItemSelected(item);

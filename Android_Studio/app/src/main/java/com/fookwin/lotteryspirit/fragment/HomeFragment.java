@@ -251,7 +251,7 @@ public class HomeFragment extends Fragment
 	{
 		ActionBar actionBar = getActivity().getActionBar();  
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-		actionBar.setTitle("×îÐÂ¿ª½±");
+		actionBar.setTitle("最新");
 		actionBar.setIcon(R.drawable.icon_news_grey);
 	}
 	

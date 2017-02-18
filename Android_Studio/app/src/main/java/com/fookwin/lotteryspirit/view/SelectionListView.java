@@ -274,7 +274,7 @@ public class SelectionListView
 								else
 								{
 									btnLoadMoreScheme.setEnabled(false);
-									btnLoadMoreScheme.setText("Ã»ÓÐÁË");
+									btnLoadMoreScheme.setText("－－－　到底了　－－－");
 								}
 							}
 						});

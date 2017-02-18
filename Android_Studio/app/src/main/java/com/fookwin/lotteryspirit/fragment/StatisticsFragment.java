@@ -66,7 +66,7 @@ public class StatisticsFragment extends Fragment
 	{
 		ActionBar actionBar = getActivity().getActionBar();  
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-		actionBar.setTitle("Êý¾Ý·ÖÎö");
+		actionBar.setTitle("分析");
 		actionBar.setIcon(R.drawable.icon_analysis_grey);
 	}
 }
