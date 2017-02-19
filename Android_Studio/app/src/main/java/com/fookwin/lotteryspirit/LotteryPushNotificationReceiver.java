@@ -54,12 +54,15 @@ public class LotteryPushNotificationReceiver extends PushMessageReceiver {
             mUserId = userId;
 
             // user login.
-            try {
-                DataUtil.Login(mUserId + " " + mChannelId);
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        DataUtil.Login(mUserId + " " + mChannelId);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
         }
     }
 
