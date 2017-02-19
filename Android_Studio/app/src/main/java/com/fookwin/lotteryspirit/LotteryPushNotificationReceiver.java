@@ -1,42 +1,22 @@
 package com.fookwin.lotteryspirit;
 
-import java.util.List;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.baidu.android.pushservice.PushMessageReceiver;
 import com.fookwin.lotterydata.util.DataUtil;
 
-/*
- * Push消息处理receiver。请编写您需要的回调函数， 一般来说： onBind是必须的，用来处理startWork返回值；
- *onMessage用来接收透传消息； onSetTags、onDelTags、onListTags是tag相关操作的回调；
- *onNotificationClicked在通知被点击时回调； onUnbind是stopWork接口的返回值回调
+import java.util.List;
 
- * 返回值中的errorCode，解释如下：
- *0 - Success
- *10001 - Network Problem
- *10101  Integrate Check Error
- *30600 - Internal Server Error
- *30601 - Method Not Allowed
- *30602 - Request Params Not Valid
- *30603 - Authentication Failed
- *30604 - Quota Use Up Payment Required
- *30605 -Data Required Not Found
- *30606 - Request Time Expires Timeout
- *30607 - Channel Token Timeout
- *30608 - Bind Relation Not Found
- *30609 - Bind Number Too Many
-
- * 当您遇到以上返回错误时，如果解释不了您的问题，请用同一请求的返回值requestId和errorCode联系我们追查问题。
- *
+/**
+ * Created by zhangze on 2/19/2017.
  */
 
-public class MyPushMessageReceiver extends PushMessageReceiver {
-    
+public class LotteryPushNotificationReceiver extends PushMessageReceiver {
+
     public static String mChannelId, mUserId;
     public static final String TAG = PushMessageReceiver.class.getSimpleName();
 
@@ -61,28 +41,28 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
      */
     @Override
     public void onBind(Context context, int errorCode, String appid,
-            String userId, String channelId, String requestId) {
+                       String userId, String channelId, String requestId) {
         String responseString = "onBind errorCode=" + errorCode + " appid="
                 + appid + " userId=" + userId + " channelId=" + channelId
                 + " requestId=" + requestId;
         Log.d(TAG, responseString);
 
-		if (errorCode == 0) {
-			setBind(context, true);
-			
-	        mChannelId = channelId;
-	        mUserId = userId;
+        if (errorCode == 0) {
+            setBind(context, true);
+
+            mChannelId = channelId;
+            mUserId = userId;
 
             // user login.
             try {
-				DataUtil.Login(mUserId + " " + mChannelId);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+                DataUtil.Login(mUserId + " " + mChannelId);
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
     }
-    
+
     private void setBind(Context context, boolean flag) {
         String flagStr = "not";
         if (flag) {
@@ -90,7 +70,7 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
         }
         SharedPreferences sp = PreferenceManager
                 .getDefaultSharedPreferences(context);
-        Editor editor = sp.edit();
+        SharedPreferences.Editor editor = sp.edit();
         editor.putString("bind_flag", flagStr);
         editor.commit();
     }
@@ -107,10 +87,10 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
      */
     @Override
     public void onMessage(Context context, String message,
-            String customContentString) {
-    	String messageString = "透传消息 message=\"" + message
-				+ "\" customContentString=" + customContentString;
-		Log.d(TAG, messageString);
+                          String customContentString) {
+        String messageString = "透传消息 message=\"" + message
+                + "\" customContentString=" + customContentString;
+        Log.d(TAG, messageString);
     }
 
     /**
@@ -127,11 +107,11 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
      */
     @Override
     public void onNotificationClicked(Context context, String title,
-            String description, String customContentString) {
+                                      String description, String customContentString) {
         String notifyString = "通知点击 title=\"" + title + "\" description=\""
                 + description + "\" customContent=" + customContentString;
         Log.d(TAG, notifyString);
-        
+
         Intent intent = new Intent();
         intent.setClass(context.getApplicationContext(), WelcomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -153,7 +133,7 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
 
     @Override
     public void onNotificationArrived(Context context, String title,
-            String description, String customContentString) {
+                                      String description, String customContentString) {
 
         String notifyString = "onNotificationArrived  title=\"" + title
                 + "\" description=\"" + description + "\" customContent="
@@ -177,7 +157,7 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
      */
     @Override
     public void onSetTags(Context context, int errorCode,
-            List<String> sucessTags, List<String> failTags, String requestId) {
+                          List<String> sucessTags, List<String> failTags, String requestId) {
         String responseString = "onSetTags errorCode=" + errorCode
                 + " sucessTags=" + sucessTags + " failTags=" + failTags
                 + " requestId=" + requestId;
@@ -200,7 +180,7 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
      */
     @Override
     public void onDelTags(Context context, int errorCode,
-            List<String> sucessTags, List<String> failTags, String requestId) {
+                          List<String> sucessTags, List<String> failTags, String requestId) {
         String responseString = "onDelTags errorCode=" + errorCode
                 + " sucessTags=" + sucessTags + " failTags=" + failTags
                 + " requestId=" + requestId;
@@ -221,7 +201,7 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
      */
     @Override
     public void onListTags(Context context, int errorCode, List<String> tags,
-            String requestId) {
+                           String requestId) {
         String responseString = "onListTags errorCode=" + errorCode + " tags="
                 + tags;
         Log.d(TAG, responseString);
@@ -247,5 +227,4 @@ public class MyPushMessageReceiver extends PushMessageReceiver {
             // 解绑定成功
         }
     }
-
 }
