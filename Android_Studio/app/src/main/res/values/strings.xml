@@ -115,5 +115,6 @@
     <string name="title_activity_lottery_filter">过滤条件</string>
     <string name="title_activity_schemes">选号结果</string>
     <string name="title_activity_list_filling_helper">投注单填写</string>
+    <string name="skip_splash_ad">跳过</string>
 
 </resources>

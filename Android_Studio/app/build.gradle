@@ -25,8 +25,9 @@ dependencies {
     compile 'com.android.support:appcompat-v7:19.1.0'
     compile 'com.android.support:support-v4:19.1.0'
     compile 'com.android.support:gridlayout-v7:19.1.0'
-    compile files('libs/pushservice-5.5.0.50.jar')
-    compile 'com.baidu.mobstat:mtj-sdk:latest.integration'
-    compile files('libs/ksoap2.jar')
     compile 'com.google.android.gms:play-services-appindexing:8.4.0'
+    compile 'com.baidu.mobstat:mtj-sdk:latest.integration'
+    compile files('libs/GDTUnionSDK.4.9.542.min.jar')
+    compile files('libs/pushservice-5.5.0.50.jar')
+    compile files('libs/ksoap2.jar')
 }
