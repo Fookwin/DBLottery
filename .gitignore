@@ -62,3 +62,5 @@ Android_Studio/.idea/
 Android_Studio/build/
 Android_Studio/gradle/
 Android_Studio/local.properties
+Android_Studio/Android_Studio.iml
+Android_Studio/app/app.iml
