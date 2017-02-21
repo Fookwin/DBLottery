@@ -1,9 +1,5 @@
 package com.fookwin.lotteryspirit.fragment;
 
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
@@ -34,13 +30,18 @@ import com.fookwin.lotteryspirit.data.LBDataManager;
 import com.fookwin.lotteryspirit.data.LotteryInfo;
 import com.fookwin.lotteryspirit.data.LotteryStateInfo;
 import com.fookwin.lotteryspirit.data.PurchaseInfo;
-import com.fookwin.lotteryspirit.view.PurchasesView;
-import com.fookwin.lotteryspirit.view.ReleaseTimeDownView;
 import com.fookwin.lotteryspirit.view.LotteryDetailView;
-import com.fookwin.lotteryspirit.view.RecommendAttributesView;
 import com.fookwin.lotteryspirit.view.LotteryNumStatusView;
+import com.fookwin.lotteryspirit.view.NativeADView;
+import com.fookwin.lotteryspirit.view.PurchasesView;
+import com.fookwin.lotteryspirit.view.RecommendAttributesView;
+import com.fookwin.lotteryspirit.view.ReleaseTimeDownView;
 
-public class HomeFragment extends Fragment 
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class HomeFragment extends Fragment
 {		
 	private LinearLayout header_view_container;
 	private LinearLayout content_item_latestlot;
@@ -76,6 +77,11 @@ public class HomeFragment extends Fragment
 		content_item_verifiedpurchases = (LinearLayout) contentLayout.findViewById(R.id.content_item_4);
 		
 		no_purchase_text = (TextView) contentLayout.findViewById(R.id.no_purchase_text);
+		
+		// Ad
+		View native_ad_container = (View) contentLayout.findViewById(R.id.nativeADContainer);
+		NativeADView adView = new NativeADView(this.getActivity(), "7030002594648242", native_ad_container);
+		adView.loadAD();
 		
 		// Buttons...
 		TextView goto_history_detail_btn = (TextView) contentLayout.findViewById(R.id.goto_history_detail_btn);

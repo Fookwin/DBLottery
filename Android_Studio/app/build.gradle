@@ -30,4 +30,5 @@ dependencies {
     compile files('libs/GDTUnionSDK.4.9.542.min.jar')
     compile files('libs/pushservice-5.5.0.50.jar')
     compile files('libs/ksoap2.jar')
+    compile files('libs/android-query-full.0.26.7.jar')
 }
