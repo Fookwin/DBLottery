@@ -102,6 +102,7 @@ public class WelcomeActivity extends Activity implements SplashADListener {
 
 		ViewGroup container = (ViewGroup) this.findViewById(R.id.ad_view);
 		skipView = (TextView) findViewById(R.id.skip_ad_button);
+		skipView.setVisibility(View.INVISIBLE);
 		fetchSplashAD(this, container, skipView, "1102491872", "7000604514947293", this, 0);
 
 		init();
@@ -244,6 +245,7 @@ public class WelcomeActivity extends Activity implements SplashADListener {
 	public void onADPresent() {
 		Log.i("AD_DEMO", "SplashADPresent");
 		welcome_imageview.setVisibility(View.INVISIBLE); // 广告展示后一定要把预设的开屏图片隐藏起来
+		skipView.setVisibility(View.VISIBLE);
 	}
 
 	@Override
@@ -279,7 +281,7 @@ public class WelcomeActivity extends Activity implements SplashADListener {
 	@Override
 	public void onADTick(long millisUntilFinished) {
 		Log.i("AD_DEMO", "SplashADTick " + millisUntilFinished + "ms");
-		skipView.setText(String.format("剩%1f秒", Math.round(millisUntilFinished / 1000f)));
+		skipView.setText(String.format("跳过　%d秒", Math.round(millisUntilFinished / 1000f)));
 	}
 
 	//防止用户返回键退出APP
