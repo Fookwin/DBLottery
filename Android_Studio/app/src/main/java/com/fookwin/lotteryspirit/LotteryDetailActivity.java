@@ -1,22 +1,24 @@
 package com.fookwin.lotteryspirit;
 
-import java.text.ParseException;
+import android.annotation.SuppressLint;
+import android.app.ActionBar;
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.fookwin.lotterydata.data.Lottery;
 import com.fookwin.lotteryspirit.data.LBDataManager;
 import com.fookwin.lotteryspirit.data.LotteryInfo;
 import com.fookwin.lotteryspirit.view.LotteryDetailView;
+import com.fookwin.lotteryspirit.view.NativeADView;
 
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.annotation.SuppressLint;
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.LinearLayout;
+import java.text.ParseException;
 
 public class LotteryDetailActivity extends Activity
 {
@@ -34,6 +36,11 @@ public class LotteryDetailActivity extends Activity
 		getActionBar().setTitle("开奖详情");
 		
 		detail_container = (LinearLayout) findViewById(R.id.detail_container);
+
+		// Ad
+		View native_ad_container = (View) findViewById(R.id.nativeADContainer);
+		NativeADView adView = new NativeADView(this, "7030002594648242", native_ad_container);
+		adView.loadAD();
 		
 		// read data from bundle.
 		Bundle bundle = this.getIntent().getExtras();    

@@ -49,6 +49,7 @@ public class NativeADView implements NativeAD.NativeAdListener{
         String title = adItem.getTitle();
         String desc = adItem.getDesc();
 
+        $.id(R.id.ad_flag).visible();
         $.id(R.id.img_logo).image(iconUrl, false, true);
         $.id(R.id.img_poster).image(imgUrl, false, true);
         $.id(R.id.text_name).text(title);
@@ -109,10 +110,12 @@ public class NativeADView implements NativeAD.NativeAdListener{
     @Override
     public void onADError(NativeADDataRef adData, int errorCode) {
         Log.i("AD_DEMO", "onADError:" + errorCode);
+        $.id(R.id.ad_flag).invisible();
     }
 
     @Override
     public void onNoAD(int arg0) {
         Log.i("AD_DEMO", "ONNoAD:" + arg0);
+        $.id(R.id.ad_flag).invisible();
     }
 }
