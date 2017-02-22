@@ -16,6 +16,14 @@
             android:layout_height="wrap_content" >
         </FrameLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="----------赞助商广告--------"
+            android:textColor="@color/lightgrey"
+            android:textSize="12sp" />
+
         <LinearLayout
             android:id="@+id/release_timedown"
             android:layout_width="match_parent"
