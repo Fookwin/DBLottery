@@ -1,10 +1,10 @@
 package com.fookwin.lotterydata.data;
 
+import com.fookwin.lotterydata.util.DBXmlNode;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import com.fookwin.lotterydata.util.DBXmlNode;
 
 public class ReleaseInfo
 {
@@ -76,7 +76,7 @@ public class ReleaseInfo
 		_nextIssue = Integer.parseInt(node.GetAttribute("Next"));
 		
 		try {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 			_nextReleaseTime = sdf.parse(node.GetAttribute("NextDate"));
 			_sellOffTime = sdf.parse(node.GetAttribute("OffTime"));
 		} catch (ParseException e) {
