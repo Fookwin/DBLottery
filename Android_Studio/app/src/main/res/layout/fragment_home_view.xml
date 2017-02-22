@@ -10,6 +10,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
+        <FrameLayout
+            android:id="@+id/bannerContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </FrameLayout>
+
         <LinearLayout
             android:id="@+id/release_timedown"
             android:layout_width="match_parent"
@@ -184,12 +190,13 @@
             android:textColor="@color/dimgrey"
             android:textAppearance="?android:attr/textAppearanceSmall"/>
 
-        <include
+        <!-- native ad is not available yet
+         <include
             android:id="@+id/nativeADContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
-            layout="@layout/view_native_ad_item" />
+            layout="@layout/view_native_ad_item" />-->
     </LinearLayout>
 
 </ScrollView>

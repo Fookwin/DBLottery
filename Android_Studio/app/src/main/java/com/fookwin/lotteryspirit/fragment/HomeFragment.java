@@ -30,9 +30,9 @@ import com.fookwin.lotteryspirit.data.LBDataManager;
 import com.fookwin.lotteryspirit.data.LotteryInfo;
 import com.fookwin.lotteryspirit.data.LotteryStateInfo;
 import com.fookwin.lotteryspirit.data.PurchaseInfo;
+import com.fookwin.lotteryspirit.view.BannerAdView;
 import com.fookwin.lotteryspirit.view.LotteryDetailView;
 import com.fookwin.lotteryspirit.view.LotteryNumStatusView;
-import com.fookwin.lotteryspirit.view.NativeADView;
 import com.fookwin.lotteryspirit.view.PurchasesView;
 import com.fookwin.lotteryspirit.view.RecommendAttributesView;
 import com.fookwin.lotteryspirit.view.ReleaseTimeDownView;
@@ -78,10 +78,14 @@ public class HomeFragment extends Fragment
 		
 		no_purchase_text = (TextView) contentLayout.findViewById(R.id.no_purchase_text);
 		
-		// Ad
-		View native_ad_container = (View) contentLayout.findViewById(R.id.nativeADContainer);
-		NativeADView adView = new NativeADView(this.getActivity(), "7030002594648242", native_ad_container);
-		adView.loadAD();
+		// Ad, native ad is not available yet.
+		//View native_ad_container = (View) contentLayout.findViewById(R.id.nativeADContainer);
+		//NativeADView nativeAdView = new NativeADView(this.getActivity(), "7030002594648242", native_ad_container);
+		//nativeAdView.loadAD();
+
+		ViewGroup bannerContainer = (ViewGroup) contentLayout.findViewById(R.id.bannerContainer);
+		BannerAdView bannerAdView = new BannerAdView(this.getActivity(), "7030002594648242", bannerContainer);
+		bannerAdView.loadAD();
 		
 		// Buttons...
 		TextView goto_history_detail_btn = (TextView) contentLayout.findViewById(R.id.goto_history_detail_btn);

@@ -9,14 +9,14 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.fookwin.lotterydata.data.Lottery;
 import com.fookwin.lotteryspirit.data.LBDataManager;
 import com.fookwin.lotteryspirit.data.LotteryInfo;
+import com.fookwin.lotteryspirit.view.BannerAdView;
 import com.fookwin.lotteryspirit.view.LotteryDetailView;
-import com.fookwin.lotteryspirit.view.NativeADView;
 
 import java.text.ParseException;
 
@@ -38,9 +38,9 @@ public class LotteryDetailActivity extends Activity
 		detail_container = (LinearLayout) findViewById(R.id.detail_container);
 
 		// Ad
-		View native_ad_container = (View) findViewById(R.id.nativeADContainer);
-		NativeADView adView = new NativeADView(this, "7030002594648242", native_ad_container);
-		adView.loadAD();
+		ViewGroup bannerContainer = (ViewGroup) findViewById(R.id.bannerContainer);
+		BannerAdView bannerAdView = new BannerAdView(this, "6030514978471349", bannerContainer);
+		bannerAdView.loadAD();
 		
 		// read data from bundle.
 		Bundle bundle = this.getIntent().getExtras();    
