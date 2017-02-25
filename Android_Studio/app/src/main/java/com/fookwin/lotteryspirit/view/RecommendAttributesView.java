@@ -2,9 +2,12 @@ package com.fookwin.lotteryspirit.view;
 
 import java.util.List;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.BaseAdapter;
@@ -14,6 +17,7 @@ import android.widget.TextView;
 
 import com.fookwin.LotterySpirit;
 import com.fookwin.lotterydata.data.SchemeAttributeValueStatus;
+import com.fookwin.lotteryspirit.AttributeDetailActivity;
 import com.fookwin.lotteryspirit.R;
 import com.fookwin.lotteryspirit.data.FilterOption;
 import com.fookwin.lotteryspirit.data.HelpCenter;
@@ -95,7 +99,7 @@ public class RecommendAttributesView
 	private View detailView;
 	private ListView filterListView;
 	
-	private List<SchemeAttributeValueStatus> data = null;
+	private List<SchemeAttributeValueStatus> attributes = null;
 	private AttributeListAdapter listAdapter;
 	private ImageView helpIcon;
 	
@@ -120,7 +124,7 @@ public class RecommendAttributesView
 			});
 		}
 		
-		if (data != null)
+		if (attributes != null)
 		{
 			refreshView();
 		}
@@ -131,11 +135,36 @@ public class RecommendAttributesView
 	
 	private void refreshView()
 	{
-		if (detailView != null && data != null)
+		if (detailView != null && attributes != null)
 		{				
 			// build filter list. Note: we just show the top five here.
-			listAdapter = new AttributeListAdapter(data);
+			listAdapter = new AttributeListAdapter(attributes);
 			filterListView.setAdapter(listAdapter);
+
+			filterListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> adapterView, View view, int position, long id)
+				{
+					if (position >= 0)
+					{
+						SchemeAttributeValueStatus attirbute = attributes.get(position);
+						String attributeKey = attirbute.getParent().getKey();
+						if (attributeKey != null)
+						{
+							Intent intent = new Intent(LotterySpirit.getInstance(), AttributeDetailActivity.class);
+							Bundle bundle = new Bundle();
+
+							bundle.putString("key", attributeKey);
+							intent.putExtras(bundle);
+
+							intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+							LotterySpirit.getInstance().startActivity(intent);
+						}
+					}
+				}
+			});
 			
 			resetListHeight();
 		}
@@ -159,8 +188,8 @@ public class RecommendAttributesView
 	    filterListView.setLayoutParams(params);
 	}
 	
-	public void setData(List<SchemeAttributeValueStatus> recommendFilters)
+	public void setAttributes(List<SchemeAttributeValueStatus> recommendFilters)
 	{		
-		data = recommendFilters;
+		attributes = recommendFilters;
 	}
 }

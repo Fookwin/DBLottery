@@ -235,7 +235,7 @@ public class HomeFragment extends Fragment
 			if (lottoFilterView == null)
 				lottoFilterView = new RecommendAttributesView();
 
-			lottoFilterView.setData(recommendFilters);
+			lottoFilterView.setAttributes(recommendFilters);
 			lottoFilterView.addToContainer(content_item_latestfilter);
 		}
 		

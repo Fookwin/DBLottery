@@ -6,6 +6,7 @@ import com.fookwin.lotterydata.data.Set;
 import com.fookwin.lotteryspirit.data.FilterOption;
 import com.fookwin.lotteryspirit.data.HelpCenter;
 import com.fookwin.lotteryspirit.data.LBDataManager;
+import com.fookwin.lotteryspirit.view.BannerAdView;
 
 import android.os.Bundle;
 import android.app.ActionBar;
@@ -156,6 +157,11 @@ public class AttributeDetailActivity extends Activity
 			getActionBar().setDisplayHomeAsUpEnabled(true);
 			getActionBar().setDisplayOptions(0, ActionBar.DISPLAY_SHOW_HOME);
 			getActionBar().setTitle("属性详情");
+
+			// Ad
+			ViewGroup bannerContainer = (ViewGroup) findViewById(R.id.bannerContainer);
+			BannerAdView bannerAdView = new BannerAdView(this, "6030514978471349", bannerContainer);
+			bannerAdView.loadAD();
 		}
 
 		attribute = LBDataManager.GetInstance().getLastAttributes().Attribute(key);

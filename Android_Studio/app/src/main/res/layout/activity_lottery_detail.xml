@@ -25,7 +25,7 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:layout_above="@+id/bannerContainer"
-        android:text="----------赞助商广告--------"
+        android:text="@string/ad_flag_separater"
         android:textColor="@color/lightgrey"
         android:textSize="12sp" />
 
