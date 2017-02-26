@@ -63,8 +63,12 @@ public class DanTuoSelectorFragment extends Fragment
 	};
 	
 	private Handler onDataChangedHandler;
-	
-	public DanTuoSelectorFragment(DantuoSchemeSelector _selector)
+
+	public DanTuoSelectorFragment()
+	{
+	}
+
+	public void SetSelector(DantuoSchemeSelector _selector)
 	{
 		selector = _selector;
 	}

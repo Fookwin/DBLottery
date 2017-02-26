@@ -25,8 +25,12 @@ public class HistoryConstraintFragment extends Fragment
 	{
 		onDataChangedHandler = handler;
 	}
-	
-	public HistoryConstraintFragment(HistoryDuplicateConstraint history_constraint) 
+
+	public HistoryConstraintFragment()
+	{
+	}
+
+	public void SetConstraint(HistoryDuplicateConstraint history_constraint)
 	{
 		constraint = history_constraint;
 	}

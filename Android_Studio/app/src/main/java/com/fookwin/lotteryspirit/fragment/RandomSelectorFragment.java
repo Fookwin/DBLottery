@@ -104,8 +104,12 @@ public class RandomSelectorFragment extends Fragment
 	private Handler onDataChangedHandler;
 	private SelectionListView result_list_helper;
 	private ListView result_list;
-	
-	public RandomSelectorFragment(RandomSchemeSelector _selector)
+
+	public RandomSelectorFragment()
+	{
+	}
+
+	public void SetSelector(RandomSchemeSelector _selector)
 	{
 		selector = _selector;
 	}

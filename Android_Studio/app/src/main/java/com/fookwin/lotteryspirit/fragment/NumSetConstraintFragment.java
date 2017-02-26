@@ -69,8 +69,12 @@ public class NumSetConstraintFragment extends Fragment implements OnClickListene
 	{
 		onDataChangedHandler = handler;
 	}
-	
-	public NumSetConstraintFragment(RedNumSetConstraint numset_constraint)
+
+	public NumSetConstraintFragment()
+	{
+	}
+
+	public void SetConstraint(RedNumSetConstraint numset_constraint)
 	{
 		constraint = numset_constraint;
 	}

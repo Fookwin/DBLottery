@@ -54,8 +54,12 @@ public class AttributeConstraintFragment extends Fragment
 	{
 		onDataChangedHandler = handler;
 	}
-	
-	public AttributeConstraintFragment(SchemeAttributeConstraint attribute_constraint) 
+
+	public AttributeConstraintFragment()
+	{
+	}
+
+	public void SetConstraint(SchemeAttributeConstraint attribute_constraint)
 	{
 		constraint = attribute_constraint;
 	}

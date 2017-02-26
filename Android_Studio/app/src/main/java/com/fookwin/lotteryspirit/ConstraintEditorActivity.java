@@ -196,7 +196,8 @@ public class ConstraintEditorActivity extends Activity
 					editing_constraint = new SchemeAttributeConstraint();
 				}
 
-				attribute_mode = new AttributeConstraintFragment((SchemeAttributeConstraint) editing_constraint);
+				attribute_mode = new AttributeConstraintFragment();
+				attribute_mode.SetConstraint((SchemeAttributeConstraint)editing_constraint);
 				attribute_mode.setDataChangedHandler(dataChangedhandler);
 				transaction.add(R.id.content_panel, attribute_mode);  
 			}
@@ -218,7 +219,8 @@ public class ConstraintEditorActivity extends Activity
 					editing_constraint = new RedNumSetConstraint();
 				}
 
-				numset_mode = new NumSetConstraintFragment((RedNumSetConstraint) editing_constraint);
+				numset_mode = new NumSetConstraintFragment();
+				numset_mode.SetConstraint((RedNumSetConstraint) editing_constraint);
 				numset_mode.setDataChangedHandler(dataChangedhandler);
 				transaction.add(R.id.content_panel, numset_mode);  
 			}
@@ -240,7 +242,8 @@ public class ConstraintEditorActivity extends Activity
 					editing_constraint = new HistoryDuplicateConstraint();
 				}
 
-				history_mode = new HistoryConstraintFragment((HistoryDuplicateConstraint) editing_constraint);
+				history_mode = new HistoryConstraintFragment();
+				history_mode.SetConstraint((HistoryDuplicateConstraint)editing_constraint);
 				history_mode.setDataChangedHandler(dataChangedhandler);
 				transaction.add(R.id.content_panel, history_mode);  
 			}

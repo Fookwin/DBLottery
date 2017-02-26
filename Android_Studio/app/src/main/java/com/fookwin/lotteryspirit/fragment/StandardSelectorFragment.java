@@ -70,7 +70,11 @@ public class StandardSelectorFragment extends Fragment
 	private Handler onDataChangedHandler;
 	private View blue_connection_view;
 	
-	public StandardSelectorFragment(StandardSchemeSelector starndard_selector)
+	public StandardSelectorFragment()
+	{
+	}
+
+	public void SetSelector(StandardSchemeSelector starndard_selector)
 	{
 		selector = starndard_selector;
 	}

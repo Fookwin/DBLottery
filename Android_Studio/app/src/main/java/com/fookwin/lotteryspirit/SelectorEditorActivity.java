@@ -344,7 +344,8 @@ public class SelectorEditorActivity extends Activity
 					editing_selector = new StandardSchemeSelector();
 				}
 
-				standard_mode = new StandardSelectorFragment((StandardSchemeSelector) editing_selector);
+				standard_mode = new StandardSelectorFragment();
+				standard_mode.SetSelector((StandardSchemeSelector)editing_selector);
 				standard_mode.setDataChangedHandler(dataChangedhandler);
 				transaction.add(R.id.content_panel, standard_mode);  
 			}
@@ -368,7 +369,8 @@ public class SelectorEditorActivity extends Activity
 					editing_selector = new DantuoSchemeSelector();
 				}
 				
-				dantuo_mode = new DanTuoSelectorFragment((DantuoSchemeSelector) editing_selector);
+				dantuo_mode = new DanTuoSelectorFragment();
+				dantuo_mode.SetSelector((DantuoSchemeSelector)editing_selector);
 				dantuo_mode.setDataChangedHandler(dataChangedhandler);
 				transaction.add(R.id.content_panel, dantuo_mode);  
 			}
@@ -391,7 +393,8 @@ public class SelectorEditorActivity extends Activity
 					editing_selector = new RandomSchemeSelector();
 				}
 				
-				random_mode = new RandomSelectorFragment((RandomSchemeSelector) editing_selector);
+				random_mode = new RandomSelectorFragment();
+				random_mode.SetSelector((RandomSchemeSelector)editing_selector);
 				random_mode.setDataChangedHandler(dataChangedhandler);
 				transaction.add(R.id.content_panel, random_mode);  
 			}
