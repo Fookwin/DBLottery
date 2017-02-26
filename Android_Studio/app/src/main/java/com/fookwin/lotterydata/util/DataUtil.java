@@ -135,7 +135,7 @@ public class DataUtil
 		}
 	}
 
-	private static int s_currentSoftwareVersion = 20150803;
+	private static int s_currentSoftwareVersion = 20170226;
 	private static final String s_releaseInfoFileName = "ReleaseInformation.xml";
 	private static final String s_attributesFileName = "LatestAttributes.xml";
 	private static final String s_latestLotteryFileName = "LatestLottery.xml";
