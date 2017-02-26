@@ -39,11 +39,9 @@ public class WelcomeActivity extends Activity implements SplashADListener {
 	private int screenWidth;
 	private ImageView welcome_imageview;
 	private TextView step_progress;
-	private View reload_button;
-	private View skipad_button;
 
 	private boolean dataLoaded = false;
-	private boolean adClosed = false;
+	private int adStatus = 0; // 0 : be requiring ad; 1 : ad presenting; 2: ad dismissed
 
 	@SuppressLint("HandlerLeak")
 	Handler hannext = new Handler() {
@@ -58,10 +56,10 @@ public class WelcomeActivity extends Activity implements SplashADListener {
 				message += " (" + Integer.toString(progress) + " %)";
 
 			if (progress == 100) {
-				step_progress.setVisibility(View.GONE);
+				step_progress.setText("READY! 正在进入福盈");
 				markDataLoaded(false);
 			} else if (progress < 0) {
-				step_progress.setVisibility(View.GONE);
+				step_progress.setText("出错了~ 点击重新加载");
 				markDataLoaded(true);
 			} else {
 				// Update the progress UI...
@@ -76,6 +74,7 @@ public class WelcomeActivity extends Activity implements SplashADListener {
 	private GoogleApiClient client;
 	private TextView skipView;
 	private SplashAD splashAD;
+	private boolean bEnableReload = false;
 
 	/**
 	 * Called when the activity is first created.
@@ -91,8 +90,6 @@ public class WelcomeActivity extends Activity implements SplashADListener {
 		setContentView(R.layout.activity_welcome_view);
 
 		step_progress = (TextView) findViewById(R.id.step_progress);
-		reload_button = (View) findViewById(R.id.reload_button);
-		skipad_button = (View) findViewById(R.id.skipad_button);
 
 		// Get the screen size.
 		DisplayMetrics dm = new DisplayMetrics();
@@ -122,18 +119,13 @@ public class WelcomeActivity extends Activity implements SplashADListener {
 		Bitmap newpic = BitmapUtil.GetNewBitmap(srcpic, screenWidth, screenHeight, newWidth, newWidth);
 		welcome_imageview.setImageBitmap(newpic);
 
-		reload_button.setOnClickListener(new OnClickListener() {
+		ViewGroup app_start_bar = (ViewGroup) findViewById(R.id.app_start_bar);
+		app_start_bar.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				step_progress.setVisibility(View.VISIBLE);
-				reload_button.setVisibility(View.GONE);
+				bEnableReload = false;
 
 				loadData();
-			}
-		});
-
-		skipad_button.setOnClickListener(new OnClickListener() {
-			public void onClick(View v) {
-				//gotoMainPage();
 			}
 		});
 
@@ -154,7 +146,7 @@ public class WelcomeActivity extends Activity implements SplashADListener {
 	private void markDataLoaded(boolean failed) {
 		if (failed) {
 			// show reload button.
-			reload_button.setVisibility(View.VISIBLE);
+			bEnableReload = true;
 		} else {
 			// mark load succeeded and waiting for splash closed.
 			dataLoaded = true;
@@ -175,12 +167,10 @@ public class WelcomeActivity extends Activity implements SplashADListener {
 	}
 
 	private void gotoMainPage() {
-		if (adClosed && dataLoaded) {
+		if (adStatus == 2 /*waiting for ad handled*/ && dataLoaded) {
 			finish();
 			Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
 			startActivity(intent);
-
-			skipad_button.setEnabled(false);
 		}
 	}
 
@@ -255,7 +245,7 @@ public class WelcomeActivity extends Activity implements SplashADListener {
 	}
 
 	private void next() {
-		adClosed = true;
+		adStatus = 2; // ad dismissed
 
 		gotoMainPage();
 	}
@@ -288,7 +278,8 @@ public class WelcomeActivity extends Activity implements SplashADListener {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_HOME) {
-			return true;
+			if (adStatus == 1) // ad being presented
+				return true;
 		}
 		return super.onKeyDown(keyCode, event);
 	}

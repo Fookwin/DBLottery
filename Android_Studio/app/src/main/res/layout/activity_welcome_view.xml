@@ -6,73 +6,67 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@+id/app_logo"
+        android:id="@+id/app_start_bar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="120dp"
         android:layout_gravity="center"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:gravity="center"
+        android:background="@color/white"
         android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/reload_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+        <ImageView
+            android:id="@+id/app_logo"
+            android:layout_width="240dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:text="出错了~ 点击重新加载"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/white"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/skipad_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:gravity="center"
-            android:text="READY! 正在进入福盈"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/white"
-            android:visibility="gone" />
+            android:src="@drawable/icon_fookwin_logo_h">
+        </ImageView>
 
         <TextView
             android:id="@+id/step_progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@color/grey"
             android:textSize="12sp" />
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/ad_view"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center">
-    </FrameLayout>
+        android:layout_above="@+id/app_start_bar">
 
-    <ImageView
-        android:id="@+id/welcome_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_centerInParent="true"
-        android:gravity="center">
-    </ImageView>
+        <FrameLayout
+            android:id="@+id/ad_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+        </FrameLayout>
 
-    <TextView
-        android:id="@+id/skip_ad_button"
-        android:layout_width="96dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_margin="16dp"
-        android:background="@drawable/background_with_corners_grey"
-        android:gravity="center"
-        android:text="@string/skip_splash_ad"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"/>
+        <ImageView
+            android:id="@+id/welcome_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:gravity="center">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/skip_ad_button"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="16dp"
+            android:background="@android:color/darker_gray"
+            android:gravity="center"
+            android:text="@string/skip_splash_ad"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"/>
+    </RelativeLayout>
 
 </RelativeLayout>
