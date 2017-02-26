@@ -49,7 +49,6 @@ public class LotteryTrendChartActivity extends Activity
 	private DiagramListView list_view;
 	
 	private SpinnerAdapter categories_adapter;
-	private ContextThemeWrapper theme_context;
 	
 	private MenuItem sub_categories_red_position;
 	private MenuItem sub_categories_red_division;
@@ -86,10 +85,8 @@ public class LotteryTrendChartActivity extends Activity
 		
 		this.getActionBar().setDisplayHomeAsUpEnabled(true);
 		this.getActionBar().setDisplayOptions(0, ActionBar.DISPLAY_SHOW_HOME);
-
-		theme_context = new ContextThemeWrapper(this, android.R.style.Theme_Holo);
 		
-		categories_adapter = ArrayAdapter.createFromResource(theme_context,  
+		categories_adapter = ArrayAdapter.createFromResource(this,
 				R.array.diagram_categories, android.R.layout.simple_spinner_dropdown_item);		
 
 		// update action bar

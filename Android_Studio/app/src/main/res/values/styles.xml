@@ -5,8 +5,19 @@
         <item name="android:actionBarStyle">@style/MyActionBar</item>
         <item name="android:actionBarTabTextStyle">@style/MyActionBarTabText</item>
         <item name="android:actionBarTabBarStyle">@style/MyActionBarTabBars</item>
-        <item name="android:actionMenuTextColor">@color/lightgreen</item>
+        <item name="android:actionMenuTextColor">@color/lightgrey</item>
+        <item name="android:spinnerDropDownItemStyle">@style/MySpinerDropDownItem</item>
+        <item name="android:popupMenuStyle">@style/MyPopupMenu</item>
         <item name="android:windowAnimationStyle">@style/MyWindowAnimTheme</item>
+    </style>
+
+    <style name="MySpinerDropDownItem" parent="@style/Widget.AppCompat.Light.Base.DropDownItem.Spinner">
+        <item name="android:textColor">@color/yellow</item>
+        <item name="android:background">@color/darkred</item>
+    </style>
+
+    <style name="MyPopupMenu" parent="@style/Widget.AppCompat.Light.ListPopupWindow">
+        <item name="android:popupBackground">@color/lightgray</item>
     </style>
 
     <!-- ActionBar styles -->

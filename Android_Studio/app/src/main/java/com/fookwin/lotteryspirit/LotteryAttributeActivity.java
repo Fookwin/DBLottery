@@ -22,7 +22,6 @@ import android.widget.SpinnerAdapter;
 
 public class LotteryAttributeActivity extends Activity 
 {
-	private ContextThemeWrapper theme_context;
 	private LayoutInflater layout_inflater;
 	private SpinnerAdapter categories_adapter;
 	
@@ -41,11 +40,9 @@ public class LotteryAttributeActivity extends Activity
 		this.getActionBar().setDisplayHomeAsUpEnabled(true);
 		this.getActionBar().setDisplayOptions(0, ActionBar.DISPLAY_SHOW_HOME);
 		
-		layout_inflater = this.getLayoutInflater();	
+		layout_inflater = this.getLayoutInflater();
 		
-		theme_context = new ContextThemeWrapper(this, android.R.style.Theme_Holo);
-		
-		categories_adapter = ArrayAdapter.createFromResource( theme_context,  
+		categories_adapter = ArrayAdapter.createFromResource( this,
 				R.array.filter_tabs, android.R.layout.simple_spinner_dropdown_item);
 		
 		updateActionBar();
