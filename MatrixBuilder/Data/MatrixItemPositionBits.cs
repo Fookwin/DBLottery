@@ -6,8 +6,9 @@ namespace MatrixBuilder
 {
     class MatrixItemPositionBits
     {
-        private List<UInt64> Flags = new List<UInt64>();
+        private UInt64[] Flags;
         private int _unhitCount = -1;
+        private int _flagCount = -1;
 
         public MatrixItemPositionBits(int size, bool asEmpty)
         {
@@ -15,18 +16,24 @@ namespace MatrixBuilder
             const UInt64 int_1 = (UInt64)1;
 
             int segmemtCount = size / 64;
+            int last = size % 64;
+
+            _flagCount = segmemtCount;
+            if (last != 0)
+                ++_flagCount;
+
+            Flags = new UInt64[_flagCount];
             for (int i = 1; i <= segmemtCount; ++i)
             {
-                Flags.Add(init_flag);
+                Flags[i] = init_flag;
             }
 
             // add the last one.
-            int last = size % 64;
             if (last != 0)
             {
                 if (asEmpty)
                 {
-                    Flags.Add(0);
+                    Flags[_flagCount - 1] = 0;
                 }
                 else
                 {
@@ -36,7 +43,7 @@ namespace MatrixBuilder
                         temp |= int_1 << i;
                     }
 
-                    Flags.Add(temp);
+                    Flags[_flagCount - 1] = temp;
                 }
             }
 
@@ -62,9 +69,8 @@ namespace MatrixBuilder
 
         public int NextPosition(int previous, bool testHas)
         {
-            int count = Flags.Count;
             int startSeg = previous / 64;
-            for (int i = startSeg; i < count; ++i)
+            for (int i = startSeg; i < _flagCount; ++i)
             {
                 UInt64 flag = 1;
                 int startBit = i == startSeg ? (previous % 64) + 1 : 1;
@@ -77,7 +83,7 @@ namespace MatrixBuilder
                 }
             }
 
-            return count;
+            return _flagCount;
         }
 
         public void AddSingle(int pos)
@@ -87,8 +93,7 @@ namespace MatrixBuilder
 
         public void AddMultiple(MatrixItemPositionBits test)
         {
-            int count = Flags.Count;
-            for (int i = 0; i < count; ++i)
+            for (int i = 0; i < _flagCount; ++i)
             {
                 Flags[i] |= test.Flags[i];
             }
@@ -110,8 +115,7 @@ namespace MatrixBuilder
 
         public void RemoveMultiple(MatrixItemPositionBits test)
         {
-            int count = Flags.Count;
-            for (int i = 0; i < count; ++i)
+            for (int i = 0; i < _flagCount; ++i)
             {
                 Flags[i] &= ~test.Flags[i];
             }
@@ -121,7 +125,9 @@ namespace MatrixBuilder
 
         public MatrixItemPositionBits Clone()
         {
-            return new MatrixItemPositionBits() { Flags = this.Flags.ToList(), _unhitCount = this._unhitCount };
+            var copy = new MatrixItemPositionBits() { Flags = new UInt64[this._flagCount], _flagCount = this._flagCount, _unhitCount = this._unhitCount };
+            CloneFlags(Flags, copy.Flags, _flagCount);
+            return copy;
         }
 
         public bool IsClean()
@@ -141,8 +147,27 @@ namespace MatrixBuilder
 
         public void CopyTo(MatrixItemPositionBits to)
         {
-            to.Flags = Flags.ToList();
+            CloneFlags(Flags, to.Flags, _flagCount);
             to._unhitCount = _unhitCount;
+            to._flagCount = _flagCount;
+        }
+
+        private unsafe static void CloneFlags(UInt64[] source, UInt64[] target, int count)
+        {
+            fixed (UInt64* pSource = source, pTarget = target)
+            {
+                // Set the starting points in source and target for the copying.
+                UInt64* ps = pSource;
+                UInt64* pt = pTarget;
+
+                // Copy the specified number of bytes from source to target.
+                for (int i = 0; i < count; i++)
+                {
+                    *pt = *ps;
+                    pt++;
+                    ps++;
+                }
+            }
         }
 
         public int UnhitCount
@@ -153,9 +178,8 @@ namespace MatrixBuilder
                     return _unhitCount;
 
                 _unhitCount = 0;
-
-                int count = Flags.Count;
-                for (int i = 0; i < count; ++i)
+                
+                for (int i = 0; i < _flagCount; ++i)
                 {
                     UInt64 segFlag = Flags[i];
                     if (segFlag != 0)
