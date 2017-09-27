@@ -9,13 +9,13 @@ namespace MatrixBuilder
     class BuildContext
     {
         private readonly MatrixBuildSettings _settings = null;
+        private readonly int _candidateCount = -1;
+        private readonly int _seleteCount = -1;
+        private readonly bool _returnForAny = false;
 
-        private int _candidateCount = -1;
-        private int _seleteCount = -1;
 
         // Algorithm settings.
-        private int _testLimit = -1;
-        public bool FindAnyReturn = false;
+        private int _maxSelectionCount = -1;
 
         // Currnt State
         public UInt64 NumBitsCovered = 0;
@@ -33,30 +33,48 @@ namespace MatrixBuilder
         public UInt64 CheckCountForUpdateProgress = 0;
         public UInt64 CheckCountStep = 1000000;
 
-        public BuildContext(MatrixBuildSettings settings)
+        public BuildContext(MatrixBuildSettings settings, bool returnForAny, int maxSelectionCount)
         {
             _candidateCount = settings.CandidateNumCount;
             _seleteCount = settings.MatchNumCount + 1;
             _settings = settings;
+            _maxSelectionCount = maxSelectionCount;
+            _returnForAny = returnForAny;
+            _maxHitCountForEach = (_maxSelectionCount / _candidateCount + 1) * _seleteCount;
 
             _numHitCounts = new int[_candidateCount];
             _numBitsToSkip = new MatrixItemPositionBits(_settings.TestItemCollection.Count, true);
         }
 
-        public int TestLimit
+        public int MaxSelectionCount
         {
             get
             {
-                return _testLimit;
+                return _maxSelectionCount;
             }
         }
 
-        public void ResetTestLimit(int limit)
+        public bool ReturnForAny
         {
-            // calculate the max num hit count.
-            _maxHitCountForEach = ((limit - 1) / _candidateCount + 1) * _seleteCount;
+            get
+            {
+                return _returnForAny;
+            }
+        }
 
-            if (limit < _testLimit)
+        public void SetSolution(List<MatrixItemByte> solution)
+        {
+            // Save solution to context.
+            _settings.CurrentSolution = solution;
+
+            // reset the max selectio count for further calculation.
+            int newMaxSelectionCount = solution.Count - 1;
+
+            // calculate the max num hit count.
+            _maxHitCountForEach = (newMaxSelectionCount / _candidateCount + 1) * _seleteCount;
+
+            // check if any numbers has been hit the max hit count that could be skipped.
+            if (newMaxSelectionCount < _maxSelectionCount)
             {
                 for (int i = 0; i < _candidateCount; ++i)
                 {
@@ -65,7 +83,7 @@ namespace MatrixBuilder
                 }
             }
 
-            _testLimit = limit;
+            _maxSelectionCount = newMaxSelectionCount;
         }
 
         public void AddNumHits(MatrixItemByte item)
@@ -126,27 +144,25 @@ namespace MatrixBuilder
 
         public List<MatrixItemByte> Calculate()
         {
-            // Build context.
-            BuildContext context = new BuildContext(Settings);
+            bool returnForAny = true;
+            int maxSelectionCount = TestLimit;
 
-            if (TestLimit > 0)
-            {
-                context.ResetTestLimit(TestLimit);
-                context.FindAnyReturn = true;
-            }
-            else
+            // if not specify the the max selection count, set it as the count of default solution.
+            if (maxSelectionCount <= 0)
             {
                 // Get the default matrix as the candidate solution.
                 List<MatrixItemByte> defaultSoution = BuildMatrixUtil.GetDefaultSolution(Settings.CandidateNumCount, Settings.MatchNumCount + 1, Table);
                 if (defaultSoution != null)
                 {
                     Settings.CurrentSolution = defaultSoution;
-
-                    context.ResetTestLimit(Settings.CurrentSolution.Count);
+                    maxSelectionCount = Settings.CurrentSolution.Count - 1; // try to find the better solution than default.
                 }
 
-                context.FindAnyReturn = false;
+                returnForAny = false; // expect to find the best
             }
+
+            // Build context.
+            BuildContext context = new BuildContext(Settings, returnForAny, maxSelectionCount);
 
             if (MatrixProgressHandler != null)
             {
@@ -201,7 +217,7 @@ namespace MatrixBuilder
             int selectedCount = currentSelected.Count;
 
             int visitedCount = 0;
-            int count = Settings.TestItemCollection.Count - context.TestLimit + selectedCount + 1;
+            int count = Settings.TestItemCollection.Count - context.MaxSelectionCount + selectedCount;
 
             double progStart = context.progress;
             double progStep = context.progressRange / (count - startIndex);
@@ -250,14 +266,13 @@ namespace MatrixBuilder
                 // do we get a solution? check only if the current solution has more steps than the ideal.
                 if (currentSelected.Count > Settings.IdealMinStepCount && context.RestItemsBits.IsClean())
                 {
-                    // Save solution to context.
-                    Settings.CurrentSolution = currentSelected.ToList();
+                    // reset the solution.
+                    context.SetSolution(currentSelected.ToList());
 
-                    context.ResetTestLimit(Settings.CurrentSolution.Count);
                     currentSelected.Pop();
                     context.RemoveNumHits(testItem);
 
-                    if (context.FindAnyReturn)
+                    if (context.ReturnForAny)
                     {
                         return MatrixResult.Aborted;
                     }
@@ -299,8 +314,8 @@ namespace MatrixBuilder
                 }
 
                 // recover the tests and continue.
-                context.RemoveNumHits(testItem);
                 currentSelected.Pop();
+                context.RemoveNumHits(testItem);
 
                 _restItems.CopyTo(context.RestItemsBits);
                 context.NumBitsCovered = _unhitNums;
@@ -312,11 +327,8 @@ namespace MatrixBuilder
         // Check the current incomplete solution and determine if need to continue or not.
         private bool PreCheckSolution(Stack<MatrixItemByte> testSolution, BuildContext context)
         {
-            // Get current test limit.
-            int expectStepCount = context.TestLimit - 1;
-
             // No need to continue if the current solution already has no chance to get less steps than the existing one.
-            int restStep = expectStepCount - testSolution.Count;
+            int restStep = context.MaxSelectionCount - testSolution.Count;
             if (restStep <= 0)
                 return false;
 
