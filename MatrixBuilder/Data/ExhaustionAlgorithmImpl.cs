@@ -8,22 +8,37 @@ namespace MatrixBuilder
 {
     class BuildContext
     {
+        private class BuildToken
+        {
+            public UInt64 NumBitsCovered = 0;
+            public MatrixItemPositionBits RestItemsBits = null;
+
+            public BuildToken Clone()
+            {
+                return new BuildToken() { NumBitsCovered = this.NumBitsCovered, RestItemsBits = this.RestItemsBits.Clone() };
+            }
+        }
+
+        public enum Status
+        {
+            Continue,
+            PreCheckFailed,
+            Complete
+        }
+
         private readonly MatrixBuildSettings _settings = null;
         private readonly int _candidateCount = -1;
         private readonly int _seleteCount = -1;
         private readonly bool _returnForAny = false;
 
-
         // Algorithm settings.
         private int _maxSelectionCount = -1;
-
-        // Currnt State
-        public UInt64 NumBitsCovered = 0;
-        public MatrixItemPositionBits RestItemsBits = null;
-        private int[] _numHitCounts = null;
-
-        private MatrixItemPositionBits _numBitsToSkip = null;
         private int _maxHitCountForEach = -1;
+        private MatrixItemPositionBits _numBitsToSkip = null;
+        private BuildToken _buildToken = null;
+        private Stack<MatrixItemByte> _currentSelection = new Stack<MatrixItemByte>();
+        private Stack<BuildToken> _tokenStack = new Stack<BuildToken>();
+        private int[] _numHitCounts = null;
 
         // Progress 
         public string progressMsg = "";
@@ -38,12 +53,17 @@ namespace MatrixBuilder
             _candidateCount = settings.CandidateNumCount;
             _seleteCount = settings.MatchNumCount + 1;
             _settings = settings;
-            _maxSelectionCount = maxSelectionCount;
             _returnForAny = returnForAny;
+
+            _maxSelectionCount = maxSelectionCount;
             _maxHitCountForEach = (_maxSelectionCount / _candidateCount + 1) * _seleteCount;
+            _numBitsToSkip = new MatrixItemPositionBits(_settings.TestItemCollection.Count, true);
 
             _numHitCounts = new int[_candidateCount];
-            _numBitsToSkip = new MatrixItemPositionBits(_settings.TestItemCollection.Count, true);
+            _buildToken = new BuildToken()
+            {
+                RestItemsBits = new MatrixItemPositionBits(_settings.TestItemCollection.Count, false)
+            };
         }
 
         public int MaxSelectionCount
@@ -62,13 +82,13 @@ namespace MatrixBuilder
             }
         }
 
-        public void SetSolution(List<MatrixItemByte> solution)
+        public void Commit()
         {
             // Save solution to context.
-            _settings.CurrentSolution = solution;
+            _settings.CurrentSolution = _currentSelection.ToList();
 
             // reset the max selectio count for further calculation.
-            int newMaxSelectionCount = solution.Count - 1;
+            int newMaxSelectionCount = _currentSelection.Count - 1;
 
             // calculate the max num hit count.
             _maxHitCountForEach = (newMaxSelectionCount / _candidateCount + 1) * _seleteCount;
@@ -124,6 +144,76 @@ namespace MatrixBuilder
         {
             return _numBitsToSkip.NextPosition(pre, false);
         }
+
+        // Check the current incomplete solution and determine if need to continue or not.
+        private bool PreCheckSolution()
+        {
+            // No need to continue if the current solution already has no chance to get less steps than the existing one.
+            int restStep = MaxSelectionCount - _currentSelection.Count;
+            if (restStep <= 0)
+                return false;
+
+            // check the number coverage.
+            int restUncoveredNumCount = BuildMatrixUtil.BitCount(_buildToken.NumBitsCovered);
+            if (restUncoveredNumCount > restStep * (_settings.MatchNumCount + 1))
+                return false;
+
+            // The max item count can be covered by rest steps. 
+            if (_buildToken.RestItemsBits.UnhitCount > _settings.MaxItemCountCoveredByOneItem * restStep)
+                return false;
+
+            return true; // let's continue.
+        }
+
+        public void Pop()
+        {
+            var lastItem = _currentSelection.Pop();
+
+            // recovery the build token.
+            RemoveNumHits(lastItem);
+
+            // recovery the token.
+            _buildToken = _tokenStack.Pop();
+        }
+
+        public Status Push(int index, MatrixItemByte item)
+        {
+            // update progress
+            if (++CheckCountForUpdateProgress > CheckCountStep)
+            {
+                ++CheckCount;
+                CheckCountForUpdateProgress = 0;
+            }
+
+            // backup the token.
+            _tokenStack.Push(_buildToken.Clone());
+
+            // add to selection.
+            _currentSelection.Push(item);
+
+            // update states.
+            AddNumHits(item);
+            _buildToken.RestItemsBits.RemoveMultiple(_settings.TestItemMashCollection[index]);
+            _buildToken.NumBitsCovered &= ~item.Bits;
+
+            // check if we just get a solution.
+            if (_currentSelection.Count > _settings.IdealMinStepCount && _buildToken.RestItemsBits.IsClean())
+            {
+                return Status.Complete;
+            }
+
+            if (!PreCheckSolution())
+            {
+                return Status.PreCheckFailed;
+            }
+
+            return Status.Continue;
+        }
+
+        public int SelectionCount()
+        {
+            return _currentSelection.Count;
+        }
     }
 
     class ExhaustionAlgorithmImpl
@@ -170,20 +260,12 @@ namespace MatrixBuilder
                 MatrixProgressHandler("Main_Thread", message, 0);
             }
 
-            // Prepare...
-            context.RestItemsBits = new MatrixItemPositionBits(Settings.TestItemCollection.Count, false);
-
-            Stack<MatrixItemByte> currentSelected = new Stack<MatrixItemByte>();
-
             // Include the first always.
             MatrixItemByte firstItem = Settings.TestItemCollection[0];
-            currentSelected.Push(firstItem);
-            CheckItem(0, firstItem, context);
-            context.RestItemsBits.RemoveSingle(0);
-            context.AddNumHits(firstItem);
+            context.Push(0, firstItem);
 
             // Search the rest for possible soution.
-            TraversalForAny(currentSelected, 1, context);
+            TraversalForAny(1, context);
 
             if (MatrixProgressHandler != null)
             {
@@ -195,26 +277,9 @@ namespace MatrixBuilder
             return Settings.CurrentSolution;
         }
 
-        private void CheckItem(int testIndex, MatrixItemByte testItem, BuildContext context)
+        private MatrixResult TraversalForAny(int startIndex, BuildContext context)
         {
-            if (++context.CheckCountForUpdateProgress > context.CheckCountStep)
-            {
-                ++context.CheckCount;
-                context.CheckCountForUpdateProgress = 0;
-            }
-
-            context.RestItemsBits.RemoveMultiple(Settings.TestItemMashCollection[testIndex]);
-
-            context.NumBitsCovered &= ~testItem.Bits;
-        }
-
-        private MatrixResult TraversalForAny(Stack<MatrixItemByte> currentSelected, int startIndex, BuildContext context)
-        {
-            // back-up tests.
-            MatrixItemPositionBits _restItems = context.RestItemsBits.Clone();
-            UInt64 _unhitNums = context.NumBitsCovered;
-
-            int selectedCount = currentSelected.Count;
+            int selectedCount = context.SelectionCount();
 
             int visitedCount = 0;
             int count = Settings.TestItemCollection.Count - context.MaxSelectionCount + selectedCount;
@@ -224,7 +289,7 @@ namespace MatrixBuilder
             context.progressRange = progStep > 0.001 ? progStep : 0;
             UInt64 preCheckCount = context.CheckCount;
 
-            bool bUpdateProgressMsg = currentSelected.Count == 1;
+            bool bUpdateProgressMsg = context.SelectionCount() == 1;
 
             for (int index = startIndex; index < count; ++index)
             {
@@ -257,25 +322,16 @@ namespace MatrixBuilder
 
                 MatrixItemByte testItem = Settings.TestItemCollection[index];
 
-                currentSelected.Push(testItem);
-                context.AddNumHits(testItem);
-
-                // Check the filter.
-                CheckItem(index, testItem, context);
+                // commit this item
+                var status = context.Push(index, testItem);
 
                 // do we get a solution? check only if the current solution has more steps than the ideal.
-                if (currentSelected.Count > Settings.IdealMinStepCount && context.RestItemsBits.IsClean())
+                if (status == BuildContext.Status.Complete)
                 {
                     // reset the solution.
-                    context.SetSolution(currentSelected.ToList());
+                    context.Commit();
 
-                    currentSelected.Pop();
-                    context.RemoveNumHits(testItem);
-
-                    if (context.ReturnForAny)
-                    {
-                        return MatrixResult.Aborted;
-                    }
+                    context.Pop();
 
                     // Get it!
                     if (MatrixProgressHandler != null)
@@ -289,59 +345,32 @@ namespace MatrixBuilder
                         MatrixProgressHandler("Main_Thread", message, context.progress);
                     }
 
-                    return MatrixResult.Succeeded; // return this solution and no need to continue.
+                    return context.ReturnForAny ? MatrixResult.Aborted : MatrixResult.Succeeded; // return this solution and no need to continue.
                 }
-
-                // Check the current solution.
-                if (PreCheckSolution(currentSelected, context))
+                else if (status == BuildContext.Status.Continue)
                 {
                     int next = context.NextItem(index);
+
                     // if we got a valid solution, check if need to continue or not.
-                    MatrixResult res = TraversalForAny(currentSelected, next, context);
+                    MatrixResult res = TraversalForAny(next, context);
                     if (res == MatrixResult.Aborted)
                     {
-                        currentSelected.Pop();
-                        context.RemoveNumHits(testItem);
+                        context.Pop();
                         return MatrixResult.Aborted;
                     }
 
                     if (res == MatrixResult.Succeeded && Settings.CurrentSolution.Count <= selectedCount + 2)
                     {
-                        currentSelected.Pop();
-                        context.RemoveNumHits(testItem);
+                        context.Pop();
                         return MatrixResult.Succeeded;// no need to continue the check.
                     }
                 }
 
                 // recover the tests and continue.
-                currentSelected.Pop();
-                context.RemoveNumHits(testItem);
-
-                _restItems.CopyTo(context.RestItemsBits);
-                context.NumBitsCovered = _unhitNums;
+                context.Pop();
             }
 
             return MatrixResult.Failed;
-        }
-
-        // Check the current incomplete solution and determine if need to continue or not.
-        private bool PreCheckSolution(Stack<MatrixItemByte> testSolution, BuildContext context)
-        {
-            // No need to continue if the current solution already has no chance to get less steps than the existing one.
-            int restStep = context.MaxSelectionCount - testSolution.Count;
-            if (restStep <= 0)
-                return false;
-
-            // check the number coverage.
-            int restUncoveredNumCount = BuildMatrixUtil.BitCount(context.NumBitsCovered);
-            if (restUncoveredNumCount > restStep * (Settings.MatchNumCount + 1))
-                return false;
-
-            // The max item count can be covered by rest steps. 
-            if (context.RestItemsBits.UnhitCount > Settings.MaxItemCountCoveredByOneItem * restStep)
-                return false;
-
-            return true; // let's continue.
         }
     }
 }

@@ -147,13 +147,6 @@ namespace MatrixBuilder
             return true;
         }
 
-        public void CopyTo(MatrixItemPositionBits to)
-        {
-            CloneFlags(Flags, to.Flags, _flagCount);
-            to._unhitCount = _unhitCount;
-            to._flagCount = _flagCount;
-        }
-
         private unsafe static void CloneFlags(UInt64[] source, UInt64[] target, int count)
         {
             fixed (UInt64* pSource = source, pTarget = target)
