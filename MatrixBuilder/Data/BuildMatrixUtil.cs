@@ -17,10 +17,9 @@ namespace MatrixBuilder
         public static int BitCount(UInt64 test)
         {
             int count = 0;
-            UInt64 temp = test;
-            while (temp != 0)
+            while (test != 0)
             {
-                temp = temp & (temp - 1);
+                test = test & (test - 1);
                 ++count;
             }
 

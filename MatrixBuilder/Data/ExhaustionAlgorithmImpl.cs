@@ -8,37 +8,6 @@ namespace MatrixBuilder
 {
     class BuildContext
     {
-        private class Indexer
-        {
-            public int[] _numHitCounts = null;
-            public MatrixItemPositionBits _numBitsToSkip = null;
-
-            public Indexer Clone()
-            {
-                var copy = new Indexer() { _numHitCounts = new int[this._numHitCounts.Length], _numBitsToSkip = this._numBitsToSkip.Clone() };
-                _cloneNumHitCounts(_numHitCounts, copy._numHitCounts, this._numHitCounts.Length);
-                return copy;
-            }
-
-            private unsafe static void _cloneNumHitCounts(int[] source, int[] target, int count)
-            {
-                fixed (int* pSource = source, pTarget = target)
-                {
-                    // Set the starting points in source and target for the copying.
-                    int* ps = pSource;
-                    int* pt = pTarget;
-
-                    // Copy the specified number of bytes from source to target.
-                    for (int i = 0; i < count; i++)
-                    {
-                        *pt = *ps;
-                        pt++;
-                        ps++;
-                    }
-                }
-            }
-        }
-
         private readonly MatrixBuildSettings _settings = null;
 
         private int _candidateCount = -1;
@@ -51,10 +20,9 @@ namespace MatrixBuilder
         // Currnt State
         public UInt64 NumBitsCovered = 0;
         public MatrixItemPositionBits RestItemsBits = null;
+        private int[] _numHitCounts = null;
 
-        private Indexer _indexer = null;
-        private Stack<Indexer> _indexerHistory = new Stack<Indexer>();
-
+        private MatrixItemPositionBits _numBitsToSkip = null;
         private int _maxHitCountForEach = -1;
 
         // Progress 
@@ -71,11 +39,8 @@ namespace MatrixBuilder
             _seleteCount = settings.MatchNumCount + 1;
             _settings = settings;
 
-            _indexer = new Indexer()
-            {
-                _numHitCounts = new int[_candidateCount],
-                _numBitsToSkip = new MatrixItemPositionBits(_settings.TestItemCollection.Count, true)
-            };            
+            _numHitCounts = new int[_candidateCount];
+            _numBitsToSkip = new MatrixItemPositionBits(_settings.TestItemCollection.Count, true);
         }
 
         public int TestLimit
@@ -88,22 +53,19 @@ namespace MatrixBuilder
 
         public void ResetTestLimit(int limit)
         {
-            _testLimit = limit;
-
             // calculate the max num hit count.
-            _maxHitCountForEach = ((_testLimit - 1) / _candidateCount + 1) * _seleteCount;
-        }
+            _maxHitCountForEach = ((limit - 1) / _candidateCount + 1) * _seleteCount;
 
-        public void PushIndexer()
-        {
-            // backup the indexer
-            _indexerHistory.Push(_indexer.Clone());
-        }
+            if (limit < _testLimit)
+            {
+                for (int i = 0; i < _candidateCount; ++i)
+                {
+                    if (_numHitCounts[i] >= _maxHitCountForEach)
+                        _numBitsToSkip.AddMultiple(_settings.NumDistributions[i]);
+                }
+            }
 
-        public void PopIndexer()
-        {
-            // restore the indexer
-            _indexer = _indexerHistory.Pop();
+            _testLimit = limit;
         }
 
         public void AddNumHits(MatrixItemByte item)
@@ -113,10 +75,27 @@ namespace MatrixBuilder
             {
                 if ((mash & item.Bits) != 0)
                 {
-                    ++ _indexer._numHitCounts[i];
+                    ++_numHitCounts[i];
 
-                    if (_indexer._numHitCounts[i] >= _maxHitCountForEach)
-                        _indexer._numBitsToSkip.AddMultiple(_settings.NumDistributions[i]);
+                    if (_numHitCounts[i] == _maxHitCountForEach)
+                        _numBitsToSkip.AddMultiple(_settings.NumDistributions[i]);
+                }
+
+                mash = mash << 1;
+            }
+        }
+
+        public void RemoveNumHits(MatrixItemByte item)
+        {
+            UInt64 mash = 1;
+            for (int i = 0; i < _candidateCount; ++i)
+            {
+                if ((mash & item.Bits) != 0)
+                {
+                    if (_numHitCounts[i] == _maxHitCountForEach)
+                        _numBitsToSkip.RemoveMultiple(_settings.NumDistributions[i]);
+
+                    --_numHitCounts[i];
                 }
 
                 mash = mash << 1;
@@ -125,7 +104,7 @@ namespace MatrixBuilder
 
         public int NextItem(int pre)
         {
-            return _indexer._numBitsToSkip.NextPosition(pre, false);
+            return _numBitsToSkip.NextPosition(pre, false);
         }
     }
 
@@ -263,9 +242,6 @@ namespace MatrixBuilder
                 MatrixItemByte testItem = Settings.TestItemCollection[index];
 
                 currentSelected.Add(testItem);
-
-                context.PushIndexer(); // catch the indexer
-
                 context.AddNumHits(testItem);
 
                 // Check the filter.
@@ -279,7 +255,7 @@ namespace MatrixBuilder
 
                     context.ResetTestLimit(Settings.CurrentSolution.Count);
                     currentSelected.RemoveAt(currentSelected.Count - 1);
-                    context.PopIndexer(); // recover the indexer
+                    context.RemoveNumHits(testItem);
 
                     if (context.FindAnyReturn)
                     {
@@ -310,21 +286,22 @@ namespace MatrixBuilder
                     if (res == MatrixResult.Aborted)
                     {
                         currentSelected.RemoveAt(currentSelected.Count - 1);
-                        context.PopIndexer(); // recover the indexer
+                        context.RemoveNumHits(testItem);
                         return MatrixResult.Aborted;
                     }
 
                     if (res == MatrixResult.Succeeded && Settings.CurrentSolution.Count <= selectedCount + 2)
                     {
                         currentSelected.RemoveAt(currentSelected.Count - 1);
-                        context.PopIndexer(); // recover the indexer
+                        context.RemoveNumHits(testItem);
                         return MatrixResult.Succeeded;// no need to continue the check.
                     }
                 }
 
                 // recover the tests and continue.
-                context.PopIndexer(); // recover the indexer
+                context.RemoveNumHits(testItem);
                 currentSelected.RemoveAt(currentSelected.Count - 1);
+
                 _restItems.CopyTo(context.RestItemsBits);
                 context.NumBitsCovered = _unhitNums;
             }

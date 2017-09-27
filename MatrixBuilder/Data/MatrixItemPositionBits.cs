@@ -23,7 +23,7 @@ namespace MatrixBuilder
                 ++_flagCount;
 
             Flags = new UInt64[_flagCount];
-            for (int i = 1; i <= segmemtCount; ++i)
+            for (int i = 0; i < segmemtCount; ++i)
             {
                 Flags[i] = init_flag;
             }
@@ -73,7 +73,7 @@ namespace MatrixBuilder
             for (int i = startSeg; i < _flagCount; ++i)
             {
                 UInt64 flag = 1;
-                int startBit = i == startSeg ? (previous % 64) + 1 : 1;
+                int startBit = i == startSeg ? (previous % 64) + 1 : 0;
                 for (int j = startBit; j < 64; ++j)
                 {
                     if (testHas != ((flag & Flags[i]) == 0))
@@ -95,7 +95,8 @@ namespace MatrixBuilder
         {
             for (int i = 0; i < _flagCount; ++i)
             {
-                Flags[i] |= test.Flags[i];
+                if (test.Flags[i] != 0)
+                    Flags[i] |= test.Flags[i];
             }
 
             _unhitCount = -1;
@@ -117,7 +118,8 @@ namespace MatrixBuilder
         {
             for (int i = 0; i < _flagCount; ++i)
             {
-                Flags[i] &= ~test.Flags[i];
+                if (test.Flags[i] != 0)
+                    Flags[i] &= ~test.Flags[i];
             }
 
             _unhitCount = -1;
