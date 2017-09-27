@@ -157,11 +157,11 @@ namespace MatrixBuilder
             // Prepare...
             context.RestItemsBits = new MatrixItemPositionBits(Settings.TestItemCollection.Count, false);
 
-            List<MatrixItemByte> currentSelected = new List<MatrixItemByte>();
+            Stack<MatrixItemByte> currentSelected = new Stack<MatrixItemByte>();
 
             // Include the first always.
             MatrixItemByte firstItem = Settings.TestItemCollection[0];
-            currentSelected.Add(firstItem);
+            currentSelected.Push(firstItem);
             CheckItem(0, firstItem, context);
             context.RestItemsBits.RemoveSingle(0);
             context.AddNumHits(firstItem);
@@ -192,7 +192,7 @@ namespace MatrixBuilder
             context.NumBitsCovered &= ~testItem.Bits;
         }
 
-        private MatrixResult TraversalForAny(List<MatrixItemByte> currentSelected, int startIndex, BuildContext context)
+        private MatrixResult TraversalForAny(Stack<MatrixItemByte> currentSelected, int startIndex, BuildContext context)
         {
             // back-up tests.
             MatrixItemPositionBits _restItems = context.RestItemsBits.Clone();
@@ -241,7 +241,7 @@ namespace MatrixBuilder
 
                 MatrixItemByte testItem = Settings.TestItemCollection[index];
 
-                currentSelected.Add(testItem);
+                currentSelected.Push(testItem);
                 context.AddNumHits(testItem);
 
                 // Check the filter.
@@ -254,7 +254,7 @@ namespace MatrixBuilder
                     Settings.CurrentSolution = currentSelected.ToList();
 
                     context.ResetTestLimit(Settings.CurrentSolution.Count);
-                    currentSelected.RemoveAt(currentSelected.Count - 1);
+                    currentSelected.Pop();
                     context.RemoveNumHits(testItem);
 
                     if (context.FindAnyReturn)
@@ -285,14 +285,14 @@ namespace MatrixBuilder
                     MatrixResult res = TraversalForAny(currentSelected, next, context);
                     if (res == MatrixResult.Aborted)
                     {
-                        currentSelected.RemoveAt(currentSelected.Count - 1);
+                        currentSelected.Pop();
                         context.RemoveNumHits(testItem);
                         return MatrixResult.Aborted;
                     }
 
                     if (res == MatrixResult.Succeeded && Settings.CurrentSolution.Count <= selectedCount + 2)
                     {
-                        currentSelected.RemoveAt(currentSelected.Count - 1);
+                        currentSelected.Pop();
                         context.RemoveNumHits(testItem);
                         return MatrixResult.Succeeded;// no need to continue the check.
                     }
@@ -300,7 +300,7 @@ namespace MatrixBuilder
 
                 // recover the tests and continue.
                 context.RemoveNumHits(testItem);
-                currentSelected.RemoveAt(currentSelected.Count - 1);
+                currentSelected.Pop();
 
                 _restItems.CopyTo(context.RestItemsBits);
                 context.NumBitsCovered = _unhitNums;
@@ -310,7 +310,7 @@ namespace MatrixBuilder
         }
 
         // Check the current incomplete solution and determine if need to continue or not.
-        private bool PreCheckSolution(List<MatrixItemByte> testSolution, BuildContext context)
+        private bool PreCheckSolution(Stack<MatrixItemByte> testSolution, BuildContext context)
         {
             // Get current test limit.
             int expectStepCount = context.TestLimit - 1;
