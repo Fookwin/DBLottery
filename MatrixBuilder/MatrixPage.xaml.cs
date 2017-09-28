@@ -119,18 +119,15 @@ namespace MatrixBuilder
 
             Thread calThread = new Thread(() =>
             {
-                DateTime startTime = DateTime.Now;
                 int iRes = _builder.BuildMarixCell(selectedRow, selectedCol, start, algorithm);
 
-                TimeSpan duration = DateTime.Now - startTime;
                 timer.Stop();
 
                 Dispatcher.Invoke(() =>
                 {
                     RefreshTable();
                 });
-
-                MessageBox.Show((iRes > 0 ? "Found Solution with Count " + iRes.ToString() : "No Solution Found!") + " Duration: "+ duration.ToString());
+                
             });
 
             calThread.SetApartmentState(ApartmentState.STA);

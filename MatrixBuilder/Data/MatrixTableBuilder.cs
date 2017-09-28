@@ -206,10 +206,9 @@ namespace MatrixBuilder
 
         public int BuildMarixCell(int row, int col, int testLimit, int algorithm)
         {
-            _matrixTable.Init();
+            DateTime startTime = DateTime.Now;
 
-            if (_matrixTable.GetCell(row, col) != null)
-                return _matrixTable.GetCellItemCount(row, col);
+            _matrixTable.Init();
 
             // (re)Set the global settings data.
             MatrixBuildSettings settings = new MatrixBuildSettings(row, col);
@@ -221,6 +220,8 @@ namespace MatrixBuilder
                 ExhaustionAlgorithmImpl impl = new ExhaustionAlgorithmImpl(settings, _matrixTable, testLimit, MatrixProgressHandler);
                 result = impl.Calculate();
             }
+
+            TimeSpan duration = DateTime.Now - startTime;
 
             if (result != null)
             {
@@ -241,9 +242,13 @@ namespace MatrixBuilder
                     File.WriteAllLines("Z:\\matrix\\" + file, output);
                 }
 
+                MessageBox.Show("Found Solution with Count " + result.Count.ToString() + " Duration: " + duration.ToString());
+
                 return result.Count;
             }
 
+            MessageBox.Show("No Solution Found!" + " Duration: " + duration.ToString());
+ 
             return -1;
         }
     }
