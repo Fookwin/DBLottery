@@ -35,7 +35,7 @@ namespace MatrixBuilder
         MatrixTableBuilder _builder = new MatrixTableBuilder();
         private DataTable _table = null;
         private delegate void ThreadDelegate();
-        private bool skip = false;
+        private bool _userCanceled = false;
         private Dictionary<string, ProgressState> _progressStates = new Dictionary<string, ProgressState>();
         private MatrixCell selectedCell = null;
         private int selectedRow = 0;
@@ -106,6 +106,7 @@ namespace MatrixBuilder
                 return;
 
             // clearn the progress list.
+            _userCanceled = false;
             _progressStates.Clear();
             LV_Progress.ItemsSource = null;
 
@@ -156,12 +157,12 @@ namespace MatrixBuilder
                 }
             }
 
-            return skip ? -1 : 0;
+            return _userCanceled ? -1 : 0;
         }
 
         private void Button_Click_Skip(object sender, RoutedEventArgs e)
         {
-            skip = true;
+            _userCanceled = true;
         }
 
         private void Button_Click_Verify(object sender, RoutedEventArgs e)

@@ -126,7 +126,7 @@ namespace MatrixBuilder
         public void Commit()
         {
             // Save solution to context.
-            _settings.CurrentSolution = _currentSelection.ToList();
+            _settings.CurrentSolution = _currentSelection.Reverse().ToList();
 
             _maxSelectionCount = _settings.CurrentSolution.Count - 1;
 
