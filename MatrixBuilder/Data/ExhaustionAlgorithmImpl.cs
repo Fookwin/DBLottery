@@ -255,20 +255,8 @@ namespace MatrixBuilder
             MatrixProgressHandler = processMonitor;
         }
 
-        public List<MatrixItemByte> Calculate(string jobName, int maxSelectionCount, bool returnForAny)
+        public MatrixResult Calculate(string jobName, int maxSelectionCount, bool returnForAny)
         {
-            // if not specify the the max selection count, set it as the count of default solution.
-            if (maxSelectionCount <= 0)
-            {
-                // Get the default matrix as the candidate solution.
-                List<MatrixItemByte> defaultSoution = BuildMatrixUtil.GetDefaultSolution(Settings.CandidateNumCount, Settings.MatchNumCount + 1, Table);
-                if (defaultSoution != null)
-                {
-                    Settings.CurrentSolution = defaultSoution;
-                    maxSelectionCount = Settings.CurrentSolution.Count - 1; // try to find the better solution than default.
-                }
-            }
-
             // Build context.
             BuildContext context = new BuildContext(Settings, returnForAny, maxSelectionCount, jobName);
 
@@ -287,12 +275,12 @@ namespace MatrixBuilder
 
             if (MatrixProgressHandler != null)
             {
-                string message = "Finished ! CheckCount: " + context.CheckCount.ToString();
-
+                string message = res.ToString();
+                message += " Check Count: " + context.CheckCount.ToString();
                 MatrixProgressHandler(jobName, message, 100);
             }
 
-            return Settings.CurrentSolution;
+            return res;
         }
 
         private MatrixResult TraversalForAny(int startIndex, BuildContext context)
@@ -331,14 +319,14 @@ namespace MatrixBuilder
                         int result = MatrixProgressHandler(context.JobName, message, context.progress);
                         if (result < 0)
                         {
-                            return MatrixResult.Aborted;
+                            return MatrixResult.User_Aborted;
                         }
                     }
                 }
 
                 // check if a better result has been found by other processer.
                 if (Settings.CurrentSolution != null && context.MaxSelectionCount >= Settings.CurrentSolution.Count)
-                    return MatrixResult.Aborted;
+                    return MatrixResult.Job_Aborted;
 
                 ++visitedCount;
 
@@ -367,7 +355,7 @@ namespace MatrixBuilder
                         MatrixProgressHandler(context.JobName, message, context.progress);
                     }
 
-                    return context.ReturnForAny ? MatrixResult.Aborted : MatrixResult.Succeeded; // return this solution and no need to continue.
+                    return MatrixResult.Job_Succeeded; // return this solution and no need to continue.
                 }
                 else if (status == BuildContext.Status.Continue)
                 {
@@ -375,16 +363,15 @@ namespace MatrixBuilder
 
                     // if we got a valid solution, check if need to continue or not.
                     MatrixResult res = TraversalForAny(next, context);
-                    if (res == MatrixResult.Aborted)
+                    if (res == MatrixResult.User_Aborted || res == MatrixResult.Job_Aborted)
                     {
-                        context.Pop();
-                        return MatrixResult.Aborted;
+                        return res;
                     }
 
-                    if (res == MatrixResult.Succeeded && Settings.CurrentSolution.Count <= selectedCount + 2)
+                    if (res == MatrixResult.Job_Succeeded && (context.ReturnForAny || Settings.CurrentSolution.Count <= selectedCount + 2))
                     {
                         context.Pop();
-                        return MatrixResult.Succeeded;// no need to continue the check.
+                        return MatrixResult.Job_Succeeded; // no need to continue the check.
                     }
                 }
 
@@ -392,7 +379,7 @@ namespace MatrixBuilder
                 context.Pop();
             }
 
-            return MatrixResult.Failed;
+            return MatrixResult.Job_Failed;
         }
     }
 }

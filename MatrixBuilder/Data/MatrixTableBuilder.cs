@@ -3,14 +3,17 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace MatrixBuilder
 {
     enum MatrixResult
     {
-        Failed = 0,
-        Succeeded = 1,
-        Aborted = 2
+        Job_Failed = 0,
+        Job_Succeeded = 1,
+        Job_Aborted = 2,
+        User_Aborted = 3
     }
 
     class MatrixBuildSettings
@@ -213,28 +216,46 @@ namespace MatrixBuilder
             // (re)Set the global settings data.
             MatrixBuildSettings settings = new MatrixBuildSettings(row, col);
 
-            List<MatrixItemByte> result = null;
-
             if (algorithm == 0) // exhaustion algorithm
             {
+                // if not specify the the max selection count, set it as the count of default solution.
+                if (testLimit <= 0)
+                {
+                    // Get the default matrix as the candidate solution.
+                    List<MatrixItemByte> defaultSoution = BuildMatrixUtil.GetDefaultSolution(settings.CandidateNumCount, settings.MatchNumCount + 1, _matrixTable);
+                    if (defaultSoution != null)
+                    {
+                        testLimit = defaultSoution.Count - 1; // try to find the better solution than default.
+                    }
+                }
+
+                bool bAborted = false;
                 ExhaustionAlgorithmImpl impl = new ExhaustionAlgorithmImpl(settings, _matrixTable, MatrixProgressHandler);
-                result = impl.Calculate("main", testLimit, testLimit > 0);
+                ParallelOptions option = new ParallelOptions() { MaxDegreeOfParallelism = Environment.ProcessorCount };
+                ParallelLoopResult loopResult = Parallel.For(settings.IdealMinStepCount + 1, testLimit, option, (Index) =>
+                {
+                    if (!bAborted)
+                    {
+                        if (impl.Calculate("index_" + Index.ToString(), Index, true) == MatrixResult.User_Aborted)
+                            bAborted = true;
+                    }
+                });
             }
 
             TimeSpan duration = DateTime.Now - startTime;
 
-            if (result != null)
+            if (settings.CurrentSolution != null)
             {
-                if (MessageBox.Show("Result:" + result.Count.ToString() + ". Save it?", "Successful", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Result:" + settings.CurrentSolution.Count.ToString() + ". Save it?", "Successful", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    _matrixTable.SetCell(row, col, new MatrixCell() { Template = result });
+                    _matrixTable.SetCell(row, col, new MatrixCell() { Template = settings.CurrentSolution });
 
                     // save to file.
                     string file = row.ToString() + "-" + col.ToString() + ".txt";
 
                     List<string> output = new List<string>();
 
-                    foreach (MatrixItemByte item in result)
+                    foreach (MatrixItemByte item in settings.CurrentSolution)
                     {
                         output.Add(item.ToString());
                     }
@@ -242,9 +263,9 @@ namespace MatrixBuilder
                     File.WriteAllLines("Z:\\matrix\\" + file, output);
                 }
 
-                MessageBox.Show("Found Solution with Count " + result.Count.ToString() + " Duration: " + duration.ToString());
+                MessageBox.Show("Found Solution with Count " + settings.CurrentSolution.Count.ToString() + " Duration: " + duration.ToString());
 
-                return result.Count;
+                return settings.CurrentSolution.Count;
             }
 
             MessageBox.Show("No Solution Found!" + " Duration: " + duration.ToString());
