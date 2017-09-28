@@ -79,9 +79,8 @@ namespace MatrixBuilder
         private Stack<MatrixItemByte> _currentSelection = new Stack<MatrixItemByte>();
         private Stack<BuildToken> _tokenStack = new Stack<BuildToken>();
 
-        public MatrixItemPositionBits NumBitsToSkip = null;
-
         // Progress 
+        public readonly string JobName = null;
         public string progressMsg = "";
         public double progress = 0.0;
         public double progressRange = 100.0;
@@ -89,12 +88,13 @@ namespace MatrixBuilder
         public UInt64 CheckCountForUpdateProgress = 0;
         public UInt64 CheckCountStep = 1000000;
 
-        public BuildContext(MatrixBuildSettings settings, bool returnForAny, int maxSelectionCount)
+        public BuildContext(MatrixBuildSettings settings, bool returnForAny, int maxSelectionCount, string jobName)
         {
             _candidateCount = settings.CandidateNumCount;
             _seleteCount = settings.MatchNumCount + 1;
             _settings = settings;
             _returnForAny = returnForAny;
+            JobName = jobName;
 
             _maxSelectionCount = maxSelectionCount;
             _maxHitCountForEach = (_maxSelectionCount / _candidateCount + 1) * _seleteCount;
@@ -245,23 +245,18 @@ namespace MatrixBuilder
     {
         private readonly MatrixBuildSettings Settings = null;
         private readonly MatrixTable Table = null;
-        private int TestLimit = -1;
         public event MatrixTableBuilder.MatrixCalculationProgressHandler MatrixProgressHandler = null;
 
-        public ExhaustionAlgorithmImpl(MatrixBuildSettings settings, MatrixTable refTable, int testLimit,
+        public ExhaustionAlgorithmImpl(MatrixBuildSettings settings, MatrixTable refTable,
             MatrixTableBuilder.MatrixCalculationProgressHandler processMonitor)
         {
             Settings = settings;
             Table = refTable;
-            TestLimit = testLimit;
             MatrixProgressHandler = processMonitor;
         }
 
-        public List<MatrixItemByte> Calculate()
+        public List<MatrixItemByte> Calculate(string jobName, int maxSelectionCount, bool returnForAny)
         {
-            bool returnForAny = true;
-            int maxSelectionCount = TestLimit;
-
             // if not specify the the max selection count, set it as the count of default solution.
             if (maxSelectionCount <= 0)
             {
@@ -272,17 +267,15 @@ namespace MatrixBuilder
                     Settings.CurrentSolution = defaultSoution;
                     maxSelectionCount = Settings.CurrentSolution.Count - 1; // try to find the better solution than default.
                 }
-
-                returnForAny = false; // expect to find the best
             }
 
             // Build context.
-            BuildContext context = new BuildContext(Settings, returnForAny, maxSelectionCount);
+            BuildContext context = new BuildContext(Settings, returnForAny, maxSelectionCount, jobName);
 
             if (MatrixProgressHandler != null)
             {
                 string message = "Started...";
-                MatrixProgressHandler("Main_Thread", message, 0);
+                MatrixProgressHandler(jobName, message, 0);
             }
 
             // Include the first always.
@@ -290,12 +283,13 @@ namespace MatrixBuilder
             context.Push(0, firstItem);
 
             // Search the rest for possible soution.
-            TraversalForAny(1, context);
+            var res = TraversalForAny(1, context);
 
             if (MatrixProgressHandler != null)
             {
                 string message = "Finished ! CheckCount: " + context.CheckCount.ToString();
-                MatrixProgressHandler("Main_Thread", message, 100);
+
+                MatrixProgressHandler(jobName, message, 100);
             }
 
             return Settings.CurrentSolution;
@@ -334,13 +328,17 @@ namespace MatrixBuilder
                         message += " CURRENT: " + (Settings.CurrentSolution != null ? Settings.CurrentSolution.Count.ToString() : "-1");
                         message += " CHECKED: " + context.CheckCount.ToString();
 
-                        int result = MatrixProgressHandler("Main_Thread", message, context.progress);
+                        int result = MatrixProgressHandler(context.JobName, message, context.progress);
                         if (result < 0)
                         {
                             return MatrixResult.Aborted;
                         }
                     }
                 }
+
+                // check if a better result has been found by other processer.
+                if (Settings.CurrentSolution != null && context.MaxSelectionCount >= Settings.CurrentSolution.Count)
+                    return MatrixResult.Aborted;
 
                 ++visitedCount;
 
@@ -366,7 +364,7 @@ namespace MatrixBuilder
                         message = " CURRENT:" + Settings.CurrentSolution.Count.ToString();
                         message += " CHECKED: " + context.CheckCount.ToString();
 
-                        MatrixProgressHandler("Main_Thread", message, context.progress);
+                        MatrixProgressHandler(context.JobName, message, context.progress);
                     }
 
                     return context.ReturnForAny ? MatrixResult.Aborted : MatrixResult.Succeeded; // return this solution and no need to continue.

@@ -217,8 +217,8 @@ namespace MatrixBuilder
 
             if (algorithm == 0) // exhaustion algorithm
             {
-                ExhaustionAlgorithmImpl impl = new ExhaustionAlgorithmImpl(settings, _matrixTable, testLimit, MatrixProgressHandler);
-                result = impl.Calculate();
+                ExhaustionAlgorithmImpl impl = new ExhaustionAlgorithmImpl(settings, _matrixTable, MatrixProgressHandler);
+                result = impl.Calculate("main", testLimit, testLimit > 0);
             }
 
             TimeSpan duration = DateTime.Now - startTime;
