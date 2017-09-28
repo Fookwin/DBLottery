@@ -294,8 +294,7 @@ namespace MatrixBuilder
 
             if (MatrixProgressHandler != null)
             {
-                string message = "Finished! Result: [" + Settings.CurrentSolution.Count.ToString() + "]";
-                message += " CheckCount: " + context.CheckCount.ToString();
+                string message = "Finished ! CheckCount: " + context.CheckCount.ToString();
                 MatrixProgressHandler("Main_Thread", message, 100);
             }
 
