@@ -7,58 +7,118 @@ using System.Threading.Tasks;
 
 namespace MatrixBuilder
 {
-    class BuildContext
+    class BuildToken
     {
-        private class BuildToken
+        private MatrixItemPositionBits RestItemsBits = null;
+        private int[] NumHitCounts = null;
+        private MatrixItemPositionBits NumBitsToSkip = null;
+        private int UnhitNumCount = -1;
+
+        private BuildToken()
         {
-            public UInt64 NumBitsCovered = 0;
-            public MatrixItemPositionBits RestItemsBits = null;
-            public int[] NumHitCounts = null;
-            public MatrixItemPositionBits NumBitsToSkip = null;
+        }
 
-            public BuildToken Clone()
+        public BuildToken(MatrixBuildSettings settings, int candidateCount)
+        {
+            RestItemsBits = new MatrixItemPositionBits(settings.TestItemCollection.Count, false);
+            NumBitsToSkip = new MatrixItemPositionBits(settings.TestItemCollection.Count, true);
+            NumHitCounts = new int[candidateCount];
+            UnhitNumCount = candidateCount;
+        }
+
+        public BuildToken Clone()
+        {
+            return new BuildToken()
             {
-                return new BuildToken()
+                RestItemsBits = this.RestItemsBits.Clone(),
+                NumBitsToSkip = this.NumBitsToSkip.Clone(),
+                NumHitCounts = CloneInts(this.NumHitCounts),
+                UnhitNumCount = this.UnhitNumCount
+            };
+        }
+
+        private unsafe static int[] CloneInts(int[] source)
+        {
+            int count = source.Length;
+            int[] target = new int[count];
+            fixed (int* pSource = source, pTarget = target)
+            {
+                // Set the starting points in source and target for the copying.
+                int* ps = pSource;
+                int* pt = pTarget;
+
+                // Copy the specified number of bytes from source to target.
+                for (int i = 0; i < count; i++)
                 {
-                    NumBitsCovered = this.NumBitsCovered,
-                    RestItemsBits = this.RestItemsBits.Clone(),
-                    NumBitsToSkip = this.NumBitsToSkip.Clone(),
-                    NumHitCounts = CloneInts(this.NumHitCounts)
-                };
+                    *pt = *ps;
+                    pt++;
+                    ps++;
+                }
             }
 
-            private unsafe static int[] CloneInts(int[] source)
+            return target;
+        }
+
+        public void RefreshForCommit(int candidateCount, int maxHitCountForEach, List<MatrixItemPositionBits> numDistributions)
+        {
+            for (int i = 0; i < candidateCount; ++i)
             {
-                int count = source.Length;
-                int[] target = new int[count];
-                fixed (int* pSource = source, pTarget = target)
-                {
-                    // Set the starting points in source and target for the copying.
-                    int* ps = pSource;
-                    int* pt = pTarget;
-
-                    // Copy the specified number of bytes from source to target.
-                    for (int i = 0; i < count; i++)
-                    {
-                        *pt = *ps;
-                        pt++;
-                        ps++;
-                    }
-                }
-
-                return target;
-            }
-
-            public void RefreshNumBitsToSkip(int candidateCount, int maxHitCountForEach, List<MatrixItemPositionBits> numDistributions)
-            {
-                for (int i = 0; i < candidateCount; ++i)
-                {
-                    if (NumHitCounts[i] >= maxHitCountForEach)
-                        NumBitsToSkip.AddMultiple(numDistributions[i]);
-                }
+                if (NumHitCounts[i] >= maxHitCountForEach)
+                    NumBitsToSkip.AddMultiple(numDistributions[i]);
             }
         }
 
+        public void RefreshForAdd(int index, MatrixItemByte item, int candidateCount, int maxHitCountForEach, MatrixBuildSettings settings)
+        {
+            UInt64 mash = 1;
+            for (int i = 0; i < candidateCount; ++i)
+            {
+                if ((mash & item.Bits) != 0)
+                {
+                    ++ NumHitCounts[i];
+
+                    if (NumHitCounts[i] == 1)
+                    {
+                        --UnhitNumCount; // this number was just hitted.
+                        Debug.Assert(UnhitNumCount >= 0);
+                    }
+                        
+
+                    if (NumHitCounts[i] == maxHitCountForEach)
+                    {
+                        NumBitsToSkip.AddMultiple(settings.NumDistributions[i]);
+                    }
+                }
+
+                mash = mash << 1;
+            }
+
+            RestItemsBits.RemoveMultiple(settings.TestItemMashCollection[index]);
+        }
+
+        public int NextItem(int pre)
+        {
+            return NumBitsToSkip.NextPosition(pre, false);
+        }
+
+        public int UncoveredNumCount()
+        {
+            return UnhitNumCount;
+        }
+
+        public bool IsAllItemsCovered()
+        {
+            return RestItemsBits.IsClean();
+        }
+
+        public int UncoveredItemCount()
+        {
+            return RestItemsBits.UnhitCount;
+        }
+    }
+
+    class BuildContext
+    {
         public enum Status
         {
             Continue,
@@ -99,12 +159,7 @@ namespace MatrixBuilder
             _maxSelectionCount = maxSelectionCount;
             _maxHitCountForEach = _maxSelectionCount * _seleteCount / _candidateCount + 1;
 
-            _buildToken = new BuildToken()
-            {
-                RestItemsBits = new MatrixItemPositionBits(_settings.TestItemCollection.Count, false),
-                NumBitsToSkip = new MatrixItemPositionBits(_settings.TestItemCollection.Count, true),
-                NumHitCounts  = new int[_candidateCount]
-            };
+            _buildToken = new BuildToken(_settings, _candidateCount);
         }
 
         public int MaxSelectionCount
@@ -139,38 +194,19 @@ namespace MatrixBuilder
                 // let update the token stack to refresh the skip number bits for each
                 foreach (var token in _tokenStack)
                 {
-                    token.RefreshNumBitsToSkip(_candidateCount, newMaxHitCountForEach, _settings.NumDistributions);
+                    token.RefreshForCommit(_candidateCount, newMaxHitCountForEach, _settings.NumDistributions);
                 }
 
                 // update current token
-                _buildToken.RefreshNumBitsToSkip(_candidateCount, newMaxHitCountForEach, _settings.NumDistributions);
+                _buildToken.RefreshForCommit(_candidateCount, newMaxHitCountForEach, _settings.NumDistributions);
             }
 
             _maxHitCountForEach = newMaxHitCountForEach;
         }
 
-        public void AddNumHits(MatrixItemByte item)
-        {
-            UInt64 mash = 1;
-            for (int i = 0; i < _candidateCount; ++i)
-            {
-                if ((mash & item.Bits) != 0)
-                {
-                    ++ _buildToken.NumHitCounts[i];
-
-                    if (_buildToken.NumHitCounts[i] == _maxHitCountForEach)
-                    {
-                        _buildToken.NumBitsToSkip.AddMultiple(_settings.NumDistributions[i]);
-                    }
-                }
-
-                mash = mash << 1;
-            }
-        }
-
         public int NextItem(int pre)
         {
-            return _buildToken.NumBitsToSkip.NextPosition(pre, false);
+            return _buildToken.NextItem(pre);
         }
 
         // Check the current incomplete solution and determine if need to continue or not.
@@ -182,12 +218,11 @@ namespace MatrixBuilder
                 return false;
 
             // check the number coverage.
-            int restUncoveredNumCount = BuildMatrixUtil.BitCount(_buildToken.NumBitsCovered);
-            if (restUncoveredNumCount > restStep * (_settings.MatchNumCount + 1))
+            if (_buildToken.UncoveredNumCount() > restStep * (_settings.MatchNumCount + 1))
                 return false;
 
             // The max item count can be covered by rest steps. 
-            if (_buildToken.RestItemsBits.UnhitCount > _settings.MaxItemCountCoveredByOneItem * restStep)
+            if (_buildToken.UncoveredItemCount() > _settings.MaxItemCountCoveredByOneItem * restStep)
                 return false;
 
             return true; // let's continue.
@@ -217,12 +252,10 @@ namespace MatrixBuilder
             _currentSelection.Push(item);
 
             // update states.
-            AddNumHits(item);
-            _buildToken.RestItemsBits.RemoveMultiple(_settings.TestItemMashCollection[index]);
-            _buildToken.NumBitsCovered &= ~item.Bits;
+            _buildToken.RefreshForAdd(index, item, _candidateCount, _maxHitCountForEach, _settings);
 
             // check if we just get a solution.
-            if (_currentSelection.Count > _settings.IdealMinStepCount && _buildToken.RestItemsBits.IsClean())
+            if (_currentSelection.Count > _settings.IdealMinStepCount && _buildToken.IsAllItemsCovered())
             {
                 return Status.Complete;
             }
