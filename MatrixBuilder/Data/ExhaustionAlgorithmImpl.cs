@@ -68,29 +68,34 @@ namespace MatrixBuilder
             }
         }
 
-        public void RefreshForAdd(int index, MatrixItemByte item, int candidateCount, int maxHitCountForEach, MatrixBuildSettings settings)
+        public unsafe void RefreshForAdd(int index, MatrixItemByte item, int selectCount, int candidateCount, int maxHitCountForEach, MatrixBuildSettings settings)
         {
-            UInt64 mash = 1;
-            for (int i = 0; i < candidateCount; ++i)
+            UInt64 mash = 1, itemBits = item.Bits;
+            fixed (int* pArray = NumHitCounts)
             {
-                if ((mash & item.Bits) != 0)
+                int* ps = pArray;
+                for (int i = 0, visited = 0; i < candidateCount; i++)
                 {
-                    ++ NumHitCounts[i];
-
-                    if (NumHitCounts[i] == 1)
+                    if ((mash & itemBits) != 0)
                     {
-                        --UnhitNumCount; // this number was just hitted.
-                        Debug.Assert(UnhitNumCount >= 0);
-                    }
-                        
+                        ++ (*ps);
+                        ++ visited;
 
-                    if (NumHitCounts[i] == maxHitCountForEach)
-                    {
-                        NumBitsToSkip.AddMultiple(settings.NumDistributions[i]);
+                        if (*ps == 1)
+                        {
+                            --UnhitNumCount; // this number was just hitted.
+                        }
+
+                        if (*ps == maxHitCountForEach)
+                        {
+                            NumBitsToSkip.AddMultiple(settings.NumDistributions[i]);
+                        }
                     }
+
+                    mash = mash << 1;
+
+                    ps++;
                 }
-
-                mash = mash << 1;
             }
 
             RestItemsBits.RemoveMultiple(settings.TestItemMashCollection[index]);
@@ -252,7 +257,7 @@ namespace MatrixBuilder
             _currentSelection.Push(item);
 
             // update states.
-            _buildToken.RefreshForAdd(index, item, _candidateCount, _maxHitCountForEach, _settings);
+            _buildToken.RefreshForAdd(index, item, _seleteCount,  _candidateCount, _maxHitCountForEach, _settings);
 
             // check if we just get a solution.
             if (_currentSelection.Count > _settings.IdealMinStepCount && _buildToken.IsAllItemsCovered())
