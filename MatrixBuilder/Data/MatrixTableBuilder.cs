@@ -228,18 +228,27 @@ namespace MatrixBuilder
                         testLimit = defaultSoution.Count - 1; // try to find the better solution than default.
                     }
                 }
-
-                bool bAborted = false;
+                
                 ExhaustionAlgorithmImpl impl = new ExhaustionAlgorithmImpl(settings, _matrixTable, MatrixProgressHandler);
-                ParallelOptions option = new ParallelOptions() { MaxDegreeOfParallelism = Environment.ProcessorCount };
-                ParallelLoopResult loopResult = Parallel.For(settings.IdealMinStepCount + 1, testLimit, option, (Index) =>
+
+                bool bInParallel = false;
+                if (bInParallel)
                 {
-                    if (!bAborted)
+                    bool bAborted = false;
+                    ParallelOptions option = new ParallelOptions() { MaxDegreeOfParallelism = Environment.ProcessorCount };
+                    ParallelLoopResult loopResult = Parallel.For(settings.IdealMinStepCount + 1, testLimit, option, (Index) =>
                     {
-                        if (impl.Calculate("index_" + Index.ToString(), Index, true) == MatrixResult.User_Aborted)
-                            bAborted = true;
-                    }
-                });
+                        if (!bAborted)
+                        {
+                            if (impl.Calculate("index_" + Index.ToString(), Index, true) == MatrixResult.User_Aborted)
+                                bAborted = true;
+                        }
+                    });
+                }
+                else
+                {
+                    impl.Calculate("main", testLimit, false);
+                }
             }
 
             TimeSpan duration = DateTime.Now - startTime;

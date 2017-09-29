@@ -83,7 +83,7 @@ namespace MatrixBuilder
                 }
             }
 
-            return _flagCount;
+            return -1;
         }
 
         public void AddSingle(int pos)

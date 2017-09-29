@@ -97,7 +97,7 @@ namespace MatrixBuilder
             JobName = jobName;
 
             _maxSelectionCount = maxSelectionCount;
-            _maxHitCountForEach = (_maxSelectionCount / _candidateCount + 1) * _seleteCount;
+            _maxHitCountForEach = _maxSelectionCount * _seleteCount / _candidateCount + 1;
 
             _buildToken = new BuildToken()
             {
@@ -131,7 +131,7 @@ namespace MatrixBuilder
             _maxSelectionCount = _settings.CurrentSolution.Count - 1;
 
             // calculate the max num hit count.
-            int newMaxHitCountForEach = (_maxSelectionCount / _candidateCount + 1) * _seleteCount;
+            int newMaxHitCountForEach = _maxSelectionCount * _seleteCount / _candidateCount + 1;
 
             // check if any numbers has been hit the max hit count that could be skipped.
             if (newMaxHitCountForEach < _maxHitCountForEach)
@@ -360,19 +360,24 @@ namespace MatrixBuilder
                 else if (status == BuildContext.Status.Continue)
                 {
                     int next = context.NextItem(index);
-
-                    // if we got a valid solution, check if need to continue or not.
-                    MatrixResult res = TraversalForAny(next, context);
-                    if (res == MatrixResult.User_Aborted || res == MatrixResult.Job_Aborted)
+                    if (next > 0)
                     {
-                        return res;
-                    }
+                        Debug.Assert(next > index);
 
-                    if (res == MatrixResult.Job_Succeeded && (context.ReturnForAny || Settings.CurrentSolution.Count <= selectedCount + 2))
-                    {
-                        context.Pop();
-                        return MatrixResult.Job_Succeeded; // no need to continue the check.
+                        // if we got a valid solution, check if need to continue or not.
+                        MatrixResult res = TraversalForAny(next, context);
+                        if (res == MatrixResult.User_Aborted || res == MatrixResult.Job_Aborted)
+                        {
+                            return res;
+                        }
+
+                        if (res == MatrixResult.Job_Succeeded && (context.ReturnForAny || Settings.CurrentSolution.Count <= selectedCount + 2))
+                        {
+                            context.Pop();
+                            return MatrixResult.Job_Succeeded; // no need to continue the check.
+                        }
                     }
+                    // could not find any valid item for next, skipping.
                 }
 
                 // recover the tests and continue.
