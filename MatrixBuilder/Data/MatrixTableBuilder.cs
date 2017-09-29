@@ -10,10 +10,11 @@ namespace MatrixBuilder
 {
     enum MatrixResult
     {
-        Job_Failed = 0,
-        Job_Succeeded = 1,
-        Job_Aborted = 2,
-        User_Aborted = 3
+        Job_Succeeded,
+        Job_Succeeded_Continue,
+        Job_Failed,
+        Job_Aborted,
+        User_Aborted
     }
 
     class MatrixBuildSettings

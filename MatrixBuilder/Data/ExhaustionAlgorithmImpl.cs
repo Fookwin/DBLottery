@@ -355,7 +355,8 @@ namespace MatrixBuilder
                         MatrixProgressHandler(context.JobName, message, context.progress);
                     }
 
-                    return MatrixResult.Job_Succeeded; // return this solution and no need to continue.
+                    // no need to continue, since we could not get better solution at this level loop.
+                    return context.ReturnForAny ? MatrixResult.Job_Succeeded : MatrixResult.Job_Succeeded_Continue; 
                 }
                 else if (status == BuildContext.Status.Continue)
                 {
@@ -366,15 +367,19 @@ namespace MatrixBuilder
 
                         // if we got a valid solution, check if need to continue or not.
                         MatrixResult res = TraversalForAny(next, context);
-                        if (res == MatrixResult.User_Aborted || res == MatrixResult.Job_Aborted)
+                        if (res == MatrixResult.User_Aborted || res == MatrixResult.Job_Aborted || res == MatrixResult.Job_Succeeded)
                         {
                             return res;
                         }
 
-                        if (res == MatrixResult.Job_Succeeded && (context.ReturnForAny || Settings.CurrentSolution.Count <= selectedCount + 2))
+                        if (res == MatrixResult.Job_Succeeded_Continue)
                         {
-                            context.Pop();
-                            return MatrixResult.Job_Succeeded; // no need to continue the check.
+                            if (Settings.CurrentSolution.Count <= selectedCount + 2)
+                            {
+                                // impossible to get better solution at this leve of loop, break and continue.
+                                context.Pop();
+                                return MatrixResult.Job_Succeeded_Continue;
+                            }
                         }
                     }
                     // could not find any valid item for next, skipping.
