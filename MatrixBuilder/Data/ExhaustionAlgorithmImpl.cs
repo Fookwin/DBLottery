@@ -59,12 +59,12 @@ namespace MatrixBuilder
             return target;
         }
 
-        public void RefreshForCommit(int candidateCount, int maxHitCountForEach, List<MatrixItemPositionBits> numDistributions)
+        public void RefreshForCommit(int candidateCount, int maxHitCountForEach, List<NumberDistribution> numDistributions)
         {
             for (int i = 0; i < candidateCount; ++i)
             {
                 if (NumHitCounts[i] >= maxHitCountForEach)
-                    NumBitsToSkip.AddMultiple(numDistributions[i]);
+                    NumBitsToSkip.AddMultiple(numDistributions[i].Distribution);
             }
         }
 
@@ -88,7 +88,7 @@ namespace MatrixBuilder
 
                         if (*ps == maxHitCountForEach)
                         {
-                            NumBitsToSkip.AddMultiple(settings.NumDistributions[i]);
+                            NumBitsToSkip.AddMultiple(settings.NumDistributions[i].Distribution);
                         }
                     }
 
@@ -156,7 +156,7 @@ namespace MatrixBuilder
         public BuildContext(MatrixBuildSettings settings, bool returnForAny, int maxSelectionCount, string jobName)
         {
             _candidateCount = settings.CandidateNumCount;
-            _seleteCount = settings.MatchNumCount + 1;
+            _seleteCount = settings.SelectNumCount;
             _settings = settings;
             _returnForAny = returnForAny;
             JobName = jobName;
@@ -223,7 +223,7 @@ namespace MatrixBuilder
                 return false;
 
             // check the number coverage.
-            if (_buildToken.UncoveredNumCount() > restStep * (_settings.MatchNumCount + 1))
+            if (_buildToken.UncoveredNumCount() > restStep * _settings.SelectNumCount)
                 return false;
 
             // The max item count can be covered by rest steps. 
@@ -260,7 +260,7 @@ namespace MatrixBuilder
             _buildToken.RefreshForAdd(index, item, _seleteCount,  _candidateCount, _maxHitCountForEach, _settings);
 
             // check if we just get a solution.
-            if (_currentSelection.Count > _settings.IdealMinStepCount && _buildToken.IsAllItemsCovered())
+            if (_currentSelection.Count > _settings.IdealMinItemCount && _buildToken.IsAllItemsCovered())
             {
                 return Status.Complete;
             }

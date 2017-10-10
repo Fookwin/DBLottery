@@ -17,24 +17,33 @@ namespace MatrixBuilder
         User_Aborted
     }
 
+    class NumberDistribution
+    {
+        public UInt64 Bits = 0;
+        public MatrixItemPositionBits Distribution = null;
+        public int MinIndex = -1;
+        public int MaxIndex = -1;
+    }
+
     class MatrixBuildSettings
     {
+        private object lockObject = new object();
+
         public readonly List<MatrixItemByte> TestItemCollection = null;
         public readonly List<MatrixItemPositionBits> TestItemMashCollection = null;
-        public readonly List<MatrixItemPositionBits> NumDistributions = null;
+        public readonly List<NumberDistribution> NumDistributions = null;
 
-        public readonly int MatchNumCount = 0;
-        public readonly int CandidateNumCount = 0;
+        public readonly int CandidateNumCount = 0;  // the count of the numbers could be selected from.
+        public readonly int SelectNumCount = 0;     // the count of the numbers to be selected.
+
         public readonly int MaxItemCountCoveredByOneItem = 0;
-        public readonly int IdealMinStepCount = 0;
-        public readonly int[] ItemCountInLoopLevels = null;
+        public readonly int IdealMinItemCount = 0;
 
         private List<MatrixItemByte> _solution = null;
-        private object lockObject = new object();
 
         public MatrixBuildSettings(int _candidateNumCount, int _selectNumCount)
         {
-            MatchNumCount = _selectNumCount - 1;
+            SelectNumCount = _selectNumCount;
             CandidateNumCount = _candidateNumCount;
 
             // Get the test items.
@@ -46,9 +55,7 @@ namespace MatrixBuilder
 
             MaxItemCountCoveredByOneItem = (_candidateNumCount - _selectNumCount) * _selectNumCount + 1;
 
-            IdealMinStepCount = (TestItemMashCollection.Count - 1) / MaxItemCountCoveredByOneItem + 1;
-
-            ItemCountInLoopLevels = CalculateItemCountInLoopLevels();
+            IdealMinItemCount = (TestItemMashCollection.Count - 1) / MaxItemCountCoveredByOneItem + 1;
         }
 
         public List<MatrixItemByte> CurrentSolution
@@ -69,6 +76,7 @@ namespace MatrixBuilder
 
         private List<MatrixItemPositionBits> BuildMash()
         {
+            int matchNumCount = SelectNumCount - 1;
             List<MatrixItemPositionBits> result = new List<MatrixItemPositionBits>();
 
             int count = TestItemCollection.Count;
@@ -88,7 +96,7 @@ namespace MatrixBuilder
                 for (int j = i + 1; j < count; ++j)
                 {
                     MatrixItemByte itemB = TestItemCollection[j];
-                    if (itemA.Intersection(itemB) >= MatchNumCount)
+                    if (itemA.Intersection(itemB) >= matchNumCount)
                     {
                         bitsA.AddSingle(j);
                         result[j].AddSingle(i);
@@ -99,49 +107,39 @@ namespace MatrixBuilder
             return result;
         }
 
-        private List<MatrixItemPositionBits> BuildNumDistributions()
+        private List<NumberDistribution> BuildNumDistributions()
         {
-            List<MatrixItemPositionBits> result = new List<MatrixItemPositionBits>();
+            int testItemCount = TestItemCollection.Count;
+            List<NumberDistribution> result = new List<NumberDistribution>();
 
-            int count = TestItemCollection.Count;
+            UInt64 testBit = 1;
+
             for (int i = 0; i < CandidateNumCount; ++i)
             {
-                result.Add(new MatrixItemPositionBits(count, true));
+                result.Add(new NumberDistribution()
+                {
+                    Bits = testBit,
+                    Distribution = new MatrixItemPositionBits(testItemCount, true),
+                    MaxIndex = 0,
+                    MinIndex = 0
+                });
+
+                testBit = testBit << 1;
             }
 
-            for (int i = 0; i < count; ++i)
+            for (int i = 0; i < testItemCount; ++i)
             {
                 MatrixItemByte item = TestItemCollection[i];
-
-                UInt64 testBit = 1;
                 for (int j = 0; j < CandidateNumCount; ++j)
                 {
-                    if ((item.Bits & testBit) != 0)
+                    if ((item.Bits & result[j].Bits) != 0)
                     {
-                        result[j].AddSingle(i);
+                        result[j].Distribution.AddSingle(i);
+
+                        result[j].MinIndex = result[j].MaxIndex < 0 ? i : result[j].MinIndex; // set the min as the first time the number hit.
+                        result[j].MaxIndex = i; // always set the max to get it to be the last index of the number hit.
                     }
-
-                    testBit = testBit << 1;
                 }
-            }
-
-            return result;
-        }
-
-        private int[] CalculateItemCountInLoopLevels()
-        {
-            int[] result = new int[CandidateNumCount - MatchNumCount];
-            for (int level = 0; level < CandidateNumCount - MatchNumCount; ++level)
-            {
-                int total = 1;
-                int devide = 1;
-                for (int i = 1; i <= MatchNumCount; ++i)
-                {
-                    total *= (CandidateNumCount - level - i);
-                    devide *= i;
-                }
-
-                result[level] = total / devide;
             }
 
             return result;
@@ -223,7 +221,7 @@ namespace MatrixBuilder
                 if (testLimit <= 0)
                 {
                     // Get the default matrix as the candidate solution.
-                    List<MatrixItemByte> defaultSoution = BuildMatrixUtil.GetDefaultSolution(settings.CandidateNumCount, settings.MatchNumCount + 1, _matrixTable);
+                    List<MatrixItemByte> defaultSoution = BuildMatrixUtil.GetDefaultSolution(settings.CandidateNumCount, settings.SelectNumCount, _matrixTable);
                     if (defaultSoution != null)
                     {
                         testLimit = defaultSoution.Count - 1; // try to find the better solution than default.
@@ -237,7 +235,7 @@ namespace MatrixBuilder
                 {
                     bool bAborted = false;
                     ParallelOptions option = new ParallelOptions() { MaxDegreeOfParallelism = Environment.ProcessorCount };
-                    ParallelLoopResult loopResult = Parallel.For(settings.IdealMinStepCount + 1, testLimit, option, (Index) =>
+                    ParallelLoopResult loopResult = Parallel.For(settings.IdealMinItemCount + 1, testLimit, option, (Index) =>
                     {
                         if (!bAborted)
                         {
