@@ -18,12 +18,12 @@ namespace MatrixBuilder
         {
         }
 
-        public BuildToken(MatrixBuildSettings settings, int candidateCount)
+        public BuildToken(MatrixBuildSettings settings)
         {
             RestItemsBits = new MatrixItemPositionBits(settings.TestItemCollection.Count, false);
             NumBitsToSkip = new MatrixItemPositionBits(settings.TestItemCollection.Count, true);
-            NumHitCounts = new int[candidateCount];
-            UnhitNumCount = candidateCount;
+            NumHitCounts = new int[settings.CandidateNumCount];
+            UnhitNumCount = settings.CandidateNumCount;
         }
 
         public BuildToken Clone()
@@ -68,18 +68,17 @@ namespace MatrixBuilder
             }
         }
 
-        public unsafe void RefreshForAdd(int index, MatrixItemByte item, int selectCount, int candidateCount, int maxHitCountForEach, MatrixBuildSettings settings)
+        public unsafe void UpdateNumCoverage(MatrixItemByte item, int maxHitCountForEach, MatrixBuildSettings settings)
         {
             UInt64 mash = 1, itemBits = item.Bits;
             fixed (int* pArray = NumHitCounts)
             {
                 int* ps = pArray;
-                for (int i = 0, visited = 0; i < candidateCount; i++)
+                for (int i = 0; i < settings.CandidateNumCount; i++)
                 {
                     if ((mash & itemBits) != 0)
                     {
                         ++ (*ps);
-                        ++ visited;
 
                         if (*ps == 1)
                         {
@@ -97,8 +96,11 @@ namespace MatrixBuilder
                     ps++;
                 }
             }
+        }
 
-            RestItemsBits.RemoveMultiple(settings.TestItemMashCollection[index]);
+        public void UpdateItemCoverage(int addItemIndex, MatrixBuildSettings settings)
+        {
+            RestItemsBits.RemoveMultiple(settings.TestItemMashCollection[addItemIndex]);
         }
 
         public int NextItem(int pre)
@@ -127,13 +129,11 @@ namespace MatrixBuilder
         public enum Status
         {
             Continue,
-            PreCheckFailed,
+            Failed,
             Complete
         }
 
         private readonly MatrixBuildSettings _settings = null;
-        private readonly int _candidateCount = -1;
-        private readonly int _seleteCount = -1;
         private readonly bool _returnForAny = false;
 
         // Algorithm settings.
@@ -155,16 +155,14 @@ namespace MatrixBuilder
 
         public BuildContext(MatrixBuildSettings settings, bool returnForAny, int maxSelectionCount, string jobName)
         {
-            _candidateCount = settings.CandidateNumCount;
-            _seleteCount = settings.SelectNumCount;
             _settings = settings;
             _returnForAny = returnForAny;
             JobName = jobName;
 
             _maxSelectionCount = maxSelectionCount;
-            _maxHitCountForEach = _maxSelectionCount * _seleteCount / _candidateCount + 1;
+            _maxHitCountForEach = _maxSelectionCount * _settings.SelectNumCount / _settings.CandidateNumCount + 1;
 
-            _buildToken = new BuildToken(_settings, _candidateCount);
+            _buildToken = new BuildToken(_settings);
         }
 
         public int MaxSelectionCount
@@ -191,7 +189,7 @@ namespace MatrixBuilder
             _maxSelectionCount = _settings.CurrentSolution.Count - 1;
 
             // calculate the max num hit count.
-            int newMaxHitCountForEach = _maxSelectionCount * _seleteCount / _candidateCount + 1;
+            int newMaxHitCountForEach = _maxSelectionCount * _settings.SelectNumCount / _settings.CandidateNumCount + 1;
 
             // check if any numbers has been hit the max hit count that could be skipped.
             if (newMaxHitCountForEach < _maxHitCountForEach)
@@ -199,11 +197,11 @@ namespace MatrixBuilder
                 // let update the token stack to refresh the skip number bits for each
                 foreach (var token in _tokenStack)
                 {
-                    token.RefreshForCommit(_candidateCount, newMaxHitCountForEach, _settings.NumDistributions);
+                    token.RefreshForCommit(_settings.CandidateNumCount, newMaxHitCountForEach, _settings.NumDistributions);
                 }
 
                 // update current token
-                _buildToken.RefreshForCommit(_candidateCount, newMaxHitCountForEach, _settings.NumDistributions);
+                _buildToken.RefreshForCommit(_settings.CandidateNumCount, newMaxHitCountForEach, _settings.NumDistributions);
             }
 
             _maxHitCountForEach = newMaxHitCountForEach;
@@ -212,25 +210,6 @@ namespace MatrixBuilder
         public int NextItem(int pre)
         {
             return _buildToken.NextItem(pre);
-        }
-
-        // Check the current incomplete solution and determine if need to continue or not.
-        private bool PreCheckSolution()
-        {
-            // No need to continue if the current solution already has no chance to get less steps than the existing one.
-            int restStep = MaxSelectionCount - _currentSelection.Count;
-            if (restStep <= 0)
-                return false;
-
-            // check the number coverage.
-            if (_buildToken.UncoveredNumCount() > restStep * _settings.SelectNumCount)
-                return false;
-
-            // The max item count can be covered by rest steps. 
-            if (_buildToken.UncoveredItemCount() > _settings.MaxItemCountCoveredByOneItem * restStep)
-                return false;
-
-            return true; // let's continue.
         }
 
         public void Pop()
@@ -256,8 +235,8 @@ namespace MatrixBuilder
             // add to selection.
             _currentSelection.Push(item);
 
-            // update states.
-            _buildToken.RefreshForAdd(index, item, _seleteCount,  _candidateCount, _maxHitCountForEach, _settings);
+            // update the coverage of the items.
+            _buildToken.UpdateItemCoverage(index, _settings);
 
             // check if we just get a solution.
             if (_currentSelection.Count > _settings.IdealMinItemCount && _buildToken.IsAllItemsCovered())
@@ -265,10 +244,21 @@ namespace MatrixBuilder
                 return Status.Complete;
             }
 
-            if (!PreCheckSolution())
-            {
-                return Status.PreCheckFailed;
-            }
+            // if the current solution already has no chance to get less steps than the existing one, stop for failure.
+            int restStep = MaxSelectionCount - _currentSelection.Count;
+            if (restStep <= 0)
+                return Status.Failed;
+
+            // If it is impossible to cover all items within rest steps, stop for failure. 
+            if (_buildToken.UncoveredItemCount() > _settings.MaxItemCountCoveredByOneItem * restStep)
+                return Status.Failed;
+
+            // update the coverage of the numbers.
+            _buildToken.UpdateNumCoverage(item, _maxHitCountForEach, _settings);
+
+            // If it is impossible to cover all number with reset steps, stop for failure.
+            if (_buildToken.UncoveredNumCount() > restStep * _settings.SelectNumCount)
+                return Status.Failed;
 
             return Status.Continue;
         }
