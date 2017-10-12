@@ -13,6 +13,7 @@ namespace MatrixBuilder
         private int[] NumHitCounts = null;
         private MatrixItemPositionBits NumBitsToSkip = null;
         private int UnhitNumCount = -1;
+        private int NextPosMax = -1;
 
         private BuildToken()
         {
@@ -24,6 +25,7 @@ namespace MatrixBuilder
             NumBitsToSkip = new MatrixItemPositionBits(settings.TestItemCollection.Count, true);
             NumHitCounts = new int[settings.CandidateNumCount];
             UnhitNumCount = settings.CandidateNumCount;
+            NextPosMax = settings.TestItemCollection.Count - 1; // to the last
         }
 
         public BuildToken Clone()
@@ -33,7 +35,8 @@ namespace MatrixBuilder
                 RestItemsBits = this.RestItemsBits.Clone(),
                 NumBitsToSkip = this.NumBitsToSkip.Clone(),
                 NumHitCounts = CloneInts(this.NumHitCounts),
-                UnhitNumCount = this.UnhitNumCount
+                UnhitNumCount = this.UnhitNumCount,
+                NextPosMax = this.NextPosMax
             };
         }
 
@@ -59,24 +62,35 @@ namespace MatrixBuilder
             return target;
         }
 
-        public void RefreshForCommit(int candidateCount, int maxHitCountForEach, List<NumberDistribution> numDistributions)
+        public void RefreshForCommit(int minHitCountForEach, int maxHitCountForEach, MatrixBuildSettings settings)
         {
-            for (int i = 0; i < candidateCount; ++i)
+            int nextPosMax = -1;
+            for (int i = 0; i < settings.CandidateNumCount; ++i)
             {
                 if (NumHitCounts[i] >= maxHitCountForEach)
-                    NumBitsToSkip.AddMultiple(numDistributions[i].Distribution);
+                    NumBitsToSkip.AddMultiple(settings.NumDistributions[i].Distribution);
+
+                if (nextPosMax < 0 && NumHitCounts[i] < minHitCountForEach)
+                {
+                    nextPosMax = settings.NumDistributions[i].MaxIndex;
+                }
             }
+
+            if (nextPosMax > 0)
+                NextPosMax = nextPosMax;
         }
 
-        public unsafe void UpdateNumCoverage(MatrixItemByte item, int maxHitCountForEach, MatrixBuildSettings settings)
+        public unsafe void UpdateNumCoverage(MatrixItemByte item, int minHitCountForEach, int maxHitCountForEach, MatrixBuildSettings settings)
         {
-            UInt64 mash = 1, itemBits = item.Bits;
+            int nextPosMax = -1;
+
+            UInt64 itemBits = item.Bits;
             fixed (int* pArray = NumHitCounts)
             {
                 int* ps = pArray;
                 for (int i = 0; i < settings.CandidateNumCount; i++)
                 {
-                    if ((mash & itemBits) != 0)
+                    if ((settings.NumDistributions[i].Bits & itemBits) != 0)
                     {
                         ++ (*ps);
 
@@ -91,11 +105,17 @@ namespace MatrixBuilder
                         }
                     }
 
-                    mash = mash << 1;
+                    if (nextPosMax < 0 && * ps < minHitCountForEach)
+                    {
+                        nextPosMax = settings.NumDistributions[i].MaxIndex;
+                    }
 
                     ps++;
                 }
             }
+
+            if (nextPosMax > 0)
+                NextPosMax = nextPosMax;
         }
 
         public void UpdateItemCoverage(int addItemIndex, MatrixBuildSettings settings)
@@ -103,9 +123,10 @@ namespace MatrixBuilder
             RestItemsBits.RemoveMultiple(settings.TestItemMashCollection[addItemIndex]);
         }
 
-        public int NextItem(int pre)
+        public void NextItemScope(int pre, ref int min, ref int max)
         {
-            return NumBitsToSkip.NextPosition(pre, false);
+            min = NumBitsToSkip.NextPosition(pre, false);
+            max = NextPosMax;
         }
 
         public int UncoveredNumCount()
@@ -139,7 +160,8 @@ namespace MatrixBuilder
         // Algorithm settings.
         private int _maxSelectionCount = -1;
         private int _maxHitCountForEach = -1;
-        
+        private int _minHitCountForEach = -1;
+
         private BuildToken _buildToken = null;
         private Stack<MatrixItemByte> _currentSelection = new Stack<MatrixItemByte>();
         private Stack<BuildToken> _tokenStack = new Stack<BuildToken>();
@@ -161,6 +183,7 @@ namespace MatrixBuilder
 
             _maxSelectionCount = maxSelectionCount;
             _maxHitCountForEach = _maxSelectionCount * _settings.SelectNumCount / _settings.CandidateNumCount + 1;
+            _minHitCountForEach = (_maxSelectionCount + 1) * _settings.SelectNumCount / _settings.CandidateNumCount - 1;
 
             _buildToken = new BuildToken(_settings);
         }
@@ -189,27 +212,30 @@ namespace MatrixBuilder
             _maxSelectionCount = _settings.CurrentSolution.Count - 1;
 
             // calculate the max num hit count.
+            int newMinHitCountForEach = (_maxSelectionCount + 1) * _settings.SelectNumCount / _settings.CandidateNumCount - 1;
             int newMaxHitCountForEach = _maxSelectionCount * _settings.SelectNumCount / _settings.CandidateNumCount + 1;
 
             // check if any numbers has been hit the max hit count that could be skipped.
-            if (newMaxHitCountForEach < _maxHitCountForEach)
+            if (newMaxHitCountForEach < _maxHitCountForEach && newMinHitCountForEach < _minHitCountForEach)
             {
                 // let update the token stack to refresh the skip number bits for each
                 foreach (var token in _tokenStack)
                 {
-                    token.RefreshForCommit(_settings.CandidateNumCount, newMaxHitCountForEach, _settings.NumDistributions);
+                    token.RefreshForCommit(newMinHitCountForEach, newMaxHitCountForEach, _settings);
                 }
 
                 // update current token
-                _buildToken.RefreshForCommit(_settings.CandidateNumCount, newMaxHitCountForEach, _settings.NumDistributions);
+                _buildToken.RefreshForCommit(newMinHitCountForEach, newMaxHitCountForEach, _settings);
             }
 
+            _minHitCountForEach = newMinHitCountForEach;
             _maxHitCountForEach = newMaxHitCountForEach;
         }
 
-        public int NextItem(int pre)
+        public bool NextItemScope(int pre, ref int min, ref int max)
         {
-            return _buildToken.NextItem(pre);
+            _buildToken.NextItemScope(pre, ref min, ref max);
+            return min >= 0 && min <= max;
         }
 
         public void Pop()
@@ -254,7 +280,7 @@ namespace MatrixBuilder
                 return Status.Failed;
 
             // update the coverage of the numbers.
-            _buildToken.UpdateNumCoverage(item, _maxHitCountForEach, _settings);
+            _buildToken.UpdateNumCoverage(item, _minHitCountForEach, _maxHitCountForEach, _settings);
 
             // If it is impossible to cover all number with reset steps, stop for failure.
             if (_buildToken.UncoveredNumCount() > restStep * _settings.SelectNumCount)
@@ -298,8 +324,13 @@ namespace MatrixBuilder
             MatrixItemByte firstItem = Settings.TestItemCollection[0];
             context.Push(0, firstItem);
 
-            // Search the rest for possible soution.
-            var res = TraversalForAny(1, context);
+            var res = MatrixResult.Job_Failed;
+
+            int nextStart = 0, nextEnd = 0;
+            if (context.NextItemScope(0, ref nextStart, ref nextEnd))
+            {
+                res = TraversalForAny(nextStart, nextEnd, context);
+            }
 
             if (MatrixProgressHandler != null)
             {
@@ -311,12 +342,12 @@ namespace MatrixBuilder
             return res;
         }
 
-        private MatrixResult TraversalForAny(int startIndex, BuildContext context)
+        private MatrixResult TraversalForAny(int startIndex, int stopIndex, BuildContext context)
         {
             int selectedCount = context.SelectionCount();
 
             int visitedCount = 0;
-            int count = Settings.TestItemCollection.Count - context.MaxSelectionCount + selectedCount;
+            int count = Math.Min(stopIndex, Settings.TestItemCollection.Count - context.MaxSelectionCount + selectedCount);
 
             double progStart = context.progress;
             double progStep = context.progressRange / (count - startIndex);
@@ -388,13 +419,11 @@ namespace MatrixBuilder
                 }
                 else if (status == BuildContext.Status.Continue)
                 {
-                    int next = context.NextItem(index);
-                    if (next > 0)
+                    int nextStart = 0, nextEnd = 0;
+                    if (context.NextItemScope(index, ref nextStart, ref nextEnd))
                     {
-                        Debug.Assert(next > index);
-
                         // if we got a valid solution, check if need to continue or not.
-                        MatrixResult res = TraversalForAny(next, context);
+                        MatrixResult res = TraversalForAny(nextStart, nextEnd, context);
                         if (res == MatrixResult.User_Aborted || res == MatrixResult.Job_Aborted || res == MatrixResult.Job_Succeeded)
                         {
                             return res;
