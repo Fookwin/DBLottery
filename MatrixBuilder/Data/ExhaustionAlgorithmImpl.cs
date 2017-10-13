@@ -256,10 +256,12 @@ namespace MatrixBuilder
             _maxHitCountForEach = newMaxHitCountForEach;
         }
 
-        public bool NextItemScope(int pre, ref int min, ref int max)
+        public IndexScope NextItemScope(int current)
         {
-            _buildToken.NextItemScope(pre, ref min, ref max);
-            return min >= 0 && min <= max;
+            int min = -1, max = -1;
+            _buildToken.NextItemScope(current, ref min, ref max);
+
+            return (min >= 0 && min <= max) ? new IndexScope(min, max) : null;
         }
 
         public void Pop()
@@ -319,6 +321,34 @@ namespace MatrixBuilder
         }
     }
 
+    class MatrixTaskDispatcher
+    {
+        private const int Step = 1;
+        private Stack<IndexScope> Tasks = new Stack<IndexScope>();
+
+        public MatrixTaskDispatcher(IndexScope overallScope)
+        {
+            int count = (overallScope.End - overallScope.Start - 1) / Step + 1;
+            for (int i = 0; i < count; ++ i)
+            {
+                int startFrom = i * Step + overallScope.Start, endAt = Math.Min(overallScope.End, startFrom + Step - 1);
+                Tasks.Push(new IndexScope(startFrom, endAt));
+            }
+
+            Tasks = new Stack<IndexScope>(Tasks.ToList());
+        }
+
+        public IndexScope Take()
+        {
+            return Tasks.Count > 0 ? Tasks.Pop() : null;
+        }
+
+        public bool HasTask()
+        {
+            return Tasks.Count > 0;
+        }
+    }
+
     class ExhaustionAlgorithmImpl
     {
         private readonly MatrixBuildSettings Settings = null;
@@ -335,30 +365,40 @@ namespace MatrixBuilder
 
         public void Calculate(int maxSelectionCount, bool returnForAny, bool bInParallel)
         {
-            int start = 1, end = Settings.NumDistributions[0].MaxIndex;
+            // define the scope for the top level loop, since the first item would be always added, 
+            // start from the second one and end with the last index contains '1'.
+            IndexScope overallScope = new IndexScope(1, Settings.NumDistributions[0].MaxIndex);
+
+            // make the task dispatcher.
+            MatrixTaskDispatcher dispatcher = new MatrixTaskDispatcher(overallScope);
 
             if (bInParallel)
             {
-                int threadCount = Environment.ProcessorCount, step = (end - start - 1) / threadCount + 1;
+                int threadCount = Environment.ProcessorCount;
                 bool bAborted = false;
                 ParallelOptions option = new ParallelOptions() { MaxDegreeOfParallelism = Environment.ProcessorCount };
                 ParallelLoopResult loopResult = Parallel.For(0, threadCount, option, (Index) =>
                 {
-                    if (!bAborted)
+                    while(!bAborted && dispatcher.HasTask())
                     {
-                        int startFrom = Index * step + start, endAt = Math.Min(end, startFrom + step - 1);
-                        if (_Calculate(Index.ToString() + " [" + startFrom.ToString() + ", " + endAt.ToString() + "]", maxSelectionCount, startFrom, endAt, returnForAny) == MatrixResult.User_Aborted)
-                            bAborted = true;
+                        var scope = dispatcher.Take();
+                        if (scope != null)
+                        {
+                            string threadName = "thread [" + Index.ToString() + "]    " + scope.ToString();
+                            if (_Calculate(threadName, maxSelectionCount, scope, returnForAny) == MatrixResult.User_Aborted)
+                                bAborted = true;
+                        }
                     }
+
                 });
             }
             else
             {
-                _Calculate("main", maxSelectionCount, start, end, returnForAny);
+                _Calculate("main", maxSelectionCount, overallScope, returnForAny);
             }
         }
 
-        private MatrixResult _Calculate(string jobName, int maxSelectionCount, int start, int end, bool returnForAny)
+        private MatrixResult _Calculate(string jobName, int maxSelectionCount, IndexScope scope, bool returnForAny)
         {
             // Build context.
             BuildContext context = new BuildContext(Settings, returnForAny, maxSelectionCount, jobName);
@@ -374,7 +414,7 @@ namespace MatrixBuilder
             context.Push(0, firstItem);
 
             var res = MatrixResult.Job_Failed;
-            res = TraversalForAny(start, end, context);
+            res = TraversalForAny(scope, context);
             if (context.SolutionCountFound > 0)
                 res = MatrixResult.Job_Succeeded;
 
@@ -390,21 +430,21 @@ namespace MatrixBuilder
             return res;
         }
 
-        private MatrixResult TraversalForAny(int startIndex, int stopIndex, BuildContext context)
+        private MatrixResult TraversalForAny(IndexScope scope, BuildContext context)
         {
             int selectedCount = context.SelectionCount();
 
             int visitedCount = 0;
-            int count = Math.Min(stopIndex, Settings.TestItemCollection.Count - context.MaxSelectionCount + selectedCount);
+            int count = Math.Min(scope.End, Settings.TestItemCollection.Count - context.MaxSelectionCount + selectedCount);
 
             double progStart = context.progress;
-            double progStep = context.progressRange / (count - startIndex);
+            double progStep = context.progressRange / (count - scope.Start + 1);
             context.progressRange = progStep > 0.001 ? progStep : 0;
             UInt64 preCheckCount = context.CheckCount;
 
-            bool bUpdateProgressMsg = context.SelectionCount() == 1;
+            bool bUpdateProgressMsg = context.SelectionCount() == 2;
 
-            for (int index = startIndex; index < count; ++index)
+            for (int index = scope.Start; index <= count; ++index)
             {
                 if (bUpdateProgressMsg)
                 {
@@ -465,11 +505,11 @@ namespace MatrixBuilder
                 }
                 else if (status == BuildContext.Status.Continue)
                 {
-                    int nextStart = 0, nextEnd = 0;
-                    if (context.NextItemScope(index, ref nextStart, ref nextEnd))
+                    IndexScope nextIndex = context.NextItemScope(index);
+                    if (nextIndex != null)
                     {
                         // if we got a valid solution, check if need to continue or not.
-                        MatrixResult res = TraversalForAny(nextStart, nextEnd, context);
+                        MatrixResult res = TraversalForAny(nextIndex, context);
                         if (res == MatrixResult.User_Aborted || res == MatrixResult.Job_Aborted || res == MatrixResult.Job_Succeeded)
                         {
                             return res;

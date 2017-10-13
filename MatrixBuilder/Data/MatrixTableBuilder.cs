@@ -25,6 +25,23 @@ namespace MatrixBuilder
         public int MaxIndex = -1;
     }
 
+    class IndexScope
+    {
+        public readonly int Start = -1;
+        public readonly int End = -1;
+
+        public IndexScope(int start, int end)
+        {
+            Start = start;
+            End = end;
+        }
+
+        public override string ToString()
+        {
+            return "(" + Start.ToString() + ", " + End.ToString() + ")";
+        }
+    }
+
     class MatrixBuildSettings
     {
         private object lockObject = new object();

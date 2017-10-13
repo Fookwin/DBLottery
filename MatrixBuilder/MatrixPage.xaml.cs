@@ -36,7 +36,7 @@ namespace MatrixBuilder
         private DataTable _table = null;
         private delegate void ThreadDelegate();
         private bool _userCanceled = false;
-        private Dictionary<string, ProgressState> _progressStates = new Dictionary<string, ProgressState>();
+        private SortedDictionary<string, ProgressState> _progressStates = new SortedDictionary<string, ProgressState>();
         private MatrixCell selectedCell = null;
         private int selectedRow = 0;
         private int selectedCol = 0;
