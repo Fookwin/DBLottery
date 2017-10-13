@@ -161,6 +161,7 @@ namespace MatrixBuilder
         private int _maxSelectionCount = -1;
         private int _maxHitCountForEach = -1;
         private int _minHitCountForEach = -1;
+        private int _solutionCountFound = -1;
 
         private BuildToken _buildToken = null;
         private Stack<MatrixItemByte> _currentSelection = new Stack<MatrixItemByte>();
@@ -175,6 +176,12 @@ namespace MatrixBuilder
         public UInt64 CheckCountForUpdateProgress = 0;
         public UInt64 CheckCountStep = 1000000;
 
+        private BuildContext(MatrixBuildSettings settings, bool returnForAny)
+        {
+            _settings = settings;
+            _returnForAny = returnForAny;
+        }
+
         public BuildContext(MatrixBuildSettings settings, bool returnForAny, int maxSelectionCount, string jobName)
         {
             _settings = settings;
@@ -186,6 +193,14 @@ namespace MatrixBuilder
             _minHitCountForEach = (_maxSelectionCount + 1) * _settings.SelectNumCount / _settings.CandidateNumCount - 1;
 
             _buildToken = new BuildToken(_settings);
+        }
+
+        public int SolutionCountFound
+        {
+            get
+            {
+                return _solutionCountFound;
+            }
         }
 
         public int MaxSelectionCount
@@ -204,12 +219,21 @@ namespace MatrixBuilder
             }
         }
 
-        public void Commit()
+        public bool Commit()
         {
-            // Save solution to context.
-            _settings.CurrentSolution = _currentSelection.Reverse().ToList();
+            bool res = _settings.CommitSolution(_currentSelection.Reverse().ToList());
+            if (res)
+                _solutionCountFound = _currentSelection.Count;
 
-            _maxSelectionCount = _settings.CurrentSolution.Count - 1;
+            // refresh the token anyway.
+            RefreshTokens();
+
+            return res;
+        }
+
+        public void RefreshTokens()
+        {
+            _maxSelectionCount = _settings.CurrentSolutionCount() - 1;
 
             // calculate the max num hit count.
             int newMinHitCountForEach = (_maxSelectionCount + 1) * _settings.SelectNumCount / _settings.CandidateNumCount - 1;
@@ -309,7 +333,32 @@ namespace MatrixBuilder
             MatrixProgressHandler = processMonitor;
         }
 
-        public MatrixResult Calculate(string jobName, int maxSelectionCount, bool returnForAny)
+        public void Calculate(int maxSelectionCount, bool returnForAny, bool bInParallel)
+        {
+            int start = 1, end = Settings.NumDistributions[0].MaxIndex;
+
+            if (bInParallel)
+            {
+                int threadCount = Environment.ProcessorCount, step = (end - start - 1) / threadCount + 1;
+                bool bAborted = false;
+                ParallelOptions option = new ParallelOptions() { MaxDegreeOfParallelism = Environment.ProcessorCount };
+                ParallelLoopResult loopResult = Parallel.For(0, threadCount, option, (Index) =>
+                {
+                    if (!bAborted)
+                    {
+                        int startFrom = Index * step + start, endAt = Math.Min(end, startFrom + step - 1);
+                        if (_Calculate(Index.ToString() + " [" + startFrom.ToString() + ", " + endAt.ToString() + "]", maxSelectionCount, startFrom, endAt, returnForAny) == MatrixResult.User_Aborted)
+                            bAborted = true;
+                    }
+                });
+            }
+            else
+            {
+                _Calculate("main", maxSelectionCount, start, end, returnForAny);
+            }
+        }
+
+        private MatrixResult _Calculate(string jobName, int maxSelectionCount, int start, int end, bool returnForAny)
         {
             // Build context.
             BuildContext context = new BuildContext(Settings, returnForAny, maxSelectionCount, jobName);
@@ -325,17 +374,16 @@ namespace MatrixBuilder
             context.Push(0, firstItem);
 
             var res = MatrixResult.Job_Failed;
-
-            int nextStart = 0, nextEnd = 0;
-            if (context.NextItemScope(0, ref nextStart, ref nextEnd))
-            {
-                res = TraversalForAny(nextStart, nextEnd, context);
-            }
+            res = TraversalForAny(start, end, context);
+            if (context.SolutionCountFound > 0)
+                res = MatrixResult.Job_Succeeded;
 
             if (MatrixProgressHandler != null)
             {
-                string message = res.ToString();
-                message += " Check Count: " + context.CheckCount.ToString();
+                string message = "[" + res.ToString() + "]";
+                if (res == MatrixResult.Job_Succeeded)
+                    message += "  SOLUTION: " + context.SolutionCountFound;
+                message += "  VISITED: " + context.CheckCount.ToString();
                 MatrixProgressHandler(jobName, message, 100);
             }
 
@@ -372,8 +420,9 @@ namespace MatrixBuilder
                         context.progress = progStart + progStep * visitedCount;
 
                         string message = context.progressMsg + context.progress.ToString("f3") + "%";
-                        message += " CURRENT: " + (Settings.CurrentSolution != null ? Settings.CurrentSolution.Count.ToString() : "-1");
-                        message += " CHECKED: " + context.CheckCount.ToString();
+                        message += "  SOLUTION: " + Settings.CurrentSolutionCount();
+                        message += "  CHECKING: " + context.MaxSelectionCount;
+                        message += "  VISITED: " + context.CheckCount.ToString();
 
                         int result = MatrixProgressHandler(context.JobName, message, context.progress);
                         if (result < 0)
@@ -383,9 +432,14 @@ namespace MatrixBuilder
                     }
                 }
 
-                // check if a better result has been found by other processer.
-                if (Settings.CurrentSolution != null && context.MaxSelectionCount >= Settings.CurrentSolution.Count)
-                    return MatrixResult.Job_Aborted;
+                // check if a better result has been found by other process.
+                if (Settings.CurrentSolutionCount() > 0 && context.MaxSelectionCount >= Settings.CurrentSolutionCount())
+                {
+                    if (context.ReturnForAny)
+                        return MatrixResult.Job_Aborted;
+
+                    context.RefreshTokens(); // refresh the tokens for the better solution.
+                }
 
                 ++visitedCount;
 
@@ -398,24 +452,16 @@ namespace MatrixBuilder
                 if (status == BuildContext.Status.Complete)
                 {
                     // reset the solution.
-                    context.Commit();
+                    bool bCommitFail = context.Commit();
+
+                    // has better solution found by other process, don't continue if return any.
+                    if (context.ReturnForAny)
+                        return MatrixResult.Job_Aborted;
 
                     context.Pop();
 
-                    // Get it!
-                    if (MatrixProgressHandler != null)
-                    {
-                        context.progress = progStart + progStep * visitedCount;
-
-                        string message = context.progressMsg + context.progress.ToString("f3") + "%";
-                        message = " CURRENT:" + Settings.CurrentSolution.Count.ToString();
-                        message += " CHECKED: " + context.CheckCount.ToString();
-
-                        MatrixProgressHandler(context.JobName, message, context.progress);
-                    }
-
                     // no need to continue, since we could not get better solution at this level loop.
-                    return context.ReturnForAny ? MatrixResult.Job_Succeeded : MatrixResult.Job_Succeeded_Continue; 
+                    return bCommitFail ? MatrixResult.Job_Failed : (context.ReturnForAny ? MatrixResult.Job_Succeeded : MatrixResult.Job_Succeeded_Continue); 
                 }
                 else if (status == BuildContext.Status.Continue)
                 {
@@ -431,7 +477,7 @@ namespace MatrixBuilder
 
                         if (res == MatrixResult.Job_Succeeded_Continue)
                         {
-                            if (Settings.CurrentSolution.Count <= selectedCount + 2)
+                            if (Settings.CurrentSolutionCount() <= selectedCount + 2)
                             {
                                 // impossible to get better solution at this leve of loop, break and continue.
                                 context.Pop();

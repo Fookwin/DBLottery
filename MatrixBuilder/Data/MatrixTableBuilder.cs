@@ -40,6 +40,7 @@ namespace MatrixBuilder
         public readonly int IdealMinItemCount = 0;
 
         private List<MatrixItemByte> _solution = null;
+        private int _solutionItemCount = -1;
 
         public MatrixBuildSettings(int _candidateNumCount, int _selectNumCount)
         {
@@ -64,14 +65,26 @@ namespace MatrixBuilder
             {
                 return _solution;
             }
+        }
 
-            set
+        public int CurrentSolutionCount()
+        {
+            return _solutionItemCount;
+        }
+
+        public bool CommitSolution(List<MatrixItemByte> solution)
+        {
+            // don't commit for worse solution.
+            if (_solutionItemCount > 0 && solution.Count >= _solutionItemCount)
+                return false;
+
+            lock (lockObject)
             {
-                lock (lockObject)
-                {
-                    _solution = value;
-                }
+                _solution = solution;
+                _solutionItemCount = solution.Count;
             }
+
+            return true;
         }
 
         private List<MatrixItemPositionBits> BuildMash()
@@ -218,6 +231,7 @@ namespace MatrixBuilder
             if (algorithm == 0) // exhaustion algorithm
             {
                 // if not specify the the max selection count, set it as the count of default solution.
+                bool bReturnForAny = true;
                 if (testLimit <= 0)
                 {
                     // Get the default matrix as the candidate solution.
@@ -226,35 +240,19 @@ namespace MatrixBuilder
                     {
                         testLimit = defaultSoution.Count - 1; // try to find the better solution than default.
                     }
+
+                    bReturnForAny = false;
                 }
                 
                 ExhaustionAlgorithmImpl impl = new ExhaustionAlgorithmImpl(settings, _matrixTable, MatrixProgressHandler);
-
-                bool bInParallel = false;
-                if (bInParallel)
-                {
-                    bool bAborted = false;
-                    ParallelOptions option = new ParallelOptions() { MaxDegreeOfParallelism = Environment.ProcessorCount };
-                    ParallelLoopResult loopResult = Parallel.For(settings.IdealMinItemCount + 1, testLimit, option, (Index) =>
-                    {
-                        if (!bAborted)
-                        {
-                            if (impl.Calculate("index_" + Index.ToString(), Index, true) == MatrixResult.User_Aborted)
-                                bAborted = true;
-                        }
-                    });
-                }
-                else
-                {
-                    impl.Calculate("main", testLimit, false);
-                }
+                impl.Calculate(testLimit, bReturnForAny, true);
             }
 
             TimeSpan duration = DateTime.Now - startTime;
 
-            if (settings.CurrentSolution != null)
+            if (settings.CurrentSolutionCount() > 0)
             {
-                if (MessageBox.Show("Result:" + settings.CurrentSolution.Count.ToString() + ". Save it?", "Successful", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Result:" + settings.CurrentSolutionCount().ToString() + ". Save it?", "Successful", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     _matrixTable.SetCell(row, col, new MatrixCell() { Template = settings.CurrentSolution });
 
@@ -271,9 +269,9 @@ namespace MatrixBuilder
                     File.WriteAllLines("Z:\\matrix\\" + file, output);
                 }
 
-                MessageBox.Show("Found Solution with Count " + settings.CurrentSolution.Count.ToString() + " Duration: " + duration.ToString());
+                MessageBox.Show("Found Solution with Count " + settings.CurrentSolutionCount().ToString() + " Duration: " + duration.ToString());
 
-                return settings.CurrentSolution.Count;
+                return settings.CurrentSolutionCount();
             }
 
             MessageBox.Show("No Solution Found!" + " Duration: " + duration.ToString());
