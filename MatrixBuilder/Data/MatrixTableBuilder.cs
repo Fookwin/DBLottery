@@ -200,38 +200,67 @@ namespace MatrixBuilder
             {
                 for (int j = 3; j <= 6; ++j)
                 {
+                    MatrixCell cell = new MatrixCell();
+
                     // Read from the file.
-                    string file = "Z:\\matrix\\" + i.ToString() + "-" + j.ToString() + ".txt";
+                    string file = ".\\Solution\\Best\\" + i.ToString() + "-" + j.ToString() + ".txt";
                     if (File.Exists(file))
                     {
-                        MatrixCell cell = new MatrixCell();
-
                         IEnumerable<string> lines = File.ReadLines(file);
                         foreach (string line in lines)
                         {
                             cell.Template.Add(new MatrixItemByte(line));
                         }
 
-                        _matrixTable.SetCell(i, j, cell);
+                        cell.Status = MatrixCell.MatrixStatus.Best;
                     }
-                    else if (bUseDefault)
+                    else
                     {
-                        List<MatrixItemByte> defaultSoution = BuildMatrixUtil.GetDefaultSolution(i, j, _matrixTable);
-                        if (defaultSoution != null)
+                        file = ".\\Solution\\Good\\" + i.ToString() + "-" + j.ToString() + ".txt";
+                        if (File.Exists(file))
                         {
-                            _matrixTable.SetCell(i, j, new MatrixCell() { Template = defaultSoution });
-
-                            // save to file.
-                            List<string> output = new List<string>();
-
-                            foreach (MatrixItemByte item in defaultSoution)
+                            IEnumerable<string> lines = File.ReadLines(file);
+                            foreach (string line in lines)
                             {
-                                output.Add(item.ToString());
+                                cell.Template.Add(new MatrixItemByte(line));
                             }
 
-                            File.WriteAllLines(file, output);
+                            cell.Status = MatrixCell.MatrixStatus.Candidate;
+                        }
+                        else
+                        {
+                            file = ".\\Solution\\Default\\" + i.ToString() + "-" + j.ToString() + ".txt";
+                            if (File.Exists(file))
+                            {
+                                IEnumerable<string> lines = File.ReadLines(file);
+                                foreach (string line in lines)
+                                {
+                                    cell.Template.Add(new MatrixItemByte(line));
+                                }
+                            }
+                            else
+                            {
+                                List<MatrixItemByte> defaultSoution = BuildMatrixUtil.GetDefaultSolution(i, j, _matrixTable);
+                                if (defaultSoution != null)
+                                {
+                                    // save to file.
+                                    List<string> output = new List<string>();
+                                    foreach (MatrixItemByte item in defaultSoution)
+                                    {
+                                        output.Add(item.ToString());
+                                    }
+
+                                    File.WriteAllLines(file, output);
+
+                                    cell.Template = defaultSoution;
+                                }
+                            }
+
+                            cell.Status = MatrixCell.MatrixStatus.Default;
                         }
                     }
+
+                    _matrixTable.SetCell(i, j, cell);
                 }
             }
         }
@@ -297,7 +326,7 @@ namespace MatrixBuilder
                         output.Add(item.ToString());
                     }
 
-                    File.WriteAllLines("Z:\\matrix\\" + file, output);
+                    File.WriteAllLines(".\\Solution\\Good\\" + file, output);
                 }
 
                 MessageBox.Show("Found Solution with Count " + settings.CurrentSolutionCount().ToString() + " Duration: " + duration.ToString());

@@ -87,7 +87,7 @@ namespace MatrixBuilder
                 }
 
                 BT_Verify.IsEnabled = solutionCount > 0;
-                Selected_Cell_Name.Text = selectedRow.ToString() + " 选 " + selectedCol.ToString() + " [" + solutionCount.ToString() + "]";
+                Selected_Cell_Name.Text = selectedRow.ToString() + " 选 " + selectedCol.ToString() + " [" + solutionCount.ToString() + "] - " + selectedCell.Status.ToString();
             }
             else
             {

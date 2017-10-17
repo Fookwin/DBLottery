@@ -8,7 +8,15 @@ namespace MatrixBuilder
 {
     public class MatrixCell
     {
+        public enum MatrixStatus
+        {
+            Best,
+            Candidate,
+            Default
+        };
+
         public List<MatrixItemByte> Template = new List<MatrixItemByte>();
+        public MatrixStatus Status = MatrixStatus.Candidate;
     }
 
     public class MatrixItemByte
