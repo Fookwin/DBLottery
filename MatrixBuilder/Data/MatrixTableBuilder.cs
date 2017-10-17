@@ -260,7 +260,21 @@ namespace MatrixBuilder
 
                     bReturnForAny = false;
                 }
-                
+
+                string strConditions = "Conditions: ";
+                strConditions += "ProcesserCount: " + Environment.ProcessorCount + "\n";
+                strConditions += "CandidateNumCount: " + settings.CandidateNumCount + "\n";
+                strConditions += "SelectNumCount: " + settings.SelectNumCount + "\n";
+                strConditions += "IdealMinItemCount: " + settings.IdealMinItemCount + "\n";
+                strConditions += "MaxItemCountCoveredByOneItem: " + settings.MaxItemCountCoveredByOneItem + "\n";
+                strConditions += "TestItemCollectionCount: " + settings.TestItemCollection.Count() + "\n";
+                strConditions += "TopLevelLoopMaxIndex: " + settings.NumDistributions[0].MaxIndex + "\n";
+
+                if (MessageBox.Show(strConditions, "Ready?", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+                {
+                    return -1;
+                }
+
                 ExhaustionAlgorithmImpl impl = new ExhaustionAlgorithmImpl(settings, _matrixTable, MatrixProgressHandler);
                 impl.Calculate(testLimit, bReturnForAny, true);
             }
