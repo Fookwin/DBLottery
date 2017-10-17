@@ -19,7 +19,7 @@ namespace MatrixBuilder
         public MatrixStatus Status = MatrixStatus.Candidate;
     }
 
-    public class MatrixItemByte
+    public class MatrixItemByte : IEquatable<MatrixItemByte>, IComparable<MatrixItemByte>
     {
         public static UInt64[] _rBits = new UInt64[33] 
         {
@@ -149,6 +149,16 @@ namespace MatrixBuilder
             }
 
             return hit;
+        }
+
+        bool IEquatable<MatrixItemByte>.Equals(MatrixItemByte other)
+        {
+            return _set == other._set;
+        }
+
+        int IComparable<MatrixItemByte>.CompareTo(MatrixItemByte other)
+        {
+            return this.ToString().CompareTo(other.ToString());
         }
 
         private MatrixItemByte()

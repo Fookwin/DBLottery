@@ -43,6 +43,8 @@ namespace MatrixBuilder
                     result.Add(item);
                 }
 
+                result.Sort();
+
                 return result;
             }
 
