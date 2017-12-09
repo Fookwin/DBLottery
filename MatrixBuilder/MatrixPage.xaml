@@ -48,8 +48,10 @@
             </ListView>
 
             <StackPanel Grid.Column="4" Grid.Row="2" Orientation="Horizontal">
-                <TextBlock Text="测试上限 " VerticalAlignment="Center" FontSize="15"/>
+                <TextBlock Text="Better than " VerticalAlignment="Center" FontSize="15"/>
                 <TextBox x:Name="TB_TestStart" Text="-1" FontSize="15" Width="50" Height="30" TextAlignment="Center"/>
+                <CheckBox x:Name="CB_Parallel" FontSize="15" VerticalAlignment="Center" Margin="5,0,0,0">In Parallel</CheckBox>
+                <CheckBox x:Name="CB_ReturnForAny" FontSize="15" VerticalAlignment="Center" Margin="5,0,0,0">Return For Any</CheckBox>
 
                 <TextBlock Text="算法  " VerticalAlignment="Center" FontSize="15" Margin="5,0,0,0"/>
                 <ComboBox x:Name="CB_Algorithm" Width="80" Height="30" SelectedIndex="0" FontSize="15">

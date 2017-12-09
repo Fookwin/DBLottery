@@ -8,6 +8,24 @@ using System.Threading;
 
 namespace MatrixBuilder
 {
+    class ProgressState
+    {
+        public string ThreadID
+        {
+            get; set;
+        }
+
+        public string Message
+        {
+            get; set;
+        }
+
+        public double Progress
+        {
+            get; set;
+        }
+    }
+
     enum MatrixResult
     {
         Job_Succeeded,
@@ -27,28 +45,125 @@ namespace MatrixBuilder
 
     class IndexScope
     {
-        public readonly int Start = -1;
-        public readonly int End = -1;
+        private readonly int MaxValue = -1;
+        private readonly int MinValue = -1;
+        private readonly List<int> Values = null;
+        private int? _index = null;
+        private int? _count = null;
 
-        public IndexScope(int start, int end)
+        public IndexScope(int start, int end, List<int> values)
         {
-            Start = start;
-            End = end;
+            MinValue = start;
+            MaxValue = end;
+            Values = values;
         }
 
         public override string ToString()
         {
-            return "(" + Start.ToString() + ", " + End.ToString() + ")";
+            return "(" + MinValue.ToString() + ", " + MaxValue.ToString() + ")";
         }
+
+        public int Count()
+        {
+            if (Values == null)
+                return MaxValue - MinValue + 1;
+            else if (_count != null)
+                return _count.Value;
+            else
+            {
+                int count = 0;
+                for (int i = 0; i < Values.Count; ++i)
+                {
+                    if (Values[i] > MaxValue)
+                        break;
+
+                    if (Values[i] >= MinValue)
+                    {
+                        ++count;
+                    }
+                }
+
+                _count = count; // cache it.
+
+                return count;
+            }
+        }
+
+        public int Min()
+        {
+            return MinValue;
+        }
+
+        public int Max()
+        {
+            return MaxValue;
+        }
+
+        public List<int> ValueCollection()
+        {
+            return Values;
+        }
+
+        public int Next()
+        {
+            if (Values == null)
+            {
+                if (_index == null)
+                {
+                    // start from min value.
+                    _index = MinValue;
+                }
+                else
+                {
+                    ++_index;
+
+                    if (_index > MaxValue)
+                        _index = -1; // not be larger than the max
+                }
+
+                return _index.Value;
+            }
+            else
+            {
+                if (_index == null)
+                {
+                    _index = -1;
+
+                    // get the first index match the scope
+                    for (int i = 0; i < Values.Count; ++i)
+                    {
+                        if (Values[i] >= MinValue && Values[i] <= MaxValue)
+                        {
+                            _index = i;
+                            break;
+                        }
+                    }
+                }
+                else if (_index.Value >= 0)
+                {
+                    ++_index;
+
+                    // not be larger than the max value and should be one in the values.
+                    if (_index >= Values.Count || Values[_index.Value] > MaxValue)
+                        _index = -1;
+                }
+
+                return _index.Value >= 0 ? Values[_index.Value] : -1;
+            }
+        }
+    }
+
+    class MatrixTestItem
+    {
+        public MatrixItemByte ItemByte = null;
+        public MatrixItemPositionBits CoverageMash = null;
+        public List<int> CoveredBy = null;
     }
 
     class MatrixBuildSettings
     {
-        private object lockObject = new object();
-
-        public readonly List<MatrixItemByte> TestItemCollection = null;
-        public readonly List<MatrixItemPositionBits> TestItemMashCollection = null;
-        public readonly List<NumberDistribution> NumDistributions = null;
+        private readonly List<MatrixTestItem> TestItemCollection = null;
+        private readonly List<NumberDistribution> NumDistributions = null;
 
         public readonly int CandidateNumCount = 0;  // the count of the numbers could be selected from.
         public readonly int SelectNumCount = 0;     // the count of the numbers to be selected.
@@ -56,80 +171,80 @@ namespace MatrixBuilder
         public readonly int MaxItemCountCoveredByOneItem = 0;
         public readonly int IdealMinItemCount = 0;
 
-        private List<MatrixItemByte> _solution = null;
-        private int _solutionItemCount = -1;
-
         public MatrixBuildSettings(int _candidateNumCount, int _selectNumCount)
         {
             SelectNumCount = _selectNumCount;
             CandidateNumCount = _candidateNumCount;
 
             // Get the test items.
-            TestItemCollection = BuildMatrixUtil.GetTestItemCollection(_candidateNumCount, _selectNumCount);
-
-            TestItemMashCollection = BuildMash();
+            TestItemCollection = BuildTestItems(_candidateNumCount, _selectNumCount);
 
             NumDistributions = BuildNumDistributions();
 
             MaxItemCountCoveredByOneItem = (_candidateNumCount - _selectNumCount) * _selectNumCount + 1;
 
-            IdealMinItemCount = (TestItemMashCollection.Count - 1) / MaxItemCountCoveredByOneItem + 1;
+            IdealMinItemCount = (TestItemCollection.Count - 1) / MaxItemCountCoveredByOneItem + 1;
         }
 
-        public List<MatrixItemByte> CurrentSolution
+        public NumberDistribution NumDistribution(int index)
         {
-            get
-            {
-                return _solution;
-            }
+            return NumDistributions[index];
         }
 
-        public int CurrentSolutionCount()
+        public MatrixItemByte TestItem(int index)
         {
-            return _solutionItemCount;
+            return TestItemCollection[index].ItemByte;
         }
 
-        public bool CommitSolution(List<MatrixItemByte> solution)
+        public int TestItemCount()
         {
-            // don't commit for worse solution.
-            if (_solutionItemCount > 0 && solution.Count >= _solutionItemCount)
-                return false;
-
-            lock (lockObject)
-            {
-                _solution = solution;
-                _solutionItemCount = solution.Count;
-            }
-
-            return true;
+            return TestItemCollection.Count;
         }
 
-        private List<MatrixItemPositionBits> BuildMash()
+        public MatrixItemPositionBits TestItemMash(int index)
         {
+            return TestItemCollection[index].CoverageMash;
+        }
+
+        public List<int> TestItemCoveredBy(int index)
+        {
+            return TestItemCollection[index].CoveredBy;
+        }
+
+        private List<MatrixTestItem> BuildTestItems(int candidateNumCount, int selectNumCount)
+        {
+            var itemByteCollection = BuildMatrixUtil.GetTestItemCollection(candidateNumCount, selectNumCount);
+
             int matchNumCount = SelectNumCount - 1;
-            List<MatrixItemPositionBits> result = new List<MatrixItemPositionBits>();
+            List<MatrixTestItem> result = new List<MatrixTestItem>();
 
-            int count = TestItemCollection.Count;
+            int count = itemByteCollection.Count;
             for (int i = 0; i < count; ++i)
             {
-                result.Add(new MatrixItemPositionBits(count, true));
+                result.Add(new MatrixTestItem {
+                    ItemByte = itemByteCollection[i],
+                    CoverageMash = new MatrixItemPositionBits(count, true),
+                    CoveredBy = new List<int>()
+                });
             }
 
             for (int i = 0; i < count; ++i)
             {
-                MatrixItemByte itemA = TestItemCollection[i];
+                MatrixItemByte itemA = itemByteCollection[i];
 
                 // Init and Add itself.
-                MatrixItemPositionBits bitsA = result[i];
-                bitsA.AddSingle(i);
+                result[i].CoverageMash.AddSingle(i);
+                result[i].CoveredBy.Add(i);
 
                 for (int j = i + 1; j < count; ++j)
                 {
-                    MatrixItemByte itemB = TestItemCollection[j];
+                    MatrixItemByte itemB = itemByteCollection[j];
                     if (itemA.Intersection(itemB) >= matchNumCount)
                     {
-                        bitsA.AddSingle(j);
-                        result[j].AddSingle(i);
+                        result[i].CoverageMash.AddSingle(j);
+                        result[i].CoveredBy.Add(j);
+                        result[j].CoverageMash.AddSingle(i);
+                        result[j].CoveredBy.Add(i);
                     }
                 }
             }
@@ -159,7 +274,7 @@ namespace MatrixBuilder
 
             for (int i = 0; i < testItemCount; ++i)
             {
-                MatrixItemByte item = TestItemCollection[i];
+                MatrixItemByte item = TestItemCollection[i].ItemByte;
                 for (int j = 0; j < CandidateNumCount; ++j)
                 {
                     if ((item.Bits & result[j].Bits) != 0)
@@ -178,9 +293,8 @@ namespace MatrixBuilder
 
     class MatrixTableBuilder
     {
-        protected MatrixTable _matrixTable = new MatrixTable();
-        public delegate int MatrixCalculationProgressHandler(string threadID, string message, double progress);
-        public event MatrixCalculationProgressHandler MatrixProgressHandler = null;
+        private MatrixTable _matrixTable = new MatrixTable();
+        private SortedDictionary<string, ProgressState> _progressStates = new SortedDictionary<string, ProgressState>();
 
         public MatrixTableBuilder()
         {
@@ -190,6 +304,18 @@ namespace MatrixBuilder
         public MatrixTable GetTable()
         {
             return _matrixTable;
+        }
+
+        public ProgressState RegisterProgress(string key)
+        {
+            var progress = new ProgressState() { ThreadID = key };
+            _progressStates.Add(key, progress);
+            return progress;
+        }
+
+        public List<KeyValuePair<string, ProgressState>> GetProgress()
+        {
+            return _progressStates.ToList();
         }
 
         public void Init(bool bUseDefault)
@@ -265,7 +391,7 @@ namespace MatrixBuilder
             }
         }
 
-        public int BuildMarixCell(int row, int col, int testLimit, int algorithm)
+        public int BuildMarixCell(int row, int col, int algorithm, int? betterThan = null, bool bParallel = false, bool bReturnForAny = false)
         {
             DateTime startTime = DateTime.Now;
 
@@ -274,54 +400,54 @@ namespace MatrixBuilder
             // (re)Set the global settings data.
             MatrixBuildSettings settings = new MatrixBuildSettings(row, col);
 
+            List<MatrixItemByte> foundSolution = null;
             if (algorithm == 0) // exhaustion algorithm
             {
                 // if not specify the the max selection count, set it as the count of default solution.
-                bool bReturnForAny = true;
-                if (testLimit <= 0)
+                if (betterThan == null)
                 {
                     // Get the default matrix as the candidate solution.
                     List<MatrixItemByte> defaultSoution = BuildMatrixUtil.GetDefaultSolution(settings.CandidateNumCount, settings.SelectNumCount, _matrixTable);
                     if (defaultSoution != null)
                     {
-                        testLimit = defaultSoution.Count - 1; // try to find the better solution than default.
+                        betterThan = defaultSoution.Count; // try to find the better solution than default.
                     }
-
-                    bReturnForAny = false;
                 }
 
                 string strConditions = "Conditions: ";
                 strConditions += "ProcesserCount: " + Environment.ProcessorCount + "\n";
                 strConditions += "CandidateNumCount: " + settings.CandidateNumCount + "\n";
                 strConditions += "SelectNumCount: " + settings.SelectNumCount + "\n";
+                strConditions += "FindingBetterThan: " + betterThan.Value + "\n";   
                 strConditions += "IdealMinItemCount: " + settings.IdealMinItemCount + "\n";
                 strConditions += "MaxItemCountCoveredByOneItem: " + settings.MaxItemCountCoveredByOneItem + "\n";
-                strConditions += "TestItemCollectionCount: " + settings.TestItemCollection.Count() + "\n";
-                strConditions += "TopLevelLoopMaxIndex: " + settings.NumDistributions[0].MaxIndex + "\n";
+                strConditions += "TestItemCollectionCount: " + settings.TestItemCount() + "\n";
+                strConditions += "TopLevelLoopMaxIndex: " + settings.NumDistribution(0).MaxIndex + "\n";
 
                 if (MessageBox.Show(strConditions, "Ready?", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
                 {
                     return -1;
                 }
 
-                ExhaustionAlgorithmImpl impl = new ExhaustionAlgorithmImpl(settings, _matrixTable, MatrixProgressHandler);
-                impl.Calculate(testLimit, bReturnForAny, true);
+                ExhaustionAlgorithmImpl impl = new ExhaustionAlgorithmImpl(settings);
+                impl.Calculate(betterThan.Value - 1, _progressStates, bReturnForAny, bParallel);
+                foundSolution = impl.GetSolution();
             }
 
             TimeSpan duration = DateTime.Now - startTime;
 
-            if (settings.CurrentSolutionCount() > 0)
+            if (foundSolution != null && foundSolution.Count() > 0)
             {
-                if (MessageBox.Show("Result:" + settings.CurrentSolutionCount().ToString() + ". Save it?", "Successful", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Result:" + foundSolution.Count().ToString() + ". Save it?", "Successful", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    _matrixTable.SetCell(row, col, new MatrixCell() { Template = settings.CurrentSolution });
+                    _matrixTable.SetCell(row, col, new MatrixCell() { Template = foundSolution });
 
                     // save to file.
                     string file = row.ToString() + "-" + col.ToString() + ".txt";
 
                     List<string> output = new List<string>();
 
-                    foreach (MatrixItemByte item in settings.CurrentSolution)
+                    foreach (MatrixItemByte item in foundSolution)
                     {
                         output.Add(item.ToString());
                     }
@@ -329,9 +455,9 @@ namespace MatrixBuilder
                     File.WriteAllLines(".\\Solution\\Good\\" + file, output);
                 }
 
-                MessageBox.Show("Found Solution with Count " + settings.CurrentSolutionCount().ToString() + " Duration: " + duration.ToString());
+                MessageBox.Show("Found Solution with Count " + foundSolution.Count().ToString() + " Duration: " + duration.ToString());
 
-                return settings.CurrentSolutionCount();
+                return foundSolution.Count();
             }
 
             MessageBox.Show("No Solution Found!" + " Duration: " + duration.ToString());
