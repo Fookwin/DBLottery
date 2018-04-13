@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MatrixBuilder
@@ -21,11 +22,11 @@ namespace MatrixBuilder
 
         public BuildToken(MatrixBuildSettings settings)
         {
-            RestItemsBits = new MatrixItemPositionBits(settings.TestItemCollection.Count, false);
-            NumBitsToSkip = new MatrixItemPositionBits(settings.TestItemCollection.Count, true);
+            RestItemsBits = new MatrixItemPositionBits(settings.TestItemCount(), false);
+            NumBitsToSkip = new MatrixItemPositionBits(settings.TestItemCount(), true);
             NumHitCounts = new int[settings.CandidateNumCount];
             UnhitNumCount = settings.CandidateNumCount;
-            NextPosMax = settings.TestItemCollection.Count - 1; // to the last
+            NextPosMax = settings.TestItemCount() - 1; // to the last
         }
 
         public BuildToken Clone()
@@ -68,11 +69,11 @@ namespace MatrixBuilder
             for (int i = 0; i < settings.CandidateNumCount; ++i)
             {
                 if (NumHitCounts[i] >= maxHitCountForEach)
-                    NumBitsToSkip.AddMultiple(settings.NumDistributions[i].Distribution);
+                    NumBitsToSkip.AddMultiple(settings.NumDistribution(i).Distribution);
 
                 if (nextPosMax < 0 && NumHitCounts[i] < minHitCountForEach)
                 {
-                    nextPosMax = settings.NumDistributions[i].MaxIndex;
+                    nextPosMax = settings.NumDistribution(i).MaxIndex;
                 }
             }
 
@@ -90,7 +91,7 @@ namespace MatrixBuilder
                 int* ps = pArray;
                 for (int i = 0; i < settings.CandidateNumCount; i++)
                 {
-                    if ((settings.NumDistributions[i].Bits & itemBits) != 0)
+                    if ((settings.NumDistribution(i).Bits & itemBits) != 0)
                     {
                         ++ (*ps);
 
@@ -101,13 +102,13 @@ namespace MatrixBuilder
 
                         if (*ps == maxHitCountForEach)
                         {
-                            NumBitsToSkip.AddMultiple(settings.NumDistributions[i].Distribution);
+                            NumBitsToSkip.AddMultiple(settings.NumDistribution(i).Distribution);
                         }
                     }
 
                     if (nextPosMax < 0 && * ps < minHitCountForEach)
                     {
-                        nextPosMax = settings.NumDistributions[i].MaxIndex;
+                        nextPosMax = settings.NumDistribution(i).MaxIndex;
                     }
 
                     ps++;
@@ -120,13 +121,27 @@ namespace MatrixBuilder
 
         public void UpdateItemCoverage(int addItemIndex, MatrixBuildSettings settings)
         {
-            RestItemsBits.RemoveMultiple(settings.TestItemMashCollection[addItemIndex]);
+            RestItemsBits.RemoveMultiple(settings.TestItemMash(addItemIndex));
         }
 
-        public void NextItemScope(int pre, ref int min, ref int max)
+        public IndexScope NextItemScope(int current, MatrixBuildSettings settings)
         {
-            min = NumBitsToSkip.NextPosition(pre, false);
-            max = NextPosMax;
+            bool bJumpToNextUnhitted = true;
+            if (bJumpToNextUnhitted)
+            {
+                int nextRestPos = RestItemsBits.NextPosition(0, true);
+                int min = nextRestPos;
+                int max = NextPosMax;
+
+                return (min >= 0 && min <= max) ? new IndexScope(min, max, settings.TestItemCoveredBy(nextRestPos)) : null;
+            }
+            else
+            {
+                int min = Math.Max(current, NumBitsToSkip.NextPosition(current, false));
+                int max = NextPosMax;
+
+                return (min >= 0 && min <= max) ? new IndexScope(min, max, null) : null;
+            }
         }
 
         public int UncoveredNumCount()
@@ -168,9 +183,7 @@ namespace MatrixBuilder
         private Stack<BuildToken> _tokenStack = new Stack<BuildToken>();
 
         // Progress 
-        public readonly string JobName = null;
         public string progressMsg = "";
-        public double progress = 0.0;
         public double progressRange = 100.0;
         public UInt64 CheckCount = 0;
         public UInt64 CheckCountForUpdateProgress = 0;
@@ -182,17 +195,29 @@ namespace MatrixBuilder
             _returnForAny = returnForAny;
         }
 
-        public BuildContext(MatrixBuildSettings settings, bool returnForAny, int maxSelectionCount, string jobName)
+        public BuildContext(MatrixBuildSettings settings, bool returnForAny, int maxSelectionCount)
         {
             _settings = settings;
             _returnForAny = returnForAny;
-            JobName = jobName;
 
             _maxSelectionCount = maxSelectionCount;
             _maxHitCountForEach = _maxSelectionCount * _settings.SelectNumCount / _settings.CandidateNumCount + 1;
             _minHitCountForEach = (_maxSelectionCount + 1) * _settings.SelectNumCount / _settings.CandidateNumCount - 1;
 
             _buildToken = new BuildToken(_settings);
+        }
+
+        public Stack<MatrixItemByte> GetSolution()
+        {
+            return _currentSelection;
+        }
+
+        public MatrixBuildSettings Settings
+        {
+            get
+            {
+                return _settings;
+            }
         }
 
         public int SolutionCountFound
@@ -219,21 +244,9 @@ namespace MatrixBuilder
             }
         }
 
-        public bool Commit()
+        public void RefreshTokens(int currentSoltionCount)
         {
-            bool res = _settings.CommitSolution(_currentSelection.Reverse().ToList());
-            if (res)
-                _solutionCountFound = _currentSelection.Count;
-
-            // refresh the token anyway.
-            RefreshTokens();
-
-            return res;
-        }
-
-        public void RefreshTokens()
-        {
-            _maxSelectionCount = _settings.CurrentSolutionCount() - 1;
+            _maxSelectionCount = currentSoltionCount - 1;
 
             // calculate the max num hit count.
             int newMinHitCountForEach = (_maxSelectionCount + 1) * _settings.SelectNumCount / _settings.CandidateNumCount - 1;
@@ -258,10 +271,7 @@ namespace MatrixBuilder
 
         public IndexScope NextItemScope(int current)
         {
-            int min = -1, max = -1;
-            _buildToken.NextItemScope(current, ref min, ref max);
-
-            return (min >= 0 && min <= max) ? new IndexScope(min, max) : null;
+            return _buildToken.NextItemScope(current, _settings);
         }
 
         public void Pop()
@@ -328,11 +338,11 @@ namespace MatrixBuilder
 
         public MatrixTaskDispatcher(IndexScope overallScope)
         {
-            int count = (overallScope.End - overallScope.Start - 1) / Step + 1;
-            for (int i = 0; i < count; ++ i)
+            int count = (overallScope.Max() - overallScope.Min()) / Step + 1;
+            for (int i = 0; i < count; ++i)
             {
-                int startFrom = i * Step + overallScope.Start, endAt = Math.Min(overallScope.End, startFrom + Step - 1);
-                Tasks.Push(new IndexScope(startFrom, endAt));
+                int startFrom = i * Step + overallScope.Min(), endAt = Math.Min(overallScope.Max(), startFrom + Step - 1);
+                Tasks.Push(new IndexScope(startFrom, endAt, null));
             }
 
             Tasks = new Stack<IndexScope>(Tasks.ToList());
@@ -351,32 +361,57 @@ namespace MatrixBuilder
 
     class ExhaustionAlgorithmImpl
     {
-        private readonly MatrixBuildSettings Settings = null;
-        private readonly MatrixTable Table = null;
-        public event MatrixTableBuilder.MatrixCalculationProgressHandler MatrixProgressHandler = null;
+        private object lockObject = new object();
 
-        public ExhaustionAlgorithmImpl(MatrixBuildSettings settings, MatrixTable refTable,
-            MatrixTableBuilder.MatrixCalculationProgressHandler processMonitor)
+        private readonly MatrixBuildSettings _settings = null;
+        private List<MatrixItemByte> _solution = null;
+        private int _solutionItemCount = -1;
+
+        public ExhaustionAlgorithmImpl(MatrixBuildSettings settings)
         {
-            Settings = settings;
-            Table = refTable;
-            MatrixProgressHandler = processMonitor;
+            _settings = settings;
         }
 
-        public void Calculate(int maxSelectionCount, bool returnForAny, bool bInParallel)
+        private bool _CommitSolution(List<MatrixItemByte> solution)
+        {
+            // don't commit for worse solution.
+            if (_solutionItemCount > 0 && solution.Count >= _solutionItemCount)
+                return false;
+
+            lock (lockObject)
+            {
+                _solution = solution;
+                _solutionItemCount = solution.Count;
+            }
+
+            return true;
+        }
+
+        public List<MatrixItemByte> GetSolution()
+        {
+            return _solution;
+        }
+
+        private int _CurrentSolutionCount()
+        {
+            return _solutionItemCount;
+        }
+
+        public void Calculate(int maxSelectionCount, SortedDictionary<string, ProgressState> progresses, bool returnForAny, bool bInParallel)
         {
             // define the scope for the top level loop, since the first item would be always added, 
             // start from the second one and end with the last index contains '1'.
-            IndexScope overallScope = new IndexScope(1, Settings.NumDistributions[0].MaxIndex);
+            IndexScope overallScope = new IndexScope(1, _settings.NumDistribution(0).MaxIndex, null);
 
             // make the task dispatcher.
             MatrixTaskDispatcher dispatcher = new MatrixTaskDispatcher(overallScope);
 
+            CancellationTokenSource cts = new CancellationTokenSource();
             if (bInParallel)
             {
-                int threadCount = Environment.ProcessorCount;
+                int threadCount = 10;//Environment.ProcessorCount;
                 bool bAborted = false;
-                ParallelOptions option = new ParallelOptions() { MaxDegreeOfParallelism = Environment.ProcessorCount };
+                ParallelOptions option = new ParallelOptions() { MaxDegreeOfParallelism = Environment.ProcessorCount, CancellationToken = cts.Token };
                 ParallelLoopResult loopResult = Parallel.For(0, threadCount, option, (Index) =>
                 {
                     while(!bAborted && dispatcher.HasTask())
@@ -384,106 +419,101 @@ namespace MatrixBuilder
                         var scope = dispatcher.Take();
                         if (scope != null)
                         {
+                            //MatrixBuildSettings settings = new MatrixBuildSettings(_settings.CandidateNumCount, _settings.SelectNumCount);
                             string threadName = "thread [" + Index.ToString() + "]    " + scope.ToString();
-                            if (_Calculate(threadName, maxSelectionCount, scope, returnForAny) == MatrixResult.User_Aborted)
+                            if (_Calculate(_settings, threadName, maxSelectionCount, scope, returnForAny, progresses, option.CancellationToken) == MatrixResult.User_Aborted)
                                 bAborted = true;
                         }
                     }
-
                 });
             }
             else
             {
-                _Calculate("main", maxSelectionCount, overallScope, returnForAny);
+                _Calculate(_settings, "main", maxSelectionCount, overallScope, returnForAny, progresses, cts.Token);
             }
         }
 
-        private MatrixResult _Calculate(string jobName, int maxSelectionCount, IndexScope scope, bool returnForAny)
+        private MatrixResult _Calculate(MatrixBuildSettings settings, string jobName, int maxSelectionCount, IndexScope scope, bool returnForAny, SortedDictionary<string, ProgressState> progresses, CancellationToken cancelToken)
         {
             // Build context.
-            BuildContext context = new BuildContext(Settings, returnForAny, maxSelectionCount, jobName);
-
-            if (MatrixProgressHandler != null)
-            {
-                string message = "Started...";
-                MatrixProgressHandler(jobName, message, 0);
-            }
+            BuildContext context = new BuildContext(settings, returnForAny, maxSelectionCount);
 
             // Include the first always.
-            MatrixItemByte firstItem = Settings.TestItemCollection[0];
+            MatrixItemByte firstItem = settings.TestItem(0);
             context.Push(0, firstItem);
 
+            var nextScope = new IndexScope(scope.Min(), scope.Max(), context.NextItemScope(0).ValueCollection());
+            if (nextScope.Count() <= 0)
+                return MatrixResult.Job_Failed;
+
+            ProgressState progressMornitor = new ProgressState() { ThreadID = jobName };
+            progresses.Add(jobName, progressMornitor);
+
+            string message = "Started...";
+            progressMornitor.Message = message;
+            progressMornitor.Progress = 0;
+
             var res = MatrixResult.Job_Failed;
-            res = TraversalForAny(scope, context);
+            res = _TraversalForAny(nextScope, context, progressMornitor, cancelToken);
             if (context.SolutionCountFound > 0)
                 res = MatrixResult.Job_Succeeded;
 
-            if (MatrixProgressHandler != null)
-            {
-                string message = "[" + res.ToString() + "]";
-                if (res == MatrixResult.Job_Succeeded)
-                    message += "  SOLUTION: " + context.SolutionCountFound;
-                message += "  VISITED: " + context.CheckCount.ToString();
-                MatrixProgressHandler(jobName, message, 100);
-            }
+            message = "[" + res.ToString() + "]";
+            if (res == MatrixResult.Job_Succeeded)
+                message += "  SOLUTION: " + context.SolutionCountFound;
+            message += "  VISITED: " + context.CheckCount.ToString();
+
+            progressMornitor.Message = message;
+            progressMornitor.Progress = 100;
 
             return res;
         }
 
-        private MatrixResult TraversalForAny(IndexScope scope, BuildContext context)
+        private MatrixResult _TraversalForAny(IndexScope scope, BuildContext context, ProgressState progressMornitor, CancellationToken cancelToken)
         {
             int selectedCount = context.SelectionCount();
 
             int visitedCount = 0;
-            int count = Math.Min(scope.End, Settings.TestItemCollection.Count - context.MaxSelectionCount + selectedCount);
+            int count = Math.Min(scope.Max(), context.Settings.TestItemCount() - context.MaxSelectionCount + selectedCount);
 
-            double progStart = context.progress;
-            double progStep = context.progressRange / (count - scope.Start + 1);
+            double progStart = progressMornitor.Progress;
+            double progStep = context.progressRange / (count - scope.Min() + 1);
             context.progressRange = progStep > 0.001 ? progStep : 0;
             UInt64 preCheckCount = context.CheckCount;
 
-            bool bUpdateProgressMsg = context.SelectionCount() == 2;
-
-            for (int index = scope.Start; index <= count; ++index)
+            int index = scope.Next();
+            while (index > 0)
             {
-                if (bUpdateProgressMsg)
+                if (progressMornitor != null)
                 {
-                    context.progressMsg = "[" + index.ToString() + "] ";
-                }
+                    //context.progressMsg = "[" + index.ToString() + "] ";
 
-                if (MatrixProgressHandler != null)
-                {
                     if (preCheckCount != context.CheckCount)
                     {
                         preCheckCount = context.CheckCount;
 
-                        context.progress = progStart + progStep * visitedCount;
-
-                        string message = context.progressMsg + context.progress.ToString("f3") + "%";
-                        message += "  SOLUTION: " + Settings.CurrentSolutionCount();
+                        string message = context.progressMsg + progressMornitor.Progress.ToString("f3") + "%";
+                        message += "  SOLUTION: " + _CurrentSolutionCount();
                         message += "  CHECKING: " + context.MaxSelectionCount;
                         message += "  VISITED: " + context.CheckCount.ToString();
 
-                        int result = MatrixProgressHandler(context.JobName, message, context.progress);
-                        if (result < 0)
-                        {
-                            return MatrixResult.User_Aborted;
-                        }
+                        progressMornitor.Message = message;
+                        progressMornitor.Progress = progStart + progStep * visitedCount;
                     }
                 }
 
                 // check if a better result has been found by other process.
-                if (Settings.CurrentSolutionCount() > 0 && context.MaxSelectionCount >= Settings.CurrentSolutionCount())
+                if (_CurrentSolutionCount() > 0 && context.MaxSelectionCount >= _CurrentSolutionCount())
                 {
                     if (context.ReturnForAny)
                         return MatrixResult.Job_Aborted;
 
-                    context.RefreshTokens(); // refresh the tokens for the better solution.
+                    context.RefreshTokens(_CurrentSolutionCount()); // refresh the tokens for the better solution.
                 }
 
                 ++visitedCount;
 
-                MatrixItemByte testItem = Settings.TestItemCollection[index];
+                MatrixItemByte testItem = context.Settings.TestItem(index);
 
                 // commit this item
                 var status = context.Push(index, testItem);
@@ -492,7 +522,7 @@ namespace MatrixBuilder
                 if (status == BuildContext.Status.Complete)
                 {
                     // reset the solution.
-                    bool bCommitFail = context.Commit();
+                    bool bCommitFail = _CommitSolution(context.GetSolution().ToList());
 
                     // has better solution found by other process, don't continue if return any.
                     if (context.ReturnForAny)
@@ -509,7 +539,7 @@ namespace MatrixBuilder
                     if (nextIndex != null)
                     {
                         // if we got a valid solution, check if need to continue or not.
-                        MatrixResult res = TraversalForAny(nextIndex, context);
+                        MatrixResult res = _TraversalForAny(nextIndex, context, progressMornitor, cancelToken);
                         if (res == MatrixResult.User_Aborted || res == MatrixResult.Job_Aborted || res == MatrixResult.Job_Succeeded)
                         {
                             return res;
@@ -517,7 +547,7 @@ namespace MatrixBuilder
 
                         if (res == MatrixResult.Job_Succeeded_Continue)
                         {
-                            if (Settings.CurrentSolutionCount() <= selectedCount + 2)
+                            if (_CurrentSolutionCount() <= selectedCount + 2)
                             {
                                 // impossible to get better solution at this leve of loop, break and continue.
                                 context.Pop();
@@ -530,6 +560,8 @@ namespace MatrixBuilder
 
                 // recover the tests and continue.
                 context.Pop();
+
+                index = scope.Next();
             }
 
             return MatrixResult.Job_Failed;

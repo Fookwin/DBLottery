@@ -55,17 +55,17 @@ namespace MatrixBuilder
         {
             MatrixBuildSettings settings = new MatrixBuildSettings(candidateCount, selectCount);
 
-            MatrixItemPositionBits restItemsBits = new MatrixItemPositionBits(settings.TestItemCollection.Count, false);
+            MatrixItemPositionBits restItemsBits = new MatrixItemPositionBits(settings.TestItemCount(), false);
 
             // Include the preselected items.
             int startIndex = 0;
             foreach (MatrixItemByte item in test)
             {
-                for (int i = startIndex; i < settings.TestItemCollection.Count; ++i)
+                for (int i = startIndex; i < settings.TestItemCount(); ++i)
                 {
-                    if (settings.TestItemCollection[i].Bits == item.Bits)
+                    if (settings.TestItem(i).Bits == item.Bits)
                     {
-                        restItemsBits.RemoveMultiple(settings.TestItemMashCollection[i]);
+                        restItemsBits.RemoveMultiple(settings.TestItemMash(i));
                         startIndex = i + 1;
                         break;
                     }

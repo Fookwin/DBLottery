@@ -6,27 +6,10 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
+using System.Threading.Tasks;
 
 namespace MatrixBuilder
 {
-    class ProgressState
-    {
-        public string ThreadID
-        {
-            get;set;
-        }
-
-        public string Message
-        {
-            get; set;
-        }
-
-        public double Progress
-        {
-            get;set;
-        }
-    }
-
     /// <summary>
     /// Interaction logic for MatrixPage.xaml
     /// </summary>
@@ -36,7 +19,6 @@ namespace MatrixBuilder
         private DataTable _table = null;
         private delegate void ThreadDelegate();
         private bool _userCanceled = false;
-        private SortedDictionary<string, ProgressState> _progressStates = new SortedDictionary<string, ProgressState>();
         private MatrixCell selectedCell = null;
         private int selectedRow = 0;
         private int selectedCol = 0;
@@ -88,6 +70,7 @@ namespace MatrixBuilder
 
                 BT_Verify.IsEnabled = solutionCount > 0;
                 Selected_Cell_Name.Text = selectedRow.ToString() + " 选 " + selectedCol.ToString() + " [" + solutionCount.ToString() + "] - " + selectedCell.Status.ToString();
+                TB_TestStart.Text = solutionCount.ToString();
             }
             else
             {
@@ -97,6 +80,7 @@ namespace MatrixBuilder
 
                 BT_Verify.IsEnabled = false;
                 Selected_Cell_Name.Text = "";
+                TB_TestStart.Text = "-1";
             }
         }
 
@@ -107,20 +91,19 @@ namespace MatrixBuilder
 
             // clearn the progress list.
             _userCanceled = false;
-            _progressStates.Clear();
             LV_Progress.ItemsSource = null;
 
             // Start timer.
             timer.Start();
 
-            int start = Convert.ToInt32(TB_TestStart.Text);
+            int betterThan = Convert.ToInt32(TB_TestStart.Text);
             int algorithm = CB_Algorithm.SelectedIndex;
-
-            _builder.MatrixProgressHandler += UpdateProgress;
+            bool bInParallel = CB_Parallel.IsChecked == true;
+            bool bReturnForAny = CB_ReturnForAny.IsChecked == true;
 
             Thread calThread = new Thread(() =>
             {
-                int iRes = _builder.BuildMarixCell(selectedRow, selectedCol, start, algorithm);
+                int iRes = _builder.BuildMarixCell(selectedRow, selectedCol, algorithm, betterThan, bInParallel, bReturnForAny);
 
                 timer.Stop();
 
@@ -133,31 +116,6 @@ namespace MatrixBuilder
 
             calThread.SetApartmentState(ApartmentState.STA);
             calThread.Start(); 
-        }
-
-        private int UpdateProgress(string threadID, string message, double progress)
-        {
-            lock (_progressStates)
-            {
-                if (_progressStates.ContainsKey(threadID))
-                {
-                    if (progress < 0)
-                    {
-                        _progressStates.Remove(threadID);
-                    }
-                    else
-                    {
-                        _progressStates[threadID].Message = message;
-                        _progressStates[threadID].Progress = progress;
-                    }
-                }
-                else if (progress >= 0)
-                {
-                    _progressStates.Add(threadID, new ProgressState() { Message = message, ThreadID = threadID, Progress = progress });
-                }
-            }
-
-            return _userCanceled ? -1 : 0;
         }
 
         private void Button_Click_Skip(object sender, RoutedEventArgs e)
@@ -179,10 +137,10 @@ namespace MatrixBuilder
             // update the controls.
             Dispatcher.Invoke(() =>
             {
-                lock (_progressStates)
+                if (_builder != null)
                 {
                     LV_Progress.ItemsSource = null;
-                    LV_Progress.ItemsSource = _progressStates.ToList();
+                    LV_Progress.ItemsSource = _builder.GetProgress();
                 }
             }, DispatcherPriority.Normal);
         }
