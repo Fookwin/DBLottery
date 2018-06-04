@@ -12,6 +12,11 @@
         android:layout_above="@+id/view_navigate_tab_container"
         android:layout_alignParentTop="true" >
 
+        <WebView
+            android:id="@+id/webview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+
     </FrameLayout>
 
     <!-- view navigate tab, invisible as default until the above progress done -->
