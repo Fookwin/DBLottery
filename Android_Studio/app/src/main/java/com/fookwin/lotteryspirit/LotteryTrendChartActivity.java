@@ -21,7 +21,9 @@ import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ActionBar.OnNavigationListener;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -32,6 +34,9 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -61,6 +66,41 @@ public class LotteryTrendChartActivity extends Activity
 	private NumberSelectorView blue_select_view;	
 	private LinearLayout mark_red_view;
 	private LinearLayout mark_blue_view;
+
+	// override default behaviour of the browser
+	private class MyWebViewClient extends WebViewClient {
+		@Override
+		public boolean shouldOverrideUrlLoading(WebView view, String url) {
+			//view.loadUrl(url);
+			//return true;
+			return false;
+		}
+
+		public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+			try {
+				view.stopLoading();
+			} catch (Exception e) {
+			}
+
+			if (view.canGoBack()) {
+				view.goBack();
+			}
+
+			view.loadUrl("about:blank");
+			AlertDialog alertDialog = new AlertDialog.Builder(LotteryTrendChartActivity.this).create();
+			alertDialog.setTitle("Error");
+			alertDialog.setMessage("Check your internet connection and try again.");
+			alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Try Again", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int which) {
+					finish();
+					startActivity(getIntent());
+				}
+			});
+
+			alertDialog.show();
+			super.onReceivedError(view, errorCode, description, failingUrl);
+		}
+	}
 	
 	@SuppressLint("HandlerLeak")
 	Handler numSelectionChangedhandler = new Handler()
@@ -93,8 +133,8 @@ public class LotteryTrendChartActivity extends Activity
 		updateActionBar();
 	
 		// get controls.
-		diagram_header = (LinearLayout)findViewById(R.id.diagram_header);
-		diagram_list = (ListView)findViewById(R.id.diagram_list);
+		//diagram_header = (LinearLayout)findViewById(R.id.diagram_header);
+		//diagram_list = (ListView)findViewById(R.id.diagram_list);
 		
 		// mark up panels
 		mark_red_view = (LinearLayout)findViewById(R.id.mark_red_view);
@@ -104,45 +144,54 @@ public class LotteryTrendChartActivity extends Activity
 		// build the view.
 		header_view = new DiagramHeaderView();
 		header_view.setOptions(options);
-		header_view.addToContainer(diagram_header);
+		//header_view.addToContainer(diagram_header);
 		
-        final ProgressDialog dialog = new ProgressDialog(this);
-        dialog.setMessage("加载走势图数据...");
-        dialog.setIndeterminate(true);
-        dialog.setCancelable(false);
-        dialog.show();
+//        final ProgressDialog dialog = new ProgressDialog(this);
+//        dialog.setMessage("加载走势图数据...");
+//        dialog.setIndeterminate(true);
+//        dialog.setCancelable(false);
+//        dialog.show();
         
 		// build the list.
 		list_view = new DiagramListView();
 		final ArrayList<DiagramData> data = new ArrayList<DiagramData>();
-		final Handler handler = new Handler()
-		{
-			@Override
-			public void handleMessage(Message msg) {
-				super.handleMessage(msg);
-				
-				list_view.setData(data);
-				list_view.addToContainer(diagram_list, options);
-		        list_view.refreshList();
-		        
-		        dialog.dismiss();
-			}
-		};
+//		final Handler handler = new Handler()
+//		{
+//			@Override
+//			public void handleMessage(Message msg) {
+//				super.handleMessage(msg);
+//
+//				list_view.setData(data);
+//				list_view.addToContainer(diagram_list, options);
+//		        list_view.refreshList();
+//
+//		        dialog.dismiss();
+//			}
+//		};
+//
+//		new Thread(new Runnable()
+//		{
+//			public void run()
+//			{
+//				try {
+//					DiagramData.generateDiagramData(data);
+//				} catch (ParseException e) {
+//					e.printStackTrace();
+//				}
+//				handler.sendEmptyMessage(-1);
+//			}
+//		}).start();
+
+		// display web view
+		WebView myWebView = (WebView) findViewById(R.id.webview);
+		myWebView.setWebViewClient(new LotteryTrendChartActivity.MyWebViewClient());
+		WebSettings webSettings = myWebView.getSettings();
+		webSettings.setJavaScriptEnabled(true);
+		webSettings.setDomStorageEnabled(true);
+		myWebView.loadUrl("http://www.fookwin.com/diagram");
+		//myWebView.loadUrl("https://developer.autodesk.com/en/docs/model-derivative/v2/overview/supported-translations/");
 		
-		new Thread(new Runnable()
-		{
-			public void run() 
-			{	
-				try {
-					DiagramData.generateDiagramData(data);
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-				handler.sendEmptyMessage(-1);
-			}
-		}).start();
-		
-        header_view.refreshContentHeader();
+        //header_view.refreshContentHeader();
         
 		helpIcon = (ImageView)findViewById(R.id.helpIcon);
 		helpIcon.setOnClickListener(new OnClickListener()

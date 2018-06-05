@@ -28,41 +28,6 @@ import com.fookwin.lotteryspirit.view.NavigateButton;
 
 public class MainActivity extends Activity 
 {
-	// override default behaviour of the browser
-	private class MyWebViewClient extends WebViewClient {
-		@Override
-		public boolean shouldOverrideUrlLoading(WebView view, String url) {
-			//view.loadUrl(url);
-			//return true;
-			return false;
-		}
-
-		public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-			try {
-				view.stopLoading();
-			} catch (Exception e) {
-			}
-
-			if (view.canGoBack()) {
-				view.goBack();
-			}
-
-			view.loadUrl("about:blank");
-			AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-			alertDialog.setTitle("Error");
-			alertDialog.setMessage("Check your internet connection and try again.");
-			alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Try Again", new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					finish();
-					startActivity(getIntent());
-				}
-			});
-
-			alertDialog.show();
-			super.onReceivedError(view, errorCode, description, failingUrl);
-		}
-	}
-
 	private FragmentManager fragmentManager;
 	private HomeFragment home_fragment;
 	private StatisticsFragment statistics_fragment;
@@ -97,16 +62,8 @@ public class MainActivity extends Activity
 		
 		// Foot...
 		initTabView();
-		//setSelectedTab(0);
+		setSelectedTab(0);
 
-		// display web view
-		WebView myWebView = (WebView) findViewById(R.id.webview);
-		myWebView.setWebViewClient(new MyWebViewClient());
-		WebSettings webSettings = myWebView.getSettings();
-		webSettings.setJavaScriptEnabled(true);
-		webSettings.setDomStorageEnabled(true);
-		//myWebView.loadUrl("http://www.fookwin.com/fookwin.management");
-		myWebView.loadUrl("https://developer.autodesk.com/en/docs/model-derivative/v2/overview/supported-translations/");
 		refreshViews();
 	}
 	

@@ -69,3 +69,6 @@ MatrixBuilder/obj/
 MatrixBuilder/packages/
 MatrixBuilder/bin/
 MatrixBuilder/profiles/
+MatrixBuilder/.vs/
+Android_Studio/gradlew
+Android_Studio/gradlew.bat
