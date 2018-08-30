@@ -39,9 +39,9 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
-                            <TextBlock Text="{Binding Value.ThreadID}"/>
-                            <TextBlock Text="{Binding Value.Message}"/>
-                            <ProgressBar Value="{Binding Value.Progress}" Height="5" Maximum="100" Width="400"/>
+                            <TextBlock Text="{Binding ThreadID}"/>
+                            <TextBlock Text="{Binding Message}"/>
+                            <ProgressBar Value="{Binding Progress}" Height="5" Maximum="100" Width="400"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

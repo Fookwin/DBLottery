@@ -15,6 +15,7 @@ namespace MatrixBuilder
     /// </summary>
     public partial class MatrixPage : Page
     {
+        MatrixCalculatorWrapper _max_builder = new MatrixCalculatorWrapper();
         MatrixTableBuilder _builder = new MatrixTableBuilder();
         private DataTable _table = null;
         private delegate void ThreadDelegate();
@@ -103,7 +104,7 @@ namespace MatrixBuilder
 
             Thread calThread = new Thread(() =>
             {
-                int iRes = _builder.BuildMarixCell(selectedRow, selectedCol, algorithm, betterThan, bInParallel, bReturnForAny);
+                _max_builder.Build();
 
                 timer.Stop();
 
@@ -111,11 +112,11 @@ namespace MatrixBuilder
                 {
                     RefreshTable();
                 });
-                
+
             });
 
             calThread.SetApartmentState(ApartmentState.STA);
-            calThread.Start(); 
+            calThread.Start();
         }
 
         private void Button_Click_Skip(object sender, RoutedEventArgs e)
@@ -140,7 +141,10 @@ namespace MatrixBuilder
                 if (_builder != null)
                 {
                     LV_Progress.ItemsSource = null;
-                    LV_Progress.ItemsSource = _builder.GetProgress();
+
+                    var progress = _max_builder.GetProgress();
+
+                    LV_Progress.ItemsSource = progress;
                 }
             }, DispatcherPriority.Normal);
         }

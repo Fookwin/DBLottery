@@ -19,7 +19,7 @@ namespace MatrixBuilder
         public MatrixStatus Status = MatrixStatus.Candidate;
     }
 
-    public class MatrixItemByte : IEquatable<MatrixItemByte>, IComparable<MatrixItemByte>
+    public class MatrixItemByte
     {
         public static UInt64[] _rBits = new UInt64[33] 
         {
@@ -105,38 +105,6 @@ namespace MatrixBuilder
             return str;
         }
 
-        public int[] Indices
-        {
-            get
-            {
-                List<int> output = new List<int>();
-                int index = 1;
-                foreach (UInt64 bit in _rBits)
-                {
-                    if ((_set | bit) == _set)
-                    {
-                        output.Add(index);
-                    }
-
-                    ++index;
-                }
-
-                return output.ToArray();
-            }
-        }
-
-        public int[] Instance(int[] candidates)
-        {
-            int[] indices = Indices;
-            // replace with the corresponding candidate at the same postion.
-            for (int i = 0; i < indices.Count(); ++i)
-            {
-                indices[i] = candidates[indices[i] - 1];
-            }
-
-            return indices;
-        }
-
         public int Intersection(MatrixItemByte compareTo)
         {
             UInt64 comp = _set & compareTo._set;
@@ -149,16 +117,6 @@ namespace MatrixBuilder
             }
 
             return hit;
-        }
-
-        bool IEquatable<MatrixItemByte>.Equals(MatrixItemByte other)
-        {
-            return _set == other._set;
-        }
-
-        int IComparable<MatrixItemByte>.CompareTo(MatrixItemByte other)
-        {
-            return this.ToString().CompareTo(other.ToString());
         }
 
         private MatrixItemByte()

@@ -69,3 +69,11 @@ MatrixBuilder/obj/
 MatrixBuilder/packages/
 MatrixBuilder/bin/
 MatrixBuilder/profiles/
+MatrixBuilder/Output/
+MatrixBuilder/MatrixCalculator/x64/
+MatrixBuilder/x64/
+MatrixBuilder/Release_x64/
+MatrixBuilder/MatrixCalculatorWrapper/x64/
+MatrixBuilder/.vs/
+MatrixBuilder/MatrixCalculatorWrapper/MatrixCalculatorWrapper.vcxproj.filters
+*.filters
