@@ -1,4 +1,5 @@
 #pragma once
+#include "system.h"
 #include <string>
 #include <vector>
 #include <map>
@@ -13,36 +14,30 @@ class MatrixItemPositionBits;
 class ThreadProgress
 {
 public:
-	string Message;
-	double Progress;
+	string Progress;
 };
 
 typedef map<string, ThreadProgress> ThreadProgressSet;
-
+typedef vector<int> NumberCollection;
 
 class IndexScope
 {
 public:
-	IndexScope(int start, int end, const vector<int>* values = nullptr);
+	IndexScope();
+	IndexScope(int start, int end, const NumberCollection* values = nullptr);
 	~IndexScope();
 
 	string ToString() const;
-
-	int Count();
-
+	int Count() const;
 	int Min() const;
-
 	int Max() const;
-
-	const vector<int>& ValueCollection() const;
-
+	const NumberCollection* ValueCollection() const;
 	int Next() const;
 
 private:
 	int MaxValue = -1;
 	int MinValue = -1;
-	bool bHasValues = false;
-	vector<int> Values;
+	const NumberCollection* Values;
 	mutable int* _index = nullptr;
 	mutable int* _count = nullptr;
 };
@@ -70,7 +65,7 @@ public:
 
 	void UpdateItemCoverage(int addItemIndex);
 
-	IndexScope* NextItemScope(int current);
+	bool NextItemScope(int curIndex, IndexScope& nextScope);
 
 	int UncoveredNumCount();
 

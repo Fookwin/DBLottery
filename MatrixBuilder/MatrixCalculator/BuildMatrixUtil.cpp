@@ -2,7 +2,6 @@
 #include "BuildMatrixUtil.h"
 #include "MatrixItemPositionBits.h"
 #include "MatrixBuildSettings.h"
-#include <math.h>
 
 UINT64 BuildMatrixUtil::RedBits[33] =
 {
@@ -19,16 +18,16 @@ string BuildMatrixUtil::RedStrs[33] =
 	"23","24","25","26","27","28","29","30","31","32","33"
 };
 
-IndexScope::IndexScope(int start, int end, const vector<int>* values /*= nullptr*/)
+IndexScope::IndexScope()
+{
+
+}
+
+IndexScope::IndexScope(int start, int end, const NumberCollection* values /*= nullptr*/)
 {
 	MinValue = start;
 	MaxValue = end;
-
-	if (values)
-	{
-		bHasValues = true;
-		Values = *values;
-	}
+	Values = values;
 }
 
 IndexScope::~IndexScope()
@@ -42,21 +41,21 @@ string IndexScope::ToString() const
 	return "(" + std::to_string(MinValue) + ", " + std::to_string(MaxValue) + ")";
 }
 
-int IndexScope::Count()
+int IndexScope::Count() const
 {
-	if (!bHasValues)
+	if (!Values)
 		return MaxValue - MinValue + 1;
 	else if (_count)
 		return *_count;
 	else
 	{
 		int count = 0;
-		for (size_t i = 0; i < Values.size(); ++i)
+		for (size_t i = 0; i < Values->size(); ++i)
 		{
-			if (Values[i] > MaxValue)
+			if ((*Values)[i] > MaxValue)
 				break;
 
-			if (Values[i] >= MinValue)
+			if ((*Values)[i] >= MinValue)
 			{
 				++count;
 			}
@@ -78,14 +77,14 @@ int IndexScope::Max() const
 	return MaxValue;
 }
 
-const vector<int>& IndexScope::ValueCollection() const
+const NumberCollection* IndexScope::ValueCollection() const
 {
 	return Values;
 }
 
 int IndexScope::Next() const
 {
-	if (!bHasValues)
+	if (!Values)
 	{
 		if (!_index)
 		{
@@ -109,9 +108,9 @@ int IndexScope::Next() const
 			_index = new int(-1);
 
 			// get the first index match the scope
-			for (size_t i = 0; i < Values.size(); ++i)
+			for (size_t i = 0; i < Values->size(); ++i)
 			{
-				if (Values[i] >= MinValue && Values[i] <= MaxValue)
+				if ((*Values)[i] >= MinValue && (*Values)[i] <= MaxValue)
 				{
 					*_index = static_cast<int>(i);
 					break;
@@ -123,11 +122,11 @@ int IndexScope::Next() const
 			++_index;
 
 			// not be larger than the max value and should be one in the values.
-			if (*_index >= static_cast<int>(Values.size()) || Values[*_index] > MaxValue)
+			if (*_index >= static_cast<int>(Values->size()) || (*Values)[*_index] > MaxValue)
 				*_index = -1;
 		}
 
-		return *_index >= 0 ? Values[*_index] : -1;
+		return *_index >= 0 ? (*Values)[*_index] : -1;
 	}
 }
 
@@ -240,7 +239,7 @@ void BuildToken::UpdateItemCoverage(int addItemIndex)
 	RestItemsBits->RemoveMultiple(_settings->TestItemMash(addItemIndex));
 }
 
-IndexScope* BuildToken::NextItemScope(int current)
+bool BuildToken::NextItemScope(int curIndex, IndexScope& nextScope)
 {
 	bool bJumpToNextUnhitted = true;
 	if (bJumpToNextUnhitted)
@@ -249,15 +248,25 @@ IndexScope* BuildToken::NextItemScope(int current)
 		int min = nextRestPos;
 		int max = NextPosMax;
 
-		return (min >= 0 && min <= max) ? new IndexScope(min, max, &(_settings->TestItemCoveredBy(nextRestPos))) : nullptr;
+		if (min >= 0 && min <= max)
+		{
+			nextScope = IndexScope(min, max, &(_settings->TestItemCoveredBy(nextRestPos)));
+			return true;
+		}
 	}
 	else
 	{
-		int min = std::_Max_value<int>(current, NumBitsToSkip->NextPosition(current, false));
+		int min = std::_Max_value<int>(curIndex, NumBitsToSkip->NextPosition(curIndex, false));
 		int max = NextPosMax;
 
-		return (min >= 0 && min <= max) ? new IndexScope(min, max) : nullptr;
+		if (min >= 0 && min <= max)
+		{
+			nextScope = IndexScope(min, max);
+			return true;
+		}
 	}
+
+	return false;
 }
 
 int BuildToken::UncoveredNumCount()

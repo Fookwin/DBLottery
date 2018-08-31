@@ -17,7 +17,7 @@ public:
 	BuildContext(MatrixBuildSettings* settings, bool returnForAny, int maxSelectionCount);
 	~BuildContext();
 
-	const stack<const MatrixItemByte*>& GetSolution() const;
+	void GetSolution(vector<const MatrixItemByte*>& solution) const;
 
 	MatrixBuildSettings* Settings() const;
 
@@ -29,20 +29,13 @@ public:
 
 	void RefreshTokens(int currentSoltionCount);
 
-	IndexScope* NextItemScope(int current);
+	bool NextItemScope(int current, IndexScope& nextScope);
 
 	void Pop();
 
 	Status Push(int index, const MatrixItemByte* item);
 
 	int SelectionCount();
-
-	// Progress 
-	string progressMsg = "";
-	double progressRange = 100.0;
-	UINT64 CheckCount = 0;
-	UINT64 CheckCountForUpdateProgress = 0;
-	UINT64 CheckCountStep = 1000000;
 
 private:
 	BuildContext(MatrixBuildSettings* settings, bool returnForAny);
@@ -54,7 +47,6 @@ private:
 	int _maxSelectionCount = -1;
 	int _maxHitCountForEach = -1;
 	int _minHitCountForEach = -1;
-	int _solutionCountFound = -1;
 
 	BuildToken* _buildToken = nullptr;
 	stack<const MatrixItemByte*> _currentSelection;
@@ -67,13 +59,13 @@ public:
 	ExhaustionAlgorithmImpl(MatrixBuildSettings* settings);
 	~ExhaustionAlgorithmImpl();
 
-	const vector<MatrixItemByte*>& GetSolution() const;
+	const vector<const MatrixItemByte*>& GetSolution() const;
 
 	void Calculate(int maxSelectionCount, ThreadProgressSet& progresses, bool returnForAny, bool bInParallel);
 
 private:
 
-	bool _CommitSolution(const vector<MatrixItemByte*>& solution);
+	bool _CommitSolution(const vector<const MatrixItemByte*>& solution);
 
 	int _CurrentSolutionCount();
 
@@ -82,7 +74,7 @@ private:
 	MatrixResult _TraversalForAny(const IndexScope& scope, BuildContext& context, ThreadProgress& progress);
 
 	MatrixBuildSettings* _settings = nullptr;
-	vector<MatrixItemByte*> _solution;
-	size_t _solutionItemCount = 0;
+	vector<const MatrixItemByte*> _solution;
+	int _solutionItemCount = 0;
 };
 

@@ -1,15 +1,16 @@
 #pragma once
-
+#include "system.h"
 #include <string>
 #include <vector>
 
 using namespace std;
 
-class MatrixItemByte
+class MTRxEXPORTS MatrixItemByte
 {
 public:
 	MatrixItemByte(int size);
 	MatrixItemByte(int size, UINT64 copyFrom);
+	MatrixItemByte(string values);
 	~MatrixItemByte();
 
 	UINT64 GetBits() const;

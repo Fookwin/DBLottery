@@ -54,7 +54,7 @@ const MatrixItemPositionBits& MatrixBuildSettings::TestItemMash(int index) const
 	return *TestItemCollection[index]->CoverageMash;
 }
 
-const vector<int>& MatrixBuildSettings::TestItemCoveredBy(int index) const
+const NumberCollection& MatrixBuildSettings::TestItemCoveredBy(int index) const
 {
 	return TestItemCollection[index]->CoveredBy;
 }

@@ -2,6 +2,7 @@
 #include <vector>
 #include "MatrixItemPositionBits.h"
 #include "MatrixItemByte.h"
+#include "BuildMatrixUtil.h"
 
 
 using namespace std;
@@ -20,7 +21,7 @@ class MatrixTestItem
 public:
 	MatrixItemByte* ItemByte = nullptr;
 	MatrixItemPositionBits* CoverageMash = nullptr;
-	vector<int> CoveredBy;
+	NumberCollection CoveredBy;
 };
 
 class MatrixBuildSettings
@@ -33,7 +34,7 @@ public:
 	const MatrixItemByte& TestItem(int index) const;
 	int TestItemCount() const;
 	const MatrixItemPositionBits& TestItemMash(int index) const;
-	const vector<int>& TestItemCoveredBy(int index) const;
+	const NumberCollection& TestItemCoveredBy(int index) const;
 
 	int CandidateNumCount = 0;  // the count of the numbers could be selected from.
 	int SelectNumCount = 0;     // the count of the numbers to be selected.

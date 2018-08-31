@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "MatrixCalculator.h"
+#include "MatrixBuildSettings.h"
 
 MTRxMatrixCalculator::MTRxMatrixCalculator()
 {
@@ -41,4 +42,28 @@ bool MTRxMatrixCalculator::Build()
 map<string, MTRxMatrixCalculator::State>* MTRxMatrixCalculator::GetProgress() const
 {
 	return m_progress;
+}
+
+bool MTRxMatrixCalculator::ValidateSolution(int candidateCount, int selectCount, const vector<MatrixItemByte*>& test)
+{
+	MatrixBuildSettings settings(candidateCount, selectCount);
+
+	MatrixItemPositionBits restItemsBits(settings.TestItemCount(), false);
+
+	// Include the preselected items.
+	int startIndex = 0;
+	for each(MatrixItemByte* item in test)
+	{
+		for (int i = startIndex; i < settings.TestItemCount(); ++i)
+		{
+			if (settings.TestItem(i).GetBits() == item->GetBits())
+			{
+				restItemsBits.RemoveMultiple(settings.TestItemMash(i));
+				startIndex = i + 1;
+				break;
+			}
+		}
+	}
+
+	return restItemsBits.GetUnhitCount() == 0;
 }

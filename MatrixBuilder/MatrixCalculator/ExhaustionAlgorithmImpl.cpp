@@ -30,19 +30,17 @@ BuildContext::~BuildContext()
 	}
 }
 
-const stack<const MatrixItemByte*>& BuildContext::GetSolution() const
+void BuildContext::GetSolution(vector<const MatrixItemByte*>& solution) const
 {
-	return _currentSelection;
+	for each(auto item in _currentSelection._Get_container())
+	{
+		solution.push_back(item);
+	}
 }
 
 MatrixBuildSettings* BuildContext::Settings() const
 {
 	return _settings;
-}
-
-int BuildContext::SolutionCountFound() const
-{
-	return _solutionCountFound;
 }
 
 int BuildContext::MaxSelectionCount() const
@@ -80,9 +78,9 @@ void BuildContext::RefreshTokens(int currentSoltionCount)
 	_maxHitCountForEach = newMaxHitCountForEach;
 }
 
-IndexScope* BuildContext::NextItemScope(int current)
+bool BuildContext::NextItemScope(int current, IndexScope& nextScope)
 {
-	return _buildToken->NextItemScope(current);
+	return _buildToken->NextItemScope(current, nextScope);
 }
 
 void BuildContext::Pop()
@@ -97,12 +95,7 @@ void BuildContext::Pop()
 
 BuildContext::Status BuildContext::Push(int index, const MatrixItemByte* item)
 {
-	// update progress
-	if (++CheckCountForUpdateProgress > CheckCountStep)
-	{
-		++CheckCount;
-		CheckCountForUpdateProgress = 0;
-	}
+	// TODO: update progress
 
 	// backup the token.
 	_tokenStack.push(_buildToken->Clone());
@@ -150,10 +143,6 @@ int BuildContext::SelectionCount()
 
 ExhaustionAlgorithmImpl::~ExhaustionAlgorithmImpl()
 {
-	for each (auto var in collection_to_loop)
-	{
-
-	}
 }
 
 ExhaustionAlgorithmImpl::ExhaustionAlgorithmImpl(MatrixBuildSettings* settings)
@@ -161,22 +150,22 @@ ExhaustionAlgorithmImpl::ExhaustionAlgorithmImpl(MatrixBuildSettings* settings)
 	_settings = settings;
 }
 
-bool ExhaustionAlgorithmImpl::_CommitSolution(const vector<MatrixItemByte*>& solution)
+bool ExhaustionAlgorithmImpl::_CommitSolution(const vector<const MatrixItemByte*>& solution)
 {
 	// don't commit for worse solution.
-	if (_solutionItemCount > 0 && solution.size() >= _solutionItemCount)
+	if (_solutionItemCount > 0 && static_cast<int>(solution.size()) >= _solutionItemCount)
 		return false;
 
 	//lock(lockObject)
 	{
 		_solution = solution;
-		_solutionItemCount = solution.size();
+		_solutionItemCount = static_cast<int>(solution.size());
 	}
 
 	return true;
 }
 
-const vector<MatrixItemByte*>& ExhaustionAlgorithmImpl::GetSolution() const
+const vector<const MatrixItemByte*>& ExhaustionAlgorithmImpl::GetSolution() const
 {
 	return _solution;
 }
@@ -233,26 +222,15 @@ MatrixResult ExhaustionAlgorithmImpl::_Calculate(int maxSelectionCount, const In
 	const MatrixItemByte& firstItem = _settings->TestItem(0);
 	context.Push(0, &firstItem);
 
-	IndexScope nextScope(scope.Min(), scope.Max(), &(context.NextItemScope(0)->ValueCollection()));
-	if (nextScope.Count() <= 0)
+	IndexScope nextScope;
+	if (!context.NextItemScope(0, nextScope))
 		return MatrixResult::Job_Failed;
 
-	string message = "Started...";
-	progress.Message = message;
-	progress.Progress = 0;
+	progress.Progress = "Started...";
 
-	MatrixResult res = MatrixResult::Job_Failed;
-	res = _TraversalForAny(nextScope, context, progress);
-	if (context.SolutionCountFound > 0)
-		res = MatrixResult::Job_Succeeded;
+	MatrixResult res = _TraversalForAny(nextScope, context, progress);
 
-	message = "[" + std::to_string(res) + "]";
-	if (res == MatrixResult::Job_Succeeded)
-		message += "  SOLUTION: " + context.SolutionCountFound;
-	message += "  VISITED: " + std::to_string(context.CheckCount);
-
-	progress.Message = message;
-	progress.Progress = 100;
+	progress.Progress = "Completed";
 
 	return res;
 }
@@ -262,33 +240,17 @@ MatrixResult ExhaustionAlgorithmImpl::_TraversalForAny(const IndexScope& scope, 
 	int selectedCount = context.SelectionCount();
 
 	int visitedCount = 0;
-	int count = std: Math.Min(scope.Max(), context.Settings.TestItemCount() - context.MaxSelectionCount + selectedCount);
-
-	double progStart = progressMornitor.Progress;
-	double progStep = context.progressRange / (count - scope.Min() + 1);
-	context.progressRange = progStep > 0.001 ? progStep : 0;
-	UINT64 preCheckCount = context.CheckCount;
+	int count = std::_Min_value<int>(scope.Max(), context.Settings()->TestItemCount() - context.MaxSelectionCount() + selectedCount);
 
 	int index = scope.Next();
 	while (index > 0)
 	{
-		if (preCheckCount != context.CheckCount)
-		{
-			preCheckCount = context.CheckCount;
-
-			string message = context.progressMsg + progressMornitor.Progress.ToString("f3") + "%";
-			message += "  SOLUTION: " + _CurrentSolutionCount();
-			message += "  CHECKING: " + context.MaxSelectionCount;
-			message += "  VISITED: " + context.CheckCount.ToString();
-
-			progressMornitor.Message = message;
-			progressMornitor.Progress = progStart + progStep * visitedCount;
-		}
+		//progressMornitor.Progress = progStart + progStep * visitedCount;
 
 		// check if a better result has been found by other process.
-		if (_CurrentSolutionCount() > 0 && context.MaxSelectionCount >= _CurrentSolutionCount())
+		if (_CurrentSolutionCount() > 0 && context.MaxSelectionCount() >= _CurrentSolutionCount())
 		{
-			if (context.ReturnForAny)
+			if (context.ReturnForAny())
 				return MatrixResult::Job_Aborted;
 
 			context.RefreshTokens(_CurrentSolutionCount()); // refresh the tokens for the better solution.
@@ -296,7 +258,7 @@ MatrixResult ExhaustionAlgorithmImpl::_TraversalForAny(const IndexScope& scope, 
 
 		++visitedCount;
 
-		const MatrixItemByte& testItem = context.Settings.TestItem(index);
+		const MatrixItemByte& testItem = context.Settings()->TestItem(index);
 
 		// commit this item
 		auto status = context.Push(index, &testItem);
@@ -305,24 +267,27 @@ MatrixResult ExhaustionAlgorithmImpl::_TraversalForAny(const IndexScope& scope, 
 		if (status == BuildContext::Status::Complete)
 		{
 			// reset the solution.
-			bool bCommitFail = _CommitSolution(context.GetSolution().ToList());
+			vector<const MatrixItemByte*> currentSolution;
+			context.GetSolution(currentSolution);
+
+			bool bCommitFail = _CommitSolution(currentSolution);
 
 			// has better solution found by other process, don't continue if return any.
-			if (context.ReturnForAny)
+			if (context.ReturnForAny())
 				return MatrixResult::Job_Aborted;
 
 			context.Pop();
 
 			// no need to continue, since we could not get better solution at this level loop.
-			return bCommitFail ? MatrixResult::Job_Failed : (context.ReturnForAny ? MatrixResult::Job_Succeeded : MatrixResult::Job_Succeeded_Continue);
+			return bCommitFail ? MatrixResult::Job_Failed : (context.ReturnForAny() ? MatrixResult::Job_Succeeded : MatrixResult::Job_Succeeded_Continue);
 		}
 		else if (status == BuildContext::Status::Continue)
 		{
-			IndexScope* nextIndex = context.NextItemScope(index);
-			if (nextIndex)
+			IndexScope nextScope;
+			if (context.NextItemScope(index, nextScope))
 			{
 				// if we got a valid solution, check if need to continue or not.
-				MatrixResult res = _TraversalForAny(nextIndex, context, progressMornitor);
+				MatrixResult res = _TraversalForAny(nextScope, context, progressMornitor);
 				if (res == MatrixResult::User_Aborted || res == MatrixResult::Job_Aborted || res == MatrixResult::Job_Succeeded)
 				{
 					return res;

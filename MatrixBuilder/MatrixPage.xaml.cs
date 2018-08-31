@@ -128,7 +128,7 @@ namespace MatrixBuilder
         {
             if (selectedCell != null)
             {
-                bool valid = BuildMatrixUtil.ValidateSolution(selectedRow, selectedCol, selectedCell.Template);
+                bool valid = MatrixCalculatorWrapper.ValidateSolution(selectedRow, selectedCol, selectedCell.Template);
                 MessageBox.Show(valid ? "valid" : "invalid");
             }
         }
