@@ -59,8 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Data\BuildMatrixUtil.cs" />
-    <Compile Include="Data\Matrix.cs" />
+    <Compile Include="Data\MatrixTable.cs" />
     <Compile Include="MatrixPage.xaml.cs">
       <DependentUpon>MatrixPage.xaml</DependentUpon>
     </Compile>

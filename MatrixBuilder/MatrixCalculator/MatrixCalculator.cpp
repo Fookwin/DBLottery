@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "MatrixCalculator.h"
 #include "MatrixBuildSettings.h"
+#include "ExhaustionAlgorithmImpl.h"
 
 MTRxMatrixCalculator::MTRxMatrixCalculator()
 {
@@ -12,34 +13,25 @@ MTRxMatrixCalculator::MTRxMatrixCalculator()
 
 MTRxMatrixCalculator::~MTRxMatrixCalculator()
 {
-	delete m_progress;
 }
 
-bool MTRxMatrixCalculator::Build()
+bool MTRxMatrixCalculator::Calcuate(int row, int col, int algorithm, int betterThan, bool bParallel, bool bReturnForAny, vector<string>& solution)
 {
-	m_progress = new map<string, MTRxMatrixCalculator::State>();
+	MatrixBuildSettings settings(row, col);
 
-	for (int i = 0; i < 10; ++i)
+	ExhaustionAlgorithmImpl impl(&settings);
+	impl.Calculate(betterThan - 1, m_progress, bReturnForAny, bParallel);
+
+	auto sol = impl.GetSolution();
+	for each (auto var in sol)
 	{
-		string thread = "thread" + std::to_string(i);
-		MTRxMatrixCalculator::State st;
-		st.ThreadID = thread;
-		st.Progress = 0;
-		st.Message = thread;
-
-		m_progress->insert(std::make_pair(thread, st));
-
-		for (int y = 0; y < 10; ++y)
-		{
-			Sleep(500);
-			(*m_progress)[thread].Progress += 10;
-		}
+		solution.push_back(var->ToString());
 	}
 
-	return false;
+	return true;
 }
 
-map<string, MTRxMatrixCalculator::State>* MTRxMatrixCalculator::GetProgress() const
+const ThreadProgressSet& MTRxMatrixCalculator::GetProgress() const
 {
 	return m_progress;
 }

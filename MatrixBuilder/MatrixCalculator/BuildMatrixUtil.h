@@ -10,14 +10,6 @@ class MatrixTable;
 class MatrixItemByte;
 class MatrixBuildSettings;
 class MatrixItemPositionBits;
-
-class ThreadProgress
-{
-public:
-	string Progress;
-};
-
-typedef map<string, ThreadProgress> ThreadProgressSet;
 typedef vector<int> NumberCollection;
 
 class IndexScope

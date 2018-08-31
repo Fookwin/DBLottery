@@ -1,7 +1,8 @@
 #pragma once
 #include "system.h"
-#include <map>
+#include "Progress.h"
 #include <string>
+#include <map>
 #include <vector>
 #include <basetsd.h>
 
@@ -15,19 +16,12 @@ public:
 	MTRxMatrixCalculator();
 	~MTRxMatrixCalculator();
 
-	class State
-	{
-	public:
-		string ThreadID;
-		string Message;
-		double Progress;
-	};
+	bool Calcuate(int row, int col, int algorithm, int betterThan, bool bParallel, bool bReturnForAny, vector<string>& solution);
 
-	bool Build();
-	map<string, State>* GetProgress() const;
+	const ThreadProgressSet& GetProgress() const;
 
 	static bool ValidateSolution(int candidateCount, int selectCount, const vector<MatrixItemByte*>& test);
 
 private:
-	map<string, State>* m_progress;
+	ThreadProgressSet m_progress;
 };

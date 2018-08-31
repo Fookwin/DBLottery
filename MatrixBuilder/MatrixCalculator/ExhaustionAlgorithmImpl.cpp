@@ -208,7 +208,8 @@ void ExhaustionAlgorithmImpl::Calculate(int maxSelectionCount, ThreadProgressSet
 	//else
 	//{
 		ThreadProgress progress;
-		progresses.insert(std::make_pair("main", progress));
+		progress.Total = _settings->TestItemCount();
+		progresses.push_back(progress);
 		_Calculate(maxSelectionCount, overallScope, returnForAny, progress);
 	//}
 }
@@ -226,11 +227,9 @@ MatrixResult ExhaustionAlgorithmImpl::_Calculate(int maxSelectionCount, const In
 	if (!context.NextItemScope(0, nextScope))
 		return MatrixResult::Job_Failed;
 
-	progress.Progress = "Started...";
+	progress.Progress.push(0);
 
 	MatrixResult res = _TraversalForAny(nextScope, context, progress);
-
-	progress.Progress = "Completed";
 
 	return res;
 }
@@ -245,8 +244,6 @@ MatrixResult ExhaustionAlgorithmImpl::_TraversalForAny(const IndexScope& scope, 
 	int index = scope.Next();
 	while (index > 0)
 	{
-		//progressMornitor.Progress = progStart + progStep * visitedCount;
-
 		// check if a better result has been found by other process.
 		if (_CurrentSolutionCount() > 0 && context.MaxSelectionCount() >= _CurrentSolutionCount())
 		{
@@ -262,6 +259,7 @@ MatrixResult ExhaustionAlgorithmImpl::_TraversalForAny(const IndexScope& scope, 
 
 		// commit this item
 		auto status = context.Push(index, &testItem);
+		progressMornitor.Progress.push(index);
 
 		// do we get a solution? check only if the current solution has more steps than the ideal.
 		if (status == BuildContext::Status::Complete)
@@ -277,6 +275,7 @@ MatrixResult ExhaustionAlgorithmImpl::_TraversalForAny(const IndexScope& scope, 
 				return MatrixResult::Job_Aborted;
 
 			context.Pop();
+			progressMornitor.Progress.pop();
 
 			// no need to continue, since we could not get better solution at this level loop.
 			return bCommitFail ? MatrixResult::Job_Failed : (context.ReturnForAny() ? MatrixResult::Job_Succeeded : MatrixResult::Job_Succeeded_Continue);
@@ -299,6 +298,7 @@ MatrixResult ExhaustionAlgorithmImpl::_TraversalForAny(const IndexScope& scope, 
 					{
 						// impossible to get better solution at this leve of loop, break and continue.
 						context.Pop();
+						progressMornitor.Progress.pop();
 						return MatrixResult::Job_Succeeded_Continue;
 					}
 				}
@@ -308,6 +308,7 @@ MatrixResult ExhaustionAlgorithmImpl::_TraversalForAny(const IndexScope& scope, 
 
 		// recover the tests and continue.
 		context.Pop();
+		progressMornitor.Progress.pop();
 
 		index = scope.Next();
 	}

@@ -71,25 +71,37 @@ MatrixCalculatorWrapper::~MatrixCalculatorWrapper()
 
 }
 
-bool MatrixCalculatorWrapper::Build()
+bool MatrixCalculatorWrapper::Calcuate(int row, int col, int algorithm, int betterThan, bool bParallel, bool bReturnForAny, List<MatrixItem^>^ solution)
 {
-	return m_nativeClient->Build();
+	vector<string> native_solution;
+	bool bRes = m_nativeClient->Calcuate(row, col, algorithm, betterThan, bParallel, bReturnForAny, native_solution);
+	if (bRes)
+	{
+		for each (string str in native_solution)
+		{
+			solution->Add(gcnew MatrixItem(gcnew String(str.c_str())));
+		}
+	}
+
+	return bRes;
 }
 
 List<ThreadStatus^>^ MatrixCalculatorWrapper::GetProgress()
 {
 	m_progress->Clear();
 
-	map<string, MTRxMatrixCalculator::State>* native_progress = m_nativeClient->GetProgress();
-	
-	for (map<string, MTRxMatrixCalculator::State>::const_iterator it = native_progress->begin(); it != native_progress->end(); ++it)
+	auto native_progress = m_nativeClient->GetProgress();
+	if (!native_progress.empty())
 	{
-		ThreadStatus^ state = gcnew ThreadStatus();
-		state->ThreadID = gcnew String(it->second.ThreadID.c_str());
-		state->Message = gcnew String(it->second.Message.c_str());
-		state->Progress = it->second.Progress;
+		auto firstProg = native_progress[0];
 
-		m_progress->Add(state);
+		for each (auto progress in firstProg.Progress._Get_container())
+		{
+			ThreadStatus^ state = gcnew ThreadStatus();
+			state->Progress = progress / firstProg.Total;
+
+			m_progress->Add(state);
+		}
 	}
 
 	return m_progress;

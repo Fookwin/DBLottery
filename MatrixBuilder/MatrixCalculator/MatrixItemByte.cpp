@@ -40,7 +40,7 @@ void MatrixItemByte::Add(int num)
 	_set |= BuildMatrixUtil::RedBits[num - 1];
 }
 
-string MatrixItemByte::ToString()
+string MatrixItemByte::ToString() const
 {
 	string str = "";
 

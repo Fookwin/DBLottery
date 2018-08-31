@@ -93,6 +93,7 @@
     <ClInclude Include="MatrixCalculator.h" />
     <ClInclude Include="MatrixItemByte.h" />
     <ClInclude Include="MatrixItemPositionBits.h" />
+    <ClInclude Include="Progress.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="system.h" />
     <ClInclude Include="targetver.h" />

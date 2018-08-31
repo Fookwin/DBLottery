@@ -16,7 +16,7 @@ public:
 	UINT64 GetBits() const;
 	int GetSize() const;
 	void Add(int num);
-	string ToString();
+	string ToString() const;
 	int Intersection(MatrixItemByte& compareTo);
 
 private:

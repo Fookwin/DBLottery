@@ -2,6 +2,7 @@
 #include "MatrixBuildSettings.h"
 #include "MatrixItemByte.h"
 #include "BuildMatrixUtil.h"
+#include "Progress.h"
 #include <stack>
 
 class BuildContext

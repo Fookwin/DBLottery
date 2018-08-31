@@ -15,7 +15,6 @@ namespace MatrixBuilder
     /// </summary>
     public partial class MatrixPage : Page
     {
-        MatrixCalculatorWrapper _max_builder = new MatrixCalculatorWrapper();
         MatrixTableBuilder _builder = new MatrixTableBuilder();
         private DataTable _table = null;
         private delegate void ThreadDelegate();
@@ -104,7 +103,7 @@ namespace MatrixBuilder
 
             Thread calThread = new Thread(() =>
             {
-                _max_builder.Build();
+                _builder.BuildMarixCell(selectedRow, selectedCol, algorithm, betterThan, bInParallel, bReturnForAny);
 
                 timer.Stop();
 
@@ -142,7 +141,7 @@ namespace MatrixBuilder
                 {
                     LV_Progress.ItemsSource = null;
 
-                    var progress = _max_builder.GetProgress();
+                    var progress = _builder.GetProgress();
 
                     LV_Progress.ItemsSource = progress;
                 }

@@ -119,7 +119,7 @@ int IndexScope::Next() const
 		}
 		else if (*_index >= 0)
 		{
-			++_index;
+			++(*_index);
 
 			// not be larger than the max value and should be one in the values.
 			if (*_index >= static_cast<int>(Values->size()) || (*Values)[*_index] > MaxValue)
@@ -158,6 +158,7 @@ BuildToken* BuildToken::Clone()
 {
 	auto token = new BuildToken();
 
+	token->_settings = _settings;
 	token->RestItemsBits = RestItemsBits->Clone();
 	token->NumBitsToSkip = NumBitsToSkip->Clone();
 	token->NumHitCounts = new int[_settings->CandidateNumCount];

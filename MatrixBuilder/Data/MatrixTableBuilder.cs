@@ -8,28 +8,10 @@ using System.Threading;
 
 namespace MatrixBuilder
 {
-    class ProgressState
-    {
-        public string ThreadID
-        {
-            get; set;
-        }
-
-        public string Message
-        {
-            get; set;
-        }
-
-        public double Progress
-        {
-            get; set;
-        }
-    }
-
     class MatrixTableBuilder
     {
         private MatrixTable _matrixTable = new MatrixTable();
-        private SortedDictionary<string, ProgressState> _progressStates = new SortedDictionary<string, ProgressState>();
+        private MatrixCalculatorWrapper _max_builder = new MatrixCalculatorWrapper();
 
         public MatrixTableBuilder()
         {
@@ -41,16 +23,9 @@ namespace MatrixBuilder
             return _matrixTable;
         }
 
-        public ProgressState RegisterProgress(string key)
+        public List<ThreadStatus> GetProgress()
         {
-            var progress = new ProgressState() { ThreadID = key };
-            _progressStates.Add(key, progress);
-            return progress;
-        }
-
-        public List<KeyValuePair<string, ProgressState>> GetProgress()
-        {
-            return _progressStates.ToList();
+            return _max_builder.GetProgress();
         }
 
         public void Init(bool bUseDefault)
@@ -101,7 +76,7 @@ namespace MatrixBuilder
                             }
                             else
                             {
-                                List<MatrixItem> defaultSoution = BuildMatrixUtil.GetDefaultSolution(i, j, _matrixTable);
+                                List<MatrixItem> defaultSoution = GetDefaultSolution(i, j, _matrixTable);
                                 if (defaultSoution != null)
                                 {
                                     // save to file.
@@ -126,48 +101,60 @@ namespace MatrixBuilder
             }
         }
 
+        private List<MatrixItem> GetDefaultSolution(int candidateCount, int selectCount, MatrixTable refTable)
+        {
+            // Get the solution from previous matrix results.
+            if (refTable.GetCell(candidateCount - 1, selectCount) != null &&
+                refTable.GetCell(candidateCount - 1, selectCount - 1) != null)
+            {
+                List<MatrixItem> result = new List<MatrixItem>();
+                result.AddRange(refTable.GetCell(candidateCount - 1, selectCount).Template);
+
+                foreach (MatrixItem filter in refTable.GetCell(candidateCount - 1, selectCount - 1).Template)
+                {
+                    MatrixItem item = new MatrixItem(filter);
+                    item.Add(candidateCount);
+
+                    result.Add(item);
+                }
+
+                result.Sort();
+
+                return result;
+            }
+
+            return null;
+        }
+
         public int BuildMarixCell(int row, int col, int algorithm, int? betterThan = null, bool bParallel = false, bool bReturnForAny = false)
         {
             DateTime startTime = DateTime.Now;
 
             _matrixTable.Init();
 
-            // (re)Set the global settings data.
-            //MatrixBuildSettings settings = new MatrixBuildSettings(row, col);
-
-            List<MatrixItem> foundSolution = null;
-            if (algorithm == 0) // exhaustion algorithm
+             // if not specify the the max selection count, set it as the count of default solution.
+            if (betterThan == null)
             {
-                // if not specify the the max selection count, set it as the count of default solution.
-                if (betterThan == null)
+                // Get the default matrix as the candidate solution.
+                List<MatrixItem> defaultSoution = GetDefaultSolution(row, col, _matrixTable);
+                if (defaultSoution != null)
                 {
-                    // Get the default matrix as the candidate solution.
-                    List<MatrixItem> defaultSoution = BuildMatrixUtil.GetDefaultSolution(row, col, _matrixTable);
-                    if (defaultSoution != null)
-                    {
-                        betterThan = defaultSoution.Count; // try to find the better solution than default.
-                    }
+                    betterThan = defaultSoution.Count; // try to find the better solution than default.
                 }
-
-                //string strConditions = "Conditions: ";
-                //strConditions += "ProcesserCount: " + Environment.ProcessorCount + "\n";
-                //strConditions += "CandidateNumCount: " + settings.CandidateNumCount + "\n";
-                //strConditions += "SelectNumCount: " + settings.SelectNumCount + "\n";
-                //strConditions += "FindingBetterThan: " + betterThan.Value + "\n";   
-                //strConditions += "IdealMinItemCount: " + settings.IdealMinItemCount + "\n";
-                //strConditions += "MaxItemCountCoveredByOneItem: " + settings.MaxItemCountCoveredByOneItem + "\n";
-                //strConditions += "TestItemCollectionCount: " + settings.TestItemCount() + "\n";
-                //strConditions += "TopLevelLoopMaxIndex: " + settings.NumDistribution(0).MaxIndex + "\n";
-
-                //if (MessageBox.Show(strConditions, "Ready?", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
-                //{
-                //    return -1;
-                //}
-
-                //ExhaustionAlgorithmImpl impl = new ExhaustionAlgorithmImpl(settings);
-                //impl.Calculate(betterThan.Value - 1, _progressStates, bReturnForAny, bParallel);
-                //foundSolution = impl.GetSolution();
             }
+
+            string strConditions = "Conditions: ";
+            strConditions += "ProcesserCount: " + Environment.ProcessorCount + "\n";
+            strConditions += "CandidateNumCount: " + row + "\n";
+            strConditions += "SelectNumCount: " + col + "\n";
+            strConditions += "FindingBetterThan: " + betterThan.Value + "\n";
+            if (MessageBox.Show(strConditions, "Ready?", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+            {
+                return -1;
+            }
+
+            List<MatrixItem> foundSolution = new List<MatrixItem>();
+            _max_builder.Calcuate(row, col, algorithm, betterThan.Value, bParallel, bReturnForAny, foundSolution);
 
             TimeSpan duration = DateTime.Now - startTime;
 
