@@ -120,11 +120,11 @@ BuildContext::Status BuildContext::Push(int index, const MatrixItemByte* item)
 		return Status::Failed;
 
 	// update the coverage of the numbers.
-	//_buildToken->UpdateNumCoverage(*item, _minHitCountForEach, _maxHitCountForEach);
+	_buildToken->UpdateNumCoverage(*item, _minHitCountForEach, _maxHitCountForEach);
 
 	// If it is impossible to cover all number with reset steps, stop for failure.
-	//if (_buildToken->UncoveredNumCount() > restStep * _settings->SelectNumCount)
-		//return Status::Failed;
+	if (_buildToken->UncoveredNumCount() > restStep * _settings->SelectNumCount)
+		return Status::Failed;
 
 	return Status::Continue;
 }

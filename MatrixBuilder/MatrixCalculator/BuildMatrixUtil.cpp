@@ -216,16 +216,16 @@ void BuildToken::UpdateNumCoverage(const MatrixItemByte& item, int minHitCountFo
 				--UnhitNumCount; // this number was just hitted.
 			}
 
-			if (*ps == maxHitCountForEach)
-			{
-				NumBitsToSkip->AddMultiple(*(_settings->NumDistribution(i).Distribution));
-			}
+			//if (*ps == maxHitCountForEach)
+			//{
+			//	NumBitsToSkip->AddMultiple(*(_settings->NumDistribution(i).Distribution));
+			//}
 		}
 
-		if (nextPosMax < 0 && * ps < minHitCountForEach)
-		{
-			nextPosMax = _settings->NumDistribution(i).MaxIndex;
-		}
+		//if (nextPosMax < 0 && * ps < minHitCountForEach)
+		//{
+		//	nextPosMax = _settings->NumDistribution(i).MaxIndex;
+		//}
 
 		ps++;
 	}
