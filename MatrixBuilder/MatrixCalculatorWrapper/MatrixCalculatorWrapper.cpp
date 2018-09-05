@@ -98,8 +98,8 @@ List<ThreadStatus^>^ MatrixCalculatorWrapper::GetProgress()
 		for each (auto progress in firstProg.Progress._Get_container())
 		{
 			ThreadStatus^ state = gcnew ThreadStatus();
-			state->Progress = progress / firstProg.Total;
-
+			state->Progress = progress * 100 / firstProg.Total;
+			state->Message = Convert::ToString(progress);
 			m_progress->Add(state);
 		}
 	}

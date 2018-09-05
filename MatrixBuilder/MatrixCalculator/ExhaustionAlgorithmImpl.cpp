@@ -95,8 +95,6 @@ void BuildContext::Pop()
 
 BuildContext::Status BuildContext::Push(int index, const MatrixItemByte* item)
 {
-	// TODO: update progress
-
 	// backup the token.
 	_tokenStack.push(_buildToken->Clone());
 
@@ -122,11 +120,11 @@ BuildContext::Status BuildContext::Push(int index, const MatrixItemByte* item)
 		return Status::Failed;
 
 	// update the coverage of the numbers.
-	_buildToken->UpdateNumCoverage(*item, _minHitCountForEach, _maxHitCountForEach);
+	//_buildToken->UpdateNumCoverage(*item, _minHitCountForEach, _maxHitCountForEach);
 
 	// If it is impossible to cover all number with reset steps, stop for failure.
-	if (_buildToken->UncoveredNumCount() > restStep * _settings->SelectNumCount)
-		return Status::Failed;
+	//if (_buildToken->UncoveredNumCount() > restStep * _settings->SelectNumCount)
+		//return Status::Failed;
 
 	return Status::Continue;
 }
@@ -210,7 +208,7 @@ void ExhaustionAlgorithmImpl::Calculate(int maxSelectionCount, ThreadProgressSet
 		ThreadProgress progress;
 		progress.Total = _settings->TestItemCount();
 		progresses.push_back(progress);
-		_Calculate(maxSelectionCount, overallScope, returnForAny, progress);
+		_Calculate(maxSelectionCount, overallScope, returnForAny, progresses[0]);
 	//}
 }
 

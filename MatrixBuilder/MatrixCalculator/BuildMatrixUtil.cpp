@@ -203,9 +203,8 @@ void BuildToken::UpdateNumCoverage(const MatrixItemByte& item, int minHitCountFo
 	int nextPosMax = -1;
 
 	UINT64 itemBits = item.GetBits();
-	int* pArray = NumHitCounts;
 
-	int* ps = pArray;
+	int* ps = NumHitCounts;
 	for (int i = 0; i < _settings->CandidateNumCount; i++)
 	{
 		if ((_settings->NumDistribution(i).Bits & itemBits) != 0)
