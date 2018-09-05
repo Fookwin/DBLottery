@@ -149,7 +149,7 @@ BuildToken::BuildToken(MatrixBuildSettings* settings)
 	_settings = settings;
 	RestItemsBits = new MatrixItemPositionBits(_settings->TestItemCount(), false);
 	NumBitsToSkip = new MatrixItemPositionBits(_settings->TestItemCount(), true);
-	NumHitCounts = new int[_settings->CandidateNumCount];
+	NumHitCounts = new int[_settings->CandidateNumCount]{ 0 };
 	UnhitNumCount = _settings->CandidateNumCount;
 	NextPosMax = _settings->TestItemCount() - 1; // to the last
 }
@@ -161,7 +161,7 @@ BuildToken* BuildToken::Clone()
 	token->_settings = _settings;
 	token->RestItemsBits = RestItemsBits->Clone();
 	token->NumBitsToSkip = NumBitsToSkip->Clone();
-	token->NumHitCounts = new int[_settings->CandidateNumCount];
+	token->NumHitCounts = new int[_settings->CandidateNumCount]{ 0 };
 	CloneInts(NumHitCounts, token->NumHitCounts, _settings->CandidateNumCount);
 	token->UnhitNumCount = UnhitNumCount;
 	token->NextPosMax = NextPosMax;
