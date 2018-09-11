@@ -101,6 +101,9 @@ namespace MatrixBuilder
             bool bInParallel = CB_Parallel.IsChecked == true;
             bool bReturnForAny = CB_ReturnForAny.IsChecked == true;
 
+            string config = "[" + selectedRow.ToString() + " - " + selectedCol.ToString() + "]: Algorithm: " + CB_Algorithm.Text + " < " + betterThan.ToString() + " Parallel: " + bInParallel.ToString() + " ForAny: " + bReturnForAny.ToString();
+            this.WindowTitle = "Calculating " + config;
+
             Thread calThread = new Thread(() =>
             {
                 _builder.BuildMarixCell(selectedRow, selectedCol, algorithm, betterThan, bInParallel, bReturnForAny);
@@ -109,6 +112,7 @@ namespace MatrixBuilder
 
                 Dispatcher.Invoke(() =>
                 {
+                    this.WindowTitle = "Finished " + config;
                     RefreshTable();
                 });
 

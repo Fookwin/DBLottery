@@ -236,9 +236,6 @@ MatrixResult ExhaustionAlgorithmImpl::_TraversalForAny(const IndexScope& scope, 
 {
 	int selectedCount = context.SelectionCount();
 
-	int visitedCount = 0;
-	int count = std::_Min_value<int>(scope.Max(), context.Settings()->TestItemCount() - context.MaxSelectionCount() + selectedCount);
-
 	int index = scope.Next();
 	while (index > 0)
 	{
@@ -250,8 +247,6 @@ MatrixResult ExhaustionAlgorithmImpl::_TraversalForAny(const IndexScope& scope, 
 
 			context.RefreshTokens(_CurrentSolutionCount()); // refresh the tokens for the better solution.
 		}
-
-		++visitedCount;
 
 		const MatrixItemByte& testItem = context.Settings()->TestItem(index);
 
