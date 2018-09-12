@@ -117,8 +117,8 @@ namespace MatrixBuilder
 
                     result.Add(item);
                 }
-
-                result.Sort();
+                
+                result.Sort((x, y) => x.ToString().CompareTo(y.ToString()));
 
                 return result;
             }
