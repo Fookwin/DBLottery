@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "ExhaustionAlgorithmImpl.h"
+#include <iostream>
+#include <fstream>
 
 #pragma region BuildContext
 
@@ -158,6 +160,18 @@ bool ExhaustionAlgorithmImpl::_CommitSolution(const vector<const MatrixItemByte*
 	{
 		_solution = solution;
 		_solutionItemCount = static_cast<int>(solution.size());
+
+		// save the solution to temp file
+		string fileName = std::to_string(_settings->CandidateNumCount) + "-" + std::to_string(_settings->SelectNumCount) + ".txt";
+
+		std::ofstream ofile("c:\\temp\\matrix\\" + fileName);
+
+		for each(auto item in _solution)
+		{
+			ofile << item->ToString() << endl;
+		}
+
+		ofile.close();
 	}
 
 	return true;
