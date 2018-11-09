@@ -19,6 +19,7 @@ public:
 	IndexScope(int start, int end, const NumberCollection* values = nullptr);
 	~IndexScope();
 
+	void Reset(int start, int end, const NumberCollection* values = nullptr);
 	string ToString() const;
 	int Count() const;
 	int Min() const;
@@ -71,11 +72,11 @@ private:
 	void CloneInts(int* source, int* target, int count);
 
 	MatrixBuildSettings* _settings = nullptr;
-	MatrixItemPositionBits* RestItemsBits = nullptr;
-	MatrixItemPositionBits* NumBitsToSkip = nullptr;
-	int* NumHitCounts = nullptr;
-	int UnhitNumCount = -1;
-	int NextPosMax = -1;
+	MatrixItemPositionBits* _RestItemsBits = nullptr;
+	MatrixItemPositionBits* _NumBitsToSkip = nullptr;
+	int* _NumHitCounts = nullptr;
+	int _UnhitNumCount = -1;
+	int _NextPosMax = -1;
 };
 
 class BuildMatrixUtil

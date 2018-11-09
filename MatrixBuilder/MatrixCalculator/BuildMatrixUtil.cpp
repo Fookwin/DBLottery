@@ -25,15 +25,27 @@ IndexScope::IndexScope()
 
 IndexScope::IndexScope(int start, int end, const NumberCollection* values /*= nullptr*/)
 {
-	MinValue = start;
-	MaxValue = end;
-	Values = values;
+	Reset(start, end, values);
 }
 
 IndexScope::~IndexScope()
 {
 	delete _count;
+	_count = nullptr;
 	delete _index;
+	_index = nullptr;
+}
+
+void IndexScope::Reset(int start, int end, const NumberCollection* values /*= nullptr*/)
+{
+	MinValue = start;
+	MaxValue = end;
+	Values = values;
+
+	delete _count;
+	_count = nullptr;
+	delete _index;
+	_index = nullptr;
 }
 
 string IndexScope::ToString() const
@@ -93,7 +105,7 @@ int IndexScope::Next() const
 		}
 		else
 		{
-			++_index;
+			++(*_index);
 
 			if (*_index > MaxValue)
 				*_index = -1; // not be larger than the max
@@ -139,19 +151,19 @@ BuildToken::BuildToken()
 
 BuildToken::~BuildToken()
 {
-	delete RestItemsBits;
-	delete NumBitsToSkip;
-	delete[] NumHitCounts;
+	delete _RestItemsBits;
+	delete _NumBitsToSkip;
+	delete[] _NumHitCounts;
 }
 
 BuildToken::BuildToken(MatrixBuildSettings* settings)
 {
 	_settings = settings;
-	RestItemsBits = new MatrixItemPositionBits(_settings->TestItemCount(), false);
-	NumBitsToSkip = new MatrixItemPositionBits(_settings->TestItemCount(), true);
-	NumHitCounts = new int[_settings->CandidateNumCount]{ 0 };
-	UnhitNumCount = _settings->CandidateNumCount;
-	NextPosMax = _settings->TestItemCount() - 1; // to the last
+	_RestItemsBits = new MatrixItemPositionBits(_settings->TestItemCount(), false);
+	_NumBitsToSkip = new MatrixItemPositionBits(_settings->TestItemCount(), true);
+	_NumHitCounts = new int[_settings->CandidateNumCount]{ 0 };
+	_UnhitNumCount = _settings->CandidateNumCount;
+	_NextPosMax = _settings->TestItemCount() - 1; // to the last
 }
 
 BuildToken* BuildToken::Clone()
@@ -159,12 +171,12 @@ BuildToken* BuildToken::Clone()
 	auto token = new BuildToken();
 
 	token->_settings = _settings;
-	token->RestItemsBits = RestItemsBits->Clone();
-	token->NumBitsToSkip = NumBitsToSkip->Clone();
-	token->NumHitCounts = new int[_settings->CandidateNumCount]{ 0 };
-	CloneInts(NumHitCounts, token->NumHitCounts, _settings->CandidateNumCount);
-	token->UnhitNumCount = UnhitNumCount;
-	token->NextPosMax = NextPosMax;
+	token->_RestItemsBits = _RestItemsBits->Clone();
+	token->_NumBitsToSkip = _NumBitsToSkip->Clone();
+	token->_NumHitCounts = new int[_settings->CandidateNumCount]{ 0 };
+	CloneInts(_NumHitCounts, token->_NumHitCounts, _settings->CandidateNumCount);
+	token->_UnhitNumCount = _UnhitNumCount;
+	token->_NextPosMax = _NextPosMax;
 
 	return token;
 }
@@ -185,17 +197,17 @@ void BuildToken::RefreshForCommit(int minHitCountForEach, int maxHitCountForEach
 	int nextPosMax = -1;
 	for (int i = 0; i < _settings->CandidateNumCount; ++i)
 	{
-		if (NumHitCounts[i] >= maxHitCountForEach)
-			NumBitsToSkip->AddMultiple(*(_settings->NumDistribution(i).Distribution));
+		if (_NumHitCounts[i] >= maxHitCountForEach)
+			_NumBitsToSkip->AddMultiple(*(_settings->NumDistribution(i).Distribution));
 
-		if (nextPosMax < 0 && NumHitCounts[i] < minHitCountForEach)
+		if (nextPosMax < 0 && _NumHitCounts[i] < minHitCountForEach)
 		{
 			nextPosMax = _settings->NumDistribution(i).MaxIndex;
 		}
 	}
 
 	if (nextPosMax > 0)
-		NextPosMax = nextPosMax;
+		_NextPosMax = nextPosMax;
 }
 
 void BuildToken::UpdateNumCoverage(const MatrixItemByte& item, int minHitCountForEach, int maxHitCountForEach)
@@ -204,7 +216,7 @@ void BuildToken::UpdateNumCoverage(const MatrixItemByte& item, int minHitCountFo
 
 	UINT64 itemBits = item.GetBits();
 
-	int* ps = NumHitCounts;
+	int* ps = _NumHitCounts;
 	for (int i = 0; i < _settings->CandidateNumCount; i++)
 	{
 		if ((_settings->NumDistribution(i).Bits & itemBits) != 0)
@@ -213,17 +225,21 @@ void BuildToken::UpdateNumCoverage(const MatrixItemByte& item, int minHitCountFo
 
 			if (*ps == 1)
 			{
-				--UnhitNumCount; // this number was just hitted.
+				// if this number is just hitted, reduce the unhit number count.
+				--_UnhitNumCount; // this number was just hitted.
 			}
 
 			if (*ps == maxHitCountForEach)
 			{
-				NumBitsToSkip->AddMultiple(*(_settings->NumDistribution(i).Distribution));
+				// this number has been hitted enough times, skip all items that contains this number for next search.
+				_NumBitsToSkip->AddMultiple(*(_settings->NumDistribution(i).Distribution));
 			}
 		}
 
 		if (nextPosMax < 0 && * ps < minHitCountForEach)
 		{
+			// if this number is not yet hit the max hit count, expect it could be selected in future, 
+			// so mark the max next postion as the last item contains this number.
 			nextPosMax = _settings->NumDistribution(i).MaxIndex;
 		}
 
@@ -231,37 +247,39 @@ void BuildToken::UpdateNumCoverage(const MatrixItemByte& item, int minHitCountFo
 	}
 
 	if (nextPosMax > 0)
-		NextPosMax = nextPosMax;
+		_NextPosMax = nextPosMax;
 }
 
 void BuildToken::UpdateItemCoverage(int addItemIndex)
 {
-	RestItemsBits->RemoveMultiple(_settings->TestItemMash(addItemIndex));
+	_RestItemsBits->RemoveMultiple(_settings->TestItemMash(addItemIndex));
 }
 
 bool BuildToken::NextItemScope(int curIndex, IndexScope& nextScope)
 {
-	bool bJumpToNextUnhitted = true;
+	bool bJumpToNextUnhitted = false;
 	if (bJumpToNextUnhitted)
 	{
-		int nextRestPos = RestItemsBits->NextPosition(0, true);
-		int min = nextRestPos;
-		int max = NextPosMax;
+		// get the next uncoverred item.
+		int nextRestPos = _RestItemsBits->NextPosition(0, true);
+		int min = nextRestPos; // mark it as the first choise for next step
+		int max = _NextPosMax;
 
 		if (min >= 0 && min <= max)
 		{
-			nextScope = IndexScope(min, max, &(_settings->TestItemCoveredBy(nextRestPos)));
+			// limited the selection for next item into the items that could cover the next item.
+			nextScope.Reset(min, max, &(_settings->TestItemCoveredBy(nextRestPos)));
 			return true;
 		}
 	}
 	else
 	{
-		int min = std::_Max_value<int>(curIndex, NumBitsToSkip->NextPosition(curIndex, false));
-		int max = NextPosMax;
+		int min = _NumBitsToSkip->NextPosition(curIndex, false);
+		int max = _NextPosMax;
 
 		if (min >= 0 && min <= max)
 		{
-			nextScope = IndexScope(min, max);
+			nextScope.Reset(min, max);
 			return true;
 		}
 	}
@@ -271,17 +289,17 @@ bool BuildToken::NextItemScope(int curIndex, IndexScope& nextScope)
 
 int BuildToken::UncoveredNumCount()
 {
-	return UnhitNumCount;
+	return _UnhitNumCount;
 }
 
 bool BuildToken::IsAllItemsCovered()
 {
-	return RestItemsBits->IsClean();
+	return _RestItemsBits->IsClean();
 }
 
 int BuildToken::UncoveredItemCount()
 {
-	return RestItemsBits->GetUnhitCount();
+	return _RestItemsBits->GetUnhitCount();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
