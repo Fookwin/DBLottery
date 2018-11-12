@@ -17,6 +17,156 @@ namespace MatrixBuilder
 
         public List<MatrixItem> Template = new List<MatrixItem>();
         public MatrixStatus Status = MatrixStatus.Candidate;
+
+        public bool IsNormalized()
+        {
+            if (Template.Count == 0)
+                return true;
+
+            SortedDictionary<int, int> sortedNumbers = new SortedDictionary<int, int>();
+
+            // the first item must be 01 02 ...
+            for (int i = 0; i < Template.Count; ++ i)
+            {
+                if (i == 0)
+                {
+                    int index = 1;
+                    foreach (var num in Template[i].Numbers())
+                    {
+                        if (num != index++)
+                            return false;
+                    }
+                }
+
+                foreach (var num in Template[i].Numbers())
+                {
+                    if (sortedNumbers.ContainsKey(num))
+                        sortedNumbers[num]++;
+                    else
+                        sortedNumbers.Add(num, 0);
+                }
+            }
+
+            // check if the number's hit count is sorted by order
+            var hitCounts = sortedNumbers.Values;
+            int lastHit = 0;
+            foreach (var hit in hitCounts)
+            {
+                if (lastHit > 0)
+                {
+                    lastHit = hit;
+                    continue;
+                }
+
+                if (lastHit < hit)
+                    return false;
+
+                lastHit = hit;
+            }
+
+            return true;
+        }
+
+        public bool Normalize()
+        {
+            if (Template.Count == 0)
+                return false;
+
+            SortedDictionary<int, int> sortedNumbers = new SortedDictionary<int, int>();
+
+            // the first item must be 01 02 ...
+            for (int i = 0; i < Template.Count; ++i)
+            {
+                foreach (var num in Template[i].Numbers())
+                {
+                    if (sortedNumbers.ContainsKey(num))
+                        sortedNumbers[num]++;
+                    else
+                        sortedNumbers.Add(num, 0);
+                }
+            }
+
+            // sort the num by hit count.
+            var sortedByHits = sortedNumbers.OrderBy(o => -o.Value).ToList();
+
+            // build the number change map
+            Dictionary<int, int> changeMap = new Dictionary<int, int>();
+            int index = 1;
+            foreach (var changed in sortedByHits)
+            {
+                changeMap.Add(changed.Key, index++);
+            }
+
+            // replace the numbers and get the first item string.
+            string firstStrVal = null;
+            for (int i = 0; i < Template.Count; ++i)
+            {
+                var sorted = new SortedSet<int>();
+
+                foreach (var num in Template[i].Numbers())
+                {
+                    sorted.Add(changeMap[num]);
+                }
+
+                string strVal = "";
+                foreach (var num in sorted)
+                {
+                    strVal += " " + num.ToString().PadLeft(2, '0');
+                }
+
+                strVal = strVal.Trim();
+
+                if (firstStrVal == null || firstStrVal.CompareTo(strVal) > 0)
+                    firstStrVal = strVal;
+            }
+
+            // check if we need adjust the first item
+            Dictionary<int, int> changeMap2 = new Dictionary<int, int>();
+            MatrixItem tempItem = new MatrixItem(firstStrVal);
+            index = 1;
+            foreach (var num in tempItem.Numbers())
+            {
+                if (num != index)
+                {
+                    // exchange the number with the index.
+                    changeMap2.Add(num, index);
+                    changeMap2.Add(index, num);
+                }
+
+                index++;
+            }
+
+            SortedSet<string> sortedSolution = new SortedSet<string>();
+            for (int i = 0; i < Template.Count; ++i)
+            {
+                var sorted = new SortedSet<int>();
+
+                foreach (var num in Template[i].Numbers())
+                {
+                    int newNum = changeMap[num];
+                    if (changeMap2.ContainsKey(newNum))
+                        newNum = changeMap2[newNum];
+
+                    sorted.Add(newNum);
+                }
+
+                string strVal = "";
+                foreach (var num in sorted)
+                {
+                    strVal += " " + num.ToString().PadLeft(2, '0');
+                }
+
+                sortedSolution.Add(strVal.Trim());
+            }
+
+            Template.Clear();
+            foreach (var val in sortedSolution)
+            {
+                Template.Add(new MatrixItem(val));
+            }
+
+            return true;
+        }
     }
 
     public class MatrixTable

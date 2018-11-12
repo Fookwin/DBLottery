@@ -19,11 +19,11 @@ namespace MatrixBuilder
         private DataTable _table = null;
         private delegate void ThreadDelegate();
         private bool _userCanceled = false;
-        private MatrixCell selectedCell = null;
-        private int selectedRow = 0;
-        private int selectedCol = 0;
+        private MatrixCell _selectedCell = null;
+        private int _selectedRow = 0;
+        private int _selectedCol = 0;
 
-        DispatcherTimer timer = new DispatcherTimer();
+        DispatcherTimer _timer = new DispatcherTimer();
 
         public MatrixPage()
         {
@@ -33,8 +33,8 @@ namespace MatrixBuilder
             {
                 RefreshTable();
 
-                timer.Tick += new EventHandler(timer_Tick);
-                timer.Interval = TimeSpan.FromSeconds(2);
+                _timer.Tick += new EventHandler(timer_Tick);
+                _timer.Interval = TimeSpan.FromSeconds(2);
             };
         }
 
@@ -59,24 +59,24 @@ namespace MatrixBuilder
                 Int64 rowID = (Int64)fieldInfo.GetValue(dataRow) - 1;
 
                 int solutionCount = -1;
-                selectedRow = (int)rowID + 6;
-                selectedCol = col + 2;
-                selectedCell = _builder.GetTable().GetCell(selectedRow, selectedCol);
-                if (selectedCell != null)
+                _selectedRow = (int)rowID + 6;
+                _selectedCol = col + 2;
+                _selectedCell = _builder.GetTable().GetCell(_selectedRow, _selectedCol);
+                if (_selectedCell != null)
                 {
-                    LV_Template.DataContext = selectedCell.Template;
-                    solutionCount = selectedCell.Template.Count;                    
+                    LV_Template.DataContext = _selectedCell.Template;
+                    solutionCount = _selectedCell.Template.Count;                    
                 }
 
                 BT_Verify.IsEnabled = solutionCount > 0;
-                Selected_Cell_Name.Text = selectedRow.ToString() + " 选 " + selectedCol.ToString() + " [" + solutionCount.ToString() + "] - " + selectedCell.Status.ToString();
+                Selected_Cell_Name.Text = _selectedRow.ToString() + " 选 " + _selectedCol.ToString() + " [" + solutionCount.ToString() + "] - " + _selectedCell.Status.ToString();
                 TB_TestStart.Text = solutionCount.ToString();
             }
             else
             {
-                selectedRow = -1;
-                selectedCol = -1;
-                selectedCell = null;
+                _selectedRow = -1;
+                _selectedCol = -1;
+                _selectedCell = null;
 
                 BT_Verify.IsEnabled = false;
                 Selected_Cell_Name.Text = "";
@@ -86,7 +86,7 @@ namespace MatrixBuilder
 
         private void Button_Click_Calculate(object sender, RoutedEventArgs e)
         {
-            if (selectedRow < 0 || selectedCol < 0)
+            if (_selectedRow < 0 || _selectedCol < 0)
                 return;
 
             // clearn the progress list.
@@ -94,21 +94,21 @@ namespace MatrixBuilder
             LV_Progress.ItemsSource = null;
 
             // Start timer.
-            timer.Start();
+            _timer.Start();
 
             int betterThan = Convert.ToInt32(TB_TestStart.Text);
             int algorithm = CB_Algorithm.SelectedIndex;
             bool bInParallel = CB_Parallel.IsChecked == true;
             bool bReturnForAny = CB_ReturnForAny.IsChecked == true;
 
-            string config = "[" + selectedRow.ToString() + " - " + selectedCol.ToString() + "]: Algorithm: " + CB_Algorithm.Text + " < " + betterThan.ToString() + " Parallel: " + bInParallel.ToString() + " ForAny: " + bReturnForAny.ToString();
+            string config = "[" + _selectedRow.ToString() + " - " + _selectedCol.ToString() + "]: Algorithm: " + CB_Algorithm.Text + " < " + betterThan.ToString() + " Parallel: " + bInParallel.ToString() + " ForAny: " + bReturnForAny.ToString();
             this.WindowTitle = "Calculating " + config;
 
             Thread calThread = new Thread(() =>
             {
-                _builder.BuildMarixCell(selectedRow, selectedCol, algorithm, betterThan, bInParallel, bReturnForAny);
+                _builder.BuildMarixCell(_selectedRow, _selectedCol, algorithm, betterThan, bInParallel, bReturnForAny);
 
-                timer.Stop();
+                _timer.Stop();
 
                 Dispatcher.Invoke(() =>
                 {
@@ -129,9 +129,9 @@ namespace MatrixBuilder
 
         private void Button_Click_Verify(object sender, RoutedEventArgs e)
         {
-            if (selectedCell != null)
+            if (_selectedCell != null)
             {
-                bool valid = MatrixCalculatorWrapper.ValidateSolution(selectedRow, selectedCol, selectedCell.Template);
+                bool valid = MatrixCalculatorWrapper.ValidateSolution(_selectedRow, _selectedCol, _selectedCell.Template);
                 MessageBox.Show(valid ? "valid" : "invalid");
             }
         }
@@ -192,6 +192,18 @@ namespace MatrixBuilder
             }
 
             return table;
+        }
+
+        private void BT_Normalize_Click(object sender, RoutedEventArgs e)
+        {
+            if (_selectedCell != null)
+            {
+                if (_builder.Normalize(_selectedRow, _selectedCol))
+                {
+                    // update the list
+                    LV_Template.DataContext = _selectedCell.Template;
+                }
+            }
         }
     }
 }

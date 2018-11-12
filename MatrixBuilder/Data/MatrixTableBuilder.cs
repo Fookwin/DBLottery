@@ -101,6 +101,47 @@ namespace MatrixBuilder
             }
         }
 
+        public bool Normalize(int candidateCount, int selectCount)
+        {
+            // get the current solution
+            var cell = _matrixTable.GetCell(candidateCount, selectCount);
+
+            if (!cell.IsNormalized())
+            {
+                if (MessageBox.Show("Normalize now?", "Normalize", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    bool bRes = cell.Normalize();
+                    if (bRes)
+                    {
+                        // save to disk.
+                        string fileName = candidateCount.ToString() + "-" + selectCount.ToString() + ".txt";
+                        string file = ".\\Solution\\Best\\" + fileName;
+                        if (!File.Exists(file))
+                        {
+                            file = ".\\Solution\\Good\\" + fileName;
+                            if (!File.Exists(file))
+                            {
+                                file = ".\\Solution\\Default\\" + fileName;
+                            }
+                        }
+
+                        List<string> output = new List<string>();
+
+                        foreach (MatrixItem item in cell.Template)
+                        {
+                            output.Add(item.ToString());
+                        }
+
+                        File.WriteAllLines(file, output);
+                    }
+
+                    return bRes;
+                }
+            }
+
+            return false;
+        }
+
         private List<MatrixItem> GetDefaultSolution(int candidateCount, int selectCount, MatrixTable refTable)
         {
             // Get the solution from previous matrix results.

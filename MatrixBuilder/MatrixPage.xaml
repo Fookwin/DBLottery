@@ -17,7 +17,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
             
             <Grid.ColumnDefinitions>
@@ -33,7 +33,10 @@
 
             <TextBlock x:Name="Selected_Cell_Name" Grid.Column="2" Grid.Row="0" FontSize="15"/>
             <ListView x:Name="LV_Template" Grid.Column="2" Grid.Row="1" ItemsSource="{Binding Mode=Default}" Height="300"/>
-            <Button x:Name="BT_Verify" Grid.Column="2" Grid.Row="2" Content="验证" Width="100" Click="Button_Click_Verify" Height="30"/>
+            <StackPanel Grid.Column="2" Grid.Row="2">
+                <Button x:Name="BT_Verify" Content="验证" Width="100" Click="Button_Click_Verify" Height="30"/>
+                <Button x:Name="BT_Normalize" Content="格式化" Width="100" Click="BT_Normalize_Click" Height="30"/>
+            </StackPanel>
 
             <ListView x:Name="LV_Progress" Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" ItemsSource="{Binding Mode=Default}" Height="340">
                 <ListView.ItemTemplate>
