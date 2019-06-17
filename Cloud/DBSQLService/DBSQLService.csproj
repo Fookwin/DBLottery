@@ -23,6 +23,7 @@
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -126,7 +127,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DBManagement.svc" />
+    <Content Include="RFxDBHistoryService.svc" />
     <Content Include="RFxDBManageService.svc" />
     <Content Include="DBSqlService.svc" />
   </ItemGroup>
@@ -222,8 +223,8 @@
     <Compile Include="Data\DBSQLClient.cs" />
     <Compile Include="Data\DBUserData.cs" />
     <Compile Include="Data\DBVersion.cs" />
-    <Compile Include="DBManagement.svc.cs">
-      <DependentUpon>DBManagement.svc</DependentUpon>
+    <Compile Include="RFxDBHistoryService.svc.cs">
+      <DependentUpon>RFxDBHistoryService.svc</DependentUpon>
     </Compile>
     <Compile Include="RFxDBManageService.svc.cs">
       <DependentUpon>RFxDBManageService.svc</DependentUpon>
@@ -249,7 +250,7 @@
     <Compile Include="Detail.cs">
       <DependentUpon>DBSQLDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="IDBManagement.cs" />
+    <Compile Include="IRFxDBHistoryService.cs" />
     <Compile Include="IRFxDBManageService.cs" />
     <Compile Include="IUseControlService.cs" />
     <Compile Include="ISqlService.cs" />
@@ -265,6 +266,7 @@
     <Compile Include="DBUseControlService.svc.cs">
       <DependentUpon>DBUseControlService.svc</DependentUpon>
     </Compile>
+    <Compile Include="Utils\DataUtil.cs" />
     <Compile Include="WebRole.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -275,7 +277,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DBUseControlService.svc" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
