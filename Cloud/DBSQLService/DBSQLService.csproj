@@ -216,6 +216,9 @@
     <Compile Include="Basic.cs">
       <DependentUpon>DBSQLDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="BlueObmission.cs">
+      <DependentUpon>DBSQLDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Common\Util\XmlUtil.cs" />
     <Compile Include="Data\DBCloudStorageClient.cs" />
     <Compile Include="Data\DBDevice.cs" />
@@ -223,6 +226,13 @@
     <Compile Include="Data\DBSQLClient.cs" />
     <Compile Include="Data\DBUserData.cs" />
     <Compile Include="Data\DBVersion.cs" />
+    <Compile Include="Data\Models\DBLotteryBasicModel.cs" />
+    <Compile Include="LottoBasic.cs">
+      <DependentUpon>DBSQLDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RedObmission.cs">
+      <DependentUpon>DBSQLDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="RFxDBHistoryService.svc.cs">
       <DependentUpon>RFxDBHistoryService.svc</DependentUpon>
     </Compile>

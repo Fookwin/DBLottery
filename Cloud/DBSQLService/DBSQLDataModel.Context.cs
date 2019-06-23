@@ -29,5 +29,8 @@ namespace DBSQLService
         public DbSet<Basic> Basics { get; set; }
         public DbSet<Detail> Details { get; set; }
         public DbSet<Omission> Omissions { get; set; }
+        public DbSet<BlueObmission> BlueObmissions { get; set; }
+        public DbSet<LottoBasic> LottoBasics { get; set; }
+        public DbSet<RedObmission> RedObmissions { get; set; }
     }
 }

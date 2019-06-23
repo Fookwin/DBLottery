@@ -43,5 +43,21 @@ namespace DBSQLService
 
             return lot;
         }
+
+        public static DBLotteryBasicModel BuildLotteryBasicModel(LottoBasic basic)
+        {
+            DBLotteryBasicModel lot = new DBLotteryBasicModel();
+            lot.Issue = basic.Issue;
+            lot.Scheme = basic.Red1.ToString().PadLeft(2, '0');
+            lot.Scheme += " " + basic.Red2.ToString().PadLeft(2, '0');
+            lot.Scheme += " " + basic.Red3.ToString().PadLeft(2, '0');
+            lot.Scheme += " " + basic.Red4.ToString().PadLeft(2, '0');
+            lot.Scheme += " " + basic.Red5.ToString().PadLeft(2, '0');
+            lot.Scheme += " " + basic.Red6.ToString().PadLeft(2, '0');
+            lot.Scheme += "+" + basic.Blue.ToString().PadLeft(2, '0');
+            lot.Date = basic.Date;
+
+            return lot;
+        }
     }
 }

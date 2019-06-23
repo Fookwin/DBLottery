@@ -12,16 +12,8 @@ namespace DBSQLService
     [DataContract]
     public class GetLotteriesResult
     {
-        // -1 means has been reached the end yet.
         [DataMember]
-        public int NextIndex
-        {
-            get;
-            set;
-        }
-
-        [DataMember]
-        public List<DBLotteryModel> Lotteries
+        public List<DBLotteryBasicModel> Lotteries
         {
             get;
             set;
@@ -34,10 +26,10 @@ namespace DBSQLService
     {
         [OperationContract]
         [WebInvoke(Method = "GET",
-                    UriTemplate = "/Lotteries/?tail={tailIndex}&page={pageSize}",
+                    UriTemplate = "/Lotteries",
                     BodyStyle = WebMessageBodyStyle.Bare,
                     RequestFormat = WebMessageFormat.Json,
                     ResponseFormat = WebMessageFormat.Json)]
-        GetLotteriesResult GetLotteries(int tailIndex = 0/*default the last issue*/, int pageSize = 30);
+        GetLotteriesResult GetLotteryBasicList();
     }
 }

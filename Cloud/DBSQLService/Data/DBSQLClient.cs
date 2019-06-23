@@ -42,6 +42,11 @@ namespace DBSQLService.Data
             attributeList = context.Attributes.ToList();
         }
 
+        public void GetLottoBasicList(out List<LottoBasic> basicList)
+        {
+            basicList = context.LottoBasics.ToList();
+        }
+
         public void GetRecordsFromEnd(int count, out List<Basic> basicList, out List<Detail> detailList,
             out List<Omission> omissionList, out List<Attribute> attributeList)
         {

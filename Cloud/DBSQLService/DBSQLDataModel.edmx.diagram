@@ -9,6 +9,9 @@
         <EntityTypeShape EntityType="DBHistoryModel.Basic" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBHistoryModel.Detail" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBHistoryModel.Omission" Width="1.5" PointX="6.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBHistoryModel.BlueObmission" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DBHistoryModel.LottoBasic" Width="1.5" PointX="2.75" PointY="5.75" />
+        <EntityTypeShape EntityType="DBHistoryModel.RedObmission" Width="1.5" PointX="2.75" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

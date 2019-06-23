@@ -14,40 +14,24 @@ namespace DBSQLService
     // NOTE: In order to launch WCF Test Client for testing this service, please select RFxDBHistoryService.svc or RFxDBHistoryService.svc.cs at the Solution Explorer and start debugging.
     public class RFxDBHistoryService : IRFxDBHistoryService
     {
-
-        GetLotteriesResult IRFxDBHistoryService.GetLotteries(int tailIndex, int pageSize)
+        GetLotteriesResult IRFxDBHistoryService.GetLotteryBasicList()
         {
-            List<Basic> basicList = null;
-            List<Detail> detailList = null;
-            List<Omission> omissionList = null;
-            List<Attribute> attributeList = null;
-            DBSQLClient.Instance().GetRecordList(out basicList, out detailList, out omissionList, out attributeList);
+            List<LottoBasic> basicList = null;
+            DBSQLClient.Instance().GetLottoBasicList(out basicList);
 
-            // get the required sub set of the data
-            if (tailIndex > basicList.Count() || pageSize <= 0)
-            {
-                throw new WebFaultException(HttpStatusCode.BadRequest);
-            }
-
-            // get the range of the required data
-            tailIndex = tailIndex == 0 ? basicList.Count() : tailIndex;
-            pageSize = Math.Min(tailIndex, pageSize);
-
-            var requiredBaseList = basicList.GetRange(tailIndex - pageSize, pageSize);
-            var requiredDetailList = detailList.GetRange(tailIndex - pageSize, pageSize);
+            var requiredBaseList = basicList;
 
             // outputing
-            var lottos = new List<DataModel.DBLotteryModel>();
-            for (int i = pageSize - 1; i >= 0; --i)
+            var lottos = new List<DataModel.DBLotteryBasicModel>();
+            for (int i = basicList.Count - 1; i >= 0; --i)
             {
-                lottos.Add(DataUtil.BuildLotteryModel(requiredBaseList[i], requiredDetailList[i]));
+                lottos.Add(DataUtil.BuildLotteryBasicModel(requiredBaseList[i]));
             }
 
             return new GetLotteriesResult()
             {
-                NextIndex = tailIndex == pageSize ? -1 : tailIndex - pageSize,
                 Lotteries = lottos
-            }; ;
+            };
         }
     }
 }

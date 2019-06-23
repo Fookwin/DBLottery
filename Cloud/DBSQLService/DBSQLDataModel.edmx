@@ -441,11 +441,179 @@
           <Property Name="Blue_15_Temperature" Type="int" Nullable="false" />
           <Property Name="Blue_16_Temperature" Type="int" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'dbhistory.dbo.BlueObmission' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="BlueObmission">
+          <Key>
+            <PropertyRef Name="Issue" />
+            <PropertyRef Name="Blue" />
+          </Key>
+          <Property Name="Issue" Type="int" Nullable="false" />
+          <Property Name="RowInx" Type="bigint" />
+          <Property Name="Blue" Type="int" Nullable="false" />
+          <Property Name="01" Type="bigint" />
+          <Property Name="02" Type="bigint" />
+          <Property Name="03" Type="bigint" />
+          <Property Name="04" Type="bigint" />
+          <Property Name="05" Type="bigint" />
+          <Property Name="06" Type="bigint" />
+          <Property Name="07" Type="bigint" />
+          <Property Name="08" Type="bigint" />
+          <Property Name="09" Type="bigint" />
+          <Property Name="10" Type="bigint" />
+          <Property Name="11" Type="bigint" />
+          <Property Name="12" Type="bigint" />
+          <Property Name="13" Type="bigint" />
+          <Property Name="14" Type="bigint" />
+          <Property Name="15" Type="bigint" />
+          <Property Name="16" Type="bigint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'dbhistory.dbo.LottoBasic' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="LottoBasic">
+          <Key>
+            <PropertyRef Name="Issue" />
+            <PropertyRef Name="Red1" />
+            <PropertyRef Name="Red2" />
+            <PropertyRef Name="Red3" />
+            <PropertyRef Name="Red4" />
+            <PropertyRef Name="Red5" />
+            <PropertyRef Name="Red6" />
+            <PropertyRef Name="Blue" />
+            <PropertyRef Name="Date" />
+          </Key>
+          <Property Name="Issue" Type="int" Nullable="false" />
+          <Property Name="Red1" Type="int" Nullable="false" />
+          <Property Name="Red2" Type="int" Nullable="false" />
+          <Property Name="Red3" Type="int" Nullable="false" />
+          <Property Name="Red4" Type="int" Nullable="false" />
+          <Property Name="Red5" Type="int" Nullable="false" />
+          <Property Name="Red6" Type="int" Nullable="false" />
+          <Property Name="Blue" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'dbhistory.dbo.RedObmission' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="RedObmission">
+          <Key>
+            <PropertyRef Name="Issue" />
+          </Key>
+          <Property Name="Issue" Type="int" Nullable="false" />
+          <Property Name="RowInx" Type="bigint" />
+          <Property Name="01" Type="bigint" />
+          <Property Name="02" Type="bigint" />
+          <Property Name="03" Type="bigint" />
+          <Property Name="04" Type="bigint" />
+          <Property Name="05" Type="bigint" />
+          <Property Name="06" Type="bigint" />
+          <Property Name="07" Type="bigint" />
+          <Property Name="08" Type="bigint" />
+          <Property Name="09" Type="bigint" />
+          <Property Name="10" Type="bigint" />
+          <Property Name="11" Type="bigint" />
+          <Property Name="12" Type="bigint" />
+          <Property Name="13" Type="bigint" />
+          <Property Name="14" Type="bigint" />
+          <Property Name="15" Type="bigint" />
+          <Property Name="16" Type="bigint" />
+          <Property Name="17" Type="bigint" />
+          <Property Name="18" Type="bigint" />
+          <Property Name="19" Type="bigint" />
+          <Property Name="20" Type="bigint" />
+          <Property Name="21" Type="bigint" />
+          <Property Name="22" Type="bigint" />
+          <Property Name="23" Type="bigint" />
+          <Property Name="24" Type="bigint" />
+          <Property Name="25" Type="bigint" />
+          <Property Name="26" Type="bigint" />
+          <Property Name="27" Type="bigint" />
+          <Property Name="28" Type="bigint" />
+          <Property Name="29" Type="bigint" />
+          <Property Name="30" Type="bigint" />
+          <Property Name="31" Type="bigint" />
+          <Property Name="32" Type="bigint" />
+          <Property Name="33" Type="bigint" />
+        </EntityType>
         <EntityContainer Name="DBHistoryModelStoreContainer">
           <EntitySet Name="Attributes" EntityType="Self.Attributes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Basic" EntityType="Self.Basic" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Detail" EntityType="Self.Detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Omission" EntityType="Self.Omission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BlueObmission" EntityType="Self.BlueObmission" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[BlueObmission].[Issue] AS [Issue], 
+[BlueObmission].[RowInx] AS [RowInx], 
+[BlueObmission].[Blue] AS [Blue], 
+[BlueObmission].[01] AS [01], 
+[BlueObmission].[02] AS [02], 
+[BlueObmission].[03] AS [03], 
+[BlueObmission].[04] AS [04], 
+[BlueObmission].[05] AS [05], 
+[BlueObmission].[06] AS [06], 
+[BlueObmission].[07] AS [07], 
+[BlueObmission].[08] AS [08], 
+[BlueObmission].[09] AS [09], 
+[BlueObmission].[10] AS [10], 
+[BlueObmission].[11] AS [11], 
+[BlueObmission].[12] AS [12], 
+[BlueObmission].[13] AS [13], 
+[BlueObmission].[14] AS [14], 
+[BlueObmission].[15] AS [15], 
+[BlueObmission].[16] AS [16]
+FROM [dbo].[BlueObmission] AS [BlueObmission]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="LottoBasic" EntityType="Self.LottoBasic" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[LottoBasic].[Issue] AS [Issue], 
+[LottoBasic].[Red1] AS [Red1], 
+[LottoBasic].[Red2] AS [Red2], 
+[LottoBasic].[Red3] AS [Red3], 
+[LottoBasic].[Red4] AS [Red4], 
+[LottoBasic].[Red5] AS [Red5], 
+[LottoBasic].[Red6] AS [Red6], 
+[LottoBasic].[Blue] AS [Blue], 
+[LottoBasic].[Date] AS [Date]
+FROM [dbo].[LottoBasic] AS [LottoBasic]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="RedObmission" EntityType="Self.RedObmission" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[RedObmission].[Issue] AS [Issue], 
+[RedObmission].[RowInx] AS [RowInx], 
+[RedObmission].[01] AS [01], 
+[RedObmission].[02] AS [02], 
+[RedObmission].[03] AS [03], 
+[RedObmission].[04] AS [04], 
+[RedObmission].[05] AS [05], 
+[RedObmission].[06] AS [06], 
+[RedObmission].[07] AS [07], 
+[RedObmission].[08] AS [08], 
+[RedObmission].[09] AS [09], 
+[RedObmission].[10] AS [10], 
+[RedObmission].[11] AS [11], 
+[RedObmission].[12] AS [12], 
+[RedObmission].[13] AS [13], 
+[RedObmission].[14] AS [14], 
+[RedObmission].[15] AS [15], 
+[RedObmission].[16] AS [16], 
+[RedObmission].[17] AS [17], 
+[RedObmission].[18] AS [18], 
+[RedObmission].[19] AS [19], 
+[RedObmission].[20] AS [20], 
+[RedObmission].[21] AS [21], 
+[RedObmission].[22] AS [22], 
+[RedObmission].[23] AS [23], 
+[RedObmission].[24] AS [24], 
+[RedObmission].[25] AS [25], 
+[RedObmission].[26] AS [26], 
+[RedObmission].[27] AS [27], 
+[RedObmission].[28] AS [28], 
+[RedObmission].[29] AS [29], 
+[RedObmission].[30] AS [30], 
+[RedObmission].[31] AS [31], 
+[RedObmission].[32] AS [32], 
+[RedObmission].[33] AS [33]
+FROM [dbo].[RedObmission] AS [RedObmission]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -456,6 +624,9 @@
           <EntitySet Name="Basics" EntityType="DBHistoryModel.Basic" />
           <EntitySet Name="Details" EntityType="DBHistoryModel.Detail" />
           <EntitySet Name="Omissions" EntityType="DBHistoryModel.Omission" />
+          <EntitySet Name="BlueObmissions" EntityType="DBHistoryModel.BlueObmission" />
+          <EntitySet Name="LottoBasics" EntityType="DBHistoryModel.LottoBasic" />
+          <EntitySet Name="RedObmissions" EntityType="DBHistoryModel.RedObmission" />
         </EntityContainer>
         <EntityType Name="Attribute">
           <Key>
@@ -892,6 +1063,93 @@
           <Property Name="Blue_14_Temperature" Type="Int32" Nullable="false" />
           <Property Name="Blue_15_Temperature" Type="Int32" Nullable="false" />
           <Property Name="Blue_16_Temperature" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BlueObmission">
+          <Key>
+            <PropertyRef Name="Issue" />
+            <PropertyRef Name="Blue" />
+          </Key>
+          <Property Name="Issue" Type="Int32" Nullable="false" />
+          <Property Name="RowInx" Type="Int64" />
+          <Property Name="Blue" Type="Int32" Nullable="false" />
+          <Property Name="C01" Type="Int64" />
+          <Property Name="C02" Type="Int64" />
+          <Property Name="C03" Type="Int64" />
+          <Property Name="C04" Type="Int64" />
+          <Property Name="C05" Type="Int64" />
+          <Property Name="C06" Type="Int64" />
+          <Property Name="C07" Type="Int64" />
+          <Property Name="C08" Type="Int64" />
+          <Property Name="C09" Type="Int64" />
+          <Property Name="C10" Type="Int64" />
+          <Property Name="C11" Type="Int64" />
+          <Property Name="C12" Type="Int64" />
+          <Property Name="C13" Type="Int64" />
+          <Property Name="C14" Type="Int64" />
+          <Property Name="C15" Type="Int64" />
+          <Property Name="C16" Type="Int64" />
+        </EntityType>
+        <EntityType Name="LottoBasic">
+          <Key>
+            <PropertyRef Name="Issue" />
+            <PropertyRef Name="Red1" />
+            <PropertyRef Name="Red2" />
+            <PropertyRef Name="Red3" />
+            <PropertyRef Name="Red4" />
+            <PropertyRef Name="Red5" />
+            <PropertyRef Name="Red6" />
+            <PropertyRef Name="Blue" />
+            <PropertyRef Name="Date" />
+          </Key>
+          <Property Name="Issue" Type="Int32" Nullable="false" />
+          <Property Name="Red1" Type="Int32" Nullable="false" />
+          <Property Name="Red2" Type="Int32" Nullable="false" />
+          <Property Name="Red3" Type="Int32" Nullable="false" />
+          <Property Name="Red4" Type="Int32" Nullable="false" />
+          <Property Name="Red5" Type="Int32" Nullable="false" />
+          <Property Name="Red6" Type="Int32" Nullable="false" />
+          <Property Name="Blue" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="RedObmission">
+          <Key>
+            <PropertyRef Name="Issue" />
+          </Key>
+          <Property Name="Issue" Type="Int32" Nullable="false" />
+          <Property Name="RowInx" Type="Int64" />
+          <Property Name="C01" Type="Int64" />
+          <Property Name="C02" Type="Int64" />
+          <Property Name="C03" Type="Int64" />
+          <Property Name="C04" Type="Int64" />
+          <Property Name="C05" Type="Int64" />
+          <Property Name="C06" Type="Int64" />
+          <Property Name="C07" Type="Int64" />
+          <Property Name="C08" Type="Int64" />
+          <Property Name="C09" Type="Int64" />
+          <Property Name="C10" Type="Int64" />
+          <Property Name="C11" Type="Int64" />
+          <Property Name="C12" Type="Int64" />
+          <Property Name="C13" Type="Int64" />
+          <Property Name="C14" Type="Int64" />
+          <Property Name="C15" Type="Int64" />
+          <Property Name="C16" Type="Int64" />
+          <Property Name="C17" Type="Int64" />
+          <Property Name="C18" Type="Int64" />
+          <Property Name="C19" Type="Int64" />
+          <Property Name="C20" Type="Int64" />
+          <Property Name="C21" Type="Int64" />
+          <Property Name="C22" Type="Int64" />
+          <Property Name="C23" Type="Int64" />
+          <Property Name="C24" Type="Int64" />
+          <Property Name="C25" Type="Int64" />
+          <Property Name="C26" Type="Int64" />
+          <Property Name="C27" Type="Int64" />
+          <Property Name="C28" Type="Int64" />
+          <Property Name="C29" Type="Int64" />
+          <Property Name="C30" Type="Int64" />
+          <Property Name="C31" Type="Int64" />
+          <Property Name="C32" Type="Int64" />
+          <Property Name="C33" Type="Int64" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1336,6 +1594,87 @@
                 <ScalarProperty Name="Blue_14_Temperature" ColumnName="Blue_14_Temperature" />
                 <ScalarProperty Name="Blue_15_Temperature" ColumnName="Blue_15_Temperature" />
                 <ScalarProperty Name="Blue_16_Temperature" ColumnName="Blue_16_Temperature" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BlueObmissions">
+            <EntityTypeMapping TypeName="DBHistoryModel.BlueObmission">
+              <MappingFragment StoreEntitySet="BlueObmission">
+                <ScalarProperty Name="C16" ColumnName="16" />
+                <ScalarProperty Name="C15" ColumnName="15" />
+                <ScalarProperty Name="C14" ColumnName="14" />
+                <ScalarProperty Name="C13" ColumnName="13" />
+                <ScalarProperty Name="C12" ColumnName="12" />
+                <ScalarProperty Name="C11" ColumnName="11" />
+                <ScalarProperty Name="C10" ColumnName="10" />
+                <ScalarProperty Name="C09" ColumnName="09" />
+                <ScalarProperty Name="C08" ColumnName="08" />
+                <ScalarProperty Name="C07" ColumnName="07" />
+                <ScalarProperty Name="C06" ColumnName="06" />
+                <ScalarProperty Name="C05" ColumnName="05" />
+                <ScalarProperty Name="C04" ColumnName="04" />
+                <ScalarProperty Name="C03" ColumnName="03" />
+                <ScalarProperty Name="C02" ColumnName="02" />
+                <ScalarProperty Name="C01" ColumnName="01" />
+                <ScalarProperty Name="Blue" ColumnName="Blue" />
+                <ScalarProperty Name="RowInx" ColumnName="RowInx" />
+                <ScalarProperty Name="Issue" ColumnName="Issue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LottoBasics">
+            <EntityTypeMapping TypeName="DBHistoryModel.LottoBasic">
+              <MappingFragment StoreEntitySet="LottoBasic">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Blue" ColumnName="Blue" />
+                <ScalarProperty Name="Red6" ColumnName="Red6" />
+                <ScalarProperty Name="Red5" ColumnName="Red5" />
+                <ScalarProperty Name="Red4" ColumnName="Red4" />
+                <ScalarProperty Name="Red3" ColumnName="Red3" />
+                <ScalarProperty Name="Red2" ColumnName="Red2" />
+                <ScalarProperty Name="Red1" ColumnName="Red1" />
+                <ScalarProperty Name="Issue" ColumnName="Issue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RedObmissions">
+            <EntityTypeMapping TypeName="DBHistoryModel.RedObmission">
+              <MappingFragment StoreEntitySet="RedObmission">
+                <ScalarProperty Name="C33" ColumnName="33" />
+                <ScalarProperty Name="C32" ColumnName="32" />
+                <ScalarProperty Name="C31" ColumnName="31" />
+                <ScalarProperty Name="C30" ColumnName="30" />
+                <ScalarProperty Name="C29" ColumnName="29" />
+                <ScalarProperty Name="C28" ColumnName="28" />
+                <ScalarProperty Name="C27" ColumnName="27" />
+                <ScalarProperty Name="C26" ColumnName="26" />
+                <ScalarProperty Name="C25" ColumnName="25" />
+                <ScalarProperty Name="C24" ColumnName="24" />
+                <ScalarProperty Name="C23" ColumnName="23" />
+                <ScalarProperty Name="C22" ColumnName="22" />
+                <ScalarProperty Name="C21" ColumnName="21" />
+                <ScalarProperty Name="C20" ColumnName="20" />
+                <ScalarProperty Name="C19" ColumnName="19" />
+                <ScalarProperty Name="C18" ColumnName="18" />
+                <ScalarProperty Name="C17" ColumnName="17" />
+                <ScalarProperty Name="C16" ColumnName="16" />
+                <ScalarProperty Name="C15" ColumnName="15" />
+                <ScalarProperty Name="C14" ColumnName="14" />
+                <ScalarProperty Name="C13" ColumnName="13" />
+                <ScalarProperty Name="C12" ColumnName="12" />
+                <ScalarProperty Name="C11" ColumnName="11" />
+                <ScalarProperty Name="C10" ColumnName="10" />
+                <ScalarProperty Name="C09" ColumnName="09" />
+                <ScalarProperty Name="C08" ColumnName="08" />
+                <ScalarProperty Name="C07" ColumnName="07" />
+                <ScalarProperty Name="C06" ColumnName="06" />
+                <ScalarProperty Name="C05" ColumnName="05" />
+                <ScalarProperty Name="C04" ColumnName="04" />
+                <ScalarProperty Name="C03" ColumnName="03" />
+                <ScalarProperty Name="C02" ColumnName="02" />
+                <ScalarProperty Name="C01" ColumnName="01" />
+                <ScalarProperty Name="RowInx" ColumnName="RowInx" />
+                <ScalarProperty Name="Issue" ColumnName="Issue" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
