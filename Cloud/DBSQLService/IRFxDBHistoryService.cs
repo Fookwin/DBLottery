@@ -31,5 +31,13 @@ namespace DBSQLService
                     RequestFormat = WebMessageFormat.Json,
                     ResponseFormat = WebMessageFormat.Json)]
         GetLotteriesResult GetLotteryBasicList();
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            UriTemplate = "/Lotteries/detail/?issue={issue}",
+            BodyStyle = WebMessageBodyStyle.Bare,
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json)]
+        DBLotteryModel GetLotteryDetail(int issue);
     }
 }

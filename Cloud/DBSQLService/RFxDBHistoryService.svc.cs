@@ -7,6 +7,7 @@ using System.Text;
 using System.Net;
 using DBSQLService.Data;
 using System.ServiceModel.Web;
+using DataModel;
 
 namespace DBSQLService
 {
@@ -32,6 +33,19 @@ namespace DBSQLService
             {
                 Lotteries = lottos
             };
+        }
+
+        DBLotteryModel IRFxDBHistoryService.GetLotteryDetail(int issue)
+        {
+            Basic basic = null;
+            Detail detail = null;
+            Omission omission = null;
+            Attribute attribute = null;
+            if (!DBSQLClient.Instance().GetRecord(issue, out basic, out detail, out omission, out attribute))
+                throw new Exception("Invalid issue number.");
+
+            // outputing
+            return DataUtil.BuildLotteryModel(basic, detail);
         }
     }
 }
