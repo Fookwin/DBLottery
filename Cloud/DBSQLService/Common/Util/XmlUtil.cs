@@ -93,6 +93,11 @@ namespace LuckyBallsData.Util
             return mNativeNode.Name;
         }
 
+        public XmlElement NativeNode()
+        {
+            return mNativeNode;
+        }
+
         private XmlElement mNativeNode;
     }
 
@@ -141,6 +146,11 @@ namespace LuckyBallsData.Util
         public string InnerXml()
         {
             return mNativeDoc.InnerXml;
+        }
+
+        public XmlDocument NativeDoc()
+        {
+            return mNativeDoc;
         }
 
         private XmlDocument mNativeDoc;
