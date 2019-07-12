@@ -11,6 +11,8 @@ using DataModel;
 using System.Xml;
 using Newtonsoft.Json;
 using LuckyBallsData.Util;
+using System.IO;
+using LuckyBallsData.Selection;
 
 namespace DBSQLService
 {
@@ -18,7 +20,7 @@ namespace DBSQLService
     // NOTE: In order to launch WCF Test Client for testing this service, please select RFxDBAttributeService.svc or RFxDBAttributeService.svc.cs at the Solution Explorer and start debugging.
     public class RFxDBAttributeService : IRFxDBAttributeService
     {
-        string IRFxDBAttributeService.GetLatestAttribute()
+        DBAttributesModel IRFxDBAttributeService.GetLatestAttribute()
         {
             // load the template
             string templateXml = DataManager.Get()._GetAttributesTemplate();
@@ -30,34 +32,47 @@ namespace DBSQLService
             DBXmlDocument valMatrix = new DBXmlDocument();
             valMatrix.Load(valuesXml);
 
-            // combine the data
-            var rootT = template.Root();
-            var rootV = valMatrix.Root();
+            SchemeAttributes attriSets = new SchemeAttributes();
+            attriSets.ReadFromTemplate(template.Root());
+            attriSets.ReadValueFromXml(valMatrix.Root());
 
-            for (int catInx = 0; catInx < rootT.ChildNodes().Count; ++catInx)
+            // outputing
+            DBAttributesModel output = new DBAttributesModel();
+
+            foreach (KeyValuePair<string, SchemeAttributeCategory> cat in attriSets.Categories)
             {
-                // category level
-                var catT = rootT.ChildNodes()[catInx];
-                var catV = rootV.ChildNodes()[catInx];
+                DBAttributeCategoryModel dbCat = new DBAttributeCategoryModel() { Name = cat.Value.Name, Display = cat.Value.DisplayName };
 
-                for (int attriInx = 0; attriInx < catT.ChildNodes().Count; ++attriInx)
+                foreach (KeyValuePair<string, SchemeAttribute> attri in cat.Value.Attributes)
                 {
-                    var attriT = catT.ChildNodes()[attriInx];
-                    var attriV = catV.ChildNodes()[attriInx];
-
-                    // copy values
-                    for (int stateInx = 0; stateInx < attriT.ChildNodes().Count; ++stateInx)
+                    DBAttributeModel dbAtti = new DBAttributeModel()
                     {
-                        var stateT = attriT.ChildNodes()[stateInx];
-                        var stateV = attriV.ChildNodes()[stateInx];
+                        Name = attri.Value.Key,
+                        Display = attri.Value.DisplayName,
+                        Description = attri.Value.Description,
+                        HID = attri.Value.HelpID,
+                        Region = attri.Value.ValidRegion.ToString()
+                    };
 
-                        var value = stateV.GetAttribute("Value");
-                        stateT.SetAttribute("Value", value);
+                    foreach (SchemeAttributeValueStatus state in attri.Value.ValueStates)
+                    {
+                        DBAttributeStateModel dbState = new DBAttributeStateModel()
+                        {
+                            Expression = state.ValueExpression,
+                            Region = state.ValueRegion.ToString(),
+                            Value = state.ToString()
+                        };
+
+                        dbAtti.States.Add(dbState);
                     }
+
+                    dbCat.Attributes.Add(dbAtti);
                 }
+
+                output.Categories.Add(dbCat);
             }
 
-            return JsonConvert.SerializeXmlNode(template.NativeDoc(), Newtonsoft.Json.Formatting.None, true);
+            return output;
         }
     }
 }

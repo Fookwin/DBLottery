@@ -19,6 +19,6 @@ namespace DBSQLService
                     BodyStyle = WebMessageBodyStyle.Bare,
                     RequestFormat = WebMessageFormat.Json,
                     ResponseFormat = WebMessageFormat.Json)]
-        string GetLatestAttribute();
+        DBAttributesModel GetLatestAttribute();
     }
 }

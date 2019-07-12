@@ -228,6 +228,7 @@
     <Compile Include="Data\DBSQLClient.cs" />
     <Compile Include="Data\DBUserData.cs" />
     <Compile Include="Data\DBVersion.cs" />
+    <Compile Include="Data\Models\DBAttributeModel.cs" />
     <Compile Include="Data\Models\DBLotteryBasicModel.cs" />
     <Compile Include="IRFxDBAttributeService.cs" />
     <Compile Include="LottoBasic.cs">

@@ -482,6 +482,11 @@ namespace LuckyBallsData.Selection
 
         public void SaveValueToXml(ref DBXmlNode node)
         {
+            node.SetAttribute("Value", ToString());
+        }
+
+        public override string ToString()
+        {
             string value = "";
 
             value += HitCount.ToString() + ",";
@@ -492,7 +497,7 @@ namespace LuckyBallsData.Selection
             value += ImmediateOmission.ToString() + ",";
             value += ProtentialEnergy.ToString("F1");
 
-            node.SetAttribute("Value", value);
+            return value;
         }
 
         public void ReadFromTemplate(DBXmlNode node)
