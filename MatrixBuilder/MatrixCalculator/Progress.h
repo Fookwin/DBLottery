@@ -8,7 +8,7 @@ class MTRxEXPORTS ThreadProgress
 {
 public:
 	int Total;
-	stack<int> Progress;
+	vector<int> Progress;
 };
 
 typedef MTRxEXPORTS vector<ThreadProgress> ThreadProgressSet;

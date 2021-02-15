@@ -96,7 +96,7 @@ List<ThreadStatus^>^ MatrixCalculatorWrapper::GetProgress()
 		auto firstProg = native_progress[0];
 
 		int index = 0;
-		for each (auto progress in firstProg.Progress._Get_container())
+		for each (auto progress in firstProg.Progress)
 		{
 			ThreadStatus^ state = gcnew ThreadStatus();
 			state->Progress = progress * 100 / firstProg.Total;

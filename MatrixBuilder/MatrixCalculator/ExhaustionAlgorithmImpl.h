@@ -50,8 +50,8 @@ private:
 	int _minHitCountForEach = -1;
 
 	BuildToken* _buildToken = nullptr;
-	stack<const MatrixItemByte*> _currentSelection;
-	stack<BuildToken*> _tokenStack;
+	vector<const MatrixItemByte*> _currentSelection;
+	vector<BuildToken*> _tokenStack;
 };
 
 class ExhaustionAlgorithmImpl

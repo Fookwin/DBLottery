@@ -26,7 +26,7 @@ BuildContext::BuildContext(MatrixBuildSettings* settings, bool returnForAny, int
 BuildContext::~BuildContext()
 {
 	delete _buildToken;
-	for each(auto token in _tokenStack._Get_container())
+	for each(auto token in _tokenStack)
 	{
 		delete token;
 	}
@@ -34,7 +34,7 @@ BuildContext::~BuildContext()
 
 void BuildContext::GetSolution(vector<const MatrixItemByte*>& solution) const
 {
-	for each(auto item in _currentSelection._Get_container())
+	for each(auto item in _currentSelection)
 	{
 		solution.push_back(item);
 	}
@@ -67,7 +67,7 @@ void BuildContext::RefreshTokens(int currentSoltionCount)
 	if (newMaxHitCountForEach < _maxHitCountForEach && newMinHitCountForEach < _minHitCountForEach)
 	{
 		// let update the token stack to refresh the skip number bits for each
-		for each(auto token in _tokenStack._Get_container())
+		for each(auto token in _tokenStack)
 		{
 			token->RefreshForCommit(newMinHitCountForEach, newMaxHitCountForEach);
 		}
@@ -87,21 +87,21 @@ bool BuildContext::NextItemScope(int current, IndexScope& nextScope)
 
 void BuildContext::Pop()
 {
-	_currentSelection.pop();
+	_currentSelection.pop_back();
 
 	// recovery the build token.
 	delete _buildToken;
-	_buildToken = _tokenStack.top();
-	_tokenStack.pop();
+	_buildToken = _tokenStack.back();
+	_tokenStack.pop_back();
 }
 
 BuildContext::Status BuildContext::Push(int index, const MatrixItemByte* item)
 {
 	// backup the token.
-	_tokenStack.push(_buildToken->Clone());
+	_tokenStack.push_back(_buildToken->Clone());
 
 	// add to selection.
-	_currentSelection.push(item);
+	_currentSelection.emplace_back(item);
 
 	// update the coverage of the items.
 	_buildToken->UpdateItemCoverage(index);
@@ -239,7 +239,7 @@ MatrixResult ExhaustionAlgorithmImpl::_Calculate(int maxSelectionCount, const In
 	if (!context.NextItemScope(0, nextScope))
 		return MatrixResult::Job_Failed;
 
-	progress.Progress.push(0);
+	progress.Progress.push_back(0);
 
 	MatrixResult res = _TraversalForAny(nextScope, context, progress);
 
@@ -266,7 +266,7 @@ MatrixResult ExhaustionAlgorithmImpl::_TraversalForAny(const IndexScope& scope, 
 
 		// commit this item
 		auto status = context.Push(index, &testItem);
-		progressMornitor.Progress.push(index);
+		progressMornitor.Progress.push_back(index);
 
 		// do we get a solution? check only if the current solution has more steps than the ideal.
 		if (status == BuildContext::Status::Complete)
@@ -282,7 +282,7 @@ MatrixResult ExhaustionAlgorithmImpl::_TraversalForAny(const IndexScope& scope, 
 				return MatrixResult::Job_Aborted;
 
 			context.Pop();
-			progressMornitor.Progress.pop();
+			progressMornitor.Progress.pop_back();
 
 			// no need to continue, since we could not get better solution at this level loop.
 			return bCommitFail ? MatrixResult::Job_Failed : (context.ReturnForAny() ? MatrixResult::Job_Succeeded : MatrixResult::Job_Succeeded_Continue);
@@ -305,7 +305,7 @@ MatrixResult ExhaustionAlgorithmImpl::_TraversalForAny(const IndexScope& scope, 
 					{
 						// impossible to get better solution at this leve of loop, break and continue.
 						context.Pop();
-						progressMornitor.Progress.pop();
+						progressMornitor.Progress.pop_back();
 						return MatrixResult::Job_Succeeded_Continue;
 					}
 				}
@@ -315,7 +315,7 @@ MatrixResult ExhaustionAlgorithmImpl::_TraversalForAny(const IndexScope& scope, 
 
 		// recover the tests and continue.
 		context.Pop();
-		progressMornitor.Progress.pop();
+		progressMornitor.Progress.pop_back();
 
 		index = scope.Next();
 	}
