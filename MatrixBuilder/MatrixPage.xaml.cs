@@ -145,9 +145,14 @@ namespace MatrixBuilder
                 {
                     LV_Progress.ItemsSource = null;
 
-                    var progress = _builder.GetProgress();
-
-                    LV_Progress.ItemsSource = progress;
+                    if (_userCanceled)
+                    {
+                        _builder.Abort();
+                    }
+                    else
+                    {
+                        LV_Progress.ItemsSource = _builder.GetProgress();
+                    }
                 }
             }, DispatcherPriority.Normal);
         }

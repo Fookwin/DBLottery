@@ -28,6 +28,11 @@ namespace MatrixBuilder
             return _max_builder.GetProgress();
         }
 
+        public void Abort()
+        {
+            _max_builder.Abort();
+        }
+
         public void Init(bool bUseDefault)
         {
             _matrixTable.Init();

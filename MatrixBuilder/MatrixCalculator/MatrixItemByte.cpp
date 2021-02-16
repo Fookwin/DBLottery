@@ -4,7 +4,7 @@
 #include <iterator> 
 #include <sstream>
 
-MatrixItemByte::MatrixItemByte()
+MatrixItemByte::MatrixItemByte() : _set(0)
 {
 }
 
@@ -14,12 +14,12 @@ MatrixItemByte::~MatrixItemByte()
 }
 
 
-MatrixItemByte::MatrixItemByte(int size)
+MatrixItemByte::MatrixItemByte(int size) : _set(0)
 {
 	_bitSize = size;
 }
 
-MatrixItemByte::MatrixItemByte(int size, UINT64 copyFrom)
+MatrixItemByte::MatrixItemByte(int size, UINT64 copyFrom) : _set(0)
 {
 	_bitSize = size;
 	_set = copyFrom;

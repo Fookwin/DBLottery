@@ -108,6 +108,11 @@ List<ThreadStatus^>^ MatrixCalculatorWrapper::GetProgress()
 	return m_progress;
 }
 
+void MatrixCalculatorWrapper::Abort()
+{
+	m_nativeClient->Abort();
+}
+
 bool MatrixCalculatorWrapper::ValidateSolution(int candidateCount, int selectCount, List<MatrixItem^>^ test)
 {
 	vector<MatrixItemByte*> testBytes;

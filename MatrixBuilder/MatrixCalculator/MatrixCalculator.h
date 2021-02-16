@@ -19,6 +19,7 @@ public:
 	bool Calcuate(int row, int col, int algorithm, int betterThan, bool bParallel, bool bReturnForAny, vector<string>& solution);
 
 	const ThreadProgressSet& GetProgress() const;
+	void Abort();
 
 	static bool ValidateSolution(int candidateCount, int selectCount, const vector<MatrixItemByte*>& test);
 

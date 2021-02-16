@@ -240,10 +240,7 @@ MatrixResult ExhaustionAlgorithmImpl::_Calculate(int maxSelectionCount, const In
 		return MatrixResult::Job_Failed;
 
 	progress.Progress.push_back(0);
-
-	MatrixResult res = _TraversalForAny(nextScope, context, progress);
-
-	return res;
+	return _TraversalForAny(nextScope, context, progress);
 }
 
 MatrixResult ExhaustionAlgorithmImpl::_TraversalForAny(const IndexScope& scope, BuildContext& context, ThreadProgress& progressMornitor)
@@ -267,6 +264,10 @@ MatrixResult ExhaustionAlgorithmImpl::_TraversalForAny(const IndexScope& scope, 
 		// commit this item
 		auto status = context.Push(index, &testItem);
 		progressMornitor.Progress.push_back(index);
+		if (progressMornitor.Aborted)
+		{
+			return MatrixResult::User_Aborted;
+		}
 
 		// do we get a solution? check only if the current solution has more steps than the ideal.
 		if (status == BuildContext::Status::Complete)

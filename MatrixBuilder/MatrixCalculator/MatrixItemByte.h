@@ -10,7 +10,6 @@ class MTRxEXPORTS MatrixItemByte
 public:
 	MatrixItemByte(int size);
 	MatrixItemByte(int size, UINT64 copyFrom);
-	MatrixItemByte(string values);
 	~MatrixItemByte();
 
 	UINT64 GetBits() const;
@@ -22,7 +21,6 @@ public:
 private:
 	MatrixItemByte();
 
-	UINT64 _set = 0;
+	UINT64 _set : 33;
 	int _bitSize = 0;
 };
-

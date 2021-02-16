@@ -36,6 +36,14 @@ const ThreadProgressSet& MTRxMatrixCalculator::GetProgress() const
 	return m_progress;
 }
 
+void MTRxMatrixCalculator::Abort()
+{
+	for (auto & progress : m_progress)
+	{
+		progress.Aborted = true;
+	}
+}
+
 bool MTRxMatrixCalculator::ValidateSolution(int candidateCount, int selectCount, const vector<MatrixItemByte*>& test)
 {
 	MatrixBuildSettings settings(candidateCount, selectCount);

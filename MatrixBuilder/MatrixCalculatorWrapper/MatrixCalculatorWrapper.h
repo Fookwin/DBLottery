@@ -41,6 +41,7 @@ public:
 	bool Calcuate(int row, int col, int algorithm, int betterThan, bool bParallel, bool bReturnForAny, List<MatrixItem^>^);
 
 	List<ThreadStatus^>^ GetProgress();
+	void Abort();
 
 	static bool ValidateSolution(int candidateCount, int selectCount, List<MatrixItem^>^ test);
 

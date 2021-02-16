@@ -9,6 +9,7 @@ class MTRxEXPORTS ThreadProgress
 public:
 	int Total;
 	vector<int> Progress;
+	bool Aborted{ false };
 };
 
 typedef MTRxEXPORTS vector<ThreadProgress> ThreadProgressSet;
