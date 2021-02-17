@@ -19,7 +19,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="10"/>
@@ -32,20 +32,19 @@
                       ItemsSource="{Binding Mode=Default}" SelectedCellsChanged="DG_Matrix_SelectedCellsChanged"/>
 
             <TextBlock x:Name="Selected_Cell_Name" Grid.Column="2" Grid.Row="0" FontSize="15"/>
-            <ListView x:Name="LV_Template" Grid.Column="2" Grid.Row="1" ItemsSource="{Binding Mode=Default}" Height="300"/>
-            <StackPanel Grid.Column="2" Grid.Row="2">
+            <ListView x:Name="LV_Template" Grid.Column="2" ItemsSource="{Binding Mode=Default}" Grid.Row="1"/>
+            <StackPanel Grid.Column="2" Grid.Row="2" VerticalAlignment="Bottom">
                 <Button x:Name="BT_Verify" Content="验证" Width="100" Click="Button_Click_Verify" Height="30"/>
-                <Button x:Name="BT_Normalize" Content="格式化" Width="100" Click="BT_Normalize_Click" Height="30"/>
+                <Button x:Name="BT_Normalize" Content="格式化" Width="100" Click="BT_Normalize_Click" Height="30" VerticalContentAlignment="Center"/>
             </StackPanel>
 
-            <ListView x:Name="LV_Progress" Grid.Column="4" Grid.Row="0" Grid.RowSpan="2" ItemsSource="{Binding Mode=Default}" Height="340">
+            <ListView x:Name="LV_Progress" Grid.Column="4" Grid.Row="1" ItemsSource="{Binding Mode=Default}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding ThreadID}"/>
-                            <TextBlock Text="{Binding Message}"/>
-                            <ProgressBar Value="{Binding Progress}" Height="5" Maximum="100" Width="400"/>
-                        </StackPanel>
+                        <Grid>
+                            <ProgressBar Value="{Binding Progress}" Maximum="100" Width="600"/>
+                            <TextBlock Text="{Binding Message}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
@@ -54,7 +53,7 @@
                 <TextBlock Text="Better than " VerticalAlignment="Center" FontSize="15"/>
                 <TextBox x:Name="TB_TestStart" Text="-1" FontSize="15" Width="50" Height="30" TextAlignment="Center"/>
                 <CheckBox x:Name="CB_Parallel" FontSize="15" VerticalAlignment="Center" Margin="5,0,0,0">In Parallel</CheckBox>
-                <CheckBox x:Name="CB_ReturnForAny" FontSize="15" VerticalAlignment="Center" Margin="5,0,0,0">Return For Any</CheckBox>
+                <CheckBox x:Name="CB_ReturnForAny" FontSize="15" VerticalAlignment="Center" Margin="5,0,0,0" IsChecked="True">Return For Any</CheckBox>
 
                 <TextBlock Text="算法  " VerticalAlignment="Center" FontSize="15" Margin="5,0,0,0"/>
                 <ComboBox x:Name="CB_Algorithm" Width="80" Height="30" SelectedIndex="0" FontSize="15">
@@ -68,8 +67,8 @@
                 </ComboBox>
 
                 <Button Content="计算" Margin="10,0,0,0" Width="100" Click="Button_Click_Calculate" Height="30"/>
-                <Button Content="终止" Margin="10,0,0,0" Width="100" Click="Button_Click_Skip" Height="30"/>                
+                <Button Content="终止" Margin="10,0,0,0" Width="100" Click="Button_Click_Skip" Height="30"/>
             </StackPanel>
-        </Grid>        
+        </Grid>
     </Grid>
 </Page>
