@@ -52,7 +52,7 @@ namespace MatrixBuilder
             int lastHit = 0;
             foreach (var hit in hitCounts)
             {
-                if (lastHit > 0)
+                if (lastHit <= 0)
                 {
                     lastHit = hit;
                     continue;
@@ -128,9 +128,17 @@ namespace MatrixBuilder
             {
                 if (num != index)
                 {
-                    // exchange the number with the index.
-                    changeMap2.Add(num, index);
-                    changeMap2.Add(index, num);
+                    // exchange the number with the index. actually num > index
+                    if (changeMap2.ContainsKey(index))
+                    {
+                        changeMap2.Add(num, index);
+                        changeMap2[changeMap2[index]] = num;
+                    }
+                    else
+                    {
+                        changeMap2.Add(num, index);
+                        changeMap2.Add(index, num);
+                    }
                 }
 
                 index++;
