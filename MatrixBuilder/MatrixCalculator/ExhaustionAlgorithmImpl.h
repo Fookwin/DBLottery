@@ -1,4 +1,5 @@
 #pragma once
+#include "IAlgorithmImpl.h"
 #include "MatrixBuildSettings.h"
 #include "MatrixItemByte.h"
 #include "BuildMatrixUtil.h"
@@ -21,8 +22,6 @@ public:
 	void GetSolution(vector<const MatrixItemByte*>& solution) const;
 
 	MatrixBuildSettings* Settings() const;
-
-	int SolutionCountFound() const;
 
 	int MaxSelectionCount() const;
 
@@ -54,15 +53,14 @@ private:
 	vector<BuildToken*> _tokenStack;
 };
 
-class ExhaustionAlgorithmImpl
+class ExhaustionAlgorithmImpl : public IAlgorithmImpl
 {
 public:
 	ExhaustionAlgorithmImpl(MatrixBuildSettings* settings);
 	~ExhaustionAlgorithmImpl();
 
-	const vector<const MatrixItemByte*>& GetSolution() const;
-
-	void Calculate(int maxSelectionCount, ThreadProgressSet& progresses, bool returnForAny, bool bInParallel);
+	void Calculate(int maxSelectionCount, ThreadProgressSet& progresses, bool returnForAny, bool bInParallel) override;
+	const vector<const MatrixItemByte*>& GetSolution() const override;
 
 private:
 

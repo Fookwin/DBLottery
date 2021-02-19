@@ -74,7 +74,7 @@ MatrixCalculatorWrapper::~MatrixCalculatorWrapper()
 bool MatrixCalculatorWrapper::Calcuate(int row, int col, int algorithm, int betterThan, bool bParallel, bool bReturnForAny, List<MatrixItem^>^ solution)
 {
 	vector<string> native_solution;
-	bool bRes = m_nativeClient->Calcuate(row, col, algorithm, betterThan, bParallel, bReturnForAny, native_solution);
+	bool bRes = m_nativeClient->Calcuate(row, col, (AlgorithmTypeEnum)algorithm, betterThan, bParallel, bReturnForAny, native_solution);
 	if (bRes)
 	{
 		for each (string str in native_solution)

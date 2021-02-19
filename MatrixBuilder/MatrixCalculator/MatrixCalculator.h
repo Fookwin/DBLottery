@@ -10,13 +10,19 @@ using namespace std;
 
 class MatrixItemByte;
 
+enum AlgorithmTypeEnum
+{
+	Exhaustion = 0,
+	Greedy = 1
+};
+
 class MTRxEXPORTS MTRxMatrixCalculator
 {
 public:
 	MTRxMatrixCalculator();
 	~MTRxMatrixCalculator();
 
-	bool Calcuate(int row, int col, int algorithm, int betterThan, bool bParallel, bool bReturnForAny, vector<string>& solution);
+	bool Calcuate(int row, int col, AlgorithmTypeEnum algorithm, int betterThan, bool bParallel, bool bReturnForAny, vector<string>& solution);
 
 	const ThreadProgressSet& GetProgress() const;
 	void Abort();

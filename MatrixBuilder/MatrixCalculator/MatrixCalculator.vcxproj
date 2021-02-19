@@ -91,6 +91,8 @@
   <ItemGroup>
     <ClInclude Include="BuildMatrixUtil.h" />
     <ClInclude Include="ExhaustionAlgorithmImpl.h" />
+    <ClInclude Include="GreedyAlgorithmImpl.h" />
+    <ClInclude Include="IAlgorithmImpl.h" />
     <ClInclude Include="MatrixBuildSettings.h" />
     <ClInclude Include="MatrixCalculator.h" />
     <ClInclude Include="MatrixItemByte.h" />
@@ -111,6 +113,7 @@
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ExhaustionAlgorithmImpl.cpp" />
+    <ClCompile Include="GreedyAlgorithmImpl.cpp" />
     <ClCompile Include="MatrixBuildSettings.cpp" />
     <ClCompile Include="MatrixCalculator.cpp" />
     <ClCompile Include="MatrixItemByte.cpp" />

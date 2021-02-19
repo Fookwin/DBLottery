@@ -5,6 +5,7 @@
 #include "MatrixCalculator.h"
 #include "MatrixBuildSettings.h"
 #include "ExhaustionAlgorithmImpl.h"
+#include "GreedyAlgorithmImpl.h"
 
 MTRxMatrixCalculator::MTRxMatrixCalculator()
 {
@@ -15,15 +16,28 @@ MTRxMatrixCalculator::~MTRxMatrixCalculator()
 {
 }
 
-bool MTRxMatrixCalculator::Calcuate(int row, int col, int algorithm, int betterThan, bool bParallel, bool bReturnForAny, vector<string>& solution)
+bool MTRxMatrixCalculator::Calcuate(int row, int col, AlgorithmTypeEnum algorithm, int betterThan, bool bParallel, bool bReturnForAny, vector<string>& solution)
 {
 	MatrixBuildSettings settings(row, col);
 
-	ExhaustionAlgorithmImpl impl(&settings);
-	impl.Calculate(betterThan - 1, m_progress, bReturnForAny, bParallel);
+	IAlgorithmImpl* pImpl = nullptr;
+	switch (algorithm)
+	{
+	case Exhaustion:
+		pImpl = new ExhaustionAlgorithmImpl(&settings);
+		break;
+	case Greedy:
+		pImpl = new GreedyAlgorithmImpl(&settings);
+		break;
+	default:
+		break;
+	}
 
-	auto sol = impl.GetSolution();
-	for each (auto var in sol)
+	if (!pImpl)
+		return false;
+
+	pImpl->Calculate(betterThan - 1, m_progress, bReturnForAny, bParallel);
+	for each (auto var in pImpl->GetSolution())
 	{
 		solution.push_back(var->ToString());
 	}
