@@ -38,7 +38,7 @@ public:
 	MatrixCalculatorWrapper();
 	~MatrixCalculatorWrapper();
 
-	bool Calcuate(int row, int col, int algorithm, int betterThan, bool bParallel, bool bReturnForAny, List<MatrixItem^>^);
+	bool Calcuate(int row, int col, int algorithm, int expectedItemCount, List<MatrixItem^>^);
 
 	List<ThreadStatus^>^ GetProgress();
 	void Abort();

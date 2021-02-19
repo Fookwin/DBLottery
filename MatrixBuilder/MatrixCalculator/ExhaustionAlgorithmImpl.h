@@ -16,16 +16,14 @@ public:
 		Complete
 	};
 
-	BuildContext(MatrixBuildSettings* settings, bool returnForAny, int maxSelectionCount);
+	BuildContext(MatrixBuildSettings* settings, int expectedItemCount);
 	~BuildContext();
 
 	void GetSolution(vector<const MatrixItemByte*>& solution) const;
 
 	MatrixBuildSettings* Settings() const;
 
-	int MaxSelectionCount() const;
-
-	bool ReturnForAny() const;
+	int ExpectedItemCount() const;
 
 	void RefreshTokens(int currentSoltionCount);
 
@@ -38,13 +36,12 @@ public:
 	int SelectionCount();
 
 private:
-	BuildContext(MatrixBuildSettings* settings, bool returnForAny);
+	BuildContext(MatrixBuildSettings* settings);
 
 	MatrixBuildSettings* _settings = nullptr;
-	bool _returnForAny = false;
 
 	// Algorithm settings.
-	int _maxSelectionCount = -1;
+	int _expectedItemCount = -1;
 	int _maxHitCountForEach = -1;
 	int _minHitCountForEach = -1;
 
@@ -59,7 +56,7 @@ public:
 	ExhaustionAlgorithmImpl(MatrixBuildSettings* settings);
 	~ExhaustionAlgorithmImpl();
 
-	void Calculate(int maxSelectionCount, ThreadProgressSet& progresses, bool returnForAny, bool bInParallel) override;
+	void Calculate(int expectedItemCount, ThreadProgressSet& progresses) override;
 	const vector<const MatrixItemByte*>& GetSolution() const override;
 
 private:
@@ -68,7 +65,7 @@ private:
 
 	int _CurrentSolutionCount();
 
-	MatrixResult _Calculate(int maxSelectionCount, const IndexScope& scope, bool returnForAny, ThreadProgress& progress);
+	MatrixResult _Calculate(int expectedItemCount, const IndexScope& scope, ThreadProgress& progress);
 
 	MatrixResult _TraversalForAny(const IndexScope& scope, BuildContext& context, ThreadProgress& progress);
 

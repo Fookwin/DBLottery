@@ -172,35 +172,25 @@ namespace MatrixBuilder
             return null;
         }
 
-        public int BuildMarixCell(int row, int col, int algorithm, int? betterThan = null, bool bParallel = false, bool bReturnForAny = false)
+        public int BuildMarixCell(int row, int col, int algorithm, int? expectedItemCount = null)
         {
             DateTime startTime = DateTime.Now;
 
             _matrixTable.Init();
 
              // if not specify the the max selection count, set it as the count of default solution.
-            if (betterThan == null)
+            if (expectedItemCount == null)
             {
                 // Get the default matrix as the candidate solution.
                 List<MatrixItem> defaultSoution = GetDefaultSolution(row, col, _matrixTable);
                 if (defaultSoution != null)
                 {
-                    betterThan = defaultSoution.Count; // try to find the better solution than default.
+                    expectedItemCount = defaultSoution.Count; // try to find the better solution than default.
                 }
             }
 
-            string strConditions = "Conditions: ";
-            strConditions += "ProcesserCount: " + Environment.ProcessorCount + "\n";
-            strConditions += "CandidateNumCount: " + row + "\n";
-            strConditions += "SelectNumCount: " + col + "\n";
-            strConditions += "FindingBetterThan: " + betterThan.Value + "\n";
-            if (MessageBox.Show(strConditions, "Ready?", MessageBoxButton.YesNo) != MessageBoxResult.Yes)
-            {
-                return -1;
-            }
-
             List<MatrixItem> foundSolution = new List<MatrixItem>();
-            _max_builder.Calcuate(row, col, algorithm, betterThan.Value, bParallel, bReturnForAny, foundSolution);
+            _max_builder.Calcuate(row, col, algorithm, expectedItemCount.Value, foundSolution);
 
             TimeSpan duration = DateTime.Now - startTime;
 

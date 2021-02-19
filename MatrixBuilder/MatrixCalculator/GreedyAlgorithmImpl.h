@@ -12,7 +12,7 @@ public:
 	GreedyAlgorithmImpl(MatrixBuildSettings* settings);
 	~GreedyAlgorithmImpl();
 
-	void Calculate(int maxSelectionCount, ThreadProgressSet& progresses, bool returnForAny, bool bInParallel) override;
+	void Calculate(int expectedItemCount, ThreadProgressSet& progresses) override;
 	const vector<const MatrixItemByte*>& GetSolution() const override;
 
 private:

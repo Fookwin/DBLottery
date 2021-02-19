@@ -5,20 +5,18 @@
 
 #pragma region BuildContext
 
-BuildContext::BuildContext(MatrixBuildSettings* settings, bool returnForAny)
+BuildContext::BuildContext(MatrixBuildSettings* settings)
 {
 	_settings = settings;
-	_returnForAny = returnForAny;
 }
 
-BuildContext::BuildContext(MatrixBuildSettings* settings, bool returnForAny, int maxSelectionCount)
+BuildContext::BuildContext(MatrixBuildSettings* settings, int expectedItemCount)
 {
 	_settings = settings;
-	_returnForAny = returnForAny;
 
-	_maxSelectionCount = maxSelectionCount;
-	_maxHitCountForEach = _maxSelectionCount * _settings->SelectNumCount / _settings->CandidateNumCount + 1;
-	_minHitCountForEach = (_maxSelectionCount + 1) * _settings->SelectNumCount / _settings->CandidateNumCount - 1;
+	_expectedItemCount = expectedItemCount;
+	_maxHitCountForEach = _expectedItemCount * _settings->SelectNumCount / _settings->CandidateNumCount + 1;
+	_minHitCountForEach = (_expectedItemCount + 1) * _settings->SelectNumCount / _settings->CandidateNumCount - 1;
 
 	_buildToken = new BuildToken(_settings);
 }
@@ -45,23 +43,18 @@ MatrixBuildSettings* BuildContext::Settings() const
 	return _settings;
 }
 
-int BuildContext::MaxSelectionCount() const
+int BuildContext::ExpectedItemCount() const
 {
-	return _maxSelectionCount;
-}
-
-bool BuildContext::ReturnForAny() const
-{
-	return _returnForAny;
+	return _expectedItemCount;
 }
 
 void BuildContext::RefreshTokens(int currentSoltionCount)
 {
-	_maxSelectionCount = currentSoltionCount - 1;
+	_expectedItemCount = currentSoltionCount - 1;
 
 	// calculate the max num hit count.
-	int newMinHitCountForEach = (_maxSelectionCount + 1) * _settings->SelectNumCount / _settings->CandidateNumCount - 1;
-	int newMaxHitCountForEach = _maxSelectionCount * _settings->SelectNumCount / _settings->CandidateNumCount + 1;
+	int newMinHitCountForEach = (_expectedItemCount + 1) * _settings->SelectNumCount / _settings->CandidateNumCount - 1;
+	int newMaxHitCountForEach = _expectedItemCount * _settings->SelectNumCount / _settings->CandidateNumCount + 1;
 
 	// check if any numbers has been hit the max hit count that could be skipped.
 	if (newMaxHitCountForEach < _maxHitCountForEach && newMinHitCountForEach < _minHitCountForEach)
@@ -113,7 +106,7 @@ BuildContext::Status BuildContext::Push(int index, const MatrixItemByte* item)
 	}
 
 	// if the current solution already has no chance to get less steps than the existing one, stop for failure.
-	int restStep = MaxSelectionCount() - static_cast<int>(_currentSelection.size());
+	int restStep = ExpectedItemCount() - static_cast<int>(_currentSelection.size());
 	if (restStep <= 0)
 		return Status::Failed;
 
@@ -187,7 +180,7 @@ int ExhaustionAlgorithmImpl::_CurrentSolutionCount()
 	return _solutionItemCount;
 }
 
-void ExhaustionAlgorithmImpl::Calculate(int maxSelectionCount, ThreadProgressSet& progresses, bool returnForAny, bool bInParallel)
+void ExhaustionAlgorithmImpl::Calculate(int expectedItemCount, ThreadProgressSet& progresses)
 {
 	// define the scope for the top level loop, since the first item would be always added, 
 	// start from the second one and end with the last index contains '1'.
@@ -211,7 +204,7 @@ void ExhaustionAlgorithmImpl::Calculate(int maxSelectionCount, ThreadProgressSet
 	//			{
 	//				//MatrixBuildSettings settings = new MatrixBuildSettings(_settings->CandidateNumCount, _settings->SelectNumCount);
 	//				string threadName = "thread [" + Index.ToString() + "]    " + scope.ToString();
-	//				if (_Calculate(_settings, threadName, maxSelectionCount, scope, returnForAny, progresses, option.CancellationToken) == MatrixResult.User_Aborted)
+	//				if (_Calculate(_settings, threadName, expectedItemCount, scope, returnForAny, progresses, option.CancellationToken) == MatrixResult.User_Aborted)
 	//					bAborted = true;
 	//			}
 	//		}
@@ -222,14 +215,14 @@ void ExhaustionAlgorithmImpl::Calculate(int maxSelectionCount, ThreadProgressSet
 		ThreadProgress progress;
 		progress.Total = _settings->TestItemCount();
 		progresses.push_back(progress);
-		_Calculate(maxSelectionCount, overallScope, returnForAny, progresses[0]);
+		_Calculate(expectedItemCount, overallScope, progresses[0]);
 	//}
 }
 
-MatrixResult ExhaustionAlgorithmImpl::_Calculate(int maxSelectionCount, const IndexScope& scope, bool returnForAny, ThreadProgress& progress)
+MatrixResult ExhaustionAlgorithmImpl::_Calculate(int expectedItemCount, const IndexScope& scope, ThreadProgress& progress)
 {
 	// Build context.
-	BuildContext context(_settings, returnForAny, maxSelectionCount);
+	BuildContext context(_settings, expectedItemCount);
 
 	// Include the first always.
 	const MatrixItemByte& firstItem = _settings->TestItem(0);
@@ -251,12 +244,9 @@ MatrixResult ExhaustionAlgorithmImpl::_TraversalForAny(const IndexScope& scope, 
 	while (index > 0)
 	{
 		// check if a better result has been found by other process.
-		if (_CurrentSolutionCount() > 0 && context.MaxSelectionCount() >= _CurrentSolutionCount())
+		if (_CurrentSolutionCount() > 0 && context.ExpectedItemCount() >= _CurrentSolutionCount())
 		{
-			if (context.ReturnForAny())
-				return MatrixResult::Job_Aborted;
-
-			context.RefreshTokens(_CurrentSolutionCount()); // refresh the tokens for the better solution.
+			return MatrixResult::Job_Failed;
 		}
 
 		const MatrixItemByte& testItem = context.Settings()->TestItem(index);
@@ -278,15 +268,11 @@ MatrixResult ExhaustionAlgorithmImpl::_TraversalForAny(const IndexScope& scope, 
 
 			bool bCommitFail = _CommitSolution(currentSolution);
 
-			// has better solution found by other process, don't continue if return any.
-			if (context.ReturnForAny())
-				return MatrixResult::Job_Aborted;
-
 			context.Pop();
 			progressMornitor.Progress.pop_back();
 
 			// no need to continue, since we could not get better solution at this level loop.
-			return bCommitFail ? MatrixResult::Job_Failed : (context.ReturnForAny() ? MatrixResult::Job_Succeeded : MatrixResult::Job_Succeeded_Continue);
+			return bCommitFail ? MatrixResult::Job_Failed : MatrixResult::Job_Succeeded;
 		}
 		else if (status == BuildContext::Status::Continue)
 		{
@@ -295,7 +281,7 @@ MatrixResult ExhaustionAlgorithmImpl::_TraversalForAny(const IndexScope& scope, 
 			{
 				// if we got a valid solution, check if need to continue or not.
 				MatrixResult res = _TraversalForAny(nextScope, context, progressMornitor);
-				if (res == MatrixResult::User_Aborted || res == MatrixResult::Job_Aborted || res == MatrixResult::Job_Succeeded)
+				if (res == MatrixResult::User_Aborted || res == MatrixResult::Job_Succeeded)
 				{
 					return res;
 				}

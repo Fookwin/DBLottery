@@ -16,7 +16,7 @@ MTRxMatrixCalculator::~MTRxMatrixCalculator()
 {
 }
 
-bool MTRxMatrixCalculator::Calcuate(int row, int col, AlgorithmTypeEnum algorithm, int betterThan, bool bParallel, bool bReturnForAny, vector<string>& solution)
+bool MTRxMatrixCalculator::Calcuate(int row, int col, AlgorithmTypeEnum algorithm, int expectedItemCount, vector<string>& solution)
 {
 	MatrixBuildSettings settings(row, col);
 
@@ -36,7 +36,7 @@ bool MTRxMatrixCalculator::Calcuate(int row, int col, AlgorithmTypeEnum algorith
 	if (!pImpl)
 		return false;
 
-	pImpl->Calculate(betterThan - 1, m_progress, bReturnForAny, bParallel);
+	pImpl->Calculate(expectedItemCount, m_progress);
 	for each (auto var in pImpl->GetSolution())
 	{
 		solution.push_back(var->ToString());

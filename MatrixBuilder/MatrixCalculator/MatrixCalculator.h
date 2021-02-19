@@ -22,7 +22,7 @@ public:
 	MTRxMatrixCalculator();
 	~MTRxMatrixCalculator();
 
-	bool Calcuate(int row, int col, AlgorithmTypeEnum algorithm, int betterThan, bool bParallel, bool bReturnForAny, vector<string>& solution);
+	bool Calcuate(int row, int col, AlgorithmTypeEnum algorithm, int expectedItemCount, vector<string>& solution);
 
 	const ThreadProgressSet& GetProgress() const;
 	void Abort();

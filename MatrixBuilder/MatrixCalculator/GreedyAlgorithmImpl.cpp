@@ -187,7 +187,7 @@ int GreedyAlgorithmImpl::_CurrentSolutionCount()
 	return _solutionItemCount;
 }
 
-void GreedyAlgorithmImpl::Calculate(int maxSelectionCount, ThreadProgressSet& progresses, bool returnForAny, bool bInParallel)
+void GreedyAlgorithmImpl::Calculate(int expectedItemCount, ThreadProgressSet& progresses)
 {
 	// define the scope for the top level loop, since the first item would be always added, 
 	// start from the second one and end with the last index contains '1'.
@@ -222,7 +222,7 @@ void GreedyAlgorithmImpl::Calculate(int maxSelectionCount, ThreadProgressSet& pr
 		ThreadProgress progress;
 		progress.Total = _settings->TestItemCount();
 		progresses.push_back(progress);
-		_Calculate(maxSelectionCount, overallScope, returnForAny, progresses[0]);
+		//_Calculate(maxSelectionCount, overallScope, returnForAny, progresses[0]);
 	//}
 }
 

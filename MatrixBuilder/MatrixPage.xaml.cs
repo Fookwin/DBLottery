@@ -70,7 +70,7 @@ namespace MatrixBuilder
 
                 BT_Verify.IsEnabled = solutionCount > 0;
                 Selected_Cell_Name.Text = _selectedRow.ToString() + " 选 " + _selectedCol.ToString() + " [" + solutionCount.ToString() + "] - " + _selectedCell.Status.ToString();
-                TB_TestStart.Text = solutionCount.ToString();
+                TB_TestStart.Text = (solutionCount - 1).ToString();
             }
             else
             {
@@ -96,17 +96,15 @@ namespace MatrixBuilder
             // Start timer.
             _timer.Start();
 
-            int betterThan = Convert.ToInt32(TB_TestStart.Text);
+            int expectedItemCount = Convert.ToInt32(TB_TestStart.Text);
             int algorithm = CB_Algorithm.SelectedIndex;
-            bool bInParallel = CB_Parallel.IsChecked == true;
-            bool bReturnForAny = CB_ReturnForAny.IsChecked == true;
 
-            string config = "[" + _selectedRow.ToString() + " - " + _selectedCol.ToString() + "]: Algorithm: " + CB_Algorithm.Text + " < " + betterThan.ToString() + " Parallel: " + bInParallel.ToString() + " ForAny: " + bReturnForAny.ToString();
+            string config = "[" + _selectedRow.ToString() + " - " + _selectedCol.ToString() + "]: Algorithm: " + CB_Algorithm.Text + " with " + expectedItemCount.ToString() + "items";
             this.WindowTitle = "Calculating " + config;
 
             Thread calThread = new Thread(() =>
             {
-                _builder.BuildMarixCell(_selectedRow, _selectedCol, algorithm, betterThan, bInParallel, bReturnForAny);
+                _builder.BuildMarixCell(_selectedRow, _selectedCol, algorithm, expectedItemCount);
 
                 _timer.Stop();
 
